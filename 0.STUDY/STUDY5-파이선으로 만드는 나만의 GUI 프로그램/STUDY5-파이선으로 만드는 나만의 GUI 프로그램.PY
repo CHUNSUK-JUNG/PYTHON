@@ -1,6 +1,37 @@
 # 출처 [https://wikidocs.net/book/2165, PyQt5 Tutorial 파이썬으로 만드는 나만의 GUI 프로그램]
 
 # [기초 (Basics)]
+# (3-5.상태바 만들기)
+# 메인창(Main window)은 메뉴바, 툴바, 상태바를 갖는 전형적인 어플리케이션 창입니다. (QMainWindow 공식 문서 참고)
+# 메인창은 QMenuBar, QToolBar, QDockWidget, QStatusBar를 위한 고유의 레이아웃을 갖고 있습니다.
+# 또한 가운데 영역(QDockWidget 내)에 중심위젯(Central widget)을 위한 영역을 갖고 있습니다. 여기에는 어떠한 위젯도 들어올 수 있습니다.
+# QMainWindow 클래스를 이용해서 메인 어플리케이션 창을 만들 수 있습니다.
+# 우선 QStatusBar를 이용해서 메인 창에 상태바(status bar)를 하나 만들어 보겠습니다.
+# 상태바는 어플리케이션의 상태를 알려주기 위해 어플리케이션의 하단에 위치하는 위젯입니다. (QStatusBar 공식 문서 참고)
+# 상태바에 텍스트를 표시하기 위해서는 showMessage() 메서드를 사용합니다.
+# 텍스트가 사라지게 하고 싶으면, clearMessage() 메서드를 사용하거나, showMessage() 메서드에 텍스트가 표시되는 시간을 설정할 수 있습니다.
+# 현재 상태바에 표시되는 메세지 텍스트를 갖고 오고 싶을 때는 currentMessage() 메서드를 사용합니다.
+# QStatusBar 클래스는 상태바에 표시되는 메세지가 바뀔 때 마다 messageChanged() 시그널을 발생합니다.
+# self.statusBar().showMessage('Ready')
+# 상태바는 QMainWindow 클래스의 statusBar() 메서드를 이용해서 만드는데, statusBar() 메서드를 최초로 호출함으로써 만들어집니다.
+# 그 다음 호출부터는 상태바 객체를 반환합니다.
+# showMessage() 메서드를 통해 상태바에 보여질 메세지를 설정할 수 있습니다.
+''' import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow
+class MyApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+    def initUI(self):
+        self.statusBar().showMessage('Ready')
+        self.setWindowTitle('Statusbar')
+        self.setGeometry(300, 300, 300, 200)
+        self.show()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_()) '''
+
 # (3-4.툴팁 나타내기)
 # 툴팁은 어떤 위젯의 기능을 설명하는 등의 역할을 하는 말풍선 형태의 도움말입니다. (QToolTip 공식 문서 참고)
 # 위젯에 있는 모든 구성 요소에 대해서 툴팁(tooltip)이 나타나도록 할 수 있습니다.
@@ -18,6 +49,9 @@
 # btn.resize(btn.sizeHint())
 # 버튼의 위치와 크기를 설정합니다.
 # sizeHint() 메서드는 버튼을 적절한 크기로 설정하도록 도와줍니다.
+''' import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QToolTip
+from PyQt5.QtGui import QFont
 class MyApp(QWidget):
     def __init__(self):
         super().__init__()
@@ -29,14 +63,13 @@ class MyApp(QWidget):
         btn.setToolTip('This is a <b>QPushButton</b> widget')
         btn.move(50, 50)
         btn.resize(btn.sizeHint())
-
         self.setWindowTitle('Tooltips')
         self.setGeometry(300, 300, 300, 200)
         self.show()
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_()) '''
 
 # (3-3.창 닫기)
 # 창을 닫는 가장 간단한 방법은 타이틀바의 오른쪽 (Windows) 또는 왼쪽 (macOS) 'X' 버튼을 클릭하는 것입니다.
