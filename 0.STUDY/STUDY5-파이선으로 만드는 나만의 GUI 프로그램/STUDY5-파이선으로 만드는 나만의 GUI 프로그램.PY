@@ -1,6 +1,214 @@
 # 출처 [https://wikidocs.net/book/2165, PyQt5 Tutorial 파이썬으로 만드는 나만의 GUI 프로그램]
 
+
 # [기초 (Basics)]
+
+# (3-9.날짜와 시간 표시하기)
+# QtCore 모듈의 QDate, QTime, QDateTime 클래스를 이용해서 어플리케이션에 날짜와 시간을 표시할 수 있습니다.
+# 각 클래스에 대한 자세한 설명은 아래 링크를 참고합니다.
+# QDate 공식 문서: 링크
+# QTime 공식 문서: 링크
+# QDateTime 공식 문서: 링크
+# 날짜 표시하기(QDate)
+# QDate 클래스는 날짜와 관련된 기능들을 제공합니다.
+# 현재 날짜 출력하기
+# 우선 QDate 클래스를 이용해서 날짜를 출력해 보겠습니다.
+# from PyQt5.QtCore import QDate
+# now = QDate.currentDate()
+# print(now.toString())
+# currentDate() 메서드는 현재 날짜를 반환합니다.
+# toString() 메서드를 통해 현재 날짜를 문자열로 출력할 수 있습니다.
+# 결과는 아래와 같습니다.
+# 수 1 2 2019
+# 날짜 형식 설정하기
+# toString() 메서드의 format 파라미터를 설정함으로써 날짜의 형식을 정할 수 있습니다.
+# from PyQt5.QtCore import QDate, Qt
+# now = QDate.currentDate()
+# print(now.toString('d.M.yy'))
+# print(now.toString('dd.MM.yyyy'))
+# print(now.toString('ddd.MMMM.yyyy'))
+# print(now.toString(Qt.ISODate))
+# print(now.toString(Qt.DefaultLocaleLongDate))
+# 'd'는 일(day), 'M'은 달(month), 'y'는 연도(year)를 나타냅니다. 각 문자의 개수에 따라 날짜의 형식이 다르게 출력됩니다.
+# Qt.ISODate, Qt.DefaultLocaleLongDate를 입력함으로써 ISO 표준 형식 또는 어플리케이션의 기본 설정에 맞게 출력할 수 있습니다. 결과는 아래와 같습니다.
+# 2.1.19
+# 02.01.2019
+# 수.1월.2019
+# 2019-01-02
+# 2019년 1월 2일 수요일
+# 자세한 내용은 아래의 표 또는 공식 문서를 참고합니다.
+# 시간 표시하기(QTime)
+# QTime 클래스를 사용해서 현재 시간을 출력할 수 있습니다.
+# 현재 시간 출력하기
+# from PyQt5.QtCore import QTime
+# time = QTime.currentTime()
+# print(time.toString())
+# currentTime() 메서드는 현재 시간을 반환합니다.
+# toString() 메서드는 현재 시간을 문자열로 반환합니다. 결과는 아래와 같습니다.
+# 15:41:22
+# 시간 형식 설정하기
+# from PyQt5.QtCore import QTime, Qt
+# time = QTime.currentTime()
+# print(time.toString('h.m.s'))
+# print(time.toString('hh.mm.ss'))
+# print(time.toString('hh.mm.ss.zzz'))
+# print(time.toString(Qt.DefaultLocaleLongDate))
+# print(time.toString(Qt.DefaultLocaleShortDate))
+# 'h'는 시간(hour), 'm'은 분(minute), 's'는 초(second), 그리고 'z'는 1000분의 1초를 나타냅니다.
+# 또한 날짜에서와 마찬가지로 Qt.DefaultLocaleLongDate 또는 Qt.DefaultLocaleShortDate 등으로 시간의 형식을 설정할 수 있습니다.
+# 결과는 아래와 같습니다.
+# 16.2.3
+# 16.02.03
+# 16.02.03.610
+# 오후 4:02:03
+# 오후 4:02
+# 자세한 내용은 아래의 표 또는 공식 문서를 참고합니다.
+# 날짜와 시간 표시하기(QDateTime)
+# QDateTime 클래스를 사용해서 현재 날짜와 시간을 함께 출력할 수 있습니다.
+# 현재 날짜와 시간 출력하기
+# from PyQt5.QtCore import QDateTime
+# datetime = QDateTime.currentDateTime()
+# print(datetime.toString())
+# currentDateTime() 메서드는 현재의 날짜와 시간을 반환합니다.
+# toString() 메서드는 날짜와 시간을 문자열 형태로 반환합니다.
+# 날짜와 시간 형식 설정하기
+# from PyQt5.QtCore import QDateTime, Qt
+# datetime = QDateTime.currentDateTime()
+# print(datetime.toString('d.M.yy hh:mm:ss'))
+# print(datetime.toString('dd.MM.yyyy, hh:mm:ss'))
+# print(datetime.toString(Qt.DefaultLocaleLongDate))
+# print(datetime.toString(Qt.DefaultLocaleShortDate))
+# 위의 예제에서와 마찬가지로 날짜에 대해 'd', 'M', 'y', 시간에 대해 'h', 'm', 's' 등을 사용해서 날짜와 시간이 표시되는 형식을 설정할 수 있습니다.
+# 또한 Qt.DefaultLocaleLongDate 또는 Qt.DefaultLocaleShortDate를 입력할 수 있습니다.
+# 상태표시줄에 날짜 표시하기
+# 상태표시줄에 오늘의 날짜를 출력해보겠습니다.
+# currentDate() 메서드를 통해 현재 날짜를 얻고 showMessage() 메서드로 상태표시줄에 현재 날짜를 표시했습니다.
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtCore import QDate, Qt
+class MyApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.date = QDate.currentDate()
+        self.initUI()
+    def initUI(self):
+        self.statusBar().showMessage(self.date.toString(Qt.DefaultLocaleLongDate))
+        self.setWindowTitle('Date')
+        self.setGeometry(300, 300, 400, 200)
+        self.show()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_())
+
+# (3-8.창을 화면의 가운데로)
+# 창이 화면의 정가운데에 띄워집니다.
+# self.center()
+# center() 메서드를 통해서 창이 화면의 가운데에 위치하게 됩니다.
+# qr = self.frameGeometry()
+# frameGeometry() 메서드를 이용해서 창의 위치와 크기 정보를 가져옵니다.
+# cp = QDesktopWidget().availableGeometry().center()
+# 사용하는 모니터 화면의 가운데 위치를 파악합니다.
+# qr.moveCenter(cp)
+# 창의 직사각형 위치를 화면의 중심의 위치로 이동합니다.
+# self.move(qr.topLeft())
+# 현재 창을, 화면의 중심으로 이동했던 직사각형(qr)의 위치로 이동시킵니다.
+# 결과적으로 현재 창의 중심이 화면의 중심과 일치하게 돼서 창이 가운데에 나타나게 됩니다.
+''' import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QDesktopWidget
+class MyApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+    def initUI(self):
+        self.setWindowTitle('Centering')
+        self.resize(500, 350)
+        self.center()
+        self.show()
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_()) '''
+
+# (3-7.툴바 만들기)
+# 메뉴(menu)가 어플리케이션에서 사용되는 모든 명령의 모음이라면, 툴바(toolbar)는 자주 사용하는 명령들을 더 편리하게 사용할 수 있도록 해줍니다.
+# (QToolBar 공식 문서 참고)
+# 폴더 안에 툴바의 각 기능에 해당하는 아이콘들을 저장해 둡니다.
+''' import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, qApp
+from PyQt5.QtGui import QIcon
+class MyApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+    def initUI(self):
+        exitAction = QAction(QIcon('C:\\Users\\PROCESSOR\\Desktop\\EXE\\PYTHON\\0.STUDY\\STUDY5-파이선으로 만드는 나만의 GUI 프로그램\\ICON\\exit.png'), 'Exit', self)
+        exitAction.setShortcut('Ctrl+Q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(qApp.quit)
+        self.statusBar()
+        self.toolbar = self.addToolBar('Exit')
+        self.toolbar.addAction(exitAction)
+        self.setWindowTitle('Toolbar')
+        self.setGeometry(300, 300, 300, 200)
+        self.show()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_()) '''
+
+# (3-6.메뉴바 만들기)
+# GUI 어플리케이션에서 메뉴바(menu bar)는 흔하게 사용됩니다.
+# 다양한 명령들의 모음이 메뉴바에 위치합니다. (QMenuBar 공식 문서 참고)
+# macOS에서는 메뉴바를 다르게 다루는데, 아래 예제에서 볼 수 있듯이 한 줄의 코드(menubar.setNativeMenuBar(False))를 추가함으로써 macOS에서도
+# Windows 환경과 동일한 결과를 얻을 수 있습니다.
+# 우선 폴더 안에 아래와 같이 메뉴에 해당하는 아이콘(exit.png)을 저장해 둡니다.
+# 한 개의 메뉴를 갖는 메뉴바를 만들었습니다.
+# 이 메뉴는 클릭했을 때 어플리케이션을 종료하는 기능을 갖고 있습니다. 또한 이 기능은 단축키 (Ctrl+Q)로도 실행이 가능합니다.
+# exitAction = QAction(QIcon('exit.png'), 'Exit', self)
+# exitAction.setShortcut('Ctrl+Q')
+# exitAction.setStatusTip('Exit application')
+# 이 세 줄의 코드를 통해 아이콘 (exit.png)과 'Exit' 라벨을 갖는 하나의 동작 (action)을 만들고, 이 동작에 대해 단축키 (shortcut)를 정의합니다.
+# 또한 메뉴에 마우스를 올렸을 때, 상태바에 나타날 상태팁을 setStatusTip() 메서드를 사용하여 설정했습니다.
+# exitAction.triggered.connect(qApp.quit)
+# 이 동작을 선택했을 때, 생성된 (triggered) 시그널이 QApplication 위젯의 quit() 메서드에 연결되고, 어플리케이션을 종료시키게 됩니다.
+# menubar = self.menuBar()
+# menubar.setNativeMenuBar(False)
+# fileMenu = menubar.addMenu('&File')
+# fileMenu.addAction(exitAction)
+# menuBar() 메서드는 메뉴바를 생성합니다. 이어서 'File' 메뉴를 하나 만들고, 거기에 'exitAction' 동작을 추가합니다.
+# '&File'의 앰퍼샌드 (ampersand, &)는 간편하게 단축키를 설정하도록 해줍니다.
+# 'F' 앞에 앰퍼샌드가 있으므로 'Alt+F'가 File 메뉴의 단축키가 됩니다. 만약 'i'의 앞에 앰퍼샌드를 넣으면 'Alt+I'가 단축키가 됩니다.
+''' import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, qApp
+from PyQt5.QtGui import QIcon
+class MyApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+    def initUI(self):
+        exitAction = QAction(QIcon('C:\\Users\\PROCESSOR\\Desktop\\EXE\\PYTHON\\0.STUDY\\STUDY5-파이선으로 만드는 나만의 GUI 프로그램\\ICON\\exit.png'), 'Exit', self)
+        exitAction.setShortcut('Ctrl+Q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(qApp.quit)
+        self.statusBar()
+        menubar = self.menuBar()
+        menubar.setNativeMenuBar(False)
+        filemenu = menubar.addMenu('&File')
+        filemenu.addAction(exitAction)
+        self.setWindowTitle('Menubar')
+        self.setGeometry(300, 300, 300, 200)
+        self.show()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyApp()
+    sys.exit(app.exec_()) '''
+
 # (3-5.상태바 만들기)
 # 메인창(Main window)은 메뉴바, 툴바, 상태바를 갖는 전형적인 어플리케이션 창입니다. (QMainWindow 공식 문서 참고)
 # 메인창은 QMenuBar, QToolBar, QDockWidget, QStatusBar를 위한 고유의 레이아웃을 갖고 있습니다.
@@ -128,7 +336,7 @@ class MyApp(QWidget):
       self.initUI()
   def initUI(self):
       self.setWindowTitle('Icon')
-      self.setWindowIcon(QIcon('web.png'))
+      self.setWindowIcon(QIcon('C:\\Users\\PROCESSOR\\Desktop\\EXE\\PYTHON\\0.STUDY\\STUDY5-파이선으로 만드는 나만의 GUI 프로그램\\ICON\\web.png'))
       self.setGeometry(300, 300, 300, 200)
       self.show()
 if __name__ == '__main__':
