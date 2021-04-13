@@ -1207,7 +1207,7 @@ if __name__ == '__main__':
 #     groupbox.setChecked(True)
 # createPushButtonGroup() 메서드는 여러 개의 푸시버튼을 갖는 그룹 박스를 만듭니다.
 # setCheckable()과 setChecked()를 이용해서, 그룹 박스를 선택 가능하게, 그리고 실행했을 때 선택되어 있도록 설정합니다.
-''' import sys
+import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QGroupBox, QRadioButton
 , QCheckBox, QPushButton, QMenu, QGridLayout, QVBoxLayout)
 class MyApp(QWidget):
@@ -1297,7 +1297,7 @@ class MyApp(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
-    sys.exit(app.exec_()) '''
+    sys.exit(app.exec_())
 
 # (5-9.QSplitter)
 # QSplitter 클래스는 스플리터 위젯을 구현합니다.
