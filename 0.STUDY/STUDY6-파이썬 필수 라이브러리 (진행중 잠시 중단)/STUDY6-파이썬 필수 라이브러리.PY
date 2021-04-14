@@ -3,6 +3,350 @@
 # [05장 함수형 프로그래명 모듈]
 # 이 장에서는 함수형 프로그래밍을 지원하는 라이브러리들에 대해서 알아본다.
 
+# 05-08 함수의 결과를 캐시 - functools.lru_cache
+# @functools.lru_cache(maxsize=128)는 함수의 리턴결과를 캐시해 주는 데코레이터이다. 최초 요청 이후에는 캐시된 결과를 리턴한다.
+# maxsize는 캐시할 수 있는 최대 갯수를 의미하며 최대 갯수를 초과할 경우에는 호출빈도가 가장 작은것부터 캐시에서 사라진다.
+# LRU는 'Least Recently Used'의 약자로 가장 최근에 참조되지 않은 데이터가 교체시점에 먼저 나가는 방식이다.
+# 문제
+# 다음은 위키독스의 특정 페이지의 리소스를 가져오는 프로그램이다. 이 프로그램의 성능 향상을 위해 동일한 페이지를 다시 요청할 
+# 경우에는 캐시를 사용하도록 수정하시오.
+# import urllib.request
+# def get_wikidocs(page):
+#     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+#     resource = 'https://wikidocs.net/{}'.format(page)
+#     try:
+#         with urllib.request.urlopen(resource) as s:
+#             return s.read()
+#     except urllib.error.HTTPError:
+#         return 'Not Found'
+# 풀이
+# 다음처럼 functools의 lru_cache를 데코레이터로 사용하면 쉽게 캐시함수를 만들 수 있다.
+# import urllib.request
+# from functools import lru_cache
+# @lru_cache(maxsize=32)
+# def get_wikidocs(page):
+#     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+#     resource = 'https://wikidocs.net/{}'.format(page)
+#     try:
+#         with urllib.request.urlopen(resource) as s:
+#             return s.read()
+#     except urllib.error.HTTPError:
+#         return 'Not Found'
+# first_6 = get_wikidocs(6)
+# first_7 = get_wikidocs(7)
+# second_6 = get_wikidocs(6)
+# second_7 = get_wikidocs(7)
+# assert first_6 == second_6  # 처음 요청한 6번 페이지의 내용과 두번째 요청한 6번 페이지의 내용이 같은지를 확인
+# assert first_7 == second_7
+# 출력결과는 다음과 같다.
+# wikidocs page:6
+# wikidocs page:7
+# 처음 요청한 6페이지와 7페이지는 웹 요청이 발생하여 로그가 출력되었지만 이후 재 요청시에는 함수가 호출되는 대신 캐시에 
+# 저장된 데이터가 리턴되는 것을 확인할 수 있다.
+''' import urllib.request
+from functools import lru_cache
+@lru_cache(maxsize=32)
+def get_wikidocs(page):
+    print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+    resource = 'https://wikidocs.net/{}'.format(page)
+    try:
+        with urllib.request.urlopen(resource) as s:
+            return s.read()
+    except urllib.error.HTTPError:
+        return 'Not Found'
+first_6 = get_wikidocs(6)
+first_7 = get_wikidocs(7)
+second_6 = get_wikidocs(6)
+second_7 = get_wikidocs(7)
+assert first_6 == second_6  # 처음 요청한 6번 페이지의 내용과 두번째 요청한 6번 페이지의 내용이 같은지를 확인
+assert first_7 == second_7 '''
+
+# [05-07 함수로 정렬 - functools.cmp_to_key]
+# functools.cmp_to_key(func) 는 sorted와 같은 정렬 함수의 key에 함수(func)를 전달할때 사용한다. 단, func는 두 개의 인수를 받아들이고, 
+# 첫번째 인수를 기준으로 그들을 비교하여, 작으면 음수, 같으면 0, 크면 양수를 반환하는 비교 함수이어야 한다.
+# 문제
+# 2차원 평면 위의 점 N개가 다음과 같이 (x, y) 좌표의 리스트로 주어진다. 좌표를 y좌표가 증가하는 순으로, y좌표가 같으면 x좌표가 
+# 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성하시오.
+# [(0, 4), (1, 2), (1, -1), (2, 2), (3, 3)]
+# 즉, 정렬후에는 다음과 같은 결과가 나와야 한다.
+# [(1, -1), (1, 2), (2, 2), (3, 3), (0, 4)]
+# 풀이
+# 이 문제는 sorted함수의 key에 특별한 소트를 할 수 있는 함수를 전달하여 해결할 수 있다. key에 함수를 전달하기 위해서는 다음처럼 
+# functools.cmp_to_key를 사용해야 한다.
+# import functools
+# def xy_compare(n1, n2):
+#     if n1[1] > n2[1]:         # y 좌표가 크면
+#         return 1
+#     elif n1[1] == n2[1]:      # y 좌표가 같으면
+#         if n1[0] > n2[0]:     # x 좌표가 크면
+#             return 1
+#         elif n1[0] == n2[0]:  # x 좌표가 같으면
+#             return 0
+#         else:                 # x 좌표가 작으면
+#             return -1
+#     else:                     # y 좌표가 작으면
+#         return -1
+# src = [(0, 4), (1, 2), (1, -1), (2, 2), (3, 3)]
+# result = sorted(src, key=functools.cmp_to_key(xy_compare))
+# print(result)
+# 출력결과는 다음과 같다.
+# [(1, -1), (1, 2), (2, 2), (3, 3), (0, 4)]
+# y좌표로 정렬되고 y좌표가 같은 경우 x좌표로 정렬되었다.
+# xy_compare와 같이 정렬을 하기 위한 함수는 반드시 다음 3가지 중 하나를 리턴해야 한다. (단, 첫번째 인수를 기준으로 비교한다.)
+# 크다 (양수 리턴)
+# 작다 (음수 리턴)
+# 같다 (0 리턴)
+''' import functools
+def xy_compare(n1, n2):
+    if n1[1] > n2[1]:         # y 좌표가 크면
+        return 1
+    elif n1[1] == n2[1]:      # y 좌표가 같으면
+        if n1[0] > n2[0]:     # x 좌표가 크면
+            return 1
+        elif n1[0] == n2[0]:  # x 좌표가 같으면
+            return 0
+        else:                 # x 좌표가 작으면
+            return -1
+    else:                     # y 좌표가 작으면
+        return -1
+src = [(0, 4), (1, 2), (1, -1), (2, 2), (3, 3)]
+result = sorted(src, key=functools.cmp_to_key(xy_compare))
+print(result) '''
+
+# [05-06 조합 - itertools.combinations]
+# itertools.combinations(iterable, r)은 iterable중에서 r개를 선택할 수 있는 조합을 이터레이터로 리턴하는 함수이다.
+# 문제
+# 로또 번호 1~45 중 숫자 6개를 구하는 경우의 수를 모두 구하고 그 갯수를 출력하시오.
+# 풀이
+# itertools.combinations를 사용하면 45개의 숫자 줏 6개를 선택하는 경우의 수를 다음과 같이 구할 수 있다.
+# >>> import itertools
+# >>> it = itertools.combinations(range(1, 46), 6)
+# itertools.combinations(range(1, 46), 6) 는 1~45의 숫자 중에서 6개를 뽑아내는 경우의 수를 이터레이터로 리턴한다.
+# 반환된 이터레이터를 루프를 돌면서 출력하면 아마 끝도 없이 출력될 것이다. (궁금하다면 실행해 봐도 좋다.)
+# >>> for num in it:
+# ...     print(num)
+# ...
+# (1, 2, 3, 4, 5, 6)
+# (1, 2, 3, 4, 5, 7)
+# (1, 2, 3, 4, 5, 8)
+# (1, 2, 3, 4, 5, 9)
+# (1, 2, 3, 4, 5, 10)
+# (1, 2, 3, 4, 5, 11)
+# (1, 2, 3, 4, 5, 12)
+# (1, 2, 3, 4, 5, 13)
+# ...
+# 하지만 이터레이터를 순환하여 출력하지 않고 갯수만 세려면 다음과 같이 하면 된다.
+# >>> len(list(itertools.combinations(range(1, 46), 6)))
+# 8145060
+# 선택할 수 있는 로또 번호의 갯수는 8145060이다.
+# 만약 로또 복권이 숫자의 중복을 허용하도록 규칙이 변경된다면 경우의 수는 몇개가 될까?
+# 중복이 허용된다 함은 당첨 번호가 [1,2,3,4,5,5] 처럼 5가 2번 이상 나와도 되고 [1,1,1,1,1,1] 처럼 1이 6번 중복되도 된다는 의미이다.
+# 중복을 허용하는 중복조합은 itertools.combinations_with_replacement를 사용하면 된다.
+# >>> len(list(itertools.combinations_with_replacement(range(1, 46), 6)))
+# 15890700
+# 무시무시한 경우의 수가 나오는 것을 확인할 수 있다.
+''' import itertools
+it = itertools.combinations(range(1, 46), 6)
+print(len(list(itertools.combinations(range(1, 46), 6)))) '''
+
+# [05-05 순열 - itertools.permutations]
+# itertools.permutations(iterable, r=None) 는 iterable 요소의 길이 r에 해당하는 순열을 리턴한다.
+# 문제
+# 1, 2, 3의 숫자가 적힌 카드가 있을 때, 이 중 두 장의 카드를 꺼내어 만들수 있는 2자리 숫자를 모두 구하시오.
+# 풀이
+# [1, 2, 3] 이라는 3장의 카드 중 2장을 뽑는 경우의 수는 총 3가지이다. (조합)
+# 1, 2
+# 2, 3
+# 1, 3
+# 하지만 이 문제는 위 3가지에 순서를 더해 다음처럼 6가지가 된다. (순열)
+# 1, 2
+# 2, 1
+# 2, 3
+# 3, 2
+# 1, 3
+# 3, 1
+# 이 같은 순열은 itertools.permutations를 사용하여 간단히 구할 수 있다.
+# >>> import itertools
+# >>> list(itertools.permutations([1,2,3], 2))
+# [(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
+# 3장의 숫자 카드중 2개를 고르는 경우의 수는 다음처럼 itertools.combinations를 사용하면 된다.
+# >>> import itertools
+# >>> list(itertools.combinations([1,2,3], 2))
+# [(1, 2), (1, 3), (2, 3)]
+''' import itertools
+print(list(itertools.permutations([1,2,3], 2)))
+import itertools
+print(list(itertools.combinations([1,2,3], 2))) '''
+
+# [05-04 사이즈가 큰 것을 기준으로 묶기 - itertools.zip_longest]
+# itertools.zip_longest(*iterables, fillvalue=None) 는 파이썬 빌트인 함수인 zip과 동일하게 동작하지만 전달된 이터러블들의 길이가 
+# 같지 않을 경우 긴 이터러블을 기준으로 누락된 값은 fillvalue로 채워진다.
+# 문제
+# 다음과 같은 파이썬 코드가 있다.
+# students = ['한민서', '황지민', '이영철', '이광수', '김승민']
+# rewards = ['사탕', '초컬릿', '젤리']
+# result = zip(students, rewards)
+# print(list(result))
+# 이 파이썬 코드를 실행하면 다음과 같은 결과가 나온다.
+# [('한민서', '사탕'), ('황지민', '초컬릿'), ('이영철', '젤리')]
+# students와 rewards의 갯수가 일치하지 않기 때문에 갯수가 더 적은 rewards의 갯수 만큼만 zip으로 묶이게 된다. 
+# 하지만 students의 갯수가 rewards의 갯수보다도 많더라도 다음처럼 부족한 rewards는 '새우깡'으로 함께 묶일수
+# 있도록 해주는 코드를 작성하시오.
+# [('한민서', '사탕'), ('황지민', '초컬릿'), ('이영철', '젤리'), ('이광수', '새우깡'), ('김승민', '새우깡')]
+# 풀이
+# itertools.zip_longest 를 사용하면 갯수가 긴 것을 기준으로 묶을 수 있다. 이 때 부족한 항목은 None으로 채워지는데 다음처럼
+# fillvalue에 값을 전달하면 None대신 다른 값을 지정할 수 있다.
+# import itertools
+# students = ['한민서', '황지민', '이영철', '이광수', '김승민']
+# rewards = ['사탕', '초컬릿', '젤리']
+# result = itertools.zip_longest(students, rewards, fillvalue='새우깡')
+# print(list(result))
+# 출력결과는 다음과 같다.
+# [('한민서', '사탕'), ('황지민', '초컬릿'), ('이영철', '젤리'), ('이광수', '새우깡'), ('김승민', '새우깡')]
+''' import itertools
+students = ['한민서', '황지민', '이영철', '이광수', '김승민']
+rewards = ['사탕', '초컬릿', '젤리']
+result = itertools.zip_longest(students, rewards, fillvalue='새우깡')
+print(list(result)) '''
+
+# [05-03 키값으로 분류 - itertools.groupby]
+# itertools.groupby(iterable, key=None) 은 iterable을 key값으로 분류한 결과를 리턴하는 함수이다.
+# 문제
+# 다음은 8명의 혈액형 데이터이다.
+# data = [
+#     {'name': '이민서', 'blood': 'O'},
+#     {'name': '이영순', 'blood': 'B'},
+#     {'name': '이상호', 'blood': 'AB'},
+#     {'name': '김지민', 'blood': 'B'},
+#     {'name': '최상현', 'blood': 'AB'},
+#     {'name': '김지아', 'blood': 'A'},
+#     {'name': '손우진', 'blood': 'A'},
+#     {'name': '박은주', 'blood': 'A'}
+# ]
+# 위 혈액형 데이터를 다음처럼 혈액형별로 분류된 데이터로 바꾸시오.
+# data = {
+#     'A': [{'name': '김지아', 'blood': 'A'}, {'name': '손우진', 'blood': 'A'}, {'name': '박은주', 'blood': 'A'}], 
+#     'AB': [{'name': '이상호', 'blood': 'AB'}, {'name': '최상현', 'blood': 'AB'}], 
+#     'B': [{'name': '이영순', 'blood': 'B'}, {'name': '김지민', 'blood': 'B'}], 
+#     'O': [{'name': '이민서', 'blood': 'O'}]
+# }
+# 풀이
+# itertools.groupby를 사용하면 분류기준으로 묶어 데이터를 분류할 수 있다. 단, groupby전에 분류기준으로 먼저 소트를 진행해야 한다.
+# import itertools
+# import operator
+# data = [
+#     {'name': '이민서', 'blood': 'O'},
+#     {'name': '이영순', 'blood': 'B'},
+#     {'name': '이상호', 'blood': 'AB'},
+#     {'name': '김지민', 'blood': 'B'},
+#     {'name': '최상현', 'blood': 'AB'},
+#     {'name': '김지아', 'blood': 'A'},
+#     {'name': '손우진', 'blood': 'A'},
+#     {'name': '박은주', 'blood': 'A'}
+# ]
+# data = sorted(data, key=operator.itemgetter('blood'))
+# grouped_data = itertools.groupby(data, key=operator.itemgetter('blood'))
+# result = {}
+# for key, group_data in grouped_data:
+#     result[key] = list(group_data)
+# print(result)
+# 출력결과는 다음과 같다.
+# {'A': [{'name': '김지아', 'blood': 'A'}, {'name': '손우진', 'blood': 'A'}, {'name': '박은주', 'blood': 'A'}], 'AB': [{'name': '이상호', 'blood': 'AB'}, {'name': '최상현', 'blood': 'AB'}], 'B': [{'name': '이영순', 'blood': 'B'}, {'name': '김지민', 'blood': 'B'}], 'O': [{'name': '이민서', 'blood': 'O'}]}
+# 데이터의 'blood' 항목으로 소트하고 분류하기 위해 operator.itemgetter('blood')를 사용하였다.
+# 만약 위 문제를 소트없이 groupby만 진행할 경우 분류기준이 바뀔때마다 그룹이 생성되므로 원하는 결과를 얻을 수 없다.
+# import itertools
+# import operator
+# data = [
+#     {'name': '이민서', 'blood': 'O'},
+#     {'name': '이영순', 'blood': 'B'},
+#     {'name': '이상호', 'blood': 'AB'},
+#     {'name': '김지민', 'blood': 'B'},
+#     {'name': '최상현', 'blood': 'AB'},
+#     {'name': '김지아', 'blood': 'A'},
+#     {'name': '손우진', 'blood': 'A'},
+#     {'name': '박은주', 'blood': 'A'}
+# ]
+# grouped_data = itertools.groupby(data, key=operator.itemgetter('blood'))
+# result = {}
+# for key, group_data in grouped_data:
+#     print(key, list(group_data))
+# 출력결과는 다음과 같다.
+# O [{'name': '이민서', 'blood': 'O'}]
+# B [{'name': '이영순', 'blood': 'B'}]
+# AB [{'name': '이상호', 'blood': 'AB'}]
+# B [{'name': '김지민', 'blood': 'B'}]
+# AB [{'name': '최상현', 'blood': 'AB'}]
+# A [{'name': '김지아', 'blood': 'A'}, {'name': '손우진', 'blood': 'A'}, {'name': '박은주', 'blood': 'A'}]
+''' import itertools
+import operator
+data = [
+    {'name': '이민서', 'blood': 'O'},
+    {'name': '이영순', 'blood': 'B'},
+    {'name': '이상호', 'blood': 'AB'},
+    {'name': '김지민', 'blood': 'B'},
+    {'name': '최상현', 'blood': 'AB'},
+    {'name': '김지아', 'blood': 'A'},
+    {'name': '손우진', 'blood': 'A'},
+    {'name': '박은주', 'blood': 'A'}
+]
+data = sorted(data, key=operator.itemgetter('blood'))
+grouped_data = itertools.groupby(data, key=operator.itemgetter('blood'))
+result = {}
+for key, group_data in grouped_data:
+    result[key] = list(group_data)
+print(result)
+import itertools
+import operator
+data = [
+    {'name': '이민서', 'blood': 'O'},
+    {'name': '이영순', 'blood': 'B'},
+    {'name': '이상호', 'blood': 'AB'},
+    {'name': '김지민', 'blood': 'B'},
+    {'name': '최상현', 'blood': 'AB'},
+    {'name': '김지아', 'blood': 'A'},
+    {'name': '손우진', 'blood': 'A'},
+    {'name': '박은주', 'blood': 'A'}
+]
+grouped_data = itertools.groupby(data, key=operator.itemgetter('blood'))
+result = {}
+for key, group_data in grouped_data:
+    print(key, list(group_data)) '''
+
+# [05-02 누적합 계산 - itertools.accumulate]
+# itertools.accumulate(iterable)은 iterable의 누적합을 계산하여 이터레이터로 리턴하는 함수이다.
+# 문제
+# 다음은 A회사의 1월부터 12월까지의 수입이다.
+# [1161, 1814, 1270, 2256, 1413, 1842, 2221, 2207, 2450, 2823, 2540, 2134]
+# 1월에는 1161만원, 2월에는 1814만원, ..., 12월에는 2134만원의 수입이 발생하였다. A회사의 사장님은 1년간 수입의 월별 누적치를 
+# 알고 싶어한다. 즉, 1월에는 1161만원 2월에는 1161+1814=2975만원, 3월에는 2975+1270=4245만원, ... 식으로 월별 누적 합계금액을
+# 알고 싶어한다.
+# A회사의 월별 누적합계를 구해주는 프로그램을 작성하시오.
+# 풀이
+# 누적치를 알고 싶을 때는 itertools의 accumulate함수를 사용하는 것이 가장 편리하다. 다음은 itertools.accumulate함수를 사용하여 
+# 1월부터 12월까지의 월별 누적합계를 구하는 프로그램이다.
+# import itertools
+# monthly_income = [1161, 1814, 1270, 2256, 1413, 1842, 2221, 2207, 2450, 2823, 2540, 2134]
+# result = list(itertools.accumulate(monthly_income))
+# print(result)
+# 출력 결과는 다음과 같다.
+# [1161, 2975, 4245, 6501, 7914, 9756, 11977, 14184, 16634, 19457, 21997, 24131]
+# 만약 1월에서 12월 기간 동안 월 수입의 최댓값을 누적하여 보여주고 싶다면 다음처럼 itertools.accumulate 함수의 두번째 인수로
+# max함수를 전달하여 구할 수 있다.
+# import itertools
+# monthly_income = [1161, 1814, 1270, 2256, 1413, 1842, 2221, 2207, 2450, 2823, 2540, 2134]
+# result = list(itertools.accumulate(monthly_income, max))
+# print(result)
+# 출력결과는 다음과 같다.
+# [1161, 1814, 1814, 2256, 2256, 2256, 2256, 2256, 2450, 2823, 2823, 2823]
+# 3월까지는 월 최고 수입이 1814만원이었고 8월까지는 월 최고 수입이 2256만원임을 알수 있다.
+''' import itertools
+monthly_income = [1161, 1814, 1270, 2256, 1413, 1842, 2221, 2207, 2450, 2823, 2540, 2134]
+result = list(itertools.accumulate(monthly_income))
+print(result)
+import itertools
+monthly_income = [1161, 1814, 1270, 2256, 1413, 1842, 2221, 2207, 2450, 2823, 2540, 2134]
+result = list(itertools.accumulate(monthly_income, max))
+print(result) '''
 
 # [05-01 무한 반복자 - itertools.cycle]
 # itertools.cycle(iterable)은 iterable을 순서대로 무한히 반복시키는 이터레이터를 리턴한다.
