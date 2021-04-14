@@ -521,7 +521,7 @@ if __name__ == '__main__':
 # if ok:
 #     self.lbl.setFont(font)
 # setFont() 메서드를 사용해서 선택한 폰트를 라벨의 폰트로 설정해줍니다.
-''' import sys
+import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout
 , QPushButton, QSizePolicy, QLabel, QFontDialog)
 class MyApp(QWidget):
@@ -549,7 +549,7 @@ class MyApp(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
-    sys.exit(app.exec_()) '''
+    sys.exit(app.exec_())
 
 # (6-2.QColorDialog)
 # 컬러 다이얼로그 (QColorDialog)는 색상을 선택할 수 있는 다이얼로그입니다. (QColorDialog 공식 문서 참고)
