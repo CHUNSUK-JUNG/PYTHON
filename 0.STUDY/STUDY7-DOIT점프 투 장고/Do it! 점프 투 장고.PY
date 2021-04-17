@@ -1471,3 +1471,81 @@
 # 노력하였다.
 # 책을 따라하다 생기는 질문은 파이보의 완성형인 아래사이트를 활용하도록 하자.
 # 파이보 (파이썬 질문과 답변 게시판) - https://pybo.kr
+
+
+
+# [Django 기초]
+
+[ Django 설치]
+Django 설치하기
+Django 웹 프레임워크를 사용하기 위해서는 먼저 Django를 설치해야 한다. Django는 시스템(비가상환경)에 설치된 Python에 직접 설치할 수도 있지만, 일반적으로 가상 환경(Virtual Environment)을 만들어 그 안에 Django를 설치하여 사용한다.
+
+Django는 pip 이라는 유틸러티를 사용하여 설치한다. 가상환경에서 Django를 설치하기 위해서는 먼저 가상환경을 활성화하고 pip 패키지 매니저를 사용하여 django를 설치한다.
+
+pip 은 Python에서 사용하는 Package Manager로서 Python 3 (3.4+)와 Python 2.7.9+에 기본적으로 내장되어 있다. pip 유틸러티는 Python Repository에 있는 패키지를 설치하는데, Repository의 패키지 정보는 https://pypi.python.org/pypi 에서 찾아볼 수 있다. pip으로 패키지를 설치위해서는 "pip install 패키지명"을 사용하고, 설치된 패키지를 삭제하기 위해서는 "pip uninstall 패키지명"을 사용한다.
+[참고] pip 패키지 관리자
+
+다음은 Mac에서 pip install을 사용하여 최신 버전의 Django를 설치하는 예이다 (윈도우즈도 동일한 명령을 사용).
+
+// $ . ~/venv1/bin/activate
+
+(venv1) $ pip install django
+
+
+만약 이전 버전의 Django를 설치하기 위해서는 아래와 같이 특정 버전을 지정할 수 있다.
+
+(venv1) $ pip install django=1.8
+이미 설치된 Django를 최신 버전으로 업그레이드하기 위해서는 아래와 같이 --upgrade 옵션을 지정한다.
+
+(venv1) $ pip install django --upgrade
+
+
+
+# [가상 환경]
+# 1. 가상 환경
+# 가상 환경(Virtual Environment)은 사용자가 정한 임의의 디렉토리 밑에 Python과 관련 패키지 등을 함께 넣어 그 안에서 독립적인
+# 파이썬 개발 환경을 할 수 있도록 한 것이다. 즉, 가상 환경은 Lightweight, Self-contained 파이썬 개발 환경으로서 필요한 경우 
+# 한 개발머신 안에 여러 개의 가상 환경을 만들고 각 가상 환경에서 다른 파이썬 버전이나 다양한 패키지들을 독립적으로 설치 사용할
+# 수 있는 가상적 개발 환경이다.
+# 2. 가상 환경 만들기
+# Python 3 (3.4+)는 기본적으로 가상환경을 생성하는 유틸러티를 포함하고 있다. 가상 환경을 만들기 위해서는 pyvenv 라는 유틸러티를
+# 사용하는데, 각 OS 마다 (윈도우즈, Mac, 리눅스) 사용법이 약간씩 다르다.
+# Mac에서 가상환경 생성
+# Mac OS X에서 가상환경을 만들기 위해서는 pyvenv 파일을 실행하면 되는데, 아규먼트로 가상 환경을 만들 디렉토리를 지정하면 된다. 
+# 예를 들어, 홈디렉토리 밑에 venv1 이라는 가상 환경을 만들려면, 아래와 같이 pyvenv 명령을 실행할 수 있다. 이 명령을 실행하면 
+# venv1 라는 가상환경 디렉토리가 생성되고 그 밑에 몇 개의 서브폴더와 파일들이 생성된다.
+# $ pyvenv ~/venv1
+# 가상 환경에서 작업하기 위해서는 가상환경을 활성화(activate) 해야 하는데, Mac 에서는 다음 명령을 실행하면 된다. Mac OS X에서 
+# Dot (.) 혹은 source 명령은 뒤에 오는 스크립트를 현재 쉘 환경에서 실행하게 한다.
+# $ . ~/venv1/bin/activate    (혹은 source ~/venv1/bin/activate)
+# 가상환경에서의 Python
+# Mac OSX에는 기본적으로 Python 2.7 이 설치되어 있는데, 추가로 Python 3를 설치하였다고 가정하자. 아래 그림을 보면, 
+# Terminal에서 "python" 을 실행시키면, Mac에 기본적으로 설치된 Python 2.7을 실행함을 알 수 있다. 그리고 "python3" 를 
+# 실행시켜면, 추가로 설치된 Python 3가 실행되고 있다. 다음으로 Python 3의 pyvenv를 이용하여 가상환경 venv1을 만들고 
+# 가상환경을 활성화하였다. 가상환경이 활성화 되면 프롬프트 앞에 가상환경명이 표시된다. 이제 가상환경 안에서 "python" 을 
+# 실행하면 (가상환경이 Python3의 pyvenv를 사용하였으므로) Python 3가 실행됨을 볼 수 있다.
+# 윈도우즈에서 가상환경 생성
+# 윈도우즈에서 가상환경을 만들기 위해서는 Python으로 Tools\scripts\pyvenv.py 파일을 아래와 같이 실행한다. 예를 들어, 
+# 아래는 C:\Python35 폴더에 Python 3.5가 설치되어 있다고 가정하고, 툴 스크립트인 pyvenv.py를 가상환경 디렉토리(C:\PyEnv\venv1)와
+# 함께 실행한 것이다.
+# C:\Python35> python Tools\scripts\pyvenv.py C:\PyEnv\venv1
+# 윈도우즈에서 가상환경을 활성화(activate)하기 위해서는 다음과 같이 가상환경 디렉토리 밑의 Scripts 서브 폴더에 있는 
+# activate.bat 를 실행하면 된다.
+# C:\PyEnv\venv1> Scripts\activate.bat
+# 특히, 윈도우즈에서 Visual Studio를 사용하는 경우, Python Tools for Visual Studio (PTVS)를 사용하면 매우 편리하게 가상환경과
+# Django 를 셋업할 수 있다. 이에 대해 자세한 내용은 Python Tools for Visual Studio 사용법 아티클을 참고한다.
+# 우분투에서 가상환경 생성
+# 우분투 16.04 에서 가상환경을 만들기 위해서는 먼저 python3-venv를 설치한 후, pyvenv 를 실행한다.
+
+# [Django 소개]
+# Django(장고)는 파이썬의 대표적인 Web Application Framework으로서 그 Framework 자체가 파이썬으로 개발되어 있다. Django는 
+# 오픈소스 프로젝트로서 공식 사이트인 http://www.djangoproject.com 에서 각종 최신 정보를 제공하고 있다. 특히 이 사이트의 
+# Documentation 섹션은 Django 개발과 관련된 자세한 기술정보를 제공하고 있으므로 참고하면 좋다.
+# Django(장고)는 현재(2019년 9월) 버전 2.2를 내놓고 있는데, Django 2.2는 Python 3 (3.5, 3.6, 3.7) 에서 사용할 수 있다.
+# Django의 이전 버전들을 보면, 각 버전 마다 호환되는 Python 버전들이 따로 있으므로, Django의 버전마다 호환되는 Python 버전을
+# 설치해서 사용해야 한다. 이전 버전의 Django에서는 파이썬 2.7과 파이썬 3를 함께 지원했는데, 파이썬 2.7에 대한 지원이 2020년 
+# 중단되므로, 파이썬 3를 사용할 것을 권장한다. 아래 리스트는 호환 가능한 버전 리스트이다.
+# Django 버전	파이썬 버전
+# 1.11	2.7, 3.4, 3.5, 3.6 (3.7: Django 1.11.17)
+# 2.0	3.4, 3.5, 3.6, 3.7
+# 2.1, 2.2	3.5, 3.6, 3.7
