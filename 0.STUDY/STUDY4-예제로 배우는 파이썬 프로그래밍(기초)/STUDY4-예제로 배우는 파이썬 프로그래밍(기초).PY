@@ -2,6 +2,616 @@
 
 
 # [PYTHON 기초]
+
+# [CSV 파일 사용하기]
+# 1. CSV 파일
+# CSV란 Comma-separated values의 약자로서 CSV 파일은 각 라인의 컬럼들이 콤마로 분리된 텍스트 파일 포맷이다. 가장 간단한 형태의
+# CSV 파일은 문자열을 콤마로 Split 하여 처리하면 되지만, 간혹 컬럼 데이타에 콤마가 있을 경우 이중인용부호로 감싸서 데이타 내의
+# 콤마를 Escape하기 (예: "Lee, Alex") 때문에, 파이썬에 내장된 csv 모듈을 사용하여 .csv 파일을 처리하는 것이 좋다.
+# 2. CSV 파일 읽기
+# CSV 파일을 읽기 위해서는 먼저 파이썬에 기본 내장된 csv 모듈을 import 한다. 다음 .csv 파일을 오픈하고 파일객체를
+# csv.reader(파일객체) 에 넣으면 된다. csv.reader() 함수는 Iterator 타입인 reader 객체를 리턴하므로 for 루프를 돌며 한 
+# 라인씩 가져올 수 있다. 이때 리턴되는 각 라인은 컬럼들을 나열한 리스트(list) 타입이다.
+# 아래 예제는 data.csv 라는 CSV 파일을 읽어 각 라인을 출력하는 예이다.
+# import csv
+# f = open('data.csv', 'r', encoding='utf-8')
+# rdr = csv.reader(f)
+# for line in rdr:
+#     print(line)
+# f.close()    
+# (입력 : data.csv 파일 내용)
+# 1,김정수,2017-01-19 11:30:00,25
+# 2,박민구,2017-02-07 10:22:00,35
+# 3,정순미,2017-03-22 09:10:00,33
+# (출력)
+# ['1', '김정수', '2017-01-19 11:30:00', '25']
+# ['2', '박민구', '2017-02-07 10:22:00', '35']
+# ['3', '정순미', '2017-03-22 09:10:00', '33']    
+# 3. CSV 파일 쓰기
+# CSV 파일을 쓰기 위해서는 .csv 파일을 쓰기모드로 오픈하고 파일객체를 csv.writer(파일객체) 에 넣으면 된다. 
+# CSV writer는 writerow() 라는 메서드를 통해 list 데이타를 한 라인 추가하게 된다. 윈도우즈의 경우 csv 모듈에서 데이타를
+# 쓸 때 각 라인 뒤에 빈 라인이 추가되는 문제가 있는데, 이를 없애기 위해 (파이썬 3 에서) 파일을 open 할 때 newline='' 와 같은
+# 옵션을 지정한다 (주: 파이썬 2의 경우는 newline 옵션 없이 바이너리 모드로 오픈할 것).
+# 아래 예제는 output.csv 라는 CSV 파일에 2개 라인을 추가하는 예이다.
+# import csv    
+# f = open('output.csv', 'w', encoding='utf-8', newline='')
+# wr = csv.writer(f)
+# wr.writerow([1, "김정수", False])
+# wr.writerow([2, "박상미", True])
+# f.close()
+# 4. TSV 파일
+# CSV 파일과 비슷하지만, 콤마 대신 Tab으로 컬럼을 분리하는 파일포맷을 TSV 파일이라 한다. TSV 파일은 컬럼 delimiter만 차이가 
+# 나므로, csv 모듈의 reader() 혹은 writer() 함수에서 delimiter='\t' 옵션만 지정해 주면 나머지는 CSV와 동일하다.
+# import csv
+# # .tsv 쓰기    
+# f = open('test.tsv', 'w', encoding='utf-8', newline='')
+# wr = csv.writer(f, delimiter='\t')
+# wr.writerow([1, "김정수", False])
+# wr.writerow([2, "박상미", True])
+# f.close()
+# # .tsv 읽기
+# f = open('test.tsv', 'r', encoding='utf-8')
+# rdr = csv.reader(f, delimiter='\t')
+# r = list(rdr)
+# print("Id=%s : Name=%s" % (r[0][0], r[0][1]))
+# f.close()
+# 특히, 위 예제에서 csv.reader()로부터 리턴된 객체를 list(reader객체)와 같이 리스트로 변환하였는데, 이는 데이타 양이 적을 때
+# 데이타를 메모리로 한꺼번에 가져와 처리할 때 편리하다.
+
+# [파일 데이타 처리]
+# 1. 텍스트 파일
+# Python에서 파일을 처리하기 위해선 - 다른 언어에서와 마찬가지로 - 파일을 오픈하고, 데이타를 읽거나 쓴 후, 파일을 닫으면 된다.
+# 파일을 오픈하기 위해서는 내장함수 open()을 사용하는데, 첫번째 파라미터로 오픈할 파일명을 지정하면 된다. open() 함수는 다양한 
+# 파라미터를 지정할 수 있는데, 흔히 사용되는 파라마터로 파일모드를 결정하는 mode 와 파일인코딩 방식을 지정하는 encoding 등을 
+# 들 수 있다.
+# 파일을 오픈한 후, 파일을 읽기 위해서는 read(), readline(), readlines() 등의 메서드를 사용하고, 쓰기 위해서는 write(), 
+# writelines() 등의 메서드를 사용한다. 여기서 한가지 주목할 점은 writeline() 메서드가 없다는 점인데, 다음 라인으로 가기 
+# 위해서는 write() 메서드에서 "\n" 를 지정해 주어야 한다. Python은 Universal Newline 이라고 하여 플랫폼에 상관없이 라인
+# Delimeter로 "\n"을 사용한다. 실행 플랫폼이 윈도우즈의 경우 이 Universal Newline은 CRLF (\r\n) 으로 변경되고, 맥이나 
+# 리눅스에서는 LF (\n)로 자동으로 사용된다.
+# 아래 예제는 텍스트 파일에 간단히 두 라인의 텍스트를 쓰는 코드이다.
+# f = open('test.txt', mode='wt', encoding='utf-8')
+# f.write("Hello, World\n");
+# f.write("안녕하세요?")
+# f.close()
+# 파일모드
+# 파일모드는 파일을 읽을 것인지 쓸 것인지 혹윽 텍스트 파일인지 바이너리 파일인지 등을 지정할 때 사용한다. 파일모드에는 
+# 읽기(r), 쓰기(w 혹은 x), 추가(a), 수정(+) 모드를 지정할 수 있으며, 텍스트 파일(t), 바이너리 파일(b) 를 지정할 수 있다.
+# 특히, w 모드는 파일이 이미 있으면, 먼저 그 내용을 삭제하고 새로 시작하지만, x 모드는 파일이 이미 있으면, FileExistsError 를
+# 발생시킨다. 만약 파일모드를 지정하지 않으면, 디폴트로 텍스트 읽기 (rt) 모드가 설정된다.
+# 파일인코딩
+# Python의 문자열을 파일로 쓸 때 문자열은 바이트로 변경되는데, 이때 인코딩 방식에 따라 다른 바이트 결과를 가질 수 있다. 
+# 또한 파일을 읽어 들일 때 인코딩 방식에 따라 다른 문자열로 읽혀 들일 수 있다. 따라서, 파일을 오픈할 때 encoding 파라미터를
+# 지정해서 어떤 인코딩 방식을 사용하는지 명시적으로 지정는 것이 좋다. 위의 예제에서는 흔히 많이 사용되는 UTF-8 인코딩 방식을 
+# 설정하였다.
+# 만약 encoding 파라미터를 지정하지 않으면 시스템 디폴트 인코딩 방식을 사용한다. 시스템 디폴트 인코딩 방식은 아래와 같이 확인할
+# 수 있다.
+# 또 다른 예제로서 아래는 텍스트 파일을 읽는 예이다. 첫번째 [예제 A]는 readline() 메서드를 사용하여 각 라인을 읽어 들여 
+# 프린트한 예이다. 이때 첫라인의 데이타를 갖는 s1 은 맨끝에 \n 값을 가지고 있음에 유의하자. 즉, readline() 메서드는 CR/LF 
+# 라인 문자를 모두 리턴한다. 따라서 [예제 A]에서 print() 출력을 하게 되면, Hello World 다음에 한 줄이 더 생기게 된다
+# (print가 마지막에 새 라인으로 이동하므로). 이를 방지하기 위해 [예제 B] 처럼 sys.stdout.write() 를 사용할 수 있다.
+# [예제 B]는 파일객체와 함께 for 루프를 사용한 예제로서, open() 함수부터 리턴된 파일 Object를 사용하여 for 루프를 돌리면, 
+# 파일로부터 한 라인씩 리턴하게 된다.
+# # 예제 A
+# f = open('test.txt', mode='rt', encoding='utf-8')
+# s1 = f.readline()  # Hello, World\n
+# s2 = f.readline()  # 안녕하세요?
+# print(s1)
+# print(s2)
+# f.close()
+# # 예제 B
+# import sys
+# f = open('test.txt', mode='rt', encoding='utf-8')
+# for line in f:
+#     sys.stdout.write(line)
+# f.close()
+# 2. try...finally 와 with 문
+# 파일을 오픈한 후에는 사용 후 반드시 닫아주어야 하는데, 중간에 에러가 발생하더라도 반드시 닫아주기 위해 아래 예제와
+# 같이 try...finally 를 사용할 수 있다.
+# try:
+#     f = open('test.txt', mode='rt', encoding='utf-8')
+#     for line in f:
+#         print(line)
+# finally:
+#     f.close()
+# try...finally 를 보다 간결하게 표현하기 위해 아래와 같이 with 문을 사용할 수 있다. 아래 예제에서 with 블력을 벗어나면
+# 파일객체 f 는 자동으로 close된다.
+# with open('test.txt', mode='rt', encoding='utf-8') as f:
+#     for line in f:
+#         print(line)
+# 3. 바이너리 파일
+# 바이너리 파일을 읽기 위해서는 파일모드를 rb 로, 쓰기 위해서는 wb 로 지정한다. 파일을 처리를 위해 흔히 사용되는 메서드들로서,
+# read(n) 매소드는 n 바이트만큼의 데이타를 읽어 들이고, ftell() 은 현재의 파일 위치를 리턴하고, fseek()는 특정 위치로 파일 
+# 포인터를 옮기는 일을 한다. (주: read(n) 메서드가 텍스트 파일에 사용되면 n 개의 (바이트가 아닌) 문자를 읽어 들인다. 만약 n 을
+# 생략하면 모든 데이타를 읽어 들인다.)
+# 바이너리 파일은 그 자체가 바이트를 처리하는 것이므로 텍스트 파일에서 사용하는 Universal Newline 변환이나 인코딩을 사용하지 
+# 않는다.
+# 아래 예제는 이미지 바이너리 파일을 읽어 한 바이트씩 프린트하는 예이다.
+# with open("test.png", "rb") as f:
+#     byte = f.read(1)
+#     while byte != b"":
+#         print(byte)
+#         byte = f.read(1)
+# 또다른 예제로서 아래는 정수 리스트를 바이너리 파일에 출력한 후, 다시 읽어 들여 프린트 해보는 예제이다. 바이너리 파일로 부터
+# 데이타를 읽고 쓸 때는 기본적으로 bytes 클래스를 사용하게 된다. 아래 예제를 보면, 리스트를 파일에 쓰기 전에 bytes()를 
+# 호출하여 bytes 타입으로 변경했음을 볼 수 있다. 또한 두번째 바이너리 읽기 예제에서 보듯이 read() 메서드를 써서 리턴되는 
+# 객체(content)의 타입은 bytes 클래스이다.
+# # 바이너리 쓰기
+# data = [1, 2, 3, 4, 5]
+# with open("test.bin", "wb") as f:
+#     f.write(bytes(data))
+# # 바이너리 읽기
+# with open("test.bin", "rb") as f:
+#     content = f.read()   # 모두 읽음
+#     print(type(content)) # bytes class
+#     for b in content:
+#         print(b)
+
+# [JSON 데이타]
+# 1. JSON
+# JSON은 JavaScript Object Notation의 약자로서 JavaScript 문법에 영향을 받아 개발된 Lightweight한 데이타 표현 방식이다. 
+# JSON은 데이타를 교환하는 한 포맷으로서 그 단순함과 유연함 때문에 널리 사용되고 있다. 특히 웹 브라우져와 웹서버 사이에
+# 데이타를 교환하는데 많이 사용되고 있다. 가장 많이 사용되는 JSON 포맷은 Key-Value Pair의 컬렉션이다.
+# Python은 기본적으로 JSON 표준 라이브러리(json)를 제공하고 있는데, "import json" 을 사용하여 JSON 라이브러리를 사용할 수 있다 
+# (주: Python 2.6 이상).
+# JSON 라이브러리를 사용하면, Python 타입의 Object를 JSON 문자열로 변경할 수 있으며(JSON 인코딩), 또한 JSON 문자열을 다시 
+# Python 타입으로 변환할 수 있다 (JSON 디코딩).
+# 2. JSON 인코딩
+# Python Object (Dictionary, List, Tuple 등) 를 JSON 문자열로 변경하는 것을 JSON Encoding 이라 부른다. JSON 인코딩을 위해서는
+# 우선 json 라이브러리를 import 한 후, json.dumps() 메서드를 써서 Python Object를 문자열로 변환하면 된다.
+# 예를 들어, 아래 코드는 customer 라는 Python Dictionary 객체를 JSON 문자열로 인코딩하는 예이다. 결과물 jsonString은 JSON 표현을
+# 갖는 문자열(str 타입)이다.
+# import json
+# # 테스트용 Python Dictionary
+# customer = {
+#     'id': 152352,
+#     'name': '강진수',
+#     'history': [
+#         {'date': '2015-03-11', 'item': 'iPhone'},
+#         {'date': '2016-02-23', 'item': 'Monitor'},
+#     ]
+# }
+# # JSON 인코딩
+# jsonString = json.dumps(customer)
+# # 문자열 출력
+# print(jsonString)
+# print(type(jsonString))   # class str
+# 위의 코드를 실행하면 JSON 문자열이 한 줄로 길게 표현됨을 알 수 있다. 이렇게 축약된 JSON 문자열은 다른 컴퓨터나 네트워크 상에
+# 보낼 때 유용하지만, 화면에 표시할 필요가 있을 경우는 읽기가 불편하다. JSON 문자열을 읽기 편하게 할 필요가 있을 경우에는,
+# 아래와 같이 "indent" 옵션을 json.dumps() 메서드 안에 지정하면 된다. 코드 아래는 Identation 이 사용된 JSON 문자열 표현이다.
+# jsonString = json.dumps(customer, indent=4)
+# print(jsonString)
+# {
+#     "history": [
+#         {
+#             "date": "2015-03-11",
+#             "item": "iPhone"
+#         },
+#         {
+#             "date": "2016-02-23",
+#             "item": "Monitor"
+#         }
+#     ],
+#     "id": 152352,
+#     "name": "\uac15\uc9c4\uc218"
+# }
+# 3. JSON 디코딩
+# JSON 문자열을 Python 타입 (Dictionary, List, Tuple 등) 으로 변경하는 것을 JSON Decoding 이라 부른다. JSON 디코딩은 
+# json.loads() 메서드를 사용하여 문자열을 Python 타입으로 변경하게 된다.
+# 아래 예제는 JSON 문자열을 Python Dictionary로 변경한 예이다.
+# import json
+# # 테스트용 JSON 문자열
+# jsonString = '{"name": "강진수", "id": 152352, "history": [{"date": "2015-03-11", "item": "iPhone"}, 
+# {"date": "2016-02-23", "item": "Monitor"}]}'
+# # JSON 디코딩
+# dict = json.loads(jsonString)
+# # Dictionary 데이타 체크
+# print(dict['name'])
+# for h in dict['history']:
+#     print(h['date'], h['item'])
+
+# [MSSQL 사용] 
+# 1. Microsoft SQL Server DB 모듈
+# Python에서 Microsoft SQL Server 데이타베이스를 사용하기 위해 우선 Python DB API 표준을 따르는 MSSQL DB 모듈을 다운받아 
+# 설치한다. MSSQL DB 를 지원하는 Python 모듈은 여러 가지가 있는데, 여기서는 pymssql 이라는 모듈을 사용해 본다. pymssql은
+# Python DB API (PEP-249) 스펙을 따르는 FreeTDS 위에 구현된 파이썬 모듈이다.
+# MSSQL DB 모듈 중 하나인 pymssql 모듈을 다음과 같이 설치한다.
+# $ pip install pymssql
+# 2. MSSQL 사용 절차
+# Python에서 MSSQL에 있는 데이타를 사용하는 일반적인 절차는 다음과 같다.
+# pymssql 모듈을 import 한다
+# pymssql.connect() 메소드를 사용하여 MSSQL에 Connect 한다. 호스트명, 로그인, 암호, 접속할 DB 등을 파라미터로 지정할 수 있다.
+# DB 접속이 성공하면, Connection 객체로부터 cursor() 메서드를 호출하여 Cursor 객체를 가져온다. DB 커서는 Fetch 동작을 관리하는데
+# 사용된다.
+# Cursor 객체의 execute() 메서드를 사용하여 SQL 문장을 DB 서버에 보낸다.
+# SQL 쿼리의 경우 Cursor 객체의 fetchall(), fetchone(), fetchmany() 등의 메서드를 사용하여 데이타를 서버로부터 가져온 후,
+# Fetch 된 데이타를 사용한다.
+# 삽입, 갱신, 삭제 등의 DML(Data Manipulation Language) 문장을 실행하는 경우, INSERT/UPDATE/DELETE 후 Connection 객체의 
+# commit() 메서드를 사용하여 데이타를 확정 갱신한다.
+# Connection 객체의 close() 메서드를 사용하여 DB 연결을 닫는다.
+# 아래 예제들의 기본 샘플 데이타로 아래와 같은 Customer 테이블이 있다고 가정하자.
+# 3. MSSQL 쿼리
+# SQL 쿼리는 SELECT 문을 작성하여 execute() 메서드를 실행하면 된다. 아래 예제는 위에서 설명한 일반적인 MSSQL 사용 절차를 따른 
+# 것으로, 간단한 SELECT 문을 실행한 후, 전체 ROW 데이타를 출력하는 예이다.
+# # pymssql 패키지 import
+# import pymssql
+# # MSSQL 접속
+# conn = pymssql.connect(host=r"(local)", database='MyDB', charset='utf8')
+# # Connection 으로부터 Cursor 생성
+# cursor = conn.cursor()
+# # SQL문 실행
+# cursor.execute('SELECT * FROM Customer;')
+# # 데이타 하나씩 Fetch하여 출력
+# row = cursor.fetchone()
+# while row:
+#     print(row[0], row[1])
+#     row = cursor.fetchone()
+# 연결 끊기
+# conn.close()            
+# 위의 예제에서 몇가지 주목할 점은
+# (1) connect() 메서드에서 host와 database 만을 지정하였는데, 이는 기본적으로 Windows Authentication 을 사용하여 SQL Server에 
+# 접속하게 된다. 만약 SQL Authentication을 사용할 경우는 아래처럼 user와 password 를 지정한다.
+#     conn = pymssql.connect(host=r"(local)", user='sa', password='pwd', database='MyDB')
+# 또한, 한글이 깨지는 경우 charset을 UTF8으로 지정하면 된다.
+# (2) 커서의 fetchone() 메서드는 데이타를 클라이언트로 하나씩 가져올 때 사용된다. fetchone()을 여러 번 호출하면, 호출 때 마다 
+# 한 Row 씩 데이타를 가져오게 된다. 그리고, 모든 데이타를 한꺼번에 클라이언트로 가져올 때는 fetchall()을, n개 만큼의 데이타만
+# 가져올 때는 fetchmany(n)를 사용한다.
+# (3) DB 사용이 끝난 경우 close() 메서드를 호출하여 연결을 끊어 준다.
+
+# [SQLite 사용]
+# 1. sqlite3 소개
+# SQLite는 별도의 DB 서버가 필요없이 DB 파일에 기초하여 데이타베이스 처리를 구현한 Embedded SQL DB 엔진이다. SQLite는 별도의 
+# 복잡한 서버 설치가 필요 없고, 쉽고 편리하게 사용할 수 있다는 점에서 널리 사용되고 있다. 오늘날 대부분의 Mac OS X 나
+# 리눅스에서는 SQLite을 기본적으로 내장하고 있지만, 만약 시스템에 내장되어 있지 않는 경우는 http://www.sqlite.org 에서
+# 다운받아 설치할 수 있다. SQLite는 기본적으로 SQLite DB 엔진과 "sqlite3" 라는 Command line tool 을 갖고 있다.
+# 다음은 sqlite3 커맨드 라인 툴을 사용하여 샘플 DB (test.db)를 만들고 customer 테이블을 생성하고, 데이타를 INSERT/SELECT 해 본
+# 예이다. "sqlite3 test.db" 명령문은 만약 test.db 파일이 있으면 해당 파일을 오픈하고, 파일이 없으면 새 파일을 생성한다.
+# 2. pysqlite
+# Python에서 SQLite 을 사용하기 위해서는 보통 pysqlite 으로 불리우는 Language binding (주: SQLite 라이브러리를 내부에서 사용)을 
+# 사용하는데, pysqlite 은 Python 2.5 이상에서 기본적으로 내장되어 있다.
+# pysqlite 를 import 하기 위해서는 아래와 같이 "import sqlite3" 를 사용한다.
+# $ python
+# Python 3.4.4 (v3.4.4:737efcadf5a6, Dec 19 2015, 20:19:30)
+# [GCC 4.2.1 (Apple Inc. build 5577)] on darwin
+# Type "help", "copyright", "credits" or "license" for more information.
+# >>> import sqlite3
+# >>> sqlite3.version
+# '2.6.0'
+# >>>
+# 3. SQLite 쿼리
+# SQLite를 사용하기 위해서는 우선 사용할 db 파일 (예: test.db)을 sqlite3.connect() 메서드로 오픈하고, SQL 쿼리를 실행하여
+# 데이타를 사용한 후, 마지막에 Connection을 닫으면 된다. DB Connection이 연결되면 Connection 객체가 리턴되는데, 이 객체로부터 
+# 커서를 생성하고 커서 객체의 execute() 명령을 실행하여 SQL 쿼리를 실행한다. 아래 예제는 간단한 SELECT 문을 실행한 후, 전체 ROW
+# 데이타를 출력하는 예이다.
+# import sqlite3
+# # SQLite DB 연결
+# conn = sqlite3.connect("test.db")
+# # Connection 으로부터 Cursor 생성
+# cur = conn.cursor()
+# # SQL 쿼리 실행
+# cur.execute("select * from customer")
+# # 데이타 Fetch
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# # Connection 닫기
+# conn.close()
+# 4. Parameterized Query
+# 실제 업무에서 대부분의 SQL 문장에는 동적으로 컬럼 데이타값을 집어 넣어야 하는 경우가 많은데, 이때 Parameterized Query를 
+# 사용한다. SQLite에서는 두 가지 방식으로 Parameterized Query를 만들 수 있다. 즉, ? (물음표)를 Placeholder로 사용하는 방식와
+# ":Id" 처럼 파라미터 이름을 명식하는 Named Placeholder 방식이 있다. 동적 SQL문을 구성하기 위해선 파라미터값이 들어가는 위치에
+# Parameter Placeholder를 넣고, execute() 메서드의 두번째 파라미터에 실제 파라미터값들의 Tuple을 넣어 주면 된다.
+# Parameterized Query는 문자열 결합이나 문자열 Interpolation에서 발생할 수 있는 SQL Injection 문제를 해결하는 방식으로
+# 알려져 있다.
+# Parameter Placeholder에서는 문자열이건 숫자이건 모두 ? (혹은 Named Placeholder) 를 사용하며, 문자열이라도 Placeholder를 
+# 인용부호로 둘러싸지 않는다. 또한 한가지 주의할 점은 Placeholder는 컬럼값을 대치할 때만 사용될 수 있다. 즉 테이블이나 기타 
+# 문장에 Placeholder 를 사용할 수 없다.
+# ? Placeholder
+# 아래 예제에서 SELECT 문의 WHERE 절을 보면 category와 region 값이 들어가는 곳에 각각 ? 마크를 넣어 주었다. 그리고 execute() 
+# 메서드에서 첫번째 파라미터에는 SQL문을, 두번째 파라미터에는 (1, 'SEA') 이라는 파라미터값 튜플을 넣어 주었다. 튜플 안의 
+# 데이타는 SQL문에서 순서대로 적용되게 되는데, 특히 문자열의 경우 단일인용부호(Single Quote)와 같은 특수 문자들이 자동으로 
+# Escape 되어 처리된다.
+# import sqlite3
+#  conn = sqlite3.connect("test.db")
+#  cur = conn.cursor()
+# sql = "select * from customer where category=? and region=?"
+# cur.execute(sql, (1, 'SEA'))
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row)
+# conn.close()
+# Named Placeholder
+# 아래 예제는 Named Placeholder를 사용한 예로서, where 절의 :Id 가 Named Placeholder이다. 이 Id의 값은 execute() 메서드의 
+# 두번째 파라미터에 지정되는데, 이 값은 Tuple이 아닌 Dictionary 형태로 Id 값이 지정된다.
+# sql = "select * from customer where id = :Id"
+# cur.execute(sql, {"Id": 1})
+# 5. DML (INSERT, UPDATE, DELETE)
+# SQL에서 데이타 조작하는 INSERT, UPDATE, DELETE 문을 DML(Data Manipulation Language)이라 한다. DML문을 사용하는 방식은
+# 위의 쿼리를 사용하는 방식과 거의 비슷하다. INSERT, UPDATE, DELETE 문에서도 Parameterized Query를 사용한다. 단, DML은 
+# 리턴되는 데이타가 없으므로 fetch 를 사용하지 않는다. 또한 디폴트로 Autocommit 이 아니기 때문에, execute() 로 DML 문장을 
+# 실행한 후에, Connection 객체의 commit() 메서드를 호출해야 한다. Autocommit 을 사용할 경우에는 아래 connect() 에서
+# 예시하였듯이, isolation_level 을 None 으로 설정한다.
+# import sqlite3
+# conn = sqlite3.connect("test.db")
+# # Autocommit 사용시:
+# # conn = sqlite3.connect("test.db", isolation_level=None)
+# cur = conn.cursor()
+# sql = "insert into customer(name,category,region) values (?, ?, ?)"
+# cur.execute(sql, ('홍길동', 1, '서울'))
+# conn.commit()
+# conn.close()
+# DML에서 사용하면 유용한 메서드로 executemany() 메소드가 있다. executemany() 메소드는 복수 개의 Row 데이타를 한꺼번에
+# 처리하는데 유용하다. 아래 예제는 executemany() 메서드를 사용하여 3개의 Row들을 INSERT 하는 효과를 갖는다.
+# import sqlite3
+# conn = sqlite3.connect("test.db")
+# cur = conn.cursor()
+# data = (
+#     ('홍진우', 1, '서울'),
+#     ('강지수', 2, '부산'),
+#     ('김청진', 1, '서울'),
+# )
+# sql = "insert into customer(name,category,region) values (?, ?, ?)"
+# cur.executemany(sql, data)
+# conn.commit()
+# conn.close()
+# 6. try와 with 문의 사용
+# Connection, Cursor 와 같은 리소스들이 Leak 되는 것을 방지하기 위하여 try...finally 혹은 with 문을 사용할 수 있다.
+# try...finally와 with 문은 블럭 내 에러가 발생하더라도 마지막 항상 리소스를 해제하는 역활을 하기 때문에, 데이타베이스 
+# 코딩에서 자주 사용된다. 아래 예제는 Connection 리소스를 닫기 위해 with 문을 사용하는 예이다.
+# import sqlite3
+# conn = sqlite3.connect("test.db")
+# with conn:
+#     cur = conn.cursor()
+#     cur.execute("select * from customer")
+#     rows = cur.fetchall()
+#     for row in rows:
+#         print(row)
+''' import sqlite3
+conn = sqlite3.connect("test.db")
+cur = conn.cursor()
+data = (
+    ('홍진우', 1, '서울'),
+    ('강지수', 2, '부산'),
+    ('김청진', 1, '서울'),
+)
+sql = "insert into customer(name,category,region) values (?, ?, ?)"
+cur.executemany(sql, data)
+conn.commit()
+conn.close() '''
+
+# [MySQL DML]
+# 1. MySQL DML
+# SQL에서 데이타 조작하는 INSERT, UPDATE, DELETE 문을 DML(Data Manipulation Language)이라 한다. MySQL에서 INSERT, UPDATE, 
+# DELETE를 사용하는 일반적인 절차는 앞 아티클 (MySQL 쿼리)과 유사하다.
+# MySQL에 DML을 사용하는 일반적인 절차는 다음과 같다.
+# PyMySql 모듈을 import 한다
+# pymysql.connect() 메소드를 사용하여 MySQL에 Connect 한다. 호스트명, 로그인, 암호, 접속할 DB 등을 파라미터로 지정한다.
+# DB 접속이 성공하면, Connection 객체로부터 cursor() 메서드를 호출하여 Cursor 객체를 가져온다.
+# Cursor 객체의 execute() 메서드를 사용하여 INSERT, UPDATE 혹은 DELETE 문장을 DB 서버에 보낸다.
+# 삽입, 갱신, 삭제 등이 모두 끝났으면 Connection 객체의 commit() 메서드를 사용하여 데이타를 Commit 한다. 
+# 디폴트로 Autocommit 이 아니므로 commit()을 명시적으로 호출한다. 자동커밋을 원하는 경우, connect() 메서드 호출시
+# autocommit=True 를 지정한다.
+# Connection 객체의 close() 메서드를 사용하여 DB 연결을 닫는다.
+# 2. INSERT 문
+# 데이타를 테이블에 추가하기 위해 INSERT문을 사용한다. INSERT문에 사용하는 각 컬럼값들은 직접 값을 지정(Hard code)하거나 
+# Parameter Placeholder를 사용할 수 있다.
+# 아래 예제는 두 개의 데이타를 INSERT 하고 Commit 하는 예이다. 여기서 한가지 주의할 점은 데이타 INSERT만 실행하고 Commit하지 
+# 않으면, 테이블의 데이타는 변경되지 않는다는 점이다.
+# import pymysql
+# conn = pymysql.connect(host='localhost', user='tester', password='7890',
+#                        db='testdb', charset='utf8')
+# curs = conn.cursor()
+# sql = """insert into customer(name,category,region)
+#          values (%s, %s, %s)"""
+# curs.execute(sql, ('홍길동', 1, '서울'))
+# curs.execute(sql, ('이연수', 2, '서울'))
+# conn.commit()
+# conn.close()
+# execute() 메서드는 하나의 Row (하나의 Tuple 데이타)를 치환하여 실행하는 반면, executemany() 메소드는 복수개의 Tuple
+# 데이타 (즉, Tuple of Tuples)를 하나의 DML 문에 적용하게 된다. 아래 예제에서 executemany()는 3개의 INSERT 문을 수행하는 
+# 것과 동일한 효과를 갖는다.
+# data = (
+#     ('홍진우', 1, '서울'),
+#     ('강지수', 2, '부산'),
+#     ('김청진', 1, '서울'),
+# )
+# sql = """insert into customer(name,category,region)
+#          values (%s, %s, %s)"""
+# curs.executemany(sql, data)
+# conn.commit()
+# 3. UPDATE, DELETE 문
+# 기존의 데이타를 수정하기 위해 UPDATE 문을 사용하고, 삭제하기 위해서 DELETE 문을 사용한다. UPDATE, DELETE 문에 사용하는 각 
+# 컬럼값들은 직접 값을 지정(Hard code)하거나 Parameter Placeholder를 사용할 수 있다.
+# 아래 예제는 하나의 UPDATE 문과 하나의 DELETE 문을 실행하고, Commit하는 예이다. UPDATE 문은 Region이 "서울"인 데이타를
+# 모두 "서울특별시"로 변경하는 것이고, DELETE 문은 id가 6인 customer 데이타를 삭제하는 것이다.
+# import pymysql
+# conn = pymysql.connect(host='localhost', user='tester', password='7890',
+#                        db='testdb', charset='utf8')
+# curs = conn.cursor()
+# sql = """update customer
+#          set region = '서울특별시'
+#          where region = '서울'"""
+# curs.execute(sql)
+# sql = "delete from customer where id=%s"
+# curs.execute(sql, 6)
+# conn.commit()
+# conn.close()
+# 4. try와 with 문의 사용
+# SQL Connection을 열고 프로그램 중간에서 에러가 발생하면, Connection은 그대로 열려 있는 상태로 있을 수 있다. 이렇게 오픈되어
+# 있는 Connection이 증가하면, 나중에 새로운 Connection을 오픈할 수 없게 되는데, 이를 Connection Leak 이라 부른다. 이러한 
+# Connection Leak을 막기 위하여 아래 예제와 같이 try...finally 블력을 사용하여 finally에서 항상 Conneciton을 Close해 주는 
+# 것이 좋다.
+# import pymysql
+# conn = pymysql.connect(host='localhost', user='tester', password='7890',
+#                        db='testdb', charset='utf8')
+# try:
+#     # INSERT
+#     with conn.cursor() as curs:
+#         sql = "insert into customer(name,category,region) values (%s, %s, %s)"
+#         curs.execute(sql, ('이광수', 1, '서울'))
+#     conn.commit()
+#     # SELECT
+#     with conn.cursor() as curs:
+#         sql = "select * FROM customer"
+#         curs.execute(sql)
+#         rs = curs.fetchall()
+#         for row in rs:
+#             print(row)
+# finally:
+#     conn.close()
+# 위 예제의 try 블럭을 보면, INSERT와 SELECT 문을 각기 다른 커서에서 사용하고 있다. 첫번째 INSERT 실행 시 with 문으로 커서를 
+# 만들어 자동으로 커서 리소스가 해제되도록 하였고, 두번째 SELECT 시에도 with 문으로 해당 커서가 자동 해제되도록 하였다. 
+# 이러한 예제에서 보듯이, SQL 객체들을 다룰 때 try...finally 나 with 문을 적절히 사용하여 리소스를 해제해 주는 것이 좋다.
+''' import pymysql
+conn = pymysql.connect(host='localhost', user='tester', password='7890',
+                       db='testdb', charset='utf8')
+try:
+    # INSERT
+    with conn.cursor() as curs:
+        sql = "insert into customer(name,category,region) values (%s, %s, %s)"
+        curs.execute(sql, ('이광수', 1, '서울'))
+    conn.commit()
+    # SELECT
+    with conn.cursor() as curs:
+        sql = "select * FROM customer"
+        curs.execute(sql)
+        rs = curs.fetchall()
+        for row in rs:
+            print(row)
+finally:
+    conn.close() '''
+
+# [MySQL 쿼리]
+# 1. MySQL DB 모듈
+# Python에서 MySQL 데이타베이스를 사용하기 위해 우선 Python DB API 표준을 따르는 MySQL DB 모듈을 다운받아 설치한다.
+# MySQL DB 를 지원하는 Python 모듈은 여러 가지가 있는데, 여기서는 PyMySql 이라는 모듈을 사용해 본다. 참고로 앞 아티클에서
+# 언급하였듯이 다른 MySQL 모듈을 사용하더라도 동일한 API를 사용하게 된다.
+# MySQL DB 모듈 중 하나인 PyMySql 모듈을 다음과 같이 설치한다.
+# $ pip install PyMySQL
+# 2. MySql 사용 절차
+# Python에서 MySQL에 있는 데이타를 사용하는 일반적인 절차는 다음과 같다.
+# PyMySql 모듈을 import 한다
+# pymysql.connect() 메소드를 사용하여 MySQL에 Connect 한다. 호스트명, 로그인, 암호, 접속할 DB 등을 파라미터로 지정한다.
+# DB 접속이 성공하면, Connection 객체로부터 cursor() 메서드를 호출하여 Cursor 객체를 가져온다. DB 커서는 Fetch 동작을
+# 관리하는데 사용되는데, 만약 DB 자체가 커서를 지원하지 않으면, Python DB API에서 이 커서 동작을 Emulation 하게 된다.
+# Cursor 객체의 execute() 메서드를 사용하여 SQL 문장을 DB 서버에 보낸다.
+# SQL 쿼리의 경우 Cursor 객체의 fetchall(), fetchone(), fetchmany() 등의 메서드를 사용하여 데이타를 서버로부터 가져온 후,
+# Fetch 된 데이타를 사용한다.
+# 삽입, 갱신, 삭제 등의 DML(Data Manipulation Language) 문장을 실행하는 경우, INSERT/UPDATE/DELETE 후 Connection 객체의
+# commit() 메서드를 사용하여 데이타를 확정 갱신한다.
+# Connection 객체의 close() 메서드를 사용하여 DB 연결을 닫는다.
+# 아래 예제들의 기본 샘플 데이타로 아래와 같은 customer 테이블이 있다고 가정하자.
+# 3. MySql 쿼리
+# SQL 쿼리는 SELECT 문을 작성하여 execute() 메서드를 실행하면 된다. 아래 예제는 위에서 설명한 일반적인 MySql 사용 절차를
+# 따른 것으로, 간단한 SELECT 문을 실행한 후, 전체 ROW 데이타를 출력하는 예이다.
+# import pymysql
+# # MySQL Connection 연결
+# conn = pymysql.connect(host='localhost', user='tester', password='',
+#                        db='testdb', charset='utf8')
+# # Connection 으로부터 Cursor 생성
+# curs = conn.cursor()
+# # SQL문 실행
+# sql = "select * from customer"
+# curs.execute(sql)
+# # 데이타 Fetch
+# rows = curs.fetchall()
+# print(rows)     # 전체 rows
+# # print(rows[0])  # 첫번째 row: (1, '김정수', 1, '서울')
+# # print(rows[1])  # 두번째 row: (2, '강수정', 2, '서울')
+# # Connection 닫기
+# conn.close()
+# 위의 예제에서 몇가지 주목할 점은
+# (1) connect() 메서드에서 charset을 명시한 점이다. 종종 클라이언트의 charset이 제대로 설정되지 않으면 한글이 깨지는
+#     경우가 발생할 수 있다.
+# (2) 커서의 fetchall() 메서드는 모든 데이타를 한꺼번에 클라이언트로 가져올 때 사용된다. 또다른 fetch 메서드로서 fetchone()
+#     은 한번 호출에 하나의 Row 만을 가져올 때 사용된다. fetchone()을 여러 번 호출하면, 호출 때 마다 한 Row 씩 데이타를 
+#     가져오게 된다. 그리고 fetchmany(n) 메서드는 n개 만큼의 데이타를 한꺼번에 가져올 때 사용된다.
+# (3) print(rows) 문은 전체 row들을 Tuple의 Tuple로서 출력하게 되고, row[0], row[1]와 같이 인덱스를 지정하면, 첫번째,
+#     두번째 row 등을 가리키게 된다. 각 row는 Tuple로 리턴되며, 컬럼 순서대로 데이타가 표시된다 (주: 이러한 디폴트 Row 
+#     데이타 형식을 흔히 Array based cursor라 부르고, 이는 connect() 혹은 cursor() 메서드에서 옵션으로 변경할 수 있다. 아래 참조.).
+# 4. Parameter Placeholder
+# 실제 업무에서 대부분의 SQL 문장에는 동적으로 컬럼 데이타값을 집어 넣어야 하는 경우가 상당히 많다. 동적 SQL문을 구성하기 위해서
+# 파라미터값이 들어가는 위치에 Parameter Placeholder인 %s (MySql의 경우)를 넣고, execute() 메서드의 두번째 파라미터에 실제 
+# 파라미터값들의 Tuple을 넣어 주면 된다. 예를 들어, 아래 예제에서 SELECT 문의 WHERE 절을 보면 category와 region 값이 들어가는
+# 곳에 각각 %s 를 넣어 주었다. 그리고 execute() 메서드에서 첫번째 파라미터에는 SQL문을, 두번째 파라미터에는 (1, '서울') 이라는
+# 파라미터값 튜플을 넣어 주었다. 튜플 안의 데이타는 SQL문에서 순서대로 적용되게 되는데, 특히 문자열의 경우 단일인용부호
+# (Single Quote)와 같은 특수 문자들이 자동으로 Escape 되어 처리된다.
+# Parameter Placeholder로 %s 를 사용하는데, 이 %s 는 일반 문자열 포맷팅에 사용하는 %s, %d 등과는 다른 것이다. 
+# Parameter Placeholder에서는 문자열이건 숫자이건 모두 %s 를 사용하며, 문자열이라도 %s를 인용부호로 둘러싸지 않는다. 
+# 또한 한가지 주의할 점은 Placeholder는 컬럼값을 대치할 때만 사용될 수 있다. 즉 테이블이나 기타 문장에 Placeholder 를 
+# 사용할 수 없다.
+# import pymysql
+# # MySQL Connection 연결
+# conn = pymysql.connect(host='localhost', user='tester', password='7890',
+#                        db='testdb', charset='utf8')
+# # Connection 으로부터 Dictoionary Cursor 생성
+# curs = conn.cursor(pymysql.cursors.DictCursor)
+# # SQL문 실행
+# sql = "select * from customer where category=%s and region=%s"
+# curs.execute(sql, (1, '서울'))
+# # 데이타 Fetch
+# rows = curs.fetchall()
+# for row in rows:
+#     print(row)
+#     # 출력 : {'category': 1, 'id': 1, 'region': '서울', 'name': '김정수'}
+#     print(row['id'], row['name'], row['region'])
+#     # 1 김정수 서울
+# # Connection 닫기
+# conn.close()
+# 만약 Python 문자열에서 사용하는 기본 String Interpolation을 사용하면 데이타에 특수 문자가 있는 경우 SQL문 문법 오류를 
+# 발생시킬 수 있다. 예를 들어, 아래는 기본 String Interpolation을 사용한 예인데, 변수 data 안에 단일 인용부호가 있는 경우 
+# SQL Syntax 에러를 유발시키게 된다. 또한 이러한 String Interpolation 혹은 문자열 결합(Concatenation)을 통해 동적 SQL 문을 
+# 만드는 방법은 SQL Injection 공격에 쉽게 노출되는 문제점이 있다.
+# # 잘못된 표현
+# data = '서\'울'
+# sql = "select * from customer where category=%s and region=%s" % (1, data)
+# curs.execute(sql)
+# 5. Dictionary 커서
+# 위의 예제에서 또 한가지 주목할 점은 라인 8에 있는 cursor() 메서드이다. 이 cursor() 메서드 안에 DictCursor를 파라미터로
+# 지정하였는데, 이는 디폴트인 Array based cursor가 아닌 Dictionary based cursor를 사용하겠다는 것을 의미한다. 디폴트 Array
+# based cursor는 Row의 결과값을 배열로 (PyMyMsql에서 정확히는 튜플) 리턴하는데, cursor 생성시 DictCursor 옵션을 주면, Row 
+# 결과를 Dictionary 형태로 리턴한다.
+# curs = conn.cursor(pymysql.cursors.DictCursor)
+# # ...생략...
+# rows = curs.fetchall()
+# for row in rows:
+#   print(row)
+#   # 출력 : {'category': 1, 'id': 1, 'region': '서울', 'name': '김정수'}
+#   print(row['id'], row['name'], row['region'])
+#   # 1 김정수 서울
+# 위의 예에서 커서가 DictCursor이므로 for 루프 안의 print(row)는 Dictionary 형태로 Row 데이타를 출력하게 된다. 
+# 또한 Row 데이타가 Dictionary이므로 row["id"], row["name"] 과 같이 컬럼명을 써서 컬럼값을 구할 수 있다. 
+# 이렇게 컬럼인덱스 대신 컬럼명으로 컬럼을 찾게 되면 코드 가독성을 높일 수 있고, 특히 컬럼수가 많을 경우 유용하게 사용될 수 있다.
+''' import pymysql
+# MySQL Connection 연결
+conn = pymysql.connect(host='localhost', user='tester', password='',
+                       db='testdb', charset='utf8')
+# Connection 으로부터 Cursor 생성
+curs = conn.cursor()
+# SQL문 실행
+sql = "select * from customer"
+curs.execute(sql)
+# 데이타 Fetch
+rows = curs.fetchall()
+print(rows)     # 전체 rows
+# print(rows[0])  # 첫번째 row: (1, '김정수', 1, '서울')
+# print(rows[1])  # 두번째 row: (2, '강수정', 2, '서울')
+# Connection 닫기
+conn.close() '''
+
+# [Python DB API]
+# Python에서 데이타베이스를 엑서스하기 위한 한 방법으로 Python DB API를 사용할 수 있다. Python DB API는 여러 데이타베이스를
+# 엑세스하는 표준 API 로서 여러 DB 엑세스 모듈에서 이 최소한의 API 인터페이스 표준을 따르고 있다. 표준 API는 크게 데이타
+# 베이스를 연결하고, SQL 문을 실행하고, 연결을 닫는 등의 기본적인 DB 작업과 관련된 기능들을 정의하고 있다. Python DB API는
+# 현재 버전 2.0을 사용하는데, 스펙은 PEP 249에 자세히 소개되어 있다.
+# (주: 데이타베이스를 엑세스하는 또 다른 방식으로 ORM (Object Relational Mapping)이 있는데, 예를 들어 Django ORM, PonyORM,
+# peewee 등이 ORM 방식을 사용한 데이타 엑세스를 제공한다.)
+# Python에서 지원하는 데이타베이스는 매우 다양하기 때문에, Python에서 각 데이타베이스를 사용하기 위해서는 각각의 DB에
+# 상응하는 별도의 DB 모듈을 다운받아야 한다 (주: sqlite3 는 Python 2.5 이상에서 기본 내장). 하지만 수많은 DB 모듈들이
+# 있지만, 이들이 거의 모두 Python DB API 표준을 따르고 있으므로, 동일한 API를 사용해 데이타베이스를 사용할 수 있다. 
+# Python에서는 거의 모든 데이타베이스를 사용할 수 있는데, 예를 들어 MySQL, PostgreSQL, MSSQL, Sqlite, Oracle, Sybase,
+# Informix, mSQL 등과 같은 대표적인 DB 들이 모두 지원된다.
+
 # [쓰레드 (Thread)]
 # 파이썬 프로그램은 기본적으로 하나의 쓰레드(Single Thread)에서 실행된다. 즉, 하나의 메인 쓰레드가 파이썬 코드를 순차적으로 실행한다. 
 # 코드를 병렬로 실행하기 위해서는 별도의 쓰레드(Subthread)를 생성해야 하는데, 파이썬에서 쓰레드를 생성하기 위해서는 threading 모듈
@@ -162,7 +772,7 @@ for i in range(10):
 for x in g:
     print(x) '''
 
-# [Python Comprehension}
+# [Python Comprehension]
 # Python의 Comprehension은 한 Sequence가 다른 Sequence (Iterable Object)로부터 (변형되어) 구축될 수 있게한 기능이다. 
 # Python 2 에서는 List Comprehension (리스트 내포)만을 지원하며, Python 3 에서는 Dictionary Comprehension과 Set Comprehension을 
 # 추가로 지원하고 있다. 또한, 종종 Generator Comprehension이라고 일컫어 지는 Generator Expression이 있는데, 이는 다음 아티클에서 
