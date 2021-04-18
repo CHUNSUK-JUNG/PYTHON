@@ -1730,6 +1730,7 @@
 #         return redirect('/feedback/list')
 #     else:
 #         form = FeedbackForm()
+ 
 #     return render(request, 'feedback.html', {'form': form})
 # def edit(request, id):
 #     fb = Feedback.objects.get(pk=id)
@@ -2389,6 +2390,7 @@
 # {% autoescape on %}     # autoescape 태그
 #     {{ content }}
 # {% endautoescape %}
+ 
 # {{ content|escape }}    # escape 필터
 # 만약 이러한 HTML escape 혹은 HTML 인코딩 기능을 사용하지 않고, <, >, ', ", & 이 들어간 문자열을 HTML에서 사용하고자 한다면, 
 # 각 문자를 HTML Entity로 미리 변환해 주어야 한다. 이러한 변환을 보다 편리하게 하는 한 방법으로 온라인 HTML 인코딩 변환 도구를 
@@ -2461,6 +2463,7 @@
 # Django에서 새로운 웹 프로젝트를 만들기 위해서는 django-admin.py라는 Django 관리자 모듈을 사용한다. 먼저 가상환경을 활성화하고,
 # 프로젝트를 만들 디렉토리로 이동한 후, 아래와 같이 "django-admin startproject 프로젝트명" 를 실행하여 새 프로젝트를 생성한다. 
 # 아래 예에서는 ~/pysrc/myweb 폴더에 새 웹 프로젝트를 만들게 된다.
+
 # (venv1) ~$ cd ~/pysrc
 # (venv1) ~/pysrc $ django-admin startproject myweb
 # # 윈도우즈에서 예
@@ -2480,8 +2483,10 @@
 # 주소( http://127.0.0.1:8000 )를 찾을 수 있다. 웹 브라우져에서 이 URL 주소로 접속하면 웹페이지를 볼 수 있다. 이때 웹 브라우져에
 # 표시되는 웹페이지는 Django 프레임워크에서 디폴트로 보여주는 웹페이지이다.
 # 만약 8000 포트가 사용 중이라면, runserver 뒤에 다른 포트 번호를 지정하면 된다. 웹서버를 중지시키기 위해서는 Ctrl+C 를 누른다.
+
 # 다른 포트(8080) 사용시
-# python manage.py runserver 8080
+python manage.py runserver 8080
+
 
 # [ Django 설치]
 # Django 설치하기
