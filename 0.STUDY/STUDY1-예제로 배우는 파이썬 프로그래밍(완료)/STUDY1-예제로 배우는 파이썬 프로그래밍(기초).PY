@@ -1,8 +1,6 @@
 # 출처 [http://pythonstudy.xyz/, 예제로 배우는 파이썬 프로그래밍]
 
 
-1609 라인 부터 추가
-
 # [PYTHON 기초]
 
 # [Python 소개]
@@ -1545,91 +1543,6 @@ t1.start()
 print("### End ###") '''
 
 
-# [GUI 프로그래밍]
-
-# [파이썬 GUI 프로그래밍]
-# 파이썬 GUI 프로그래밍
-# 파이썬에서 데스크탑 프로그램 혹은 GUI 프로그램을 만들기 위해서는 여러 GUI Framework (혹은 Toolkit) 들을 사용할 수 있다. 
-# GUI Framework/Toolkit에는 파이썬에서 기본적으로 제공되는 표준 GUI 라이브러리인 Tkinter로부터, Qt 프레임워크를 파이썬에서 사용하도록 한
-# PyQt와 PySide, GTK 툴킷을 파이썬에서 사용하게 한 PyGTK 등등 다양한 툴들이 있다.
-# 여기서는 이 중 많이 사용되고 있는 PyQt를 사용하여 GUI 프로그램을 만드는 방법을 중점적으로 설명한다. PyQt를 사용하면, 동일한 파이썬코드를
-# 사용하여 윈도우즈, Mac, 리눅스에서 모두 동작하는 GUI 프로그램을 작성할 수 있다. PyQt는 크게 PyQt4 버젼과 PyQt5 버젼이 있는데, 
-# 이들 각 버젼은 Qt v4와 Qt v5를 파이썬에서 쓸 수 있도록 한 것이다. 하나의 언어에서 작성된 라이브러리나 서비스를 다른 언어에서 사용할 
-# 수 있도록 하는 것을 Language Binding 이라 한다. PyQt는 Qt의 Python Language Binding 중의 하나이다. Qt는 C++로 작성된 크로스 플랫폼 
-# 프레임워크로 The Qt Company에서 작성한 프로그램이다. 그동안 많이 사용되어 왔던 PyQt는 PyQt4 버젼이지만, The Qt Company는 더이상 
-# Qt v4를 지원하지 않으므로, 새로운 GUI 개발 프로젝트에서는 PyQt5를 고려해 볼 필요가 있다.
-# PyQt는 오픈소스로서 개인용으로는 무료이지만 상업용으로는 License를 구입해야 한다. 반면, PyQt4와 거의 비슷한 PySide는 오픈소스로서 
-# 상업용으로도 무료이다. 하지만, PyQt는 Riverbank에서 지속적으로 관리하는 반면, PySide는 이러한 부분이 소홀한 만큼 상업용 프로젝트를 
-# 개발할 때는 이러한 점을 참고하는 것이 좋다.
-
-# [PyQt4 설치]
-# 1. PyQt4 설치
-# Qt (보통 큐트(Cute)로 발음)는 C++에서 크로스 플랫폼 GUI 프로그램을 만들기 위해 만들어 졌으며, Qt 자체도 C++로 작성되어 있다 
-# (주: Qt는 GUI 이외의 네트워크, DB 엑세스 등의 다른 기능도 제공함). Qt를 파이썬에 사용하기 위해 Python Language Binding 중에 하나인 
-# PyQt를 설치하여 사용할 수 있다. 여기서는 그동안 많이 사용되어 왔던 PyQt4를 중심으로 설명한다.
-# 윈도우즈에서 설치
-# PyQt4를 윈도우즈에서 설치하는 방법은 다음과 같다. PyQt 설치가 완료되면, PyQt 모듈들을 import 하여 사용하게 된다.
-# python.org 에서 파이썬 버전 3.4 를 설치한다.
-# Riverbank에서 더이상 PyQt4 빌드를 제공하지 않으므로, http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4 사이트를 방문하여 PyQt4 wheel 
-# 파일을 로컬에 다운 받는다. 이때, 주의할 점은 *cp34*.whl 파일을 32비트 / 64비트 버전에 맞게 선택한다.
-# (주: 예전에는 Riverbank의 PyQt 다운로드 사이트에서 파이썬 3.4용 PyQt4 를 다운받아 설치하였으나, Riverbank에서 더이상 공식 빌드를 제공하지
-# 않고 소스코드만 제공하고 있다.)
-# Cmd.exe를 실행해서 Python 3.4가 설치된 디렉토리 밑 Scripts 폴더로 이동한 후, pip install {wheel파일} 명령을 실행한다.
-# (Optional) PyQt 설치 후 PyCharm을 사용할 때, 만약 IntelliSense 가 동작하지 않으면, File - Invalidate Caches and Restart 메뉴를 선택하고
-# [Invalidate and Restart] 버튼을 선택한다.
-# Mac에서 설치
-# PyQt4를 Mac에서 설치하는 방법들 중 하나로 MacPorts 를 이용하는 방법이 있는데, 이는 다음과 같다.
-# Xcode가 설치되어 있지 않으면, Xcode를 설치한다
-# MacPorts 패키지가 설치되어 있지 않으면, http://www.macports.org/install.php 에서 MacPorts 패키지를 설치한다
-# Termial 창에서 다음을 실행한다
-# $ sudo port install py34-pyqt4
-# (Optional) PyQt 설치 후 PyCharm을 사용할 때, MacPorts에 의해 새로 설치된 Python 3.4를 사용하도록 Preferences에서 새 Python Intepreter를 
-# 설정한다. (MacPorts로 설치된 Python Intepreter가 목록에 없으면 추가해야 함)
-# (Optional) PyQt 설치 후 PyCharm을 사용할 때, 만약 IntelliSense 가 동작하지 않으면, File - Invalidate Caches and Restart 메뉴를 선택하고 
-# [Invalidate and Restart] 버튼을 선택한다.
-# 2. PyQt4 도움말
-# PyQt4에 대한 도움말은 PyQt 도움말 링크 에 자세히 설명되어 있으며, 특히 PyQt의 각 클래스별 도움말은 PyQt 클래스 도움말 에서 찾아볼 수 있다. 
-# PyQt 클래스들은 모두 기본적으로 Q로 시작한다. 각 클래스 도움말은 해당 클래스의 메서드, 변수, 이벤트(Signal) 등을 설명하고 있다.
-
-# [PyQt4 간단한 GUI 프로그램]
-# 1. 간단한 GUI 프로그램
-# PyQt 설치되었으면, 간단한 GUI 프로그램을 만들어 보자. 우선 PyQt를 사용하여 GUI 프로그램을 만들기 위해서는, PyQt4.QtGui 모듈을 Import
-# 하여야 한다. 즉, QtGui의 모든 함수, 클래스 들을 사용하기 위하여 아래와 같이 "from PyQt4.QtGui import *"을 사용한다.
-# from PyQt4.QtGui import *
-# app = QApplication([])
-# dialog = QDialog()
-# dialog.show()
-# app.exec_()
-# PyQt의 QApplication 클래스는 GUI Application을 관리하는 클래스로서 QApplication 객체의 exec_() 메서드를 호출하면 메인 메시지 
-# 루프를 만들며 GUI 이벤트를 핸들링하게 된다. 한편, QDialog 클래스는 다이얼로그 클래스를 가리키는 것으로 여기서는 그냥 빈 다이얼로그를
-# 표시(show)하게 한다. 위 예제를 실행하면, 아래와 같이 python이라는 타이틀(디폴트임)을 갖는 빈 다이얼로그 하나가 화면에 나타난다.
-from PyQt4.QtGui import *
-app = QApplication([])
-dialog = QDialog()
-dialog.show()
-app.exec_()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # [Python 데이터]
 
 # [Python DB API]
@@ -2332,40 +2245,1357 @@ print("Id=%s : Name=%s" % (r[0][0], r[0][1]))
 f.close() '''
 
 
+# [Python 활용]
+
+# [정규 표현식 Regex]
+# 1. 정규 표현식 (Regular Expression)
+# 정규 표현식은 특정한 규칙을 가진 문자열의 패턴을 표현하는 데 사용하는 표현식(Expression)으로 텍스트에서 특정 문자열을
+# 검색하거나 치환할 때 흔히 사용된다. 예를 들어, 웹페이지에서 전화번호나 이메일 주소를 발췌한다거나 로그파일에서 특정
+# 에러메시지가 들어간 라인들을 찾을 때 정규 표현식을 사용하면 쉽게 구현할 수 있다. 정규 표현식은 간단히 정규식, Regex 
+# 등으로 불리우곤 한다.
+# 2. 정규 표현식 사용
+# 정규식에서 가장 단순한 것은 특정 문자열을 직접 리터럴로 사용하여 해당 문자열을 검색하는 것이다. 예를 들어, 로그 파일에
+# "에러 1033" 이라는 문자열을 검색하여 이 문자열이 있으면 이를 출력하고 없으면 None을 리턴하는 경우이다. 이러한 간단한 검색을
+# 파이썬에서 실행하는 방법은 아래와 같다.
+# 먼저 파이썬에서 정규표현식을 사용하기 위해서는 Regex를 위한 모듈인 re 모듈을 사용한다.
+# re 모듈의 compile 함수는 정규식 패턴을 입력으로 받아들여 정규식 객체를 리턴하는데, 즉 re.compile(검색할문자열) 와 같이 함수를
+# 호출하면 정규식 객체 (re.RegexObject 클래스 객체)를 리턴하게 된다.
+# re.RegexObject 클래스는 여러 메서드들을 가지고 있는데, 이 중 여기서는 특정 문자열을 검색하여 처음 맞는 문자열을 리턴하는
+# search() 메서드를 사용해 본다. 이 search() 는 처음 매칭되는 문자열만 리턴하는데, 매칭되는 모든 경우를 리턴하려면 findall() 을
+# 사용한다. search()는 검색 대상이 있으면 결과를 갖는 MatchObject 객체를 리턴하고, 맞는 문자열이 없으면 None 을 리턴한다.
+# MatchObject 객체로부터 실제 결과 문자열을 얻기 위해서는 group() 메서드를 사용한다.
+# import re
+# text = "에러 1122 : 레퍼런스 오류\n 에러 1033: 아규먼트 오류"
+# regex = re.compile("에러 1033")
+# mo = regex.search(text)
+# if mo != None:
+#     print(mo.group()) 
+# 3. 전화번호 발췌하기
+# 정규 표현식은 단순한 리터럴 문자열을 검색하는 것보다 훨씬 많은 기능들을 제공하는데, 즉 특정 패턴의 문자열을 검색하는데 매우
+# 유용하다. 그 한가지 예로 웹페이지나 텍스트에서 특정 패턴의 전화번호를 발췌하는 기능에 대해 알아보자. 전화번호의 패턴은
+# 032-232-3245 와 같이 3자리-3자리-4자리로 구성되어 있다고 가정하자. 정규식에서 숫자를 의미하는 기호로 \d 를 사용한다. 
+# 여기서 d는 digit 을 의미하고 0 ~ 9 까지의 숫자 중 아무 숫자나 될 수 있다. 따라서, 위 전화번호 패턴을 정규식으로 표현하면
+#  \d\d\d-\d\d\d-\d\d\d\d 와 같이 될 수 있다. 아래는 이러한 패턴을 사용하여 전화번호를 발췌하는 예이다.
+# import re
+# text = "문의사항이 있으면 032-232-3245 으로 연락주시기 바랍니다."
+# regex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+# matchobj = regex.search(text)
+# phonenumber = matchobj.group()
+# print(phonenumber)    
+# 위 예제에서 re.compile(전화번호패턴) 함수는 전화번호 패턴에 갖는 정규식 객체를 리턴하게 되고, search()를 사용하여 첫번째 
+# 전화번호 패턴에 매칭되는 번호를 리턴한다. 그리고 이로부터 실제 전화번호를 얻기 위해서는 group() 메서드를 사용하였다.
+# 4. 다양한 정규식 패턴 표현
+# 위의 전화번호 예제에서는 숫자를 표현하는 \d 만을 살펴보았는데, 정규 표현식에는 매우 다양한 문법과 기능들이 제공되고 있다. 
+# 아래는 이러한 다양한 정규식 표현 중 자주 사용되는 패턴들을 정리한 것이다.
+# 패턴	설명	예제
+# ^	이 패턴으로 시작해야 함	^abc : abc로 시작해야 함 (abcd, abc12 등)
+# $	이 패턴으로 종료되어야 함	xyz$ : xyz로 종료되어야 함 (123xyz, strxyz 등)
+# [문자들]	문자들 중에 하나이어야 함. 가능한 문자들의 집합을 정의함.	[Pp]ython : "Python" 혹은 "python"
+# [^문자들]	[문자들]의 반대로 피해야할 문자들의 집합을 정의함.	[^aeiou] : 소문자 모음이 아닌 문자들
+# |	두 패턴 중 하나이어야 함 (OR 기능)	a | b : a 또는 b 이어야 함
+# ?	앞 패턴이 없거나 하나이어야 함 (Optional 패턴을 정의할 때 사용)	\d? : 숫자가 하나 있거나 없어야 함
+# +	앞 패턴이 하나 이상이어야 함	\d+ : 숫자가 하나 이상이어야 함
+# *	앞 패턴이 0개 이상이어야 함	\d* : 숫자가 없거나 하나 이상이어야 함
+# 패턴{n}	앞 패턴이 n번 반복해서 나타나는 경우	\d{3} : 숫자가 3개 있어야 함
+# 패턴{n, m}	앞 패턴이 최소 n번, 최대 m 번 반복해서 나타나는 경우 (n 또는 m 은 생략 가능)	\d{3,5} : 숫자가 3개,
+# 4개 혹은 5개 있어야 함
+# \d	숫자 0 ~ 9	\d\d\d : 0 ~ 9 범위의 숫자가 3개를 의미 (123, 000 등)
+# \w	문자를 의미	\w\w\w : 문자가 3개를 의미 (xyz, ABC 등)
+# \s	화이트 스페이스를 의미하는데, [\t\n\r\f] 와 동일	\s\s : 화이트 스페이스 문자 2개 의미 (\r\n, \t\t 등)
+# .	뉴라인(\n) 을 제외한 모든 문자를 의미	.{3} : 문자 3개 (F15, 0x0 등)
+# 정규식 패턴의 한 예로 "에러 {에러번호}"와 같은 형식을 띄는 부분을 발췌해 내는 예제를 살펴보자. 여기서 에러 패턴은 
+# "에러" 라는 리터럴 문자열과 공백 하나, 그 뒤에 1개 이상의 숫자이다. 이를 표현하면 아래와 같다.
+# import re
+# text = "에러 1122 : 레퍼런스 오류\n 에러 1033: 아규먼트 오류"
+# regex = re.compile("에러\s\d+")
+# mc = regex.findall(text)
+# print(mc)
+# # 출력: ['에러 1122', '에러 1033']
+# 위 예제는 첫번째 패턴 매칭값을 리턴하는 search() 메서드 대신 패턴에 매칭되는 모든 결과를 리턴하는 findall()을 사용하였다.
+# findall()는 결과 문자열들의 리스트(list)를 리턴한다.
+# 5. 정규식 그룹(Group)
+# 정규 표현식에서 ( ) 괄호는 그룹을 의미한다. 예를 들어, 전화번호의 패턴을 \d{3}-\d{3}-\d{4} 와 같이 표현하였을 때, 지역번호 
+# 3자를 그룹1으로 하고 나머지 7자리를 그룹2로 분리하고 싶을 때, (\d{3})-(\d{3}-\d{4}) 와 같이 둥근 괄호로 묶어 두 그룹으로 
+# 분리할 수 있다.
+# 이렇게 분리된 그룹들은 MatchObject의 group() 메서드에서 그룹 번호를 파라미터로 넣어 값을 가져올 수 있는데, 첫번째 그룹 
+# 지역번호는 group(1) 으로, 두번째 그룹은 group(2) 와 같이 사용한다. 그리고 전체 전화번호를 가져올 때는 group() 혹은 group(0)
+# 을 사용한다.
+# import re
+# text = "문의사항이 있으면 032-232-3245 으로 연락주시기 바랍니다."
+# regex = re.compile(r'(\d{3})-(\d{3}-\d{4})')
+# matchobj = regex.search(text)
+# areaCode = matchobj.group(1)
+# num = matchobj.group(2)
+# fullNum = matchobj.group()
+# print(areaCode, num) # 032 232-3245
+# 그룹을 위와 같이 숫자로 인덱싱하는 대신 그룹이름을 지정할 수도 있는데 이를 정규식에서 Named Capturing Group 이라 한다. 
+# 파이썬에서 Named Capturing Group을 사용하는 방법은 (?P<그룹명>정규식) 와 같이 정규식 표현 앞에 ?P<그룹명>을 쓰면 된다. 
+# 그리고 이후 MatchObject에서 group('그룹명') 을 호출하면 캡쳐된 그룹 값을 얻을 수 있다.
+# import re
+# text = "문의사항이 있으면 032-232-3245 으로 연락주시기 바랍니다."
+# regex = re.compile(r'(?P<area>\d{3})-(?P<num>\d{3}-\d{4})')
+# matchobj = regex.search(text)
+# areaCode = matchobj.group("area")
+# num = matchobj.group("num")
+# print(areaCode, num)  # 032 232-3245
+''' import re
+text = "에러 1122 : 레퍼런스 오류\n 에러 1033: 아규먼트 오류"
+regex = re.compile("에러 1033")
+mo = regex.search(text)
+if mo != None:
+    print(mo.group()) 
+import re
+text = "문의사항이 있으면 032-232-3245 으로 연락주시기 바랍니다."
+regex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+matchobj = regex.search(text)
+phonenumber = matchobj.group()
+print(phonenumber)   
+text = "에러 1122 : 레퍼런스 오류\n 에러 1033: 아규먼트 오류"
+regex = re.compile("에러\s\d+")
+mc = regex.findall(text)
+print(mc)
+text = "문의사항이 있으면 032-232-3245 으로 연락주시기 바랍니다."
+regex = re.compile(r'(\d{3})-(\d{3}-\d{4})')
+matchobj = regex.search(text)
+areaCode = matchobj.group(1)
+num = matchobj.group(2)
+fullNum = matchobj.group()
+print(areaCode, num) # 032 232-3245
+text = "문의사항이 있으면 032-232-3245 으로 연락주시기 바랍니다."
+regex = re.compile(r'(?P<area>\d{3})-(?P<num>\d{3}-\d{4})')
+matchobj = regex.search(text)
+areaCode = matchobj.group("area")
+num = matchobj.group("num")
+print(areaCode, num)  # 032 232-3245 '''
+
+# [numpy 사용하기]
+# 1. numpy 패키지
+# numpy는 과학 계산을 위한 라이브러리로서 다차원 배열을 처리하는데 필요한 여러 유용한 기능을 제공하고 있다.
+# numpy는 pip을 사용하여 아래와 같이 간단히 설치할 수 있다.
+# $ pip install numpy    
+# 2. numpy 배열
+# numpy에서 배열은 동일한 타입의 값들을 가지며, 배열의 차원을 rank 라 하고, 각 차원의 크기를 튜플로 표시하는 것을 shape 라 한다.
+# 예를 들어, 행이 2이고 열이 3인 2차원 배열에서 rank는 2 이고, shape는 (2, 3) 이 된다.
+# numpy 배열을 생성하는 방법은 파이썬 리스트를 사용하는 방법과 numpy에서 제공하는 함수를 사용하는 방법이 있다. 아래 예제에서 
+# list1은 4개의 요소를 갖는 리스트인데, 이를 array() 함수에 넣어 numpy 배열을 생성하는데, 이 배열의 rank는 1이 되고, 
+# shape는 (4, ) 가 된다. 튜플에 하나의 요소만 있으면 문법상 콤마를 뒤에 붙인다. 두번째 배열 b는 2x3 배열로서 shape는 (2, 3)이 
+# 되는데, 한가지 주의할 점은 array() 안에 하나의 리스트만 들어가므로 리스트의 리스트를 넣어야 한다.
+# import numpy as np
+# list1 = [1, 2, 3, 4]
+# a = np.array(list1)
+# print(a.shape) # (4, )
+# b = np.array([[1,2,3],[4,5,6]])
+# print(b.shape) # (2, 3)
+# print(b[0,0])  # 1    
+# numpy에서 제공하는 함수를 사용하여 numpy 배열을 만드는 방법을 살펴보자. 이러한 기능을 제공하는 함수로는 zeros(), ones(),
+# full(), eye() 등이 있는데, zeros()는 해당 배열에 모두 0을 집어 넣고, ones()는 모두 1을 집어 넣는다. full()은 배열에
+# 사용자가 지정한 값을 넣는데 사용하고, eye()는 대각선으로는 1이고 나머지는 0인 2차원 배열을 생성한다.
+# 아래 예제는 이들 함수들을 사용하여 numpy 배열을 생성한 예이다. 그리고 마지막 예는 0부터 n-1 까지의 숫자를 생성하는 
+# range(n) 함수와 배열을 다차원으로 변형하는 reshape()를 통해 간단하게 샘플 배열을 생성해 본 것이다.
+# import numpy as np
+# a = np.zeros((2,2))
+# print(a)
+# # 출력:
+# # [[ 0.  0.]
+# #  [ 0.  0.]]
+# a = np.ones((2,3))
+# print(a)
+# # 출력:
+# # [[ 1.  1.  1.]
+# #  [ 1.  1.  1.]]
+# a = np.full((2,3), 5)
+# print(a)
+# # 출력:
+# # [[5 5 5]
+# #  [5 5 5]]
+# a = np.eye(3)
+# print(a)
+# # 출력:
+# # [[ 1.  0.  0.]
+# #  [ 0.  1.  0.]
+# #  [ 0.  0.  1.]]
+# a = np.array(range(20)).reshape((4,5))
+# print(a)
+# # 출력:
+# # [[ 0  1  2  3  4]
+# #  [ 5  6  7  8  9]
+# #  [10 11 12 13 14]
+# #  [15 16 17 18 19]]
+# 3. numpy 슬라이싱
+# numpy 배열은 파이썬 리스트와 마찬가지로 슬라이스(Slice)를 지원한다. numpy 배열을 슬라이싱하기 위해서는 각 차원별로 슬라이스
+# 범위를 지정한다.
+# import numpy as np
+# lst = [
+#     [1, 2, 3],
+#     [4, 5, 6],
+#     [7, 8, 9]
+# ]
+# arr = np.array(lst)
+# # 슬라이스
+# a = arr[0:2, 0:2]
+# print(a)
+# # 출력:
+# # [[1 2]
+# #  [4 5]]
+# a = arr[1:, 1:]
+# print(a)
+# # 출력:
+# # [[5 6]
+# #  [8 9]]
+# 4. numpy 정수 인덱싱 (integer indexing)
+# numpy 슬라이싱이 각 배열 차원별 최소-최대의 범위를 정하여 부분 집합을 구하는 것이라면, 정수 인덱싱은 각 차원별로 선택되어지는
+# 배열요소의 인덱스들을 일렬로 나열하여 부분집합을 구하는 방식이다. 즉, 임의의 numpy 배열 a 에 대해 a[[row1, row2], [col1, col2]] 와 
+# 같이 표현하는 것인데, 이는 a[row1, col1] 과 a[row2, col2] 라는 두 개의 배열요소의 집합을 의미한다.
+# 예를 들어, 아래 예제에서 a[[0, 2], [1, 3]] 은 정수 인덱싱으로서 이는 a[0, 1] 과 a[2, 3] 등 2개의 배열요소를 가리킨다.
+# import numpy as np
+# lst = [
+#     [1, 2, 3, 4],
+#     [5, 6, 7, 8],
+#     [9, 10, 11, 12]
+# ]
+# a = np.array(lst)
+# # 정수 인덱싱
+# s = a[[0, 2], [1, 3]]
+# print(s)
+# # 출력
+# # [2 12]
+# 5. numpy 부울린 인덱싱 (boolean indexing)
+# numpy 부울린 인덱싱은 배열 각 요소의 선택여부를 True, False로 표현하는 방식이다. 만약 배열 a 가 2 x 3 의 배열이이라면, 부울린
+# 인덱싱을 정의하는 numpy 배열도 2 x 3 으로 만들고 선택할 배열요소에 True를 넣고 그렇지 않으면 False를 넣으면 된다.
+# 예를 들어, 아래 예제에서 3 x 3 배열 a 중 짝수만 뽑아내는 부울린 인덱싱 배열(numpy 배열)을 사용하여 짝수 배열 n 을 만드는
+# 예이다.
+# import numpy as np
+# lst = [
+#     [1, 2, 3],
+#     [4, 5, 6],
+#     [7, 8, 9]
+# ]
+# a = np.array(lst)
+# bool_indexing_array = np.array([
+#     [False,  True, False],
+#     [True, False,  True],
+#     [False,  True, False]
+# ])
+# n = a[bool_indexing_array];
+# print(n)    
+# 부울린 인덱싱 배열에 True/False 값을 일일이 지정하는 방법 이외에 표현식을 사용하여 부울린 인덱싱 배열을 생성하는 방법이 있다.
+# 예를 들어, 배열 a 에 대해 짝수인 배열요소만 True로 만들고 싶다면, bool_indexing = (a % 2 == 0) 와 같이 표현할 수 있다.
+# 아래 예제는 이러한 표현을 사용하는 것을 예시한 것이고, 특히 마지막에 a[ a % 2 == 0 ] 와 같이 부울린 인덱싱 표현식을 배열 
+# 인덱스안에 넣어 간단하게 표현할 수도 있다.
+# import numpy as np
+# lst = [
+#     [1, 2, 3],
+#     [4, 5, 6],
+#     [7, 8, 9]
+# ]
+# a = np.array(lst)
+# # 배열 a 에 대해 짝수면 True, 홀수면 False 
+# bool_indexing = (a % 2 == 0)
+# print(bool_indexing)
+# # 출력: 부울린 인덱싱 배열
+# # [[False  True False]
+# #  [ True False  True]
+# #  [False  True False]]
+# # 부울린 인덱스를 사용하여 True인 요소만 뽑아냄
+# print(a[bool_indexing])
+# # 출력:
+# # [2 4 6 8]
+# # 더 간단한 표현
+# n = a[ a % 2 == 0 ]
+# print(n)
+# 6. numpy 연산
+# numpy를 사용하면 배열간 연산을 쉽게 실행할 수 있다. 연산은 +, -, *, / 등의 연산자를 사용할 수도 있고, add(), substract(),
+# multiply(), divide() 등의 함수를 사용할 수도 있다. 예를 들어, 아래 예제와 같이 배열 a 와 b 가 있을때, a + b를 하면 각 배열
+# 요소의 합을 구하는데 즉 a[0]+b[0], a[1]+b[1], ... 과 같은 방식으로 결과를 리턴하게 된다.
+# import numpy as np
+# a = np.array([1,2,3])
+# b = np.array([4,5,6])
+# # 각 요소 더하기
+# c = a + b
+# # c = np.add(a, b)
+# print(c)  # [5 7 9]
+# # 각 요소 빼기
+# c = a - b
+# # c = np.subtract(a, b)
+# print(c)  # [-3 -3 -3]
+# # 각 요소 곱하기
+# # c = a * b
+# c = np.multiply(a, b)
+# print(c)  # [4 10 18]
+# # 각 요소 나누기
+# # c = a / b
+# c = np.divide(a, b)
+# print(c)  # [0.25 0.4 0.5]
+# numpy에서 vector와 matrix의 product를 구하기 위해서 dot() 함수를 사용한다. 아래 예제는 두 matrix의 product를 구한 예이다.
+# import numpy as np
+# lst1 = [
+#     [1,2],
+#     [3,4]
+# ]
+# lst2 = [
+#     [5,6],
+#     [7,8]
+# ]
+# a = np.array(lst1)
+# b = np.array(lst2)
+# c = np.dot(a, b)
+# print(c)
+# # 출력:
+# # [[19 22]
+# #  [43 50]]    
+# numpy은 배열간 연산을 위한 위해 많은 함수들을 제공하는데, 예를 들어, 각 배열 요소들을 더하는 sum() 함수, 각 배열 요소들을 곱하는 prod() 함수 등을 사용할 수 있다. 이들 함수에 선택옵션으로 axis 을 지정할 수 있는데, 예를 들어 sum()에서 axis가 1 이면 행끼리 더하는 것이고, axis가 0 이면 열끼리 더하는 것이다.
+# import numpy as np
+# a = np.array([[1,2],[3,4]])
+# s = np.sum(a)
+# print(s)   # 10
+# # axis=0 이면, 컬럼끼리 더함
+# # axis=1 이면, 행끼리 더함
+# s = np.sum(a, axis=0)
+# print(s)   # [4 6]
+# s = np.sum(a, axis=1)
+# print(s)   # [3 7]
+# s = np.prod(a)
+# print(s)   # 24
+''' import numpy as np
+list1 = [1, 2, 3, 4]
+a = np.array(list1)
+print(a.shape) # (4, )
+b = np.array([[1,2,3],[4,5,6]])
+print(b.shape) # (2, 3)
+print(b[0,0])  # 1    
+a = np.zeros((2,2))
+print(a)
+a = np.ones((2,3))
+print(a)
+a = np.full((2,3), 5)
+print(a)
+a = np.eye(3)
+print(a)
+a = np.array(range(20)).reshape((4,5))
+print(a)
+lst = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+arr = np.array(lst)
+# 슬라이스
+a = arr[0:2, 0:2]
+print(a)
+a = arr[1:, 1:]
+print(a)
+lst = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12]
+]
+a = np.array(lst)
+# 정수 인덱싱
+s = a[[0, 2], [1, 3]]
+print(s)
+lst = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+a = np.array(lst)
+bool_indexing_array = np.array([
+    [False,  True, False],
+    [True, False,  True],
+    [False,  True, False]
+])
+n = a[bool_indexing_array];
+print(n)    
+lst = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+a = np.array(lst)
+# 배열 a 에 대해 짝수면 True, 홀수면 False 
+bool_indexing = (a % 2 == 0)
+print(bool_indexing)
+print(a[bool_indexing])
+# 더 간단한 표현
+n = a[ a % 2 == 0 ]
+print(n)
+a = np.array([1,2,3])
+b = np.array([4,5,6])
+# 각 요소 더하기
+c = a + b
+# c = np.add(a, b)
+print(c)  # [5 7 9]
+# 각 요소 빼기
+c = a - b
+# c = np.subtract(a, b)
+print(c)  # [-3 -3 -3]
+# 각 요소 곱하기
+# c = a * b
+c = np.multiply(a, b)
+print(c)  # [4 10 18]
+# 각 요소 나누기
+# c = a / b
+c = np.divide(a, b)
+print(c)  # [0.25 0.4 0.5]
+lst1 = [
+    [1,2],
+    [3,4]
+]
+lst2 = [
+    [5,6],
+    [7,8]
+]
+a = np.array(lst1)
+b = np.array(lst2)
+c = np.dot(a, b)
+print(c)
+a = np.array([[1,2],[3,4]])
+s = np.sum(a)
+print(s)   # 10
+# axis=0 이면, 컬럼끼리 더함
+# axis=1 이면, 행끼리 더함
+s = np.sum(a, axis=0)
+print(s)   # [4 6]
+s = np.sum(a, axis=1)
+print(s)   # [3 7]
+s = np.prod(a)
+print(s)   # 24 '''
+
+# [파이썬 Web Scraping]
+# 1. 파이썬 Web Scraping
+# 웹사이트에서 HTML을 읽어와 필요한 데이타를 긁어오는 것을 Web Scraping이라 한다. 이 과정은 크게 웹페이지를 읽어오는 과정과 
+# 읽어온 HTML 문서에서 필요한 데이타를 뽑아내는 과정으로 나뉠 수 있다.
+# 웹페이지를 읽어오는 일은 여러 모듈을 사용할 수 있는데, 파이썬에서 기본적으로 제공하는 urllib, urllib2 을 사용하거나 편리한 
+# HTTP 라이브러리로 많이 쓰이고 있는 requests 를 설치해 사용할 수 있다. 만약 기존 코드를 유지보수하는 일이 아니라면 requests 
+# 를 사용할 것을 권장한다.
+# 2. requests - 웹페이지 읽어오기
+# HTTP 라이브러리인 requests를 사용하기 위해서는 먼저 아래와 같이 pip을 이용하여 requests 패키지를 설치한다.
+# pip install requests
+# 기본적인 requests 기능을 먼저 살펴보면, requests는 HTTP GET, POST, PUT, DELETE 등을 사용할 수 있으며, 편리한 데이타 인코딩
+# 기능을 제공하고 있다. 즉, 데이타를 Dictionary로 만들어 GET, POST 등에서 사용하면 필요한 Request 인코딩을 자동으로 처리해 준다.
+# import requests
+# # GET
+# resp = requests.get('http://httpbin.org/get')
+# print(resp.text)
+# # POST
+# dic = {"id": 1, "name": "Kim", "age": 10}
+# resp = requests.post('http://httpbin.org/post', data=dic)
+# print(resp.text)
+# resp = requests.put('http://httpbin.org/put')
+# resp = requests.delete('http://httpbin.org/delete')    
+# requests.get(url) 함수를 사용하면 해당 웹페이지 호출 결과를 가진 Response 객체를 리턴한다. Response 객체는 HTML Response와
+# 관련된 여러 attribute들을 가지고 있는데, 예를 들어, Response의 status_code 속성을 체크하여 HTTP Status 결과를 체크할 수 있고,
+# Response 에서 리턴된 데이타를 문자열로 리턴하는 text 속성이 있으며, Response 데이타를 바이트(bytes)로 리턴하는 content 속성
+# 등이 있다. 또한, 만약 Response에서 에러가 있을 경우 프로그램을 중단하도록 할 때는 Response 객체의 raise_for_status() 메서드를 
+# 호출할 수 있다.
+# 아래 예제는 다음 홈페이지에 접속해서 HTML 문서를 가져와 화면에 출력하는 예이다.
+# import requests
+# resp = requests.get( 'http://daum.net' )
+# # resp.raise_for_status()
+# if (resp.status_code == requests.codes.ok):
+#     html = resp.text
+#     print(html)
+# requests 에서의 한글 깨짐 문제
+# 여기서 간혹 겪게되는 한글 깨짐 문제에 대해 잠깐 집고 넘어가자. requests 에서 웹 호출을 진행한 후 결과는 Response 객체에 담기게
+# 되는데, Response의 text 속성은 str 클래스 타입으로서 보통 requests 모듈에서 자동으로 데이타를 인코딩해 준다. 즉, requests는
+# HTTP 헤더를 통해 결과 데이타의 인코딩 방식을 추측하여 Response 객체의 encoding 속성에 그 값을 지정하고, text 속성을 엑세스할
+# 때 이 encoding 속성을 사용한다. 만약 인코딩 방식을 변경해야 한다면, text 속성을 읽기 전에 Response의 encoding 속성을 변경하면
+# 된다.
+# 이제 실제 예를 들어 보면, 네이버 홈페이지는 한글 출력에 문제가 없지만, 네이버 증권사이트 웹페이지는 (영문 OS에서 테스트한 결과)
+# 한글이 깨져 보이게 된다. 원인을 찾아보기 위해 Response 객체가 어떤 인코딩인지 체크해 보았다. 네이버 홈페이지는 UTF-8을 
+# 사용하고, 네이버 증권사이트는 ISO-8859-1을 사용하고 있다.
+# >>> resp = requests.get('http://naver.com') # 네이버 홈
+# >>> resp.encoding
+# 'UTF-8'
+# >>> resp = requests.get('http://finance.naver.com') # 증권
+# >>> resp.encoding
+# 'ISO-8859-1'
+# 인코딩이 유니코드 인코딩(예: UTF-8 등)이거나 한글 인코딩(예: EUC-KR)이면 일반적으로 한글이 깨지지 않지만, ISO-8859-1와 같이
+# 영문 인코딩이면 한글이 깨지게 된다. 이를 해결하는 방법은 미리 Response 객체의 encoding 을 한글인코딩(예: EUC-KR)이나 
+# None (인코딩 추즉을 하지 않도록) 으로 지정한 후, text 속성을 읽으면 된다. 예를 들어, 아래 예제는 네이버 증권사이트의
+# ISO-8859-1 인코딩 문제를 처리한 코드이다.
+# import requests
+# resp = requests.get('http://finance.naver.com/')
+# resp.raise_for_status()
+# resp.encoding=None   # None 으로 설정
+# #resp.encoding='euc-kr'  # 한글 인코딩
+# html = resp.text
+# print(html)
+# 3. BeautifulSoup - 웹페이지 파싱
+# 웹페이지 HTML 문서를 파싱(Parsing)하기 위해서는 BeautifulSoup 라는 모듈을 사용할 수 있다. 먼저 BeautifulSoup 를 아래와 같이 
+# 설치한다.
+# pip install beautifulsoup4
+# BeautifulSoup를 사용하기 위해서는 먼저 BeautifulSoup 모듈을 import하여야 하는데 모듈명은 bs4 이다. bs4 모듈이 import 된 후, 
+# bs4.BeautifulSoup(HTML문서) 생성자를 호출하여 BeautifulSoup 객체를 생성한다.
+# import bs4
+# html = "<html><body>...생략...</body></html>"
+# bs = bs4.BeautifulSoup(html, 'html.parser')
+# BeautifulSoup 객체에서 특정 HTML 태그(들)을 찾기 위해 select() 메서드를 사용하는데, 이 메서드의 파라미터로 어떤 태크(들)을
+# 찾을 지를 CSS 스타일의 Selector로 지정하면 된다. 예를 들어, select('.news li') 는 news 라는 CSS 클래스 안이 모든 li 태그들을
+# 리턴하게 된다.
+# 리턴된 결과는 태그(s4.element.Tag)들의 리스트(list) 인데, 각 태그 요소(bs4.element.Tag)로부터 태그내 문자열을 리턴하기 
+# 위해서는 getText()를, 특정 태그 attribute를 얻기 위해서는 get('attribute명') 메서드 등을 사용할 수 있다.
+# 아래 예제는 네이버 증권사이트에서 주요 Top 뉴스 제목을 발췌하는 코드이다.
+# # -*- coding: utf-8 -*-
+# import requests, bs4
+# resp = requests.get('http://finance.naver.com/')
+# resp.raise_for_status()
+# resp.encoding='euc-kr'
+# html = resp.text
+# bs = bs4.BeautifulSoup(html, 'html.parser')
+# tags = bs.select('div.news_area h2 a') # Top 뉴스
+# title = tags[0].getText()
+# print(title)
+''' import requests
+# GET
+resp = requests.get('http://httpbin.org/get')
+print(resp.text)
+# POST
+dic = {"id": 1, "name": "Kim", "age": 10}
+resp = requests.post('http://httpbin.org/post', data=dic)
+print(resp.text)
+resp = requests.get('http://finance.naver.com/')
+resp.raise_for_status()
+resp.encoding=None   # None 으로 설정
+#resp.encoding='euc-kr'  # 한글 인코딩
+html = resp.text
+print(html)
+import requests, bs4
+resp = requests.get('http://finance.naver.com/')
+resp.raise_for_status()
+resp.encoding='euc-kr'
+html = resp.text
+bs = bs4.BeautifulSoup(html, 'html.parser')
+tags = bs.select('div.news_area h2 a') # Top 뉴스
+title = tags[0].getText()
+print(title) '''
+
+# [파이썬 Selenium 사용하기]
+# 1. Selenium 소개
+# Selenium은 웹 브라우져를 컨트롤하여 웹 UI 를 Automation 하는 도구 중의 하나이다. Selenium은 Selenium Server와 Selenium Client가
+# 있는데, 로컬 컴퓨터의 웹 브라우져를 컨트롤하기 위해서는 Selenium Client 를 사용한다 (여기서는 Selenium 3 사용). Selenium 
+# Client는 WebDriver라는 공통 인터페이스(Common interface)와 각 브라우져 타입별(IE, Chrome, FireFox 등)로 하나씩 있는 Browser
+# Driver로 구성되어 있다.
+# 2. Selenium 설치
+# Selenium을 설치하기 위해서는 먼저 아래와 같이 pip 을 사용하여 Selenium Client 모듈을 설치한다.
+# pip install selenium
+# 다음으로 사용할 브라우저별 Selenium 드라이버를 설치한다. 드라이버가 설치된 후, 해당 드라이버의 경로를 실행 PATH에 넣어 준다.
+# 아래는 대표적인 브라우저별 설치 링크이다. 특별한 이유가 없다면 Selenium이 가장 잘 동작하는 Firefox를 사용하는 것이 좋다.
+# Firefox : https://github.com/mozilla/geckodriver/releases
+# Chrome : https://sites.google.com/a/chromium.org/chromedriver/downloads
+# Edge : https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+# 3. Selenium 사용법
+# Selenium을 사용하기 위해서는 먼저 selenium.webdriver 모듈을 import 한 후, webdriver.Firefox() 를 호출하여 브라우져를 
+# 실행시킨다. 만약 크롬을 사용할 경우 webdriver.Chrome()을 호출하고, Edge를 사용할 경우 webdriver.Edge()을 호출한다.
+# 브라우져를 띄운 상태에서 특정 웹사이트로 이동하기 위해서는 아래와 같이 browser 객체의 get() 메서드를 사용한다.
+# from selenium import webdriver
+# browser = webdriver.Firefox()
+# # browser = webdriver.Chrome()
+# browser.get("http://python.org")  
+# Selenium은 웹페이지 내의 특정 요소(들)을 찾는 많은 메서드들을 제공하고 있는데, 이들은 보통 한 요소를 리턴하는 
+# find_element_*() 혹은 복수 요소를 리턴하는 find_elements_*() 메서드로 구분된다. 자주 사용되는 몇가지 검색 메서드를 예를 들면,
+# 특정 태그 id 로 검색하는 find_element_by_id(), 특정 태그 name 속성으로 검색하는 find_element_by_name(), CSS 클래스명으로
+# 검색하는 find_element_by_class_name(), CSS selector를 사용해 검색하는 find_element_by_css_selector() 등이 있는데, 예상되는
+# 결과가 복수이면 find_element_* 대신 find_elements_* 를 사용한다.
+# 검색 결과 리턴되는 객체는 FirefoxWebElement 와 같이 *WebElement 타입의 객체가 되는데, 리턴된 요소는 WebElement 타입 타입의 
+# 속성이나 메서드를 사용하여 데이타를 얻거나 특정 행위를 할 수 있다. 예를 들어, WebElement의 text는 요소 내의 문자열을 리턴하고,
+# tag_name 은 해당 요소의 태크명 (예: a, span) 을 리턴하며, clear() 메서드를 호출하면 text 입력 영역을 초기화하고, click() 
+# 메서드를 호출하면 해당 요소를 클릭한다.
+# 아래 예제는 python.org 웹사이트를 방문해서 상단 메인 메뉴 문자열을 출력하고, PyPI 메뉴를 클릭한 후 5초 후에 브라우저를 
+# 종료하는 예이다.
+# from selenium import webdriver
+# import time
+# browser = webdriver.Firefox()
+# browser.get("http://python.org")
+# menus = browser.find_elements_by_css_selector('#top ul.menu li')
+# pypi = None
+# for m in menus:
+#     if m.text == "PyPI":
+#         pypi = m
+#     print(m.text)
+# pypi.click()  # 클릭
+# time.sleep(5) # 5초 대기
+# browser.quit() # 브라우저 종료
+''' from selenium import webdriver
+import time
+browser = webdriver.Chrome()
+browser.get("http://python.org")
+menus = browser.find_elements_by_css_selector('#top ul.menu li')
+pypi = None
+for m in menus:
+    if m.text == "PyPI":
+        pypi = m
+    print(m.text)
+pypi.click()  # 클릭
+time.sleep(5) # 5초 대기
+browser.quit() # 브라우저 종료 '''
+
+# [파이썬 엑셀 사용하기]
+# 1. 파이썬에서 엑셀 사용하기
+# 파이썬에서 엑셀 데이타를 핸들링하기 위해서는 openpyxl, xlrd, xlrw 등의 외부 패키지를 설치해서 사용한다. 여기서는 openpyxl 
+# 패키지를 아래와 같이 설치하여 사용한다.
+#     pip install openpyxl
+# 2. 엑셀 데이타 읽고 쓰기
+# 엑셀을 다루는 가장 기초적인 부분은 데이타를 읽고 쓰는 동작이므로, 먼저 엑셀 파일을 열고 그 안의 데이타를 읽고 몇 개의 데이타를
+# 쓰는 동작을 살펴 보자. 아래 예제는 국영수 점수를 담은 엑셀 파일을 읽어 각 학생별 국영수 합계를 구하여 다시 저장하는 예이다.
+# 엑셀 입력 파일은 아래와 같다고 가정한다. 합계 부분은 추가해야 하는 부분이다.
+# import openpyxl
+# # 엑셀파일 열기
+# wb = openpyxl.load_workbook('score.xlsx')
+# # 현재 Active Sheet 얻기
+# ws = wb.active
+# # ws = wb.get_sheet_by_name("Sheet1")
+# # 국영수 점수를 읽기
+# for r in ws.rows:
+#     row_index = r[0].row   # 행 인덱스
+#     kor = r[1].value
+#     eng = r[2].value
+#     math = r[3].value
+#     sum = kor + eng + math
+#      # 합계 쓰기
+#     ws.cell(row=row_index, column=5).value = sum
+#     print(kor, eng, math, sum)
+# # 엑셀 파일 저장
+# wb.save("score2.xlsx")
+# wb.close()
+# 먼저 엑셀 파일을 오픈하기 위해 openpyxl.load_workbook(엑셀파일명) 함수를 호출하여 Workbook 객체를 얻는다. 하나의 Workbook에는
+# 여러 개의 Worksheet 들이 있는데 통상 엑셀은 기본으로 Sheet1, Sheet2, Sheet3 등 3개의 시트를 생성한다. 엑셀 파일을 열면 보통
+# 첫번째 시트가 Active Sheet가 되므로 Worksheet 객체의 active 를 통해 현재 워크시트를 가져올 수 있지만, 엑셀은 이전 저장시
+# 마지막에 선택된 시트를 Active Sheet로 하므로 wb.get_sheet_by_name(시트명) 을 사용하는 것이 더 안전하다.
+# 워크시트는 행(Row)과 열(Column)로 구성되어 있는데, 시트 내에 데이타가 있는 부분의 행들은 시트객체.rows 를 통해 엑세스할 수 
+# 있고, 마찬가지로 시트객체.columns는 유효 컬럼들을 엑세스하는데 사용한다. 위의 예제에서 각 행을 하나씩 가져오기 위해 for 루프로
+# ws.rows로부터 한 row씩 가져오고 있다. 각 row는 그 행 안에 있는 cell 들의 집합으로 처음 cell은 r[0]과 같이 인덱스 0을 사용한다.
+# 첫 cell 즉 r[0]의 값을 리턴하기 위해 r[0].value 을 사용한다.
+# 특정 cell 에 값을 지정하기 위해 cell.value 에 값을 넣으면 되는데, 시트에서 cell을 지정하기 위해 ws["A1"]과 같이 엑셀식 cell 
+# 지정법을 사용할 수 있고, 또한 행열 인덱스를 사용하여 ws.cell(row=행인덱스, column=열인덱스) 표현을 사용할 수도 있다.
+# 엑셀의 변경 내용을 저장하기 위해서는 Workbook 객체에서 save() 메서드를 사용하며, 엑셀 사용이 모두 끝난 경우 close() 메서드를 
+# 호출한다.
+''' import openpyxl
+# 엑셀파일 열기
+wb = openpyxl.load_workbook('score.xlsx')
+# 현재 Active Sheet 얻기
+ws = wb.active
+# ws = wb.get_sheet_by_name("Sheet1")
+# 국영수 점수를 읽기
+for r in ws.rows:
+    row_index = r[0].row   # 행 인덱스
+    kor = r[1].value
+    eng = r[2].value
+    math = r[3].value
+    sum = kor + eng + math
+     # 합계 쓰기
+    ws.cell(row=row_index, column=5).value = sum
+    print(kor, eng, math, sum)
+# 엑셀 파일 저장
+wb.save("score2.xlsx")
+wb.close() '''
+
+# [Matplotlib 차트/플롯 그리기]
+# 1. Matplotlib 개요
+# Matplotlib는 파이썬에서 데이타를 차트나 플롯(Plot)으로 그려주는 라이브러리 패키지로서 가장 많이 사용되는 데이타 
+# 시각화(Data Visualization) 패키지로 알려져 있다.
+# Matplotlib는 라인 플롯, 바 차트, 파이차트, 히스토그램, Box Plot, Scatter Plot 등을 비롯하여 다양한 차트와 플롯 스타일을
+# 지원하며, Matplotlib.org 갤러리 웹페이지에서 다양한 샘플 차트를 볼 수 있다.
+# Matplotlib를 이용하여 데이타 시각화(Data Visualization)를 사용하기 위해서 과학용 파이썬 배포판인 아나콘다(Anaconda)를 설치해서 
+# upyter Notebook을 사용하면 편리하다.
+# 2. Matplotlib 사용법
+# Matplotlib를 사용하기 위해서는 먼저 matplotlib.pyplot 을 아래와 같이 import 한다. pyplot을 다른 이름으로 사용할 수 있지만 
+# 통상 plt 라는 alias를 사용한다. 다음 plt.plot()은 라인 플롯을 그리는 함수인데, 아래는 X축값 1,2,3과 Y축값 110,130,120을 
+# 가지고 라인 플롯을 그리는 예제이다. 마지막으로 실제 그림을 표시하는 함수인 plt.show()을 호출한다.
+# from matplotlib import pyplot as plt
+# plt.plot([1,2,3], [110,130,120])
+# plt.show()
+# Jupyter Notebook에서 위 코드를 실행하기 위해서는 코드 셀에서 Shift + Enter를 치면 아래와 같이 출력란에 차트가 그려진다.
+# 만약 아래 첫번째 라인에서와 같이 "%matplotlib inline" 를 넣게 되면, Shift + Enter를 치지 않고 Run 버튼을 눌러 실행하여 
+# 그래프를 얻을 수 있다. 이러한 % 명령은 Cell Magic 명령어라고 불리우는 것으로 이는 파이썬 코드가 아니라 Jupyter에게 특정 
+# 기능을 수행하도록 하는 명령이다. %matplotlib inline 명령은 Jupyter에게 matplotlib 그래프를 출력 영역에 표시할 것을 지시하는
+# 명령이다.
+# 3. 제목과 축 레이블
+# 플롯에 X,Y 축 레이블이나 제목을 붙이기 위해서는 plt.xlabel(축이름), plt.ylabel(축이름), plt.title(제목) 등의 함수를 사용하면 
+# 된다.
+# from matplotlib import pyplot as plt
+# plt.plot(["Seoul","Paris","Seattle"], [30,25,55])
+# plt.xlabel('City')
+# plt.ylabel('Response')
+# plt.title('Experiment Result')
+# plt.show()
+# 4. 범례 추가
+# 플롯에 여러 개의 라인들을 추가하기 위해서는 plt.plot()을 plt.show() 이전에 여러 번 사용하면 된다. 또한, 각 라인에 대한 
+# 범례를 추가하기 위해서는 plt.legend([라인1범례, 라인2범례]) 함수를 사용하여 각 라인에 대한 범례를 순서대로 지정하면 된다.
+# from matplotlib import pyplot as plt
+# plt.plot([1,2,3], [1,4,9])
+# plt.plot([2,3,4],[5,6,7])
+# plt.xlabel('Sequence')
+# plt.ylabel('Time(secs)')
+# plt.title('Experiment Result')
+# plt.legend(['Mouse', 'Cat'])
+# plt.show()
+# 5. 다양한 차트 및 플롯
+# Matplotlib는 위에서 예시한 라인 플롯 이외에 여러 다양한 차트/플롯을 그릴 수 있는데, 각 차트/플롯마다 다른 함수들을 사용한다.
+# 예를 들어, Bar 차트를 그리기 위해서는 plt.bar() 함수를 사용하고, Pie 차트를 그리기 위해서는 plt.pie()를, 히스토그램을 그리기 
+# 위해선 plt.hist() 함수를 사용한다.
+# 아래는 Bar 차트를 예시한 것으로, plt.bar()를 호출하여 바차트를 그리고 있다.
+# from matplotlib import pyplot as plt
+# y = [5, 3, 7, 10, 9, 5, 3.5, 8]
+# x = range(len(y))
+# plt.bar(x, y, width=0.7, color="blue")
+# plt.show()
+''' from matplotlib import pyplot as plt
+plt.plot([1,2,3], [110,130,120])
+plt.show()
+plt.plot(["Seoul","Paris","Seattle"], [30,25,55])
+plt.xlabel('City')
+plt.ylabel('Response')
+plt.title('Experiment Result')
+plt.show()
+plt.plot([1,2,3], [1,4,9])
+plt.plot([2,3,4],[5,6,7])
+plt.xlabel('Sequence')
+plt.ylabel('Time(secs)')
+plt.title('Experiment Result')
+plt.legend(['Mouse', 'Cat'])
+plt.show()
+y = [5, 3, 7, 10, 9, 5, 3.5, 8]
+x = range(len(y))
+plt.bar(x, y, width=0.7, color="blue")
+plt.show() '''
+
+# [pandas 데이타 분석]
+# 1. pandas 개요
+# pandas는 데이타 분석(Data Analysis)을 위해 널리 사용되는 파이썬 라이브러리 패키지이다. pandas는 과학용 파이썬 배포판인 
+# 아나콘다(Anaconda)에 기본적으로 제공되지만, 아나콘다를 사용하지 않을 경우에는 pip install pandas 를 통해 설치할 수 있다.
+# 이 아티클에서는 pandas의 기본적인 개념과 기초적인 샘플들을 소개한다.
+# 2. pandas 사용법
+# pandas를 사용하기 위해서는 먼저 pandas를 아래와 같이 import 한다. pandas는 크게 세가지의 자료구조를 지원하고 있는데, 
+# 1차원 자료구조인 Series, 2차원 자료구조인 DataFrame, 그리고 3차원 자료구조인 Panel을 지원한다.
+# Series
+# 가장 간단한 1차원 자료구조인 Series는 배열/리스트와 같은 일련의 시퀀스 데이타를 받아들이는데, 별도의 인덱스 레이블을 
+# 지정하지 않으면 자동적으로 0부터 시작되는 디폴트 정수 인덱스를 사용한다.
+# import pandas as pd
+# data = [1, 3, 5, 7, 9]
+# s = pd.Series(data)
+# DataFrame
+# 2차원 자료구조인 DataFrame는 행과 열이 있는 테이블 데이타(Tabular Data)를 받아들이는데, 아래 예제는 그 한가지 방법으로서
+# 열(column)을 dict의 Key로, 행(row)을 dict의 Value로 한 Dictionary 데이타를 pd.DataFrame()을 사용하여 pandas의 Data Frame
+# 자료구조로 변환한 예이다.
+# import pandas as pd
+# data = {
+#     'year': [2016, 2017, 2018],
+#     'GDP rate': [2.8, 3.1, 3.0],
+#     'GDP': ['1.637M', '1.73M', '1.83M']
+# }
+# df = pd.DataFrame(data)
+# Panel
+# 3차원 자료구조인 Panel은 Axis 0 (items), Axis 1 (major_axis), Axis 2 (minor_axis) 등 3개의 축을 가지고 있는데, Axis 0은
+# 그 한 요소가 2차원의 DataFrame 에 해당되며, Axis 1은 DataFrame의 행(row)에 해당되고, Axis 2는 DataFrame의 열(column)에 
+# 해당된다.
+# 아래 예제는 numpy를 사용하여 3차원 난수를 발생시킨 후, 이를 pandas.Panel() 에 적용한 예이다. 출력 결과에 보면, 
+# 2 (items) x 3 (major_axis) x 4 (minor_axis) 크기의 Panel 객체가 생성되었음을 알 수 있다. Panel 객체 p로부터 p[0]을 
+# 조회하면, Axis 0 의 첫번째 요소인 DataFrame이 출력됨을 볼 수 있다.
+# 3. 데이타 엑세스
+# pandas에서 Series, DataFrame, Panel 등의 자료구조를 만든 후, 다양한 방법을 통해 데이타를 엑세스할 수 있다.
+# 가장 간단한 방식으로 pandas 자료구조에 대해 인덱싱 혹은 속성(Attribute)을 사용하는 것인데, 예를 들어 위에서 생성한 
+# DataFrame인 df 에 대해 year 행을 가져오기 위해 df["year"] 혹은 df.year 를 사용할 수 있다. 또한, 부울린 인덱싱 
+# (boolean indexing)을 사용하여 특정 조건의 데이타만 필터링 할 수도 있는데, df[df['year'] > 2016]은 2016년 초과인 데이타만
+# 필터링해서 표시한다.
+# 데이타량이 많은 경우는 df.head() 함수를 사용하면 처음 5개 row를 표시해 주며, df.tail() 함수를 사용하면 마찬가지로 마지막 
+# 5개 row를 표시해 준다.
+# pandas는 데이타에 대한 다양한 연산 함수들을 제공하고 있는데, 예를 들어 합계 구하는 sum(), 평균을 구하는 mean(), 최소를 
+# 구하는 min(), 최대를 구하는 max() 등을 사용할 수 있다. 또한, 위 그림에서 보듯이, 기본적인 통계치를 모두 표시하기 위해 
+# describe() 함수를 사용할 수 있다.
+# 4. 외부 데이타 읽고 쓰기
+# pandas는 CSV 파일, 텍스트 파일, 엑셀 파일, SQL 데이타베이스, HDF5 포맷 등 다양한 외부 리소스에 데이타를 읽고 쓸 수 있는 
+# 기능을 제공한다. 아래 예제는 엑셀 파일파일로부터 데이타를 읽어 오는 기능을 예시한 것이다.
+# 그리고, CSV 파일을 읽고 쓰기 위해서는 아래와 같이 read_csv() 와 to_csv() 함수를 사용할 수 있다.
+# import pandas as pd
+# df = pd.read_csv('C:\Temp\Test.csv')  # csv 읽기
+# df.to_csv('C:\Temp\Output.csv')  # csv 쓰기
+
+# [파이썬 이미지 처리 (Pillow)]
+# 1. 파이썬에서의 이미지 처리
+# 파이썬에서 이미지를 처리하고 핸들링하기 위해서는 Pillow, OpenCV, PIL 등의 외부 패키지를 설치해서 사용한다. 여기서는 PIL로부터
+# 계승되어 많이 사용되는 Pillow 패키지를 사용한다. Pillow는 pip을 통해 아래와 같이 설치한다.
+#     pip install Pillow
+# Pillow는 파이썬 이미징 라이브러리로서 여러 이미지 파일 포맷을 지원하고, 이미지 내부 데이타를 엑세스할 수 있게 하며, 다양한
+# 이미지 처리 기능을 제공하고 있다. 예를 들어, 이 패키지를 사용하면, 이미지로부터 Thumbnail 이미지를 만들다거나 다른 이미지
+# 포맷으로 변환할 수 있고 이미지를 프린트하는 일들을 할 수 있다. 또한, 이미지 크기를 변형하거나 회전 및 Transform, 그리고 
+# 필터링 등 다양한 이미지 프로세싱 작업들을 할 수 있다.
+# 2. 이미지 파일 읽고 쓰기
+# Pillow 패키지에서 가장 중요한 클래스는 이미지를 표현하는 Image 클래스이다. Image.open() 메서드는 기존 이미지 파일을 열 때 
+# 사용하고, Image.new() 메서드는 새로운 이미지 파일을 생성할 때 사용하며, Image.save() 메서드는 이미지 파일을 저장할 때 사용한다.
+# Image.open() 로부터 리턴된 이미지 객체의 size 속성은 이미지의 크기를 리턴한다. 아래 예제는 한 이미지 파일을 열어 크기를 출력한
+# 후, 다른 포맷의 이미지 파일로 저장하는 예이다. (아래 예와 같이 설치시에는 Pillow 패키지를 설치하지만, import 시에는
+# "import PIL"과 같이 PIL을 사용한다.)
+# from PIL import Image
+# # 이미지 열기
+# im = Image.open('python.png')
+# # 이미지 크기 출력
+# print(im.size)
+# # 이미지 JPG로 저장
+# im.save('python.jpg')
+# 큰 이미지 파일의 Thumbnail 이미지를 만들기 위해서는 Image 객체에서 thumbnail() 메서드를 호출하면 된다. 예를 들어, 
+# Thumbnail 이미지를 최대 64 x 64 크기로 만들고 싶으면 아래와 같이 thumbnail(크기) 메서드를 호출한다.
+# from PIL import Image
+# im = Image.open('python.png')
+# # Thumbnail 이미지 생성
+# size = (64, 64)
+# im.thumbnail(size)  
+# im.save('python-thumb.jpg')
+# 3. 이미지 부분 잘라내기
+# 이미지의 일부를 잘라내는 것을 Cropping 이라 부르는데, 이미지 객체에서 crop() 메서드를 사용하여 일부 영역을 잘라내는데,
+# crop() 메서드에서 리턴된 이미지는 부분 이미지로서 이를 저장하면 잘라낸 이미지만 저장된다. crop()의 파라미터는
+# (좌, 상, 우, 하) 위치를 갖는 튜플로 지정한다.
+# from PIL import Image
+# im = Image.open('python.png')
+# cropImage = im.crop((100, 100, 150, 150))
+# cropImage.save('python-crop.jpg')
+# Image 클래스에서는 crop() 이외에도 이미지를 복사하는 copy(), 이를 붙여넣는 paste() 등의 유용한 메서드들이 있다.
+# 4. 이미지 회전 및 Resize
+# 이미지를 회전하기 위해서는 이미지 객체에서 rotate(회전각도) 메서드를 호출하면 된다. 또한, 이미지의 크기를 확대/축소하기 
+# 위해서는 이미지 객체에서 resize(크기튜플) 메서드를 호출한다.
+# from PIL import Image
+# im = Image.open('python.png')
+# # 크기를 600x600 으로
+# img2 = im.resize((600, 600))
+# img2.save('python-600.jpg')
+# # 90도 회전
+# img3 = im.rotate(90)
+# img3.save('python-rotate.jpg')
+# 5. 이미지 필터링
+# Pillow 패키지는 이미지를 필터링하기 위한 여러 기본적인 필터들을 제공하고 있다. 이미지 필터를 위해서는 이미지 객체에서 
+# filter(필터종류) 메서드를 호출하면 되는데, 필터종류는 ImageFilter 모듈을 import 하여 지정한다. 예를 들어, Blur 이미지를
+# 위해서는 ImageFilter.BLUR 를 사용하고, 윤곽만 표시하기 위해서는 ImageFilter.CONTOUR 를 사용한다.
+# from PIL import Image, ImageFilter
+# im = Image.open('python.png')
+# blurImage = im.filter(ImageFilter.BLUR)
+# blurImage.save('python-blur.png')
+
+# [파이썬 영상 처리 (OpenCV)]
+# 1. OpenCV 소개
+# OpenCV (Open source Computer Vision)는 실시간 컴퓨터 비젼을 처리하는 목적으로 만들어진 라이브러리로서, 인텔에 의해 처음 
+# 만들어져서 현재는 Itseez (2016년 인텔에 편입)에 의해 지원되고 있다. OpenCV는 크로스 플랫폼 라이브러리로서 윈도우즈, 리눅스, 
+# Max 등에서 무료로 사용할 수 있다. OpenCV는 기본적으로 C++로 쓰여져 있는데, 이 라이브러리는 C/C++, Python, Java, C#, Ruby 등
+# 여러 언어에서 사용할 수 있다. OpenCV는 이미지, 영상처리, Object Detection, Motion Detecton 등 매우 다양한 기능들을 제공하고
+# 있는데, 여기서는 기초적인 기능들을 일부 소개한다.
+# 파이썬에서 OpenCV는 pip을 통해 아래와 같이 설치할 수 있다.
+#     pip install opencv-python
+# 2. 이미지 파일 읽고 쓰기
+# OpenCV에서 이미지를 읽기 위해서는 imread() 함수를 사용하고, 이미지를 저장하기 위해서는 imwrite() 함수를 사용한다. 또한, 
+# 이미지를 화면에 표시하기 위해서는 imshow() 함수를 사용하는데, 이 함수를 사용하면 OpenCV가 새 윈도우 창을 만들고 해당 
+# 이미지를 보여준다. 아래 예제는 한 이미지 파일을 읽어 들여 이를 화면에 출력한 후, 다른 파일명으로 이미지를 저장하는 코드이다.
+# import cv2
+# # 이미지 읽기
+# img = cv2.imread('test.jpg', 1)
+# # 이미지 화면에 표시
+# cv2.imshow('Test Image', img)
+# cv2.waitKey(0)
+# # 이미지 윈도우 삭제
+# cv2.destroyAllWindows()
+# # 이미지 다른 파일로 저장
+# cv2.imwrite('test2.png', img)
+# 3. 카메라 영상 처리
+# OpenCV에서 카메라(웹캠)로부터 영상을 전달받아 처리하기 위해서는 VideoCapture 클래스를 사용한다. VideoCapture 클래스의 
+# 인스턴스를 생성할 때, 컴퓨터에 카메라가 여러 개 있을 수 있으므로, 어떤 카메라를 사용할 지를 카메라 아이디로 전달하는데,
+# 일반적으로 0 을 쓰면 첫번째 카메라(디폴트 카메라)를 사용하게 된다. 만약 두번째 카메라를 사용하려면 1을, 세번째 카메라를 
+# 사용하려면 2를 사용한다.
+# VideoCapture 클래스 인스턴스를 생성한 후, VideoCapture 클래스의 read() 메서드를 호출하여 카메라 이미지(프레임)을 가져올 수
+# 있다. read() 메서드는 2개의 값을 리턴하는데, 첫번째는 프레임을 성공적으로 읽었는지를 표시하고, 두번째는 프레임 자체를
+# 리턴한다. 프레임을 화면에 출력하기 위해서는 cv2.imshow() 함수를 사용하면 되는데, 이 함수의 첫번째 파라미터로 윈도우 창제목을 
+# 적고, 두번째 파라미터에 카메라에서 전달받을 프레임을 넣으면 된다. VideoCapture 클래스의 isOpened() 메서드는 카메라 영상
+# 캡쳐가 초기화되었는지 여부를 리턴하며, 카메라 사용을 종료하기 위해서는 release() 메서드를 사용하면 된다.
+# import cv2
+# cap = cv2.VideoCapture(0)   # 0: default camera
+# #cap = cv2.VideoCapture("test.mp4") #동영상 파일에서 읽기
+# while cap.isOpened():
+#     # 카메라 프레임 읽기
+#     success, frame = cap.read()
+#     if success:
+#         # 프레임 출력
+#         cv2.imshow('Camera Window', frame)
+#          # ESC를 누르면 종료
+#         key = cv2.waitKey(1) & 0xFF
+#         if (key == 27): 
+#             break
+# cap.release()
+# cv2.destroyAllWindows()
+# 만약 카메라가 아니라 동영상 파일에서 영상 데이타를 가져오기 위해서는 VideoCapture 인스턴스를 생성할 때 카메라 Device Id 대신 
+# 동영상 파일명을 지정하면 된다. 예를 들어, cap = cv2.VideoCapture("test.mp4") 와 같이 사용한다.
+# 4. 카메라 영상 저장하기
+# OpenCV에서 카메라(웹캠)로부터 전달받은 영상을 저장하기 위해서는 VideoWriter 클래스를 사용한다. VideoWriter 클래스의 
+# 인스턴스를 생성할 때, 영상 저장과 관련된 몇 개의 파라미터를 전달해야 하는데, 첫번째로 영상을 저장할 파일명을 지정하고,
+# 두번째로 영상을 어떤 포맷을 저장할 지를 표시하는 fourcc ID를 지정한다. fourcc는 four character code의 약자로서, 비디오
+# 코덱(Codec)을 지정하는 4 바이트 코드이다. 아래 예제에서는 fourcc로 XVID MPEG-4 코덱을 표시하는 "XVID"을 사용하였다.
+# 다음으로, VideoWriter() 의 세번째 파라미터로 프레임수를 지정하고, 네번째 파라미터로 영상 크기 즉 프레임의 너비와 높이를 
+# 튜플로 지정한다. 영상 크기는 VideoCapture 클래스의 get() 메서드를 사용하여 프레임 너비와 높이를 가져올 수 있다.
+# 실제 프레임 저장은 VideoWriter 클래스의 write() 메서드를 사용하며, 저장이 모두 끝나면 release() 메서드를 호출하여 파일을
+# 닫아 준다.
+# import cv2
+# cap = cv2.VideoCapture(0); 
+# width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+# height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+# print("size: {0} x {1}".format(width, height))
+# # 영상 저장을 위한 VideoWriter 인스턴스 생성
+# fourcc = cv2.VideoWriter_fourcc(*'XVID')
+# writer = cv2.VideoWriter('test.avi', fourcc, 24, (int(width), int(height)))
+# while cap.isOpened():
+#     success, frame = cap.read()
+#     if success:
+#         writer.write(frame)  # 프레임 저장
+#         cv2.imshow('Video Window', frame)
+#         # q 를 누르면 종료
+#         if cv2.waitKey(1) & 0xFF == ord('q'): 
+#             break
+#     else:
+#         break
+# cap.release()
+# writer.release()  # 저장 종료
+# cv2.destroyAllWindows()
+# 5. OpenCV와 Matplotlib 활용
+# Matplotlib는 파이썬에서 데이타를 차트나 플롯(Plot)으로 그려주는 2D 라이브러리 패키지인데, 여기서는 OpenCV에서 읽어들인 
+# 이미지를 Matplotlib 에서 보여주는 기능에 대해 알아본다. OpenCV에서 img = cv2.imread()를 통해 이미지를 읽어 들인 후, 이어 
+# Matplotlib의 pyplot.imshow(img)로 호출하면 이미지를 pyplot으로 그릴 준비를 하게 되고, pyplot.show() 를 호출하면 이미지를
+# 화면에 출력하게 된다. 한가지 참고할 사항은 OpenCV 의 imread()는 BGR 포맷으로 이미지를 읽어들이고, pyplot은 RGB 포맷을 
+# 사용하므로 원래의 이미지 색을 표현하기 위해서는 cv2.cvtColor() 를 사용하여 BGR 포맷을 RGB 포맷으로 변환해 주는 작업이 
+# 필요하다.
+# import cv2
+# from matplotlib import pyplot as plt
+# img = cv2.imread('happyfish.jpg', 1)
+# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+# plt.imshow(img)
+# plt.show()
+# 아래는 위 프로그램을 실행하여 matplotlib으로 이미지를 그린 결과이다. matplotlib에서 생성한 이 윈도우에서는 이미지를 
+# 파일로 저장하거나 이미지 좌표를 체크할 수도 있으며, 이미지를 확대 축소하는 등의 기능들을 사용할 수도 있다.
+
+# [파이썬에서 SSH 클라이언트 사용]
+# 1. SSH (Secure Shell)
+# SSH는 다른 컴퓨터에 Secure한 방식으로 연결하여 명령을 수행할 수 있는 네트워트 기능으로 telnet을 대체하는 보다 안전한 방식의
+# 터미널 기능이다. Telnet의 모든 데이타는 Clear Text로 통신되는 반면, SSH의 데이타는 Public Key Encryption을 사용하여 모두
+# 암호화된다. SSH는 디폴트로 포트 22를 사용하고, Telnet은 디폴트로 포트 23을 사용한다.
+# 2. SSH 파이썬 패키지
+# SSH는 클라이언트/서버 방식으로 통신하는데, SSH Client가 SSH Server에 연결하여 데이타를 주고 받는다. 파이썬에서 SSH를 사용하기
+# 위해서는 paramiko, netmiko 등과 같은 파이썬 패키지를 사용할 수 있다. 여기서는 paramiko 패키지를 사용해 보는데, 아래는 pip을 
+# 사용하여 paramiko 패키지를 설치하는 명령이다.
+# pip install paramiko
+# 3. SSH 클라이언트
+# paramiko 패키지에서 SSH 클라이언트를 사용하기 위해서는 기본적으로 다음과 같은 스텝을 밟는다.
+# paramiko.SSHClient 클래스의 인스턴스를 만들고,
+# SSHClient 인스턴스로부터 connect() 메서드를 호출하여 서버에 연결한 후,
+# SSHClient 인스턴스로부터 명령을 보내고 결과를 리턴받는다.
+# SSHClient 인스턴스로부터 close() 메서드를 호출하여 연결을 닫는다.
+# 아래 예제는 SSH로 서버에 연결한 후 해당 로그인 계정의 홈 디렉토리의 파일 리스트를 출력해 보는 코드이다. 서버명, 로그인명,
+# 암호 등은 프로그램 실행시 콘솔에 입력받도록 하였는데, 특히 암호는 입력되는 문자를 숨기기 위해 getpass() 함수를 사용하였다.
+# import paramiko
+# import getpass
+# cli = paramiko.SSHClient()
+# cli.set_missing_host_key_policy(paramiko.AutoAddPolicy)
+# server = input("Server: ")  # 호스트명이나 IP 주소
+# user = input("Username: ")  
+# pwd = getpass.getpass("Password: ") # 암호입력 숨김
+# cli.connect(server, port=22, username=user, password=pwd)
+# stdin, stdout, stderr = cli.exec_command("ls -la")
+# lines = stdout.readlines()
+# print(''.join(lines))
+# cli.close()
+# 위 예제는 paramiko.SSHClient 클래스로부터 cli 라는 인스턴스를 생성한 후, cli.connect() 메서드를 사용하여 SSH 서버에 접속한다.
+# connect() 메서드는 여러 가지 파라미터들을 받아들일 수 있는데, 기본적으로 호스트명과 사용자 및 암호 등을 지정하고, 추가적으로
+# 포트번호, 타임아웃, 압축기능 등을 지정할 수 있다. SSH는 접속시 known_hosts에 등록된 호스트키를 체크하는데 만약 접속하는 서버의
+# 호스트키가 없으면 접속을 거부하게 된다. 만약 이러한 보안 기능을 사용하지 않고, 자동으로 새 호스트키를 추가하도록 하기 위해서는
+# cli.set_missing_host_key_policy() 을 사용하여 AutoAddPolicy 를 지정하면 된다.
+# exec_command() 메서드는 SSH 서버에 어떤 명령을 실행하도록 할 때 사용된다. 예를 들어, 위의 예제에서는 "ls -la" 명령을 실행하여 
+# 그 실행 결과를 표준콘솔입력(stdin), 표준콘솔출력(stdout), 표준에러출력(stderr)에 리턴한다. 이어 표준출력으로 전달된 stdout으로
+# 부터 readlines()를 통해 출력 결과를 라인별로 읽어들이고, 이를 화면에 출력(print)한다.
+# 마지막으로 SSHClient 인스턴스의 사용을 마친 후에는 close()를 메서드를 호출하여 연결을 종료해 주어야 한다.
+# 또 다른 예제로서 아래는 exec_command() 대신 invoke_shell()을 사용한 방식으로 이 invoke_shell() 메서드는 서버에 새로운
+# interactive shell session 을 생성하고 채널을 리턴한다. 클라이언트는 이 채널을 통해 계속 명령을 송신하고 결과를 수신할 수 
+# 있다. invoke_shell() 메서드가 실행되면 새로운 쉘이 생성되어 화면에 표시된다.
+# import paramiko
+# import getpass
+# import time
+# cli = paramiko.SSHClient()
+# cli.set_missing_host_key_policy(paramiko.AutoAddPolicy)
+# cli.connect("test.com", username="user", password="pwd")
+# # 새로운 interactive shell session 생성
+# channel = cli.invoke_shell()
+# # 명령 송신
+# channel.send("ls -la\n")
+# time.sleep(1.0)
+# # 결과 수신
+# output = channel.recv(65535).decode("utf-8")
+# print(output)
+# cli.close()
+# 채널에 명령을 보내기 위해 send() 메서드를 사용하며, 결과를 수신하기 위해 recv() 메서드를 사용한다. recv() 메서드의 
+# 파라미터인 65535는 수신받는 최대 바이트수를 가리키며, recv()가 바이트스트림을 리턴하므로 이를 적절히 디코딩할 필요가
+# 있을 수 있다. 여기서는 decode()를 사용하여 UTF-8으로 디코딩하였다.
 
 
+# [Python 팁]
 
+# [Python Tools for Visual Studio]
+# 1. Python Tools for Visual Studio (PTVS) 소개
+# Visual Studio에서 Python을 사용하기 위해 Python Tools for Visual Studio (PTVS) 라는 플러그인을 설치할 수 있다. PTVS는 
+# 무료이며, 오픈소스 플러그인이다. PTVS는 CPython, IronPython, PyPy 등을 지원하며, 코딩을 편리하게 하는 인텔리센스 기능을 
+# 제공한다. PTVS는 강력한 디버깅 기능을 제공하며, Python/C++ 혼합 디버깅과 원격 리눅스/Mac 디버깅 등도 함께 지원한다. 
+# 또한, PTVS는 Django, Flask 와 같은 웹 개발 프레임워크들을 지원하여, PTVS를 사용하면 편리하게 웹 프로젝트를 개발할 수 있다.
+# 2. PTVS 설치
+# PTVS는 Visual Studio 2013 이상 버전이 설치된 상태에서 https://microsoft.github.io/PTVS/ 로부터 플러그인을 다운받아 설치한다.
+# PTVS는 MSI 를 통해 설치되며, 설치 마법사를 통해 아래와 같은 컴포넌트를 설치한다. 설치된 PTVS를 Uninstall하기 위해서는 
+# 제어판(Control Panel)의 프로그램 및 기능(Programs and Features) 을 사용한다.
+# 3. PTVS 사용
+# Visual Studio를 실행하고, 새 프로젝트 (File -> New Project)를 실행한 후, 아래 그림과 같이 Python 언어를 선택하면, 
+# 다양한 프로젝트 유형을 선택할 수 있게 된다. VS와 PTVS는 Python 인터프리터를 사용하는데, 이 Python 인터프리터는 별도로 
+# 설치하여야 한다.
+# 새 프로젝트로서 Python Project를 선택하고 아래 그림처럼 간단하게 for 루프를 작성해 보았다. 파이썬 코드를 실행하기 위해서는
+# F5 혹은 Start 툴바를 누르면 된다.
+# Python이 이미 설치되어 있는 경우, 자동으로 Python Environment를 탐지하지만, 만약 Python을 늦게 설치하였거나 여러 Python이 
+# 설치되어 있는 경우, [Solution Explorer]의 [Python Environments] 노드에서 추가, 변경할 수 있다.
+# 4. Django 프로젝트 생성
+# Django 프로젝트를 만들기 위해서는 VS 새 프로젝트 선택 화면에서 [Django Web Project] 를 선택한다. 이어 PTVS는 아래와 같이 
+# External Package들을 어디에 설치할 지를 묻게되는데, 권장사항대로 첫번째를 선택한다 (주: 필요에 따라 개발자가 다른 옵션 
+# 선택할 수 있음)
+# 곧이어 가상환경(Virtual Environment)를 추가하는 다이얼로그가 나오는데, 여기서 가상환경의 이름과 디렉토리 위치를 선택할 수 
+# 있고, 어떤 Python 인터프리터를 사용하는지 선택하게 된다. 이러한 사항들을 선택한 후 Create 버튼을 누르면, 가상환경과 Django
+# 프로젝트, 디폴트 Django App 등이 자동으로 생성된다.
+# 아래 화면은 VS/PTVS가 디폴트로 자동 생성한 Django 프로젝트의 디렉토리 구조이다. PTVS는 Django 프로젝트 개발에 필요한 모든 
+# 기본적인 구조와 환경을 자동으로 생성해 주기 때문에 편리하다.
 
+# [기존 Python코드를 VS 프로젝트로]
+# 기존 Python 코드를 PTVS 프로젝트로
+# 기존에 다른 OS 혹은 편집기에서 작성한 Python 프로젝트를 Python Tools for Visual Studio (PTVS) 에서 사용하기 위해서는 
+# Visual Studio에서 VS용 새 Python 프로젝트(*.pyproj)를 생성해야 한다. 그 절차는 아래와 같다.
+# VS에서 File - New Project를 선택하고, Python 언어 템플릿 중 "From Existing Python Code"를 선택한다. 
+# 위저드 화면이 나오면, 기존 파이썬 코드가 있는 폴더를 선택하고 Next를 누른다. 
+# 다음 사용할 Python 인터프리터 버젼을 선택한다. 가상환경이 없다면, 나중에 만들 수 있다. 
+# 새로 생성할 VS용 Python 프로젝트 파일(.pyproj) 이름을 선택한다. 위저드를 종료하면 새 프로젝트 파일이 생성된다. 
 
+# [Visual Studio Code 사용]
+# 1. Visual Studio Code 소개
+# Visual Studio Code (VS Code)는 크로스 플랫폼 소스 편집기로서 윈도우즈, 리눅스, Mac OS 에서 무료로 사용할 수 있다. 
+# Visual Studio Code를 설치한 후 여러 Extension들을 설치할 수 있는데, 파이썬 Extension을 설치하면, 파이썬 프로그래밍과 
+# 디버깅을 할 수 있다.
+# 2. VS Code 설치
+# VS Code는 https://code.visualstudio.com 사이트에서 다운받아 설치한다. VS Code를 설치하여 실행한 후 View 메뉴에서 
+# [Command Palette] 메뉴를 누르고 아래와 같이 ext install 을 치면 Extension을 설치하는 메뉴 (Install Extensions) 가 나온다.
+# 위 그림에서 [Install Extensions]를 선택하면, 아래와 같이 [Extensions] 선택화면이 나오는데, 여기서 "python" 이라고 치고 
+# 원하는 파이썬 Extension을 선택하여 설치한다. 참고로, Extensions 선택화면을 나오게 하기 위해 좌측에 있는 Extensions 버튼을 
+# 사용할 수도 있다. 이렇게 파이썬 Extension을 설치 완료하면 파이썬 프로그래밍을 진행할 수 있다.
+# 3. 파이썬 파일 작성과 실행
+# VS Code에서 파이썬 코드를 작성하기 위해서는 확장자 .py 를 가진 임의의 파이썬 파일을 생성하면 된다. [File] 메뉴에서 
+# [New File]을 눌러 새 파일을 만들어도 되지만, VS Code의 기능을 100% 활용하기 위해서는 [File] 메뉴에서 [Open Folder]를 사용하여
+# 작업 폴더를 지정하고 사용하는 것이 좋다. 이 작업 폴더에 새 .py 파일을 생성하고 에디터에서 코드를 작성한다.
+# 코드 작성 완료 후 프로그램을 실행하기 위해서는 [Debug] 메뉴의 [Start Debugging (F5)] 나 [Start without Debugging (Ctrl+F5)]를
+# 누르면 된다. 특히 F5를 눌러 디버깅 모드로 실행하면, 로컬변수, 콜스택 등 여러 디버깅 정보를 이용할 수 있으며, Step Over, 
+# Step Into 등의 디버거 컨트롤을 사용할 수 있다.
+# 4. 파이썬 터미널에서 실행
+# 파이썬 파일에 코드를 작성한 후, VS Code 에디터에서 우측 마우스 버튼을 클릭 [Run Python File in Terminal] 메뉴를 선택하면
+# 하단에 터미날 창이 생기고 파이썬 프로그램을 인터프리터와 함께 실행해 준다.
 
+# [pip 패키지 관리자]
+# 1. pip 패키지 관리자
+# pip은 파이썬 패키지를 설치하고 관리하는 패키지 관리자(Package Manager)이다. pip은 "Pip Installs Packages"의 약자로서 재귀적인
+# 약어이다.
+# pip은 Python 2.7.9+와 Python 3.4+에서 디폴트로 설치되어 있다. 만약 pip이 시스템에 설치되지 않은 경우는 다음과 같이 설치할 수
+# 있다.
+# curl https://bootstrap.pypa.io/get-pip.py | python
+# 2. pip 패키지 설치와 제거
+# pip을 이용하면 패키지를 쉽게 설치할 수 있다. pip으로 설치할 수 패키지들의 목록은 Python Package Index (PyPI)에서 찾아 볼 수
+# 있다. 다음은 패키지를 설치하는 pip install 명령이다.
+# pip install 패키지명
+# ex)
+# $ pip install django
+# $ pip install numpy
+# $ pip install matplotlib
+# 설치된 패키지를 Uninstall하기 위해서는 아래와 같은 pip uninstall 명령을 사용한다.
+# pip uninstall 패키지명
+# ex)
+# $ pip uninstall django
+# 현재 pip으로 설치된 패키지들의 리스트를 보기 위해서는 pip list 명령을 사용한다.
+# $ pip list
+# certifi (2017.7.27.1)
+# chardet (3.0.4)
+# cytoolz (0.8.2)
+# Django (1.11.2)
+# ethereum-abi-utils (0.4.3)
+# ethereum-utils (0.5.1)
+# idna (2.6)
+# pip (9.0.1)
+# pkg-resources (0.0.0)
+# pysha3 (1.0.2)
+# pytz (2017.2)
+# requests (2.18.4)
+# setuptools (20.7.0)
+# toolz (0.8.2)
+# urllib3 (1.22)
+# 이미 설치된 패키지를 최신 버전으로 업그레이드하기 위해서는 아래와 같이 --upgrade 옵션을 지정한다.
+# $ pip install django --upgrade
+# 3. pip: requirements 파일 생성과 사용
+# pip을 이용하면 일련의 패키지 그룹을 묶어서 설치할 수도 있다. 즉, requirements.txt 파일에 설치할 패키지 리스트를 정의한 후, 
+# 아래와 같은 명령으로 전체를 한꺼번에 설치할 수 있다. 실제 "pip install 패지키명" 을 사용하여 패키지를 하나 하나 설치하는 
+# 것보다, requirements.txt를 만들어 패키지 리스트를 이 파일에서 관리하고 이 파일을 통해 pip 설치 수행하는 것이 더 좋은 방법이다.
+# $ pip install -r requirements.txt
+# 하지만 경우에 따라 requirements.txt를 미리 만들지 않고, 개발서버의 가상환경에 여러 패키지를 이미 설치했을 수도 있다. 이런
+# 경우는 아래와 같은 pip freeze 명령을 사용하여 requirements.txt 파일을 만들 수 있다. 이러한 기능은 개발서버의 가상환경을
+# Production 가상환경으로 Deployment 하는데 유용하게 쓰일 수 있다.
+# $ pip freeze > requirements.txt
+# 4. 윈도우즈에서의 pip 사용
+# 윈도우즈에서 pip 을 사용하기 위해서는 python 설치 폴더 밑의 Scripts 서브디렉토리에서 pip을 실행한다.
 
+# [Python 디버깅 (PDB)]
+# 1. Python 디버깅
+# Python은 디버깅을 위해 pdb 라는 Python Debugger 모듈을 제공하고 있다. 이 디버거는 Step over/Step into, 중단점(breakpoint)
+# 설정, 콜스택 검사, 소스 리스팅, 변수 치환 등 다양한 기능을 가지고 있다.
+# Python 디버깅에서 사용되는 방법 중 하나로 아래와 같이 "python -m pdb 파이선파일.py" 를 사용하는 방법이 있다. "-m pdb" 를 
+# 사용하게 되면, 디버거 하에서 파이선 파일을 실행하게 된다. 예를 들어, 아래 예를 보면 test1.py라는 파이썬 모듈의 첫번째 
+# 라인에서 프로그램을 중단하고 디버거 프롬프트인 (Pdb) 를 표시함을 볼 수 있다. (밑에서 설명하지만 아래는 Pdb 프롬프트에서 
+# list를 사용하여 test1.py의 소스코드를 출력하였다)
+# Python 디버깅에서 흔히 사용되는 두번째 디버깅 방법은 pdb 모듈을 import 한 후, pdb.set_trace()를 중단하고 싶은 곳에 넣는 
+# 방식이다. 이렇게 하면 파이썬 프로그램 실행시 pdb.set_trace() 문장이 있는 곳에서 실행을 중지하고 디버거 세션을 시작하게 한다.
+# 아래 그림을 보면 pdb.set_trace() 다음 문장에서 (Pdb) 프롬프트가 표시되어 있음을 볼 수 있다.
+# # test2.py 소스
+# import pdb
+# def sum(x, y):
+#     z = x + y
+#     return z
+# a = 10
+# pdb.set_trace()  # 이곳에서 프로그램 중단
+# b = 20
+# c = sum(a, b)
+# print(c)
+# 2. PDB 사용법
+# PDB를 사용하여 디버깅 모드로 진입하게 되면, (Pdb) 프롬프트가 나오게 되는데 여기서 여러 PDB 명령을 사용할 수 있다. 즉, 다음
+# 문장을 실행하거나(next), 변수 값을 프린트하거나(print), 소스코드를 리스팅하거나(list), 함수 안으로 들어가거나(step into) 하는
+# 일들을 PDB 명령을 사용하여 실행할 수 있다.
+# 다음은 자주 사용되는 PDB 명령들을 요약한 것이다. 명령어를 단어 전체를 사용해도 되지만, 보통 약어로 앞의 한 글자만 사용할 
+# 수 있다. 즉, next 대신 n 을 사용할 수 있다.
+# PDB 명령어	실행내용
+# help	도움말
+# next	다음 문장으로 이동
+# print	변수값 화면에 표시
+# list	소스코드 리스트 출력. 현재 위치 화살표로 표시됨
+# where	콜스택 출력
+# continue	계속 실행. 다음 중단점에 멈추거나 중단점 없으면 끝까지 실행
+# step	Step Into 하여 함수 내부로 들어감
+# return	현재 함수의 리턴 직전까지 실행
+# !변수명 = 값	변수에 값 재설정
+# 3. IDE 디버깅
+# PyCharm, PTVS, Spyder와 같은 IDE는 UI에서 쉽게 디버깅을 할 수 있는 기능을 제공하고 있다. 일반적으로 코드 상에 
+# 중단점(Breakpoint)를 걸고 디버깅 실행 버튼을 눌러 디버깅을 시작하고, Step Over, Step Into 등의 버튼을 사용하여 한
+# 라인씩 디버깅해 나갈 수 있다.
 
+# [파이썬 가상환경]
+# 1. 파이썬 가상환경 (Virtual Environment)
+# 하나의 물리적인 머신에 여러 개의 가상 머신을 올릴 수 있듯이, 한 머신에 여러 개의 파이썬 가상환경을 만들 수 있다. 이러한
+# 가상환경은 파이썬 개발 환경을 독립적으로 만들기 위한 것으로, 각 개발환경마다 다른 파이썬 버전을 사용할 수도 있고 다른 
+# 패키지를 설치할 수 있다. 가상환경은 그 안에 파이썬 개발환경과 관련된 모든 것을 가지고 있다 (Self-contained 환경). 만약 
+# 프로젝트마다 서로 다른 버전의 파이썬을 사용한다거나 각 프로젝트에 필요한 패키지가 다를 경우 혹은 개발환경을 그대로 나중에
+# 실제 서버에 옮기고 싶을 경우 가상환경을 사용하면 편리하다.
+# 2. 가상환경 만들기
+# 파이썬 3.3 버전 이상에서 가상환경을 사용하기 위해서는 pyvenv 를 사용한다. 참고로 가상환경을 만드는 다른 방법으로
+# virtualenv를 사용할 수 있는데, 이는 pypi.python.org 로부터 다운받아 사용한다.
+# 여기서는 pyvenv 를 사용하여 가상환경을 만들어 보자. 가상환경은 하나의 디렉토리 밑에 생성되는데, 가상환경을 만들 디렉토리로 
+# 이동한 후 아래와 같은 절차를 따른다. 먼저 리눅스나 Mac OS에서 venv1 이라는 가상환경을 만드는 과정을 살펴본다.
+# 가상환경 생성: 아래는 현재 디렉토리 밑에 venv1 이라는 폴더를 만들고 venv1 이라는 가상환경을 만드는 것이다.
+# $ pyvenv venv1
+# 가상환경 활성화: 가상환경이 생성된 후, 그 가상환경으로 들어가기 위해 아래와 같이 activate 를 실행하여 가상환경을 활성화를
+# 해주어야 한다.
+# $ source venv1/bin/activate
+# 다음 윈도우즈에서 venv1 이라는 가상환경을 만드는 과정은 다음과 같다.
+# 가상환경 생성: 아래는 C:\PyApp 디렉토리 밑에 venv1 이라는 폴더를 만들고 venv1 이라는 가상환경을 만드는 것이다.
+# C:\Python35> python .\Tools\scripts\pyvenv.py C:\PyApp\venv1
+# 가상환경 활성화: 먼저 가상환경 디렉토리로 이동하여 Scripts 폴더로 가서 activate를 실행한다.
+# C:\PyApp\venv1\Scripts> activate.bat
+# 참고로 가상환경의 파이썬 버전 정보는 가상환경 디렉토리 안의 pyvenv.cfg 파일을 살펴보면 알 수 있다.
+# 3. 가상환경에 패키지 설치 및 파이썬 실행
+# 가상환경을 활성화한 후에 필요한 패키지를 설치하기 위해 pip과 같은 패키지 매니저를 사용할 수 있다. 예를 들어, 아래는
+# 가상환경 venv1 에 numpy 를 설치하는 예이다. 이렇게 설치된 numpy 는 해당 가상환경 내에서만 유효하며 시스템이나 다른 
+# 가상환경에 영향을 미치지 않는다.
+# ~/venv1/bin$ . activate
+# (venv1) ~/venv1/bin$ pip install numpy    
+# 가상환경에서 파이썬을 실행하는 것은 간단하다. 가상환경 프롬프트에서 "python" 을 실행하면 된다.
+# (venv1) ~/venv1$ python 
+# Python 3.4.4 (v3.4.4:737efcadf5a6, Dec 19 2015, 20:19:30) 
+# [GCC 4.2.1 (Apple Inc. build 5577)] on darwin
+# Type "help", "copyright", "credits" or "license" for more information.
+# >>>
 
+# [파일과 디렉토리]
+# 파이썬에서 파일과 디렉토리 경로 다루기
+# 파이썬에서 디렉토리와 파일경로를 다루는 주요 함수들에 대해 알아보자. 디렉토리 및 파일 경로에 대한 함수들은 os 모듈에
+# 있으므로, os 모듈을 import 한 것을 전제로 한다. 특히, os.path 모듈은 파일명과 파일경로에 대한 유용한 함수들을 많이
+# 제공하고 있다.
+# 용도	함수 예제
+# 현재 작업 폴더 얻기	os.getcwd()
+# # "C:\Temp"
+# 디렉토리 변경	os.chdir("C:\Tmp")
+# 특정 경로에 대해 절대 경로 얻기	os.path.abspath(".\\Scripts")
+# # "C:\Python35\Scripts"
+# 경로 중 디렉토리명만 얻기	os.path.dirname("C:/Python35/Scripts/pip.exe")
+# # "C:/Python35/Scripts"
+# 경로 중 파일명만 얻기	if os.path.isfile("C:/Python35/Scripts/pip.exe"):
+#    print(os.path.basename("C:/Python35/Scripts/pip.exe"))
+# # "pip.exe"
+# 경로 중 디렉토리명과 파일명을 나누어 얻기	dir, file = os.path.split("C:/Python35/Scripts/pip.exe")
+# 파일 각 경로를 나눠 리스트로 리턴하기
+# os.path.sep은 OS별 경로 분리자	"C:\Python35\Scripts\pip.exe".split(os.path.sep)
+# # ['C:', 'Python35', 'Scripts', 'pip.exe']
+# 경로를 병합하여 새 경로 생성	os.path.join('C:\Tmp', 'a', 'b')
+# # "C:\Tmp\a\b"
+# 디렉토리 안의 파일/서브디렉토리 리스트	os.listdir("C:\Python35")
+# 파일 혹은 디렉토리 경로가 존재하는지 체크하기	os.path.exists("C:\Python35")
+# 디렉토리 경로가 존재하는지 체크하기	os.path.isdir("C:\Python35")
+# 파일 경로가 존재하는지 체크하기	os.path.isfile("C:\Python35\python.exe")
+# 파일의 크기	os.path.getsize("C:\Python35\python.exe")
 
-# [Jupyter Notebook]
-# 주피터 노트북(Jupyter Notebook)은 웹 브라우저에서 파이썬 코드를 작성하고 실행해 볼 수 있는 개발도구이다.
-# 일반적으로 아나콘다(Anaconda)를 설치하면 Jupyter Notebook이 함께 설치되어 Jupyter를 사용할 수 있다. 
-# 물론 Anaconda를 사용하지 않는 경우 pip 을 통해 Jupyter 패키지를 설치할 수도 있지만, 통상 Anaconda를 설치해서 사용할 것을 권장한다.
-# Anaconda가 설치된 후, Anaconda 메뉴중 Jupyter Notebook을 선택하거나 Anaconda Navigator에서 Jupyter Notebook 메뉴를 선택하면 Jupyter를 실행할 수 있다.
-# Anaconda 메뉴중 Jupyter Notebook을 선택한 경우, Jupyter Notebook 서버 (콘솔 프로그램)와 클라이언트로 사용되는 웹 브라우저 등 2개의 프로그램이
-# 실행된다. Notebook 서버 프로그램은 백그라운드에서 실행되는 파이썬 프로그램으로 웹 브라우저 클라이언트가 접속하는 서버 프로그램이며 실제 파이썬
-# 코드 실행은 여기에서 일어난다. 그리고, 웹 브라우저는 파이썬 코드를 입력받고, 실행해 볼 수 있는 UI를 제공하는 클라이언트로서 코드를 Notebook 서버에 보내
-# 결과를 다시 웹 브라우저에 뿌려 주게 된다.
-# Anaconda Navigator에서 Jupyter Notebook 메뉴를 선택한 경우에는 윈도우즈의 경우 Notebook 서버 콘솔 프로그램이 백그운드 프로세스로 실행되어 화면에 보이지 않으며,
-# 클라이언트인 웹 브라우저만 화면에 나타난다. 하지만, 동작 방식은 기본적으로 동일하다.
-# Jupyter Notebook 서버 프로그램은 디폴트로 웹 포트 8888 을 오픈하여 사용하며, 따라서 Jupyter Notebook 웹 브라우저는
-# http://localhost:8888 을 통해 접속한다.
+# [메일 보내기 (SMTP)]
+# 메일 보내기 (SMTP Mail)
+# 파이썬에서 이메일을 보내기 위해서는 파이썬에 기본 내장된 smtplib 라는 모듈을 사용한다. SMTP는 Simple Mail Transfer
+# Protocol의 약자로서 메일을 보내는데 사용되는 프로토콜이다. 개인이나 회사가 SMTP 서버를 설치해서 이를 통해 메일을 발송할
+# 수 있지만, 요즘은 구글, 마이크로소프트 등 많은 회사들이 SMTP 서버를 사용할 수 있도록 오픈하고 있기 때문에 이들 SMTP 서버를
+# 사용해서 메일을 발송할 수 있다.
+# 메일 Provider	SMTP 서버명, 포트
+# Live	smtp.live.com, 587
+# GMail	smtp.gmail.com, 587
+# 파이썬에서 SMTP 서버에 접속하기 위해서는 smtplib 모듈을 import 한 후, SMTP 서버와 포트로 SMTP 객체를 생성한다. SMTP 서버의
+# Encryption 방식에 따라 TTL 혹은 SSL을 사용하는데, TLS을 사용하는 경우 smtplib.SMTP()를, SSL을 사용하는 경우 smtplib.SMTP_SSL()
+# 을 사용한다. TLS는 보통 포트 587을, SSL은 465를 사용한다.
+# SMTP 객체를 생성한 후에는 프로토콜 상 가장 먼저 SMTP 서버에 Hello 메시지를 보내는데, ehlo() 메서드가 이 기능을 한다. 
+# Hello 메시지 이후, TLS 인 경우는 starttls() 를 실행하여 TLS Encryption을 시작하는데, SSL인 경우에는 이 메서드를 호출하지
+# 않는다.
+# # -*- coding:utf-8 -*-
+# import smtplib
+# from email.mime.text import MIMEText
+# smtp = smtplib.SMTP('smtp.live.com', 587)
+# smtp.ehlo()      # say Hello
+# smtp.starttls()  # TLS 사용시 필요
+# smtp.login('lee@live.com', 'password')
+# msg = MIMEText('본문 테스트 메시지')
+# msg['Subject'] = '테스트'
+# msg['To'] = 'kim@naver.com'
+# smtp.sendmail('lee@live.com', 'kim@naver.com', msg.as_string())
+# smtp.quit()
+# 이렇게 기본 연결을 마친 후, login(계정, 암호) 메서드를 호출하여 계정과 암호를 넣고 사용자 인증을 받게 된다. 이후, 
+# sendmail(송신자, 수신자, 메시지) 메서드를 사용하여 메일을 보내게 되는데, 여기서 메시지는 간단한 메시지의 경우는
+# email.mime.text.MIMEText 을, 좀 더 복잡한 메시지의 경우는 email.mime.multipart.MIMEMultipart 등을 사용할 수 있다. 
+# 마지막으로 SMTP와 연결을 끊고 종료하기 위해서는 quit() 메서드를 호출한다.
 
-# [아나콘다(Anaconda)]
-# 아나콘다(Anaconda)는 수학과 과학 분야에서 사용되는 여러 패키지들을 묶어 놓은 파이썬 배포판으로서 SciPy, Numpy, Matplotlib, Pandas 등을
-# 비롯한 많은 패키지들을 포함하고 있다. Anaconda는 특히 최근에 데이타 사이언스와 머신 러닝 분야에서 파이썬을 사용하기 위해 기본적으로 설치하는 배포판이 되었다.
-# Anaconda를 설치하기 위해서는 https://www.anaconda.com/ 웹사이트에서 자신의 OS에 맞는 프로그램을 다운받아 설치하면 된다. 통상 Python 3.x 버전을 선택한다.
-# Anaconda 구성요소
-# Anaconda는 아래 그림과 같이 크게 4 부분으로 나뉘는데, 이 중 Data Science 라이브러리와 Anaconda Navigator를 주목할 만하다. 
-# Data Science 라이브러리는 (a) Jupyter와 같은 IDE 개발도구, (b) Numpy, SciPy 같은 과학 분석용 라이브러리,
-# (c) Matplotlib 같은 데이타 시각화 (Data Visualization) 라이브러리, (d) TensorFlow 같은 머신 러닝(Machine Learning) 라이브러리 등을 포함하고 있다.
-# Anaconda Navigator는 UI 클라이언트로서 하부 컴포넌트를 쉽게 사용하도록 한 데스크탑 포털 기능을 담당한다. 
-# 예를 들어, Jupyter나 Spyder 같은 개발도구를 이곳에서 Launch할 수 있다.
+# [난수 (random)]
+# 난수 (random)
+# 파이썬에서 난수(random number)를 사용하기 위해서는 기본적으로 제공되는 random 모듈을 사용한다. random 모듈에서 자주 사용되는
+# 함수는 다음과 같다.
+# randint(최소, 최대) : 입력 파라미터인 최소부터 최대까지 중 임의의 정수를 리턴한다
+# random() : 0 부터 1 사이의 부동소수점(float) 숫자를 리턴한다
+# uniform(최소, 최대) : 입력 파라미터인 최소부터 최대까지 중 임의의 부동소수점(float) 숫자를 리턴한다
+# randrange(시작,끝[,간격]) : 입력 파라미터인 시작부터 끝값까지 (지정된 간격으로 나열된) 숫자 중 임의의 정수를 리턴한다
+# from random import *
+# i = randint(1, 100)  # 1부터 100 사이의 임의의 정수
+# print(i)
+# f = random()   # 0부터 1 사이의 임의의 float
+# print(f)
+# f = uniform(1.0, 36.5)   # 1부터 36.5 사이의 임의의 float
+# print(f)
+# i = randrange(1, 101, 2) # 1부터 100 사이의 임의의 짝수
+# print(i)
+# i = randrange(10)  # 0부터 9 사이의 임의의 정수
+# print(i)
+# 아래는 난수를 사용한 간단한 예제로서 난수를 생성한 후 어떤 숫자인지 맞추는 프로그램이다. 즉, 사용자가 입력한 숫자가 난수보다
+# 큰지 작은지를 알려주고 계속 추측해서 난수값을 맞추게하는 예제이다.
+# from random import randint
+# n = randint(1, 100)
+# while True:
+#     ans = input("Guess my number (Q to exit): ")
+#     if ans.upper() == "Q":
+#         break
+#     ians = int(ans)
+#     if (n == ians):
+#         print("Correct!")
+#         break
+#     elif (n > ians):
+#         print("Choose higher number")
+#     else:
+#         print("Choose lower number")
+# 샘플링 (sample)
+# random 모듈에서 또 한가지 유용한 기능은 리스트, set, 튜플 등과 같은 컬렉션으로부터 일부를 샘플링해서 뽑아내는 기능이다. 
+# random 모듈에서 sample(컬렉션, 샘플수) 함수는 지정된 컬렉션으로부터 샘플수만큼 랜덤 추출을 하는 함수이고, 이보다 좀 더 복잡한 
+# choices() 함수는 샘플링에 가중치를 주어 추출하는 기능을 가지고 있다. 아래 예제는 (1) 숫자 리스트로부터 3개를 랜덤하게 
+# 샘플링하고 (2) 튜플에서 2개의 문자열을 샘플링하는 예이다.
+# import random
+# # (1) 숫자리스트 샘플링
+# numlist = [1,2,3,4,5,6,7,8,9]
+# s = random.sample(numlist, 3)
+# print(s)  # [1, 2, 8]
+# # (2) 튜플 샘플링
+# frutes = ('사과', '귤', '포도', '배')
+# s = random.sample(frutes, 2)
+# print(s)  # ['배', '사과']
+''' from random import *
+i = randint(1, 100)  # 1부터 100 사이의 임의의 정수
+print(i)
+f = random()   # 0부터 1 사이의 임의의 float
+print(f)
+f = uniform(1.0, 36.5)   # 1부터 36.5 사이의 임의의 float
+print(f)
+i = randrange(1, 101, 2) # 1부터 100 사이의 임의의 짝수
+print(i)
+i = randrange(10)  # 0부터 9 사이의 임의의 정수
+print(i)
+from random import randint
+n = randint(1, 100)
+while True:
+    ans = input("Guess my number (Q to exit): ")
+    if ans.upper() == "Q":
+        break
+    ians = int(ans)
+    if (n == ians):
+        print("Correct!")
+        break
+    elif (n > ians):
+        print("Choose higher number")
+    else:
+        print("Choose lower number")
+import random
+# (1) 숫자리스트 샘플링
+numlist = [1,2,3,4,5,6,7,8,9]
+s = random.sample(numlist, 3)
+print(s)  # [1, 2, 8]
+# (2) 튜플 샘플링
+frutes = ('사과', '귤', '포도', '배')
+s = random.sample(frutes, 2)
+print(s)  # ['배', '사과'] '''
+
+# [직렬화와 역직렬화]
+# 직렬화와 역직렬화
+# 파이썬의 객체를 일련의 바이트들로 변환한 후 나중에 다시 파이썬 객체로 복원하게 할 수 있는데, 이렇게 파이썬 객체를 일련의 
+# 바이트들로 변환하는 것을 직렬화(Serialization)라 하고, 다시 바이트들을 파이썬 객체로 메모리 상에 복원하는 것을
+# 역직렬화(Deserialization)이라 한다. 직렬화된 바이트들은 외부 장치에 저장하거나 다른 시스템으로 전송할 수 있으며, 파이썬을 
+# 사용하는 다른 시스템은 (OS와 같은 플랫폼 환경에 상관없이) 다시 이를 파이썬 객체로 역직렬화할 수 있다.
+# 파이썬에서 직렬화(Serialization)와 역직렬화(Deserialization)를 사용하기 위해서는 pickle 모듈 혹은 cPickle 모듈을 사용한다.
+# (참고: pickle 모듈은 파이썬으로 작성되었으며 cPickle 모듈은 C로 작성되어 있는데, cPickle 모듈이 더 빠르기 때문에 성능이 
+# 중요한 경우 cPickle 을 사용하는 것이 좋다. 하지만, cPickle은 서브클래스를 만들 수 없기 때문에, 서브클래스를 작성할 필요가 
+# 있으면 pickle 을 사용해야 한다. cPickle은 Python 2 에선 "import cPickle"을 사용하여 import 하고, Python 3에서는
+#  "import _pickle"을 사용한다.)
+# 아래 예제는 사각형 클래스의 객체를 이진 파일에 직렬화한 후 이를 다시 읽어들여 사각형 객체로 복원하는 역직렬화 과정을 
+# 예시한 것이다. 직렬화하면 바이너리 형태이므로 이진 파일 모드로 파일을 열어야 한다. 아래 예제에서 복원된 객체 r 은 width,
+# height 등의 attribute를 이전에 저장한 값 그대로 가지고 있다.
+''' import pickle
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+rect = Rectangle(10, 20)
+# 사각형 rect 객체를 직렬화 (Serialization)
+with open('rect.data', 'wb') as f:
+    pickle.dump(rect, f)
+# 역직렬화 (Deserialization)
+with open('rect.data', 'rb') as f:
+    r = pickle.load(f)
+print("%d x %d" % (r.width, r.height)) '''
+
+# [PEP 8 파이썬 코딩 스타일]
+# Python Enhancement Proposal 8 (PEP 8)은 파이썬 코딩 스타일에 대한 가이드를 제시하고 있다. 
+# PEP 8은 2001년 귀도 반 로썸에 의해 처음 제안되었으며, python.org 의 PEP 링크에 자세히 소개되어 있다.
+# 파이썬 프로그래머들은 일반적으로 이러한 PEP 8 코딩 스타일에 따라 프로그래밍을 하고 있는데, 이러한 일관된 
+# 코딩 스타일을 적용하는 것은 자신의 코드를 명료하게 할 뿐만 아니라 특히 다른 개발자 혹은 커뮤니티간 코딩을 공유할 때 매우
+# 효율적이다.
 
 # [PEP 8 의 중요한 부분에 대한 요약]
 # 1.코드 레이아웃	
@@ -2402,14 +3632,9 @@ f.close() '''
 #     a는 b가 아니다를 표현할 때 a is not b 를 사용한다. not a is b 를 사용하지 말 것
 #     값이 비어있는지 아닌지를 검사하기 위해 길이를 체크하는 방식을 사용하지 말 것. 대신 if mylist 와 같이 표현함
 #     import 문은 항상 파일의 상단에 위치하며, 표준 라이브러리 모듈, 3rd Party 모듈, 그리고 자신의 모듈 순으로 import 한다
-#     모듈 import시 절대 경로를 사용할 것을 권장한다. 예를 들어, sibling 모듈이 현재 모듈과 같은 폴더에 있더라도 패키지명부터 절대 경로를 사용함.
+#     모듈 import시 절대 경로를 사용할 것을 권장한다. 예를 들어, sibling 모듈이 현재 모듈과 같은 폴더에 있더라도 패키지명부터 
+#     절대 경로를 사용함.
 #     단, 복잡한 패키지 경로를 갖는 경우 상대경로(.)를 사용할 수 있다.
-
-# [PEP 8 파이썬 코딩 스타일]
-# Python Enhancement Proposal 8 (PEP 8)은 파이썬 코딩 스타일에 대한 가이드를 제시하고 있다. 
-# PEP 8은 2001년 귀도 반 로썸에 의해 처음 제안되었으며, python.org 의 PEP 링크에 자세히 소개되어 있다.
-# 파이썬 프로그래머들은 일반적으로 이러한 PEP 8 코딩 스타일에 따라 프로그래밍을 하고 있는데, 이러한 일관된 
-# 코딩 스타일을 적용하는 것은 자신의 코드를 명료하게 할 뿐만 아니라 특히 다른 개발자 혹은 커뮤니티간 코딩을 공유할 때 매우 효율적이다.
 
 # [PEP]
 # PEP 이란 Python Enhancement Proposals 의 약자로서 파이썬을 개선하기 위한 제안서를 의미한다.
@@ -2424,6 +3649,143 @@ f.close() '''
 # 특히, 파인썬 코딩과 관련한 코딩 표준(Coding Convention)에 관한 문서는 PEP 8 (https://www.python.org/dev/peps/pep-0008) 에 정의되어 있는데,
 # 파이썬의 기초를 익힌 후 참조하면 파이썬 코딩 스타일을 익히는데 도움이 된다.
 
+# [파이썬 Object Interning]
+# 파이썬 Object Interning
+# Interning이란 이미 생성된 객체(object)를 재사용(reuse)하는 것을 말하는데, 보통 Immutable 객체에 대해 Interning을 사용한다. 
+# 파이썬은 기본적으로 몇가지 제한된 경우에 대해 디폴트로 Interning을 사용하고 있으며, 또한 개발자가 필요한 경우 함수를 써서
+# Interning을 지정할 수도 있다.
+# 아주 많이 사용되는 Immutable 객체의 경우 Interning을 사용하게 되면 메모리를 줄일 수 있는 효과가 있다.
+# 파이썬 디폴트 Interning
+# 파이썬은 기본적으로 몇가지 경우에 대해 시스템 디폴트로 Object Interning을 사용한다. 구체적으로 어떤 경우에 Interning을
+# 사용하는가는 CPython, PyPy, Jython, IronPython 같은 각 구현체마다 다를 수 있지만, 기본이 되는 CPython의 경우 아래 조건에
+# 해당될 경우 Object Interning을 사용한다.
+# 문자열: 20자 미만의 공백을 포함하지 않는 문자열
+# 정수: -5 부터 256 사이의 정수
+# 예를 들어, 아래의 경우 처음 "Test" 문자열이 a 에 할당될 때, 이 문자열은 20자 미만 공백이 없는 문자열에 해당하므로 파이썬은 
+# 이 문자열을 Intern 컬렉션에 넣고 그 주소를 a 에 할당한다. 이 a 의 메모리 주소를 알기 위해 id(a)와 같이 함수 id() 를 사용하였다.
+# 다음 b 에 문자열 "Test"를 할당할 때, 파이썬은 먼저 Intern 컬렉션에서 "Test"라는 문자열이 있는지 검색하고, 만약 있으면 그 
+# 메모리 주소를 b 에 할당한다. 하지만 만약 Intern 컬렉션에 해당 문자열이 없으면, 새로 Intern 컬렉션 안에 해당 문자열을 생성하고
+# 그 주소를 b 에 할당한다.
+# a = "Test"   # string intern
+# b = "Test"   # string intern
+# x = id(a)
+# y = id(b)    # x,y 는 동일한 메모리 가리킴
+# print(x, y)  # 2611825223136 2611825223136
+# 또 다른 예제로 정수의 경우를 들어보면, 아래의 i, j는 -5 ~ 256 사이의 정수로 자동으로 Interning이 사용되고, 동일한 메모리를
+# 사용하게 된다. i is j 는 i 와 j가 동일한 객체를 가리키는지를 체크하는 표현이다. 아래 x,y 는 256을 초과했으므로 Interning 이
+# 사용되지 않았고, 서로 다른 메모리에 할당되었다.
+# i = 10
+# j = 10
+# print(id(i), id(j), i is j) #2008444256 2008444256 True
+# x = 257
+# y = 257
+# print(id(x), id(y), x is y) #2611825055632 2611825055568 False
+# 파이썬 intern() 함수
+# 파이썬의 intern() 함수는 문자열을 Interning하는 함수이다. 개발자는 자주 사용되는 문자열을 intern() 함수를 사용하여 Intern 
+# 컬렉션에 저장해 놓고 사용할 수 있다. 파이썬 2 에서는 Built-in된 intern() 함수를 사용하고, 파이썬 3 에서는 sys 패키지의 
+# intern() 함수를 사용한다.
+# from sys import intern  # Python 3
+# c = intern("Alex Lee")
+# d = "Alex Lee"
+# print(id(c), id(d), c is d) # 2987210077360 2987210078704 False
+# e = intern("Alex Lee")
+# print(id(c), id(e), c is e) # 2987210077360 2987210077360 True
+''' a = "Test"   # string intern
+b = "Test"   # string intern
+x = id(a)
+y = id(b)    # x,y 는 동일한 메모리 가리킴
+print(x, y)  # 2611825223136 2611825223136
+i = 10
+j = 10
+print(id(i), id(j), i is j) #2008444256 2008444256 True
+x = 257
+y = 257
+print(id(x), id(y), x is y) #2611825055632 2611825055568 False
+from sys import intern  # Python 3
+c = intern("Alex Lee")
+d = "Alex Lee"
+print(id(c), id(d), c is d) # 2987210077360 2987210078704 False
+e = intern("Alex Lee")
+print(id(c), id(e), c is e) # 2987210077360 2987210077360 True '''
 
+# [아나콘다(Anaconda)]
+# 아나콘다(Anaconda)는 수학과 과학 분야에서 사용되는 여러 패키지들을 묶어 놓은 파이썬 배포판으로서 SciPy, Numpy, Matplotlib, Pandas 등을
+# 비롯한 많은 패키지들을 포함하고 있다. Anaconda는 특히 최근에 데이타 사이언스와 머신 러닝 분야에서 파이썬을 사용하기 위해 기본적으로 설치하는 배포판이 되었다.
+# Anaconda를 설치하기 위해서는 https://www.anaconda.com/ 웹사이트에서 자신의 OS에 맞는 프로그램을 다운받아 설치하면 된다. 통상 Python 3.x 버전을 선택한다.
+# Anaconda 구성요소
+# Anaconda는 아래 그림과 같이 크게 4 부분으로 나뉘는데, 이 중 Data Science 라이브러리와 Anaconda Navigator를 주목할 만하다. 
+# Data Science 라이브러리는 (a) Jupyter와 같은 IDE 개발도구, (b) Numpy, SciPy 같은 과학 분석용 라이브러리,
+# (c) Matplotlib 같은 데이타 시각화 (Data Visualization) 라이브러리, (d) TensorFlow 같은 머신 러닝(Machine Learning) 라이브러리 등을 포함하고 있다.
+# Anaconda Navigator는 UI 클라이언트로서 하부 컴포넌트를 쉽게 사용하도록 한 데스크탑 포털 기능을 담당한다. 
+# 예를 들어, Jupyter나 Spyder 같은 개발도구를 이곳에서 Launch할 수 있다.
 
+# [Jupyter Notebook]
+# 주피터 노트북(Jupyter Notebook)은 웹 브라우저에서 파이썬 코드를 작성하고 실행해 볼 수 있는 개발도구이다.
+# 일반적으로 아나콘다(Anaconda)를 설치하면 Jupyter Notebook이 함께 설치되어 Jupyter를 사용할 수 있다. 
+# 물론 Anaconda를 사용하지 않는 경우 pip 을 통해 Jupyter 패키지를 설치할 수도 있지만, 통상 Anaconda를 설치해서 사용할 것을 권장한다.
+# Anaconda가 설치된 후, Anaconda 메뉴중 Jupyter Notebook을 선택하거나 Anaconda Navigator에서 Jupyter Notebook 메뉴를 선택하면 Jupyter를 실행할 수 있다.
+# Anaconda 메뉴중 Jupyter Notebook을 선택한 경우, Jupyter Notebook 서버 (콘솔 프로그램)와 클라이언트로 사용되는 웹 브라우저 등 2개의 프로그램이
+# 실행된다. Notebook 서버 프로그램은 백그라운드에서 실행되는 파이썬 프로그램으로 웹 브라우저 클라이언트가 접속하는 서버 프로그램이며 실제 파이썬
+# 코드 실행은 여기에서 일어난다. 그리고, 웹 브라우저는 파이썬 코드를 입력받고, 실행해 볼 수 있는 UI를 제공하는 클라이언트로서 코드를 Notebook 서버에 보내
+# 결과를 다시 웹 브라우저에 뿌려 주게 된다.
+# Anaconda Navigator에서 Jupyter Notebook 메뉴를 선택한 경우에는 윈도우즈의 경우 Notebook 서버 콘솔 프로그램이 백그운드 프로세스로 실행되어 화면에 보이지 않으며,
+# 클라이언트인 웹 브라우저만 화면에 나타난다. 하지만, 동작 방식은 기본적으로 동일하다.
+# Jupyter Notebook 서버 프로그램은 디폴트로 웹 포트 8888 을 오픈하여 사용하며, 따라서 Jupyter Notebook 웹 브라우저는
+# http://localhost:8888 을 통해 접속한다.
 
+# [정수 / HexString 변환]
+# 1. 정수를 16진수 문자열(Hex)로 변환하기
+# Python 3는 정수를 16진수 문자열로 변환하는 hex() 라는 내장함수를 제공한다. hex() 함수는 정수를 입력받아 그 정수에 상응하는
+# 16진수 문자열(hex string)을 리턴하는데, 문자열 앞에 자동으로 0x를 붙인다. 예를 들어, hex(123)은 '0x7b' 으로 변환된다.
+# i = 123
+# hexStr = hex(i)
+# print(hexStr)  # '0x7b'
+# 2. 문자를 ASCII 16진수 문자열(Hex)로 변환하기
+# 영문자에 대한 ASCII 코드는 ord() 함수를 사용하여 구할 수 있다. 예를 들어, 문자 'A'에 대한 ASCII 코드는 ord('A') 를 
+# 사용하여 65를 구할 수 있다. ASCII 코드에 대한 16진수 문자열(Hex String)을 구하기 위해서는 위에 말한 hex()를 사용하면 된다.
+# a = hex(ord('A'))
+# print(a)  # '0x41'
+# 3. 16진수 문자열(Hex)을 정수로 변환하기
+# 16진수 문자열을 정수로 변환하기 위해서는 int() 라는 내장함수를 사용할 수 있다. int() 함수의 첫번째 파라미터에는 16진수
+# 문자열을 지정하고, 두번째 파라미터에는 이 문자열이 16진수(hexadecimal)로 되어 있음을 표시하는 16을 넣으면 된다.
+# hexStr = '0x7b'
+# i = int(hexStr, 16) # 16진수로 해석
+# print(i)  # 123 출력
+''' i = 123
+hexStr = hex(i)
+print(hexStr)  # '0x7b'
+a = hex(ord('A'))
+print(a)  # '0x41'
+hexStr = '0x7b'
+i = int(hexStr, 16) # 16진수로 해석
+print(i)  # 123 출력 '''
+
+# [문자열/바이트배열 변환]
+# 1. 일정한 크기의 바이트배열 초기화
+# 일정한 크기의 바이트 배열을 만들기 위해서는 bytearray() 함수에 원하는 크기를 지정하면 된다. 함수는 0x00을 요소로 갖는 바이트 
+# 배열은 생성한다.
+# a = bytearray(5)
+# print(a) # bytearray(b'\x00\x00\x00\x00\x00')
+# 2. 문자열을 바이트배열로 변환하기
+# 문자열은 여러 가지 방식으로 인코딩 될 수 있기 때문에, 문자열은 지정된 인코딩을 통해 바이트배열로 변환하게 된다. 
+# bytearray() 함수의 첫번째 파라미터에 문자열을 지정하고, 두번째 파라미터에 어떤 방식으로 인코딩했었는지를 지정하면, 문자열을
+# 지정된 인코딩 방식으로 해석하여 바이트배열로 변환하게 된다. 아래 예제는 문자열을 UTF-8 방식으로 바이트배열로 변환하는 예이다.
+# s = "Hi 서울"
+# arr = bytearray(s, 'utf-8')
+# print(arr) # bytearray(b'Hi \xec\x84\x9c\xec\x9a\xb8')
+# 3. byte 리터럴을 바이트배열로 사용하기
+# bytearray() 함수는 byte 리터럴(byte literal)을 전달받아 바이트배열로 사용할 수 있다. 예를 들어, 아래 b'Hello'와 같이 앞에
+# b 접두어를 붙이면 byte literal이 되는데, bytearray() 함수는 이를 입력받아 배열처럼 사용할 수 있다.
+# arr = bytearray(b'Hello')
+# for elem in arr:
+#     print(elem, end=' ') 
+# # 출력: 72 101 108 108 111
+''' a = bytearray(5)
+print(a) # bytearray(b'\x00\x00\x00\x00\x00')
+s = "Hi 서울"
+arr = bytearray(s, 'utf-8')
+print(arr) # bytearray(b'Hi \xec\x84\x9c\xec\x9a\xb8')
+arr = bytearray(b'Hello')
+for elem in arr:
+    print(elem, end=' ') 
+# 출력: 72 101 108 108 111 '''
