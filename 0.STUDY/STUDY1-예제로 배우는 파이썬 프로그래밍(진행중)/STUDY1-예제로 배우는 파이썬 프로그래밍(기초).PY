@@ -1,6 +1,8 @@
 # 출처 [http://pythonstudy.xyz/, 예제로 배우는 파이썬 프로그래밍]
 
 
+1609 라인 부터 추가
+
 # [PYTHON 기초]
 
 # [Python 소개]
@@ -1543,7 +1545,6 @@ t1.start()
 print("### End ###") '''
 
 
-
 # [GUI 프로그래밍]
 
 # [파이썬 GUI 프로그래밍]
@@ -1607,6 +1608,26 @@ app = QApplication([])
 dialog = QDialog()
 dialog.show()
 app.exec_()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # [Python 데이터]
@@ -2309,6 +2330,17 @@ rdr = csv.reader(f, delimiter='\t')
 r = list(rdr)
 print("Id=%s : Name=%s" % (r[0][0], r[0][1]))
 f.close() '''
+
+
+
+
+
+
+
+
+
+
+
 
 # [Jupyter Notebook]
 # 주피터 노트북(Jupyter Notebook)은 웹 브라우저에서 파이썬 코드를 작성하고 실행해 볼 수 있는 개발도구이다.
