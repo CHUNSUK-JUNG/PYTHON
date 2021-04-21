@@ -32,16 +32,23 @@
 # 아래 사이트에서 설치파일 받아서 설치합니다.
 # https://www.wikihow.com/Install-FFmpeg-on-Windows (아래의 사이트로 연결됨)
 # https://ffmpeg.org/download.html
+# Windows builds from gyan.dev 선택
+# https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z 다운로드 후, 압축 풀기
+# 압축 해제한 폴더를 c:\bin (임의로 만든 폴더임) 폴더로 복사한다.
+# win+R -> sysdm.cpl 실행하여, 환경변수에 path 설정한다.
+# cmd창 실행하여, ffmpeg -version 실행하여, 아래에 다운로드 받은 파일의 버전이 표시되면 설치가 완료된 것이다.
 # 2) pycairo : 그래픽 처리 라이브러리
 # 아래 사이트에서 자신의 운영체제에 맞는 설치 파일을 다운로드 받아서 설치합니다. https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycairo
 # 64비트 Windows의 경우는 ycairo‑1.19.1‑cp37‑cp37m‑win_amd64.whl 파일을 다운로드하면 됩니다. 이 파일은 파이썬 패키지를 수동으로 설치하는 패키지 파일입니다.
-# 다운로드 받은 파일을 pip3 install 명령어를 통해 설치합니다.
-# pip3 install pycairo-1.18.2-cp37-cp37m-win_amd64.whl
+# 다운로드 받은 파일을 c:\bin 폴더로 복사한다.
+# cdm창을 실행하여, c:\bin 폴더로 이동 후, pip3 install 명령어를 통해 설치합니다.
+# pip3 install pycairo-1.20.0-cp39-cp39-win_amd64.whl
 # 3) MikTex : 수식 문자 입력을 위한 LaText 프로그램
 # 아래 사이트에서 설치파일 다운로드 받아 설치합니다. (약232MB로 파일이 큽니다.) https://miktex.org/download
 # 만약 위 사이트에서 다운로드가 안되면 아래 사이트에서 다운로드 받아도 됩니다. http://mirrors.ibiblio.org/CTAN/systems/windows/miktex/setup/windows-x64/
 # 다운로드 받은 파일 (basic-miktex-2.9.7269-x64.exe)을 실행합니다.
-# 다 설치되고 나서, MikTex는 package installation을 자동으로 수행합니다. 근데, 사용하는 네트워크 환경이 porxy를 사용하는 경우 MikTex에 해당 proxy설정을 해줘야 package installation이 가능합니다. (MikTex의 proxy설정 방법) MiKTex Console 실행 - Packages - Change - Connection Settings 에서 proxy 세팅하고, 동작하는 사이트 선택(캐나다 등)
+# 다 설치되고 나서, MikTex는 package installation을 자동으로 수행합니다. 근데, 사용하는 네트워크 환경이 porxy를 사용하는 경우 MikTex에 해당 proxy설정을 해줘야
+# package installation이 가능합니다. (MikTex의 proxy설정 방법) MiKTex Console 실행 - Packages - Change - Connection Settings 에서 proxy 세팅하고, 동작하는 사이트 선택(캐나다 등)
 # 4) Sox : 사운드 변환 라이브러리
 # 사이트에서 설치 파일을 다운로드 받습니다. https://sourceforge.net/projects/sox/files/sox/
 # 다운로드 받은 파일 (sox-14.4.2-win32.exe)을 실행해서 설치합니다.
@@ -51,23 +58,20 @@
 # 마님(manim) 설치
 # 마님용 git에서 패키지 전체 다운로드 : https://github.com/3b1b/manim
 # 다운로드 받은 zip 파일을 설치할 폴더에 압축 해제:
-# 예를들어 C:\dev\ 폴더에 압축해제하면 C:\dev\manim-master 폴더가 생기며 거기에 파일들 압축해제됨. 폴더 이름을 간단하게 C:\dev\manim이 되도록 바꿉니다. - 마님에 필요한 패키지 install
-# C:\dev\manim> pip3  install  -r  requirements.txt
-# 한글 폰트 사용할 수 있게 하기 manimlib\tex_template.tex 파일에 아래 내용 추가
+# 예를들어 C:\bin\ 폴더에 압축해제하면 C:\bin\manim-master 폴더가 생기며 거기에 파일들 압축해제됨. - 마님에 필요한 패키지 install
+# 한글 폰트 사용할 수 있게 하기 C:\bin\manim-master\manimlib\tex_templates\tex_template.tex 파일에 아래 내용 추가
 # \usepackage{kotex}
-# ```
-# ...
 # \usepackage{microtype}
 # \usepackage{kotex}
 # \DisableLigatures{encoding = *, family = * }
-# ...
-# ```
 # 이렇게 하면 마님의 텍스트 표출용 클래스인 TextMobject, TexMobject, Text에 영문 대신 한글을 입력해서 사용 가능
+# cmd창을 실행하여, C:\bin\manim-master 폴더로 이동 후, 아래와 같이 실행한다.
+# C:\bin\manim-master> pip3  install  -r  requirements.txt
 # 설치된 마님 확인
 # 위와 같이 하면 마님 설치가 완료되었고, 이제 마님을 사용한 수학 애니메이션 제작이 가능합니다. 만약 동작이 안되면 마님 설치가 잘 안된 것이기에 위 마님 설치 부분을 참조해서 설치합니다.
 # 설치가 제대로 되었는지는 마님 설치 폴더에서 아래와 같이 명령어를 입력해보면 됩니다.
-# C:\dev\manim>python -m manim -h
-# C:\dev\manim>python -m manim -h
+# C:\bin\manim-master>python -m manim -h
+# C:\bin\manim-master>python -m manim -h
 # usage: manim.py [-h] [-p] [-w] [-s] [-l] [-m] [--high_quality] [-g] [-i] [-f]
 #                 [-t] [-q] [-a] [-o FILE_NAME] [-n START_AT_ANIMATION_NUMBER]
 #                 [-r RESOLUTION] [-c COLOR] [--sound] [--leave_progress_bars]
@@ -75,12 +79,13 @@
 #                 [--video_dir VIDEO_DIR | --video_output_dir ...
 # 마님에 디폴트로 들어 있는 샘플코드를 이용해서 동영상 하나를 만들어 봅니다.
 # 아래 명령어에 의해 동영상 파일이 생성되어 자동 재생될 것입니다. 만약 도중에 에러가 나면 위의 기본 라이브러리가 제대로 설치되었는 지 확인해야합니다.
-# C:\dev\manim>python  -m  manim  example_scenes.py  SquareToCircle  -pl
+# C:\bin\manim-master>python  -m  manim  example_scenes.py  SquareToCircle  -pl
 # 아래와 같은 동영상이 자동 실행될 것입니다. https://youtu.be/pBuX1mKnqgc
 
 # [02-3 새로운 폴더에서 마님 사용하기]
 # 앞 챕터에서 설치한 C:\dev\manim 폴더가 아닌 다른 폴더에서 마님을 이용한 동영상 제작을 하고자 할 때는 다음과 같이 하면 됩니다.
-# 다른 폴더를 사용하고자 하는 경우가 생기는 것은, 동영상을 제작하다보면 마님 라이브러리 코드를 수정해야하는 경우가 있기에, 원본 라이브러리는 C:\dev\manim에 남겨두고, 다른 폴더에서 라이브러리를 수정하고 싶은 경우가 생기기 때문입니다.
+# 다른 폴더를 사용하고자 하는 경우가 생기는 것은, 동영상을 제작하다보면 마님 라이브러리 코드를 수정해야하는 경우가 있기에, 원본 라이브러리는 C:\dev\manim에 남겨두고, 
+# 다른 폴더에서 라이브러리를 수정하고 싶은 경우가 생기기 때문입니다.
 # 새로운 폴더 생성. 예를 들어 C:\now\manim
 # 이 폴더로 C:\dev\manim\manimlib 폴더 전체를 복사해서 붙여넣기합니다. 즉, C:\now\manim\manimlib가 만들어지게 합니다.
 # C:\dev\manim\ 폴더에 있는 2개 파일(manim.py, example_scenes.py)을 새로운 폴더(C:\now\manim\) 로 붙여넣기 합니다.
