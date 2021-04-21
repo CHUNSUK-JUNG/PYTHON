@@ -1,0 +1,3380 @@
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="mzkAy71X1qQFWihQN535LoiToXg34MUg9nuor7Og9E8" />
+    <meta name="naver-site-verification" content="d7c116bce998e6961b8db93c8592550f1a82119f"/>
+    <meta name="description" content="온라인 책을 제작 공유하는 플랫폼 서비스">
+
+    <meta property="og:type" content="wikidocs">
+    <meta property="og:title" content="위키독스">
+    <meta property="og:description" content="온라인 책을 제작 공유하는 플랫폼 서비스">
+    <meta property="og:image" content="https://wikidocs.net/images/book/wikidocs_1.png">
+    <meta property="og:url" content="https://wikidocs.net">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="canonical" href="https://wikidocs.net/book/1">
+    <title>02-2 문자열 자료형 - 점프 투 파이썬</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+    <link type="text/css" href="/static/book/css/style_stack.css?v=20210106_02" rel="stylesheet"  media="screen" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/book/js/utils.js"></script>
+    <script type="text/javascript" src="/static/book/js/base.js?v=20210103_02"></script>
+    
+    
+
+<link type="text/css" href="/static/highlight.js/styles/default.css?v=20191108" rel="stylesheet" />
+<link type="text/css" href="/static/apprise/apprise.min.css" rel="stylesheet"  />
+<link type="text/css" href="/static/book/css/markdown_stack.css?v=20191110_04" rel="stylesheet" />
+<link type="text/css" href="/static/treeview/bootstrap-treeview.min.css" rel="stylesheet" />
+
+<script type="text/javascript" src="/static/highlight.js/highlight.pack.js?v=20181204"></script>
+<script type="text/javascript" src="/static/apprise/apprise-1.5.min.js"></script>
+<script type="text/javascript" src="/static/scroll/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="/static/book/js/page.js?v=20210103_03"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- 수식입력 mathjax -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    displayAlign: "left"
+});
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- 수식입력 mathjax -->
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-9470517771012578",
+          enable_page_level_ads: true
+     });
+</script>
+
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2686629-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+    <!--
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    -->
+</head>
+<body>
+
+
+
+
+
+
+<div class="container">
+
+<div class="content row tex2jax_ignore" style="margin-top:0px;">
+
+    <div class="col-sm-3">
+        <div class="row">
+
+
+    <div class="col-sm-3 sidebar" style="padding:0;margin:0;overflow-x: hidden;">
+
+        
+        <div class="row">
+            <div class="col-xs-12" style="border-bottom:solid 1px #ddd;">
+                <button id="toggle_toc_btn" class="btn btn-sm btn-default" style="margin:10px;">목차보기</button>
+                <label for="toc_on" class="small">
+                    <input type="radio" id="toc_on" name="toc_on_off" value="show"> Show
+                </label>
+                <label for="toc_off" class="small">
+                    <input type="radio" id="toc_off" name="toc_on_off" value="hide"> Hide
+                </label>
+            </div>
+        </div>
+        
+
+        <div class="toc toc-checker">
+
+            <!--
+            <div style="padding:15px 10px 15px 15px;background:#f9f9f9;border-bottom:solid 1px #ccc;">
+                <a class="pull-right menu_link menu-toggle" style="cursor:pointer;margin-right:5px;"><span class="glyphicon glyphicon-menu-hamburger" title="메뉴"></span></a>
+                <span class="">
+                    <a href="/" class="menu_link" style="font-family:consolas;">WikiDocs</a>
+                </span>
+            </div>
+            -->
+
+            <div class="row">
+
+                <div class="col-xs-12" style="margin:;padding:0;">
+
+                    <div class="row" style="margin:0;padding:0;border-bottom:solid 1px #ccc;">
+                        <div class="col-xs-10">
+                            <input type="text" id="kw" name="kw" class="input-search" placeholder="검색어를 입력하세요." value="">
+                        </div>
+                        <div class="col-xs-2 clearfix">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group list-group-toc" style="margin:0;">
+
+                <a class="list-group-item " href="/book/1" style="margin:0;">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;" title="점프 투 파이썬">
+                        
+                            <i class="glyphicon glyphicon-book"></i>
+                        
+                        <strong>점프 투 파이썬</strong>
+                    </span>
+                </a>
+
+                
+                <a href="javascript:page(2)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00장 들어가기 전에">
+                        <span style="padding-left:0px">
+                        
+                        00장 들어가기 전에
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4319)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-1 머리말">
+                        <span style="padding-left:20px">
+                        
+                        00-1 머리말
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4320)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-2 저자소개">
+                        <span style="padding-left:20px">
+                        
+                        00-2 저자소개
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(742)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-3 주요변경이력">
+                        <span style="padding-left:20px">
+                        
+                        00-3 주요변경이력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4321)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-4 책 구입 안내">
+                        <span style="padding-left:20px">
+                        
+                        00-4 책 구입 안내
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(5)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01장 파이썬이란 무엇인가?">
+                        <span style="padding-left:0px">
+                        
+                        01장 파이썬이란 무엇인가?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4307)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-1 파이썬이란?">
+                        <span style="padding-left:20px">
+                        
+                        01-1 파이썬이란?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(6)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-2 파이썬의 특징">
+                        <span style="padding-left:20px">
+                        
+                        01-2 파이썬의 특징
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(7)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-3 파이썬으로 무엇을 할 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        01-3 파이썬으로 무엇을 할 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(8)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-4 파이썬 설치하기">
+                        <span style="padding-left:20px">
+                        
+                        01-4 파이썬 설치하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(9)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-5 파이썬 둘러보기">
+                        <span style="padding-left:20px">
+                        
+                        01-5 파이썬 둘러보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17684)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-6 파이썬과 에디터">
+                        <span style="padding-left:20px">
+                        
+                        01-6 파이썬과 에디터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(11)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 파이썬 프로그래밍의 기초, 자료형">
+                        <span style="padding-left:0px">
+                        
+                        02장 파이썬 프로그래밍의 기초, 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(12)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-1 숫자형">
+                        <span style="padding-left:20px">
+                        
+                        02-1 숫자형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(13)" class="list-group-item active">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-2 문자열 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-2 문자열 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(14)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-3 리스트 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-3 리스트 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(15)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-4 튜플 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-4 튜플 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(16)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-5 딕셔너리 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-5 딕셔너리 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1015)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-6 집합 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-6 집합 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-7 불 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-7 불 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(18)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-8 자료형의 값을 저장하는 공간, 변수">
+                        <span style="padding-left:20px">
+                        
+                        02-8 자료형의 값을 저장하는 공간, 변수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42526)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        02장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(19)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 프로그램의 구조를 쌓는다! 제어문">
+                        <span style="padding-left:0px">
+                        
+                        03장 프로그램의 구조를 쌓는다! 제어문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(20)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-1 if문">
+                        <span style="padding-left:20px">
+                        
+                        03-1 if문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(21)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-2 while문">
+                        <span style="padding-left:20px">
+                        
+                        03-2 while문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(22)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-3 for문">
+                        <span style="padding-left:20px">
+                        
+                        03-3 for문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42527)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        03장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(23)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 프로그램의 입력과 출력은 어떻게 해야 할까?">
+                        <span style="padding-left:0px">
+                        
+                        04장 프로그램의 입력과 출력은 어떻게 해야 할까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(24)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-1 함수">
+                        <span style="padding-left:20px">
+                        
+                        04-1 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(25)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-2 사용자 입력과 출력">
+                        <span style="padding-left:20px">
+                        
+                        04-2 사용자 입력과 출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(26)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-3 파일 읽고 쓰기">
+                        <span style="padding-left:20px">
+                        
+                        04-3 파일 읽고 쓰기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42528)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        04장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(27)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 파이썬 날개달기">
+                        <span style="padding-left:0px">
+                        
+                        05장 파이썬 날개달기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(28)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-1 클래스">
+                        <span style="padding-left:20px">
+                        
+                        05-1 클래스
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(29)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-2 모듈">
+                        <span style="padding-left:20px">
+                        
+                        05-2 모듈
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1418)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-3 패키지">
+                        <span style="padding-left:20px">
+                        
+                        05-3 패키지
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(30)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-4 예외 처리">
+                        <span style="padding-left:20px">
+                        
+                        05-4 예외 처리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(32)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-5 내장 함수">
+                        <span style="padding-left:20px">
+                        
+                        05-5 내장 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(33)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-6 라이브러리">
+                        <span style="padding-left:20px">
+                        
+                        05-6 라이브러리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42529)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        05장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(34)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06장 파이썬 프로그래밍, 어떻게 시작해야 할까?">
+                        <span style="padding-left:0px">
+                        
+                        06장 파이썬 프로그래밍, 어떻게 시작해야 할까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(35)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-1 내가 프로그램을 만들 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        06-1 내가 프로그램을 만들 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(40)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-2 3과 5의 배수 합하기">
+                        <span style="padding-left:20px">
+                        
+                        06-2 3과 5의 배수 합하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(38)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-3 게시판 페이징하기">
+                        <span style="padding-left:20px">
+                        
+                        06-3 게시판 페이징하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(36)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-4 간단한 메모장 만들기">
+                        <span style="padding-left:20px">
+                        
+                        06-4 간단한 메모장 만들기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(37)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-5 탭을 4개의 공백으로 바꾸기">
+                        <span style="padding-left:20px">
+                        
+                        06-5 탭을 4개의 공백으로 바꾸기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(39)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-6 하위 디렉터리 검색하기">
+                        <span style="padding-left:20px">
+                        
+                        06-6 하위 디렉터리 검색하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(85800)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-7 파이보">
+                        <span style="padding-left:20px">
+                        
+                        06-7 파이보
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(744)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-8 코딩도장">
+                        <span style="padding-left:20px">
+                        
+                        06-8 코딩도장
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1669)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07장 정규표현식">
+                        <span style="padding-left:0px">
+                        
+                        07장 정규표현식
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1642)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-1 정규 표현식 살펴보기">
+                        <span style="padding-left:20px">
+                        
+                        07-1 정규 표현식 살펴보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-2 정규 표현식 시작하기">
+                        <span style="padding-left:20px">
+                        
+                        07-2 정규 표현식 시작하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4309)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-3 강력한 정규 표현식의 세계로">
+                        <span style="padding-left:20px">
+                        
+                        07-3 강력한 정규 표현식의 세계로
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17114)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08장 종합문제">
+                        <span style="padding-left:0px">
+                        
+                        08장 종합문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(12769)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09장 풀이">
+                        <span style="padding-left:0px">
+                        
+                        09장 풀이
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(78308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="10장 마치며">
+                        <span style="padding-left:0px">
+                        
+                        10장 마치며
+                        </span>
+                    </span>
+                </a>
+                
+            </div>
+        </div>
+
+        
+
+        <input type="hidden" name="request_mobile" id="request_mobile" value="0" />
+
+        <form id="search_form" action="/book/search/1" method="post">
+            <input type="hidden" name="keyword" id="keyword">
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+function myTrim(x) {
+    return x.replace(/^\s+|\s+$/gm,'');
+}
+
+function search_json() {
+    var kw = myTrim($("#kw").val());
+    if(!kw) {
+        return;
+    }
+
+    $.post("/book/search.json", {
+        "keyword": kw
+
+    }, function (json) {
+        if (json.success) {
+            location.href = "/book/search/result/1";
+        }
+
+    }, "json");
+}
+
+$(document).ready(function () {
+    $(".book-search").on("click", function() {
+        $("#search_form").submit();
+    });
+
+    $("#mobile_search_btn").on("click", function() {
+        search_json();
+    });
+
+    $('#kw').keyup(function(e) {
+        if (e.keyCode == 13) {
+            search_json();
+        }
+    });
+
+    $(".home").on("click", function() {
+        location.href = "/";
+    });
+
+    if (typeof(Storage) !== "undefined") {
+        if(localStorage.sidebar == "hidden") {
+            menuToggle();
+        }else {
+            $(".sidebar").show();
+            $(".toc-header").show();
+        }
+    }else {
+        $(".sidebar").show();
+        $(".toc-header").show();
+    }
+
+    $(".toc").css("display", "block");
+    if (typeof(Storage) !== "undefined") {
+        $(".sidebar").scrollTop(localStorage.sp);
+    }
+
+    $(".sidebar").css("overflow-y", "auto");
+
+    $(".toc_item").on("click", function() {
+        var page_id = $(this).attr("page_id");
+        // $(".selected_toc").removeClass("selected_toc");
+        // $(this).addClass("selected_toc");
+        page(page_id);
+
+    });
+
+    $(".menu-toggle").on("click", function() {
+        menuToggle();
+
+        if (typeof(Storage) !== "undefined") {
+            if(localStorage.sidebar == "hidden") {
+                localStorage.sidebar = "show";
+            }else {
+                localStorage.sidebar = "hidden";
+            }
+        }
+    });
+
+    
+    $("input[name=toc_on_off]").on("click", function() {
+        var result = $(this).val();
+        if (typeof(Storage) !== "undefined") {
+            localStorage.toc = result;
+        }
+    });
+    if (typeof(Storage) !== "undefined") {
+        if(localStorage.toc == "hide") {
+            $('#toc_off').prop('checked', true);
+            $(".toc-checker").hide();
+        }else {
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+        }
+    }
+    
+
+    $("#load_content").show();
+});
+
+
+function menuToggle(no_sidebar) {
+    if(!no_sidebar) {
+        $(".sidebar").toggle();
+        $(".toc-header").toggle();
+    }
+    $("#load_content").toggleClass("col-sm-offset-3");
+    $("#load_content").toggleClass("col-sm-9");
+    $("#load_content").toggleClass("col-sm-12");
+    $("#load_content").toggleClass("sidebar-padding");
+    $(".prev_next_indicator").toggle();
+    $(".menu-group").toggle();
+}
+
+function page(no) {
+    var scrollpos = $(".sidebar").scrollTop();
+    if (typeof(Storage) !== "undefined") {
+        localStorage.sp = scrollpos;
+    }
+
+    location.href = "/"+no;
+    return false;
+
+    $(".selected_toc").removeClass("selected_toc");
+    $(".toc_item").each(function() {
+        var page_id = $(this).attr("page_id");
+        if(page_id == no) {
+            $(this).addClass("selected_toc");
+        }
+    });
+
+    var url = "/load/"+no;
+    $("#load_content").load(url, function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success") {
+            // alert("External content loaded successfully!");
+            $("#load_content").scrollTop(0);
+            window.history.pushState("object or string", "02-2 문자열 자료형", "/"+no);
+        }
+        if(statusTxt == "error") {
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        }
+    });
+
+}
+</script>
+
+
+
+    </div>
+
+    
+    <div class="page col-sm-offset-3 col-sm-9" id="load_content" style="display:none;margin-top:0px;">
+        
+
+
+
+
+
+
+
+<div class="btn-group pull-right menu-group" role="group">
+    <small>
+        <a class="menu_link menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" title="메뉴"></span></a>
+    </small>
+</div>
+<div class="menu-wikidocs">
+</div>
+
+
+<div class="clearfix page-depth">
+    <ol class="breadcrumb pull-left">
+        <li><small><a href="/book/1"><i class="glyphicon glyphicon-book"></i> <strong>점프 투 파이썬</strong></a></small></li>
+        
+        <li><small><a href="/11">02장 파이썬 프로그래밍의 기초, 자료형</a></small></li>
+        
+        <li><small><a href="/13">02-2 문자열 자료형</a></small></li>
+        
+    </ol>
+    
+    <ol class="breadcrumb pull-right">
+        <li><a href="/"><small class=""><i class="glyphicon glyphicon-home"></i> WikiDocs</small></a></li>
+    </ol>
+    
+</div>
+
+
+<h1 class="page-subject">
+    02-2 문자열 자료형
+    
+</h1>
+
+<div class="page-content tex2jax_process">
+    <div class="toc">
+<ul>
+<li><a href="#_1">문자열이란?</a></li>
+<li><a href="#_2">문자열은 어떻게 만들고 사용할까?</a><ul>
+<li><a href="#_3">문자열 안에 작은따옴표나 큰따옴표를 포함시키고 싶을 때</a></li>
+<li><a href="#_4">여러 줄인 문자열을 변수에 대입하고 싶을 때</a></li>
+</ul>
+</li>
+<li><a href="#_5">문자열 연산하기</a><ul>
+<li><a href="#concatenation">문자열 더해서 연결하기(Concatenation)</a></li>
+<li><a href="#_6">문자열 곱하기</a></li>
+<li><a href="#_7">문자열 곱하기 응용</a></li>
+<li><a href="#_8">문자열 길이 구하기</a></li>
+</ul>
+</li>
+<li><a href="#_9">문자열 인덱싱과 슬라이싱</a><ul>
+<li><a href="#_10">문자열 인덱싱이란?</a></li>
+<li><a href="#_11">문자열 인덱싱 활용하기</a></li>
+<li><a href="#_12">문자열 슬라이싱이란?</a></li>
+<li><a href="#_13">문자열을 슬라이싱하는 방법</a></li>
+<li><a href="#_14">슬라이싱으로 문자열 나누기</a></li>
+</ul>
+</li>
+<li><a href="#_15">문자열 포매팅</a><ul>
+<li><a href="#_16">문자열 포매팅 따라 하기</a></li>
+<li><a href="#_17">문자열 포맷 코드</a></li>
+<li><a href="#_18">포맷 코드와 숫자 함께 사용하기</a></li>
+<li><a href="#format">format 함수를 사용한 포매팅</a></li>
+<li><a href="#f">f 문자열 포매팅</a></li>
+</ul>
+</li>
+<li><a href="#_19">문자열 관련 함수들</a><ul>
+<li><a href="#count">문자 개수 세기(count)</a></li>
+<li><a href="#1find">위치 알려주기1(find)</a></li>
+<li><a href="#2index">위치 알려주기2(index)</a></li>
+<li><a href="#join">문자열 삽입(join)</a></li>
+<li><a href="#upper">소문자를 대문자로 바꾸기(upper)</a></li>
+<li><a href="#lower">대문자를 소문자로 바꾸기(lower)</a></li>
+<li><a href="#lstrip">왼쪽 공백 지우기(lstrip)</a></li>
+<li><a href="#rstrip">오른쪽 공백 지우기(rstrip)</a></li>
+<li><a href="#strip">양쪽 공백 지우기(strip)</a></li>
+<li><a href="#replace">문자열 바꾸기(replace)</a></li>
+<li><a href="#split">문자열 나누기(split)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="_1">문자열이란?</h2>
+<p>문자열(String)이란 문자, 단어 등으로 구성된 문자들의 집합을 의미한다. 예를 들어 다음과 같은 것들이 문자열이다.</p>
+<pre><code class="no-highlight">&quot;Life is too short, You need Python&quot;
+&quot;a&quot;
+&quot;123&quot;
+</code></pre>
+
+<p>위 문자열 예문을 보면 모두 큰따옴표(" ")로 둘러싸여 있다. "123은 숫자인데 왜 문자열이지?"라는 의문이 드는 독자도 있을 것이다. 따옴표로 둘러싸여 있으면 모두 문자열이라고 보면 된다.</p>
+<h2 id="_2">문자열은 어떻게 만들고 사용할까?</h2>
+<p>위 예에서는 문자열을 만들 때 큰따옴표(" ")만을 사용했지만 이 외에도 문자열을 만드는 방법은 3가지가 더 있다. 파이썬에서 문자열을 만드는 방법은 총 4가지이다.</p>
+<p><strong>1. 큰따옴표(<code>"</code>)로 양쪽 둘러싸기</strong></p>
+<pre><code class="python">&quot;Hello World&quot;
+</code></pre>
+
+<p><strong>2. 작은따옴표(<code>'</code>)로 양쪽 둘러싸기</strong></p>
+<pre><code class="python">'Python is fun'
+</code></pre>
+
+<p><strong>3. 큰따옴표 3개를 연속(<code>"""</code>)으로 써서 양쪽 둘러싸기</strong></p>
+<pre><code class="python">&quot;&quot;&quot;Life is too short, You need python&quot;&quot;&quot;
+</code></pre>
+
+<p><strong>4. 작은따옴표 3개를 연속(<code>'''</code>)으로 써서 양쪽 둘러싸기</strong></p>
+<pre><code class="python">'''Life is too short, You need python'''
+</code></pre>
+
+<p>단순함이 자랑인 파이썬이 문자열을 만드는 방법은 왜 4가지나 가지게 되었을까? 그 이유에 대해 알아보자.</p>
+<h3 id="_3">문자열 안에 작은따옴표나 큰따옴표를 포함시키고 싶을 때</h3>
+<p>문자열을 만들어 주는 주인공은 작은따옴표(')와 큰따옴표(")이다. 그런데 문자열 안에도 작은따옴표와 큰따옴표가 들어 있어야 할 경우가 있다. 이때는 좀 더 특별한 기술이 필요하다. 예제를 하나씩 살펴보면서 원리를 익혀 보자.</p>
+<p><strong>1. 문자열에 작은따옴표 (<code>'</code>) 포함시키기</strong></p>
+<pre><code class="no-highlight">Python's favorite food is perl
+</code></pre>
+
+<p>위와 같은 문자열을 food 변수에 저장하고 싶다고 가정하자. 문자열 중 Python's에 작은따옴표(')가 포함되어 있다.</p>
+<p>이럴 때는 다음과 같이 문자열을 큰따옴표(")로 둘러싸야 한다. 큰따옴표 안에 들어 있는 작은따옴표는 문자열을 나타내기 위한 기호로 인식되지 않는다.</p>
+<pre><code class="python">&gt;&gt;&gt; food = &quot;Python's favorite food is perl&quot;
+</code></pre>
+
+<p>프롬프트에 food를 입력해서 결과를 확인하자. 변수에 저장된 문자열이 그대로 출력되는 것을 볼 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; food
+&quot;Python's favorite food is perl&quot;
+</code></pre>
+
+<p>시험 삼아 다음과 같이 큰따옴표(")가 아닌 작은따옴표(')로 문자열을 둘러싼 후 다시 실행해 보자. 'Python'이 문자열로 인식되어 구문 오류(SyntaxError)가 발생할 것이다.</p>
+<pre><code class="no-highlight">&gt;&gt;&gt; food = 'Python's favorite food is perl'
+  File &quot;&lt;stdin&gt;&quot;, line 1
+    food = 'Python's favorite food is perl'
+                   ^
+SyntaxError: invalid syntax
+</code></pre>
+
+<p><strong>2. 문자열에 큰따옴표 (<code>"</code>) 포함시키기</strong></p>
+<pre><code class="no-highlight">&quot;Python is very easy.&quot; he says.
+</code></pre>
+
+<p>위와 같이 큰따옴표(")가 포함된 문자열이라면 어떻게 해야 큰따옴표가 제대로 표현될까?</p>
+<p>다음과 같이 문자열을 작은따옴표(')로 둘러싸면 된다.</p>
+<pre><code class="python">&gt;&gt;&gt; say = '&quot;Python is very easy.&quot; he says.'
+</code></pre>
+
+<p>이렇게 작은따옴표(') 안에 사용된 큰따옴표(")는 문자열을 만드는 기호로 인식되지 않는다.</p>
+<p><strong>3. 백슬래시(<code>\</code>)를 사용해서 작은따옴표(<code>'</code>)와 큰따옴표(<code>"</code>)를 문자열에 포함시키기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; food = 'Python\'s favorite food is perl'
+&gt;&gt;&gt; say = &quot;\&quot;Python is very easy.\&quot; he says.&quot;
+</code></pre>
+
+<p>작은따옴표(')나 큰따옴표(")를 문자열에 포함시키는 또 다른 방법은 백슬래시(<code>\</code>)를 사용하는 것이다. 즉 백슬래시(<code>\</code>)를 작은따옴표(')나 큰따옴표(") 앞에 삽입하면 백슬래시(<code>\</code>) 뒤의 작은따옴표(')나 큰따옴표(")는 문자열을 둘러싸는 기호의 의미가 아니라 문자 ('), (") 그 자체를 뜻하게 된다.</p>
+<p>어떤 방법을 사용해서 문자열 안에 작은따옴표(')와 큰따옴표(")를 포함시킬지는 각자의 선택이다. 대화형 인터프리터를 실행한 후 위 예문을 꼭 직접 작성해 보자.</p>
+<h3 id="_4">여러 줄인 문자열을 변수에 대입하고 싶을 때</h3>
+<p>문자열이 항상 한 줄짜리만 있는 것은 아니다. 다음과 같이 여러 줄의 문자열을 변수에 대입하려면 어떻게 처리해야 할까?</p>
+<pre><code class="no-highlight">Life is too short
+You need python
+</code></pre>
+
+<p><strong>1. 줄을 바꾸기 위한 이스케이프 코드 <code>\n</code> 삽입하기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; multiline = &quot;Life is too short\nYou need python&quot;
+</code></pre>
+
+<p>위 예처럼 줄바꿈 문자 <code>\n</code>을 삽입하는 방법이 있지만 읽기에 불편하고 줄이 길어지는 단점이 있다.</p>
+<p><strong>2. 연속된 작은따옴표 3개(<code>'''</code>) 또는 큰따옴표 3개(<code>"""</code>) 사용하기</strong></p>
+<p>위 1번의 단점을 극복하기 위해 파이썬에서는 다음과 같이 작은따옴표 3개(''') 또는 큰따옴표 3개(""")를 사용한다.</p>
+<pre><code class="python">&gt;&gt;&gt; multiline='''
+... Life is too short
+... You need python
+... '''
+</code></pre>
+
+<p><em>작은따옴표 3개를 사용한 경우</em></p>
+<pre><code class="python">&gt;&gt;&gt; multiline=&quot;&quot;&quot;
+... Life is too short
+... You need python
+... &quot;&quot;&quot;
+</code></pre>
+
+<p><em>큰따옴표 3개를 사용한 경우</em></p>
+<p>print(multiline)을 입력해서 어떻게 출력되는지 확인해 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; print(multiline)
+Life is too short
+You need python
+</code></pre>
+
+<p>두 경우 모두 결과는 동일하다. 위 예에서도 확인할 수 있듯이 문자열이 여러 줄인 경우 이스케이프 코드를 쓰는 것보다 따옴표를 연속해서 쓰는 것이 훨씬 깔끔하다.</p>
+<p></p><div class="tip"><p></p>
+<p><strong>[이스케이프 코드란?]</strong></p>
+<p>문자열 예제에서 여러 줄의 문장을 처리할 때 백슬래시 문자와 소문자 n을 조합한 <code>\n</code> 이스케이프 코드를 사용했다. 이스케이프 코드란 프로그래밍할 때 사용할 수 있도록 미리 정의해 둔 "문자 조합"이다. 주로 출력물을 보기 좋게 정렬하는 용도로 사용한다. 몇 가지 이스케이프 코드를 정리하면 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>코드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\n</code></td>
+<td>문자열 안에서 줄을 바꿀 때 사용</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>문자열 사이에 탭 간격을 줄 때 사용</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>문자 <code>\</code>를 그대로 표현할 때 사용</td>
+</tr>
+<tr>
+<td><code>\'</code></td>
+<td>작은따옴표(<code>'</code>)를 그대로 표현할 때 사용</td>
+</tr>
+<tr>
+<td><code>\"</code></td>
+<td>큰따옴표(<code>"</code>)를 그대로 표현할 때 사용</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>캐리지 리턴(줄 바꿈 문자, 현재 커서를 가장 앞으로 이동)</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>폼 피드(줄 바꿈 문자, 현재 커서를 다음 줄로 이동)</td>
+</tr>
+<tr>
+<td><code>\a</code></td>
+<td>벨 소리(출력할 때 PC 스피커에서 '삑' 소리가 난다)</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>백 스페이스</td>
+</tr>
+<tr>
+<td><code>\000</code></td>
+<td>널 문자</td>
+</tr>
+</tbody>
+</table>
+<p>이중에서 활용빈도가 높은 것은 <code>\n</code>, <code>\t</code>, <code>\\</code>, <code>\'</code>, <code>\"</code>이다. 나머지는 프로그램에서 잘 사용하지 않는다.</p>
+<p></p></div><p></p>
+<h2 id="_5">문자열 연산하기</h2>
+<p>파이썬에서는 문자열을 더하거나 곱할 수 있다. 다른 언어에서는 쉽게 찾아볼 수 없는 재미있는 기능으로, 우리 생각을 그대로 반영해 주는 파이썬만의 장점이라고 할 수 있다. 문자열을 더하거나 곱하는 방법에 대해 알아보자.</p>
+<h3 id="concatenation">문자열 더해서 연결하기(Concatenation)</h3>
+<pre><code class="python">&gt;&gt;&gt; head = &quot;Python&quot;
+&gt;&gt;&gt; tail = &quot; is fun!&quot;
+&gt;&gt;&gt; head + tail
+'Python is fun!'
+</code></pre>
+
+<p>위 소스 코드에서 세 번째 줄을 보자. 복잡하게 생각하지 말고 눈에 보이는 대로 생각해 보자. "Python"이라는 head 변수와 " is fun!"이라는 tail 변수를 더한 것이다. 결과는 'Python is fun!'이다. 즉 head와 tail 변수가 +에 의해 합쳐진 것이다.</p>
+<p>직접 실행해 보고 결괏값이 제시한 것과 똑같이 나오는지 확인해 보자.</p>
+<h3 id="_6">문자열 곱하기</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;python&quot;
+&gt;&gt;&gt; a * 2
+'pythonpython'
+</code></pre>
+
+<p>위 소스 코드에서 <code>*</code>의 의미는 우리가 일반적으로 사용하는 숫자 곱하기의 의미와는 다르다. 위 소스 코드에서 <code>a * 2</code> 문장은 a를 두 번 반복하라는 뜻이다. 즉 <code>*</code>는 문자열의 반복을 뜻하는 의미로 사용되었다. 굳이 코드의 의미를 설명할 필요가 없을 정도로 직관적이다.</p>
+<h3 id="_7">문자열 곱하기 응용</h3>
+<p>문자열 곱하기를 좀 더 응용해 보자. 다음 소스를 IDLE 에디터를 열고 작성해 보자.</p>
+<pre><code class="python"># multistring.py
+
+print(&quot;=&quot; * 50)
+print(&quot;My Program&quot;)
+print(&quot;=&quot; * 50)
+</code></pre>
+
+<p>입력한 소스는 <code>C:\doit</code> 디렉터리에 파일 이름 multistring.py로 저장하자.</p>
+<p>이제 프로그램을 실행해 보자. [<code>윈도우 + R</code>(실행) → cmd 입력 → <code>Enter</code>]를 눌러 명령 프롬프트 창을 열고 다음을 따라 해 보자. 결괏값이 다음과 같이 나타날 것이다.</p>
+<pre><code class="no-highlight">C:\Users&gt;cd C:\doit
+C:\doit&gt;python multistring.py
+==================================================
+My Program
+==================================================
+</code></pre>
+
+<p>이런 식의 표현은 앞으로 자주 사용하게 될 것이다. 프로그램을 만들어 실행시켰을 때 출력되는 화면 제일 위쪽에 프로그램 제목을 이와 같이 표시하면 보기 좋지 않겠는가?</p>
+<h3 id="_8">문자열 길이 구하기</h3>
+<p>문자열의 길이는 다음과 같이 len 함수를 사용하면 구할 수 있다. len 함수는 print 함수처럼 파이썬의 기본 내장 함수로 별다른 설정 없이 바로 사용할 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short&quot;
+&gt;&gt;&gt; len(a)
+17
+</code></pre>
+
+<h2 id="_9">문자열 인덱싱과 슬라이싱</h2>
+<p>인덱싱(Indexing)이란 무엇인가를 "가리킨다"는 의미이고, 슬라이싱(Slicing)은 무엇인가를 "잘라낸다"는 의미이다. 이런 의미를 생각하면서 다음 내용을 살펴보자.</p>
+<h3 id="_10">문자열 인덱싱이란?</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short, You need Python&quot;
+</code></pre>
+
+<p>위 소스 코드에서 변수 a에 저장한 문자열의 각 문자마다 번호를 매겨 보면 다음과 같다.</p>
+<pre><code class="python">Life is too short, You need Python
+0         1         2         3 
+0123456789012345678901234567890123
+</code></pre>
+
+<p>"Life is too short, You need Python" 문자열에서 L은 첫 번째 자리를 뜻하는 숫자 0, 바로 다음인 i는 1 이런 식으로 계속 번호를 붙인 것이다. 중간에 있는 short의 s는 12가 된다.</p>
+<p>이제 다음 예를 실행해 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short, You need Python&quot;
+&gt;&gt;&gt; a[3]
+'e'
+</code></pre>
+
+<p>a[3]이 뜻하는 것은 a라는 문자열의 네 번째 문자 e를 말한다. 프로그래밍을 처음 접하는 독자라면 a[3]에서 숫자 3이 왜 네 번째 문자를 뜻하는지 의아할 수도 있다. 사실 이 부분이 헷갈릴 수 있는 부분인데, 이렇게 생각하면 쉽게 알 수 있을 것이다.</p>
+<p><strong>"파이썬은 0부터 숫자를 센다."</strong></p>
+<p>따라서 파이썬은 위 문자열을 다음과 같이 바라보고 있다.</p>
+<pre><code class="python">a[0]:'L', a[1]:'i', a[2]:'f', a[3]:'e', a[4]:' ', ...
+</code></pre>
+
+<p>0부터 숫자를 센다는 것이 처음에는 익숙하지 않겠지만 계속 사용하다 보면 자연스러워질 것이다. 위 예에서 볼 수 있듯이 <code>a[번호]</code>는 문자열 안의 특정한 값을 뽑아내는 역할을 한다. 이러한 작업을 인덱싱이라고 한다.</p>
+<h3 id="_11">문자열 인덱싱 활용하기</h3>
+<p>인덱싱 예를 몇 가지 더 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short, You need Python&quot;
+&gt;&gt;&gt; a[0]
+'L'
+&gt;&gt;&gt; a[12]
+'s'
+&gt;&gt;&gt; a[-1]
+'n'
+</code></pre>
+
+<p>앞의 a[0]과 a[12]는 쉽게 이해할 수 있는데 마지막의 a[-1]이 뜻하는 것은 뭘까? 눈치 빠른 독자는 이미 알아챘겠지만 문자열을 뒤에서부터 읽기 위해 마이너스(-) 기호를 붙이는 것이다. 즉 a[-1]은 뒤에서부터 세어 첫 번째가 되는 문자를 말한다. a의 값은 "Life is too short, You need Python" 문자열이므로 뒤에서부터 첫 번째 문자는 가장 마지막 문자 'n'이다.</p>
+<p>뒤에서부터 첫 번째 문자를 표시할 때도 0부터 세어 "a[-0]이라고 해야 하지 않을까?"라는 의문이 들 수도 있겠지만 잘 생각해 보자. 0과 -0은 똑같은 것이기 때문에 a[-0]은 a[0]과 똑같은 값을 보여 준다.</p>
+<pre><code class="python">&gt;&gt;&gt; a[-0]
+'L'
+</code></pre>
+
+<p>계속해서 몇 가지 예를 더 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; a[-2]
+'o'
+&gt;&gt;&gt; a[-5]
+'y'
+</code></pre>
+
+<p>위 첫 번째 예는 뒤에서부터 두 번째 문자를 가리키는 것이고, 두 번째 예는 뒤에서부터 다섯 번째 문자를 가리키는 것이다.</p>
+<h3 id="_12">문자열 슬라이싱이란?</h3>
+<p>그렇다면 "Life is too short, You need Python" 문자열에서 단순히 한 문자만을 뽑아내는 것이 아니라 'Life' 또는 'You' 같은 단어를 뽑아내는 방법은 없을까?</p>
+<p>다음과 같이 하면 된다.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short, You need Python&quot;
+&gt;&gt;&gt; b = a[0] + a[1] + a[2] + a[3]
+&gt;&gt;&gt; b
+'Life'
+</code></pre>
+
+<p>위 방법처럼 단순하게 접근할 수도 있지만 파이썬에서는 더 좋은 방법을 제공한다. 바로 슬라이싱(Slicing) 기법이다. </p>
+<blockquote>
+<p>※ 인덱싱 기법과 슬라이싱 기법은 뒤에서 배울 자료형인 리스트나 튜플에서도 사용할 수 있다.</p>
+</blockquote>
+<p>위 예는 슬라이싱 기법으로 다음과 같이 간단하게 처리할 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short, You need Python&quot;
+&gt;&gt;&gt; a[0:4]
+'Life'
+</code></pre>
+
+<p>a[0:4]가 뜻하는 것은 a 문자열, 즉 "Life is too short, You need Python" 문장에서 자리 번호 0부터 4까지의 문자를 뽑아낸다는 뜻이다. 하지만 다음과 같은 의문이 생길 것이다. a[0]은 L, a[1]은 i, a[2]는 f, a[3]은 e니까 a[0:3]으로도 Life라는 단어를 뽑아낼 수 있지 않을까? 다음 예로 확인해 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; a[0:3]
+'Lif'
+</code></pre>
+
+<p>이렇게 되는 이유는 간단하다. 슬라이싱 기법으로 a[시작 번호:끝 번호]를 지정할 때 끝 번호에 해당하는 것은 포함하지 않기 때문이다. a[0:3]을 수식으로 나타내면 다음과 같다.</p>
+<pre><code class="python">0 &lt;= a &lt; 3
+</code></pre>
+
+<p>이 수식을 만족하는 것은 a[0], a[1], a[2]이다. 따라서 a[0:3]은 'Lif'이고 a[0:4]는 'Life'가 되는 것이다. 이 부분이 문자열 연산에서 가장 혼동하기 쉬운 부분이니 장 마지막의 연습 문제를 많이 풀어 보면서 몸에 익히기 바란다.</p>
+<h3 id="_13">문자열을 슬라이싱하는 방법</h3>
+<p>슬라이싱의 예를 조금 더 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; a[0:5]
+'Life '
+</code></pre>
+
+<p>위 예는 a[0] + a[1] + a[2] + a[3] + a[4]와 동일하다. a[4]는 공백 문자이기 때문에 'Life'가 아닌 'Life '가 출력된다. 공백 문자 역시 L, i, f, e 같은 문자와 동일하게 취급되는 것을 잊지 말자. 'Life'와 'Life '는 완전히 다른 문자열이다.</p>
+<p>슬라이싱할 때 항상 시작 번호가 0일 필요는 없다.</p>
+<pre><code class="python">&gt;&gt;&gt; a[0:2]
+'Li'
+&gt;&gt;&gt; a[5:7]
+'is'
+&gt;&gt;&gt; a[12:17]
+'short'
+</code></pre>
+
+<p>a[시작 번호:끝 번호]에서 끝 번호 부분을 생략하면 시작 번호부터 그 문자열의 끝까지 뽑아낸다.</p>
+<pre><code class="python">&gt;&gt;&gt; a[19:]
+'You need Python'
+</code></pre>
+
+<p>a[시작 번호:끝 번호]에서 시작 번호를 생략하면 문자열의 처음부터 끝 번호까지 뽑아낸다.</p>
+<pre><code class="python">&gt;&gt;&gt; a[:17]
+'Life is too short'
+</code></pre>
+
+<p>a[시작 번호:끝 번호]에서 시작 번호와 끝 번호를 생략하면 문자열의 처음부터 끝까지를 뽑아낸다.</p>
+<pre><code class="python">&gt;&gt;&gt; a[:]
+'Life is too short, You need Python'
+</code></pre>
+
+<p>슬라이싱에서도 인덱싱과 마찬가지로 마이너스(-) 기호를 사용할 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; a[19:-7]
+'You need'
+</code></pre>
+
+<p>위 소스 코드에서 a[19:-7]이 뜻하는 것은 a[19]에서부터 a[-8]까지를 말한다. 이 역시 a[-7]은 포함하지 않는다.</p>
+<h3 id="_14">슬라이싱으로 문자열 나누기</h3>
+<p>다음은 자주 사용하게 되는 슬라이싱 기법 중 하나이다.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;20010331Rainy&quot;
+&gt;&gt;&gt; date = a[:8]
+&gt;&gt;&gt; weather = a[8:]
+&gt;&gt;&gt; date
+'20010331'
+&gt;&gt;&gt; weather
+'Rainy'
+</code></pre>
+
+<p>위 예는 문자열 a를 두 부분으로 나누는 기법이다. 숫자 8을 기준으로 문자열 a를 양쪽으로 한 번씩 슬라이싱했다. a[:8]은 a[8]이 포함되지 않고, a[8:]은 a[8]을 포함하기 때문에 8을 기준으로 해서 두 부분으로 나눌 수 있는 것이다. 위 예에서는 "20010331Rainy" 문자열을 날짜를 나타내는 부분인 '20010331'과 날씨를 나타내는 부분인 'Rainy'로 나누는 방법을 보여 준다.</p>
+<p>위 문자열 "20010331Rainy"를 연도 2001, 월과 일을 나타내는 0331, 날씨를 나타내는 Rainy의 세 부분으로 나누려면 다음과 같이 할 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;20010331Rainy&quot;
+&gt;&gt;&gt; year = a[:4]
+&gt;&gt;&gt; day = a[4:8]
+&gt;&gt;&gt; weather = a[8:]
+&gt;&gt;&gt; year
+'2001'
+&gt;&gt;&gt; day
+'0331'
+&gt;&gt;&gt; weather
+'Rainy'
+</code></pre>
+
+<p>위 예는 숫자 4와 8로 "20010331Rainy" 문자열을 세 부분으로 나누는 방법을 보여 준다.</p>
+<p>지금까지 인덱싱과 슬라이싱에 대해서 살펴보았다. 인덱싱과 슬라이싱은 프로그래밍을 할때 매우 자주 사용하는 기법이니 꼭 반복해서 연습해 두자.</p>
+<p></p><div class="tip"><p></p>
+<p><strong>["Pithon"이라는 문자열을 "Python"으로 바꾸려면?]</strong></p>
+<p>Pithon 문자열을 Python으로 바꾸려면 어떻게 해야 할까? 제일 먼저 떠오르는 생각은 다음과 같을 것이다.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Pithon&quot;
+&gt;&gt;&gt; a[1]
+'i'
+&gt;&gt;&gt; a[1] = 'y'
+</code></pre>
+
+<p>즉 a 변수에 "Pithon" 문자열을 대입하고 a[1]의 값이 i니까 a[1]을 y로 바꾸어 준다는 생각이다. 하지만 결과는 어떻게 나올까?</p>
+<p>당연히 오류가 발생한다. 왜냐하면 문자열의 요솟값은 바꿀 수 있는 값이 아니기 때문이다(문자열 자료형은 그 요솟값을 변경할 수 없다. 그래서 immutable한 자료형이라고도 부른다).</p>
+<p>하지만 앞에서 살펴본 슬라이싱 기법을 사용하면 Pithon 문자열을 사용해 Python 문자열을 만들 수 있다.</p>
+<p>다음 예를 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Pithon&quot;
+&gt;&gt;&gt; a[:1]
+'P'
+&gt;&gt;&gt; a[2:]
+'thon'
+&gt;&gt;&gt; a[:1] + 'y' + a[2:]
+'Python'
+</code></pre>
+
+<p>위 예에서 볼 수 있듯이 슬라이싱을 사용하면 "Pithon" 문자열을 'P' 부분과 'thon' 부분으로 나눌 수 있기 때문에 그 사이에 'y' 문자를 추가하여 'Python'이라는 새로운 문자열을 만들 수 있다.</p>
+<p></p></div><p></p>
+<h2 id="_15">문자열 포매팅</h2>
+<p>문자열에서 또 하나 알아야 할 것으로는 문자열 포매팅(Formatting)이 있다. 이것을 공부하기 전에 다음과 같은 문자열을 출력하는 프로그램을 작성했다고 가정해 보자.</p>
+<p><strong>"현재 온도는 18도입니다."</strong></p>
+<p>시간이 지나서 20도가 되면 다음 문장을 출력한다.</p>
+<p><strong>"현재 온도는 20도입니다"</strong></p>
+<p>위 두 문자열은 모두 같은데 20이라는 숫자와 18이라는 숫자만 다르다. 이렇게 문자열 안의 특정한 값을 바꿔야 할 경우가 있을 때 이것을 가능하게 해주는 것이 바로 문자열 포매팅 기법이다.</p>
+<p>쉽게 말해 문자열 포매팅이란 문자열 안에 어떤 값을 삽입하는 방법이다. 다음 예를 직접 실행해 보면서 그 사용법을 알아보자.</p>
+<h3 id="_16">문자열 포매팅 따라 하기</h3>
+<p><strong>1. 숫자 바로 대입</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;I eat %d apples.&quot; % 3
+'I eat 3 apples.'
+</code></pre>
+
+<p>위 예제의 결괏값을 보면 알겠지만 위 예제는 문자열 안에 정수 3을 삽입하는 방법을 보여 준다. 문자열 안에서 숫자를 넣고 싶은 자리에 %d 문자를 넣어 주고, 삽입할 숫자 3은 가장 뒤에 있는 % 문자 다음에 써 넣었다. 여기에서 %d는 문자열 포맷 코드라고 부른다.</p>
+<p><strong>2. 문자열 바로 대입</strong></p>
+<p>문자열 안에 꼭 숫자만 넣으라는 법은 없다. 이번에는 숫자 대신 문자열을 넣어 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;I eat %s apples.&quot; % &quot;five&quot;
+'I eat five apples.'
+</code></pre>
+
+<p>위 예제에서는 문자열 안에 또 다른 문자열을 삽입하기 위해 앞에서 사용한 문자열 포맷 코드 %d가 아닌 %s를 썼다. 어쩌면 눈치 빠른 독자는 벌써 유추하였을 것이다. 숫자를 넣기 위해서는 %d를 써야 하고, 문자열을 넣기 위해서는 %s를 써야 한다는 사실을 말이다.</p>
+<blockquote>
+<p>※ 문자열을 대입할 때는 앞에서 배운 것처럼 큰따옴표나 작은따옴표를 반드시 써주어야 한다.</p>
+</blockquote>
+<p><strong>3. 숫자 값을 나타내는 변수로 대입</strong></p>
+<pre><code class="python">&gt;&gt;&gt; number = 3
+&gt;&gt;&gt; &quot;I eat %d apples.&quot; % number
+'I eat 3 apples.'
+</code></pre>
+
+<p>1번처럼 숫자를 바로 대입하나 위 예제처럼 숫자 값을 나타내는 변수를 대입하나 결과는 같다.</p>
+<p><strong>4. 2개 이상의 값 넣기</strong></p>
+<p>그렇다면 문자열 안에 1개가 아닌 여러 개의 값을 넣고 싶을 땐 어떻게 해야 할까?</p>
+<pre><code class="python">&gt;&gt;&gt; number = 10
+&gt;&gt;&gt; day = &quot;three&quot;
+&gt;&gt;&gt; &quot;I ate %d apples. so I was sick for %s days.&quot; % (number, day)
+'I ate 10 apples. so I was sick for three days.'
+</code></pre>
+
+<p>위 예문처럼 2개 이상의 값을 넣으려면 마지막 % 다음 괄호 안에 콤마(,)로 구분하여 각각의 값을 넣어 주면 된다.</p>
+<h3 id="_17">문자열 포맷 코드</h3>
+<p>문자열 포매팅 예제에서는 대입해 넣는 자료형으로 정수와 문자열을 사용했으나 이 외에도 다양한 것을 대입할 수 있다. 문자열 포맷 코드로는 다음과 같은 것이 있다.</p>
+<table>
+<thead>
+<tr>
+<th>코드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%s</td>
+<td>문자열(String)</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>문자 1개(character)</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>정수(Integer)</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>부동소수(floating-point)</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>8진수</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>16진수</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>Literal % (문자 <code>%</code> 자체)</td>
+</tr>
+</tbody>
+</table>
+<p>여기에서 재미있는 것은 %s 포맷 코드인데, 이 코드는 어떤 형태의 값이든 변환해 넣을 수 있다. 무슨 말인지 예를 통해 확인해 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;I have %s apples&quot; % 3
+'I have 3 apples'
+&gt;&gt;&gt; &quot;rate is %s&quot; % 3.234
+'rate is 3.234'
+</code></pre>
+
+<p>3을 문자열 안에 삽입하려면 %d를 사용하고, 3.234를 삽입하려면 %f를 사용해야 한다. 하지만 %s를 사용하면 이런 것을 생각하지 않아도 된다. 왜냐하면 %s는 자동으로 % 뒤에 있는 값을 문자열로 바꾸기 때문이다.</p>
+<p></p><div class="tip"><p></p>
+<p><strong>[포매팅 연산자 %d와 %를 같이 쓸 때는 %%를 쓴다]</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;Error is %d%.&quot; % 98
+</code></pre>
+
+<p>위 예문의 결괏값으로 당연히 "Error is 98%."가 출력될 것이라고 예상하겠지만 파이썬은 값이 올바르지 않다는 값 오류(Value Error) 메시지를 보여 준다.</p>
+<pre><code class="no-highlight">Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ValueError: incomplete format
+</code></pre>
+
+<p>이유는 문자열 포맷 코드인 %d와 %가 같은 문자열 안에 존재하는 경우, %를 나타내려면 반드시 %%로 써야 하는 법칙이 있기 때문이다. 이 점은 꼭 기억해 두어야 한다. 하지만 문자열 안에 %d 같은 포매팅 연산자가 없으면 %는 홀로 쓰여도 상관이 없다.</p>
+<p>따라서 위 예를 제대로 실행하려면 다음과 같이 해야 한다.</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;Error is %d%%.&quot; % 98
+'Error is 98%.'
+</code></pre>
+
+<p></p></div><p></p>
+<h3 id="_18">포맷 코드와 숫자 함께 사용하기</h3>
+<p>위에서 보았듯이 %d, %s 등의 포맷 코드는 문자열 안에 어떤 값을 삽입하기 위해 사용한다. 하지만 포맷 코드를 숫자와 함께 사용하면 더 유용하게 사용할 수 있다. 다음 예를 보고 따라해 보자.</p>
+<p><strong>1. 정렬과 공백</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;%10s&quot; % &quot;hi&quot;
+'        hi'
+</code></pre>
+
+<p>앞의 예문에서 <code>%10s</code>는 전체 길이가 10개인 문자열 공간에서 대입되는 값을 오른쪽으로 정렬하고 그 앞의 나머지는 공백으로 남겨 두라는 의미이다.</p>
+<p>그렇다면 반대쪽인 왼쪽 정렬은 <code>%-10s</code>가 될 것이다. 확인해 보자.</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;%-10sjane.&quot; % 'hi'
+'hi        jane.'
+</code></pre>
+
+<p>hi를 왼쪽으로 정렬하고 나머지는 공백으로 채웠음을 볼 수 있다.</p>
+<p><strong>2. 소수점 표현하기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;%0.4f&quot; % 3.42134234
+'3.4213'
+</code></pre>
+
+<p>3.42134234를 소수점 네 번째 자리까지만 나타내고 싶은 경우에는 위와 같이 사용한다. 즉 여기서 '.'의 의미는 소수점 포인트를 말하고 그 뒤의 숫자 4는 소수점 뒤에 나올 숫자의 개수를 말한다. 다음 예를 살펴보자.</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;%10.4f&quot; % 3.42134234
+'    3.4213'
+</code></pre>
+
+<p>위 예는 숫자 3.42134234를 소수점 네 번째 자리까지만 표시하고 전체 길이가 10개인 문자열 공간에서 오른쪽으로 정렬하는 예를 보여 준다.</p>
+<h3 id="format">format 함수를 사용한 포매팅</h3>
+<p>문자열의 format 함수를 사용하면 좀 더 발전된 스타일로 문자열 포맷을 지정할 수 있다. 앞에서 살펴본 문자열 포매팅 예제를 format 함수를 사용해서 바꾸면 다음과 같다.</p>
+<p><strong>숫자 바로 대입하기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;I eat {0} apples&quot;.format(3)
+'I eat 3 apples'
+</code></pre>
+
+<p>"I eat {0} apples" 문자열 중 {0} 부분이 숫자 3으로 바뀌었다.</p>
+<p><strong>문자열 바로 대입하기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;I eat {0} apples&quot;.format(&quot;five&quot;)
+'I eat five apples'
+</code></pre>
+
+<p>문자열의 {0} 항목이 five라는 문자열로 바뀌었다.</p>
+<p><strong>숫자 값을 가진 변수로 대입하기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; number = 3
+&gt;&gt;&gt; &quot;I eat {0} apples&quot;.format(number)
+'I eat 3 apples'
+</code></pre>
+
+<p>문자열의 {0} 항목이 number 변수 값인 3으로 바뀌었다.</p>
+<p><strong>2개 이상의 값 넣기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; number = 10
+&gt;&gt;&gt; day = &quot;three&quot;
+&gt;&gt;&gt; &quot;I ate {0} apples. so I was sick for {1} days.&quot;.format(number, day)
+'I ate 10 apples. so I was sick for three days.'
+</code></pre>
+
+<p>2개 이상의 값을 넣을 경우 문자열의 {0}, {1}과 같은 인덱스 항목이 format 함수의 입력값으로 순서에 맞게 바뀐다. 즉 위 예에서 {0}은 format 함수의 첫 번째 입력값인 number로 바뀌고 {1}은 format 함수의 두 번째 입력값인 day로 바뀐다.</p>
+<p><strong>이름으로 넣기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;I ate {number} apples. so I was sick for {day} days.&quot;.format(number=10, day=3)
+'I ate 10 apples. so I was sick for 3 days.'
+</code></pre>
+
+<p>위 예에서 볼 수 있듯이 {0}, {1}과 같은 인덱스 항목 대신 더 편리한 {name} 형태를 사용하는 방법도 있다. {name} 형태를 사용할 경우 format 함수에는 반드시 name=value 와 같은 형태의 입력값이 있어야만 한다. 위 예는 문자열의 {number}, {day}가 format 함수의 입력값인 number=10, day=3 값으로 각각 바뀌는 것을 보여 주고 있다.</p>
+<p><strong>인덱스와 이름을 혼용해서 넣기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;I ate {0} apples. so I was sick for {day} days.&quot;.format(10, day=3)
+'I ate 10 apples. so I was sick for 3 days.'
+</code></pre>
+
+<p>위와 같이 인덱스 항목과 name=value 형태를 혼용하는 것도 가능하다.</p>
+<p><strong>왼쪽 정렬</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{0:&lt;10}&quot;.format(&quot;hi&quot;)
+'hi        '
+</code></pre>
+
+<p><code>:&lt;10</code> 표현식을 사용하면 치환되는 문자열을 왼쪽으로 정렬하고 문자열의 총 자릿수를 10으로 맞출 수 있다.</p>
+<p><strong>오른쪽 정렬</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{0:&gt;10}&quot;.format(&quot;hi&quot;)
+'        hi'
+</code></pre>
+
+<p>오른쪽 정렬은 <code>:&lt;</code> 대신 <code>:&gt;</code>을 사용하면 된다. 화살표 방향을 생각하면 어느 쪽으로 정렬되는지 바로 알 수 있을 것이다.</p>
+<p><strong>가운데 정렬</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{0:^10}&quot;.format(&quot;hi&quot;)
+'    hi    '
+</code></pre>
+
+<p><code>:^</code> 기호를 사용하면 가운데 정렬도 가능하다.</p>
+<p><strong>공백 채우기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{0:=^10}&quot;.format(&quot;hi&quot;)
+'====hi===='
+&gt;&gt;&gt; &quot;{0:!&lt;10}&quot;.format(&quot;hi&quot;)
+'hi!!!!!!!!'
+</code></pre>
+
+<p>정렬할 때 공백 문자 대신에 지정한 문자 값으로 채워 넣는 것도 가능하다. 채워 넣을 문자 값은 정렬 문자 <code>&lt;, &gt;, ^</code> 바로 앞에 넣어야 한다. 위 예에서 첫 번째 예제는 가운데(<code>^</code>)로 정렬하고 빈 공간을 <code>=</code> 문자로 채웠고, 두 번째 예제는 왼쪽(<code>&lt;</code>)으로 정렬하고 빈 공간을 <code>!</code> 문자로 채웠다.</p>
+<p><strong>소수점 표현하기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; y = 3.42134234
+&gt;&gt;&gt; &quot;{0:0.4f}&quot;.format(y)
+'3.4213'
+</code></pre>
+
+<p>위 예는 format 함수를 사용해 소수점을 4자리까지만 표현하는 방법을 보여 준다. 앞에서 살펴보았던 표현식 0.4f를 그대로 사용한 것을 알 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{0:10.4f}&quot;.format(y)
+'    3.4213'
+</code></pre>
+
+<p>위와 같이 자릿수를 10으로 맞출 수도 있다. 역시 앞에서 살펴본 10.4f의 표현식을 그대로 사용한 것을 알 수 있다.</p>
+<p><strong><code>{</code> 또는 <code>}</code> 문자 표현하기</strong></p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{{ and }}&quot;.format()
+'{ and }'
+</code></pre>
+
+<p>format 함수를 사용해 문자열 포매팅을 할 경우 <code>{ }</code>와 같은 중괄호(brace) 문자를 포매팅 문자가 아닌 문자 그대로 사용하고 싶은 경우에는 위 예의 <code>{{ }}</code>처럼 2개를 연속해서 사용하면 된다.</p>
+<h3 id="f">f 문자열 포매팅</h3>
+<p>파이썬 3.6 버전부터는 f 문자열 포매팅 기능을 사용할 수 있다. 파이썬 3.6 미만 버전에서는 사용할 수 없는 기능이므로 주의해야 한다.</p>
+<p>다음과 같이 문자열 앞에 f 접두사를 붙이면 f 문자열 포매팅 기능을 사용할 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; name = '홍길동'
+&gt;&gt;&gt; age = 30
+&gt;&gt;&gt; f'나의 이름은 {name}입니다. 나이는 {age}입니다.'
+'나의 이름은 홍길동입니다. 나이는 30입니다.'
+</code></pre>
+
+<p>f 문자열 포매팅은 위와 같이 name, age와 같은 변수 값을 생성한 후에 그 값을 참조할 수 있다. 또한 f 문자열 포매팅은 표현식을 지원하기 때문에 다음과 같은 것도 가능하다.</p>
+<blockquote>
+<p>※ 표현식이란 문자열 안에서 변수와 +, -와 같은 수식을 함께 사용하는 것을 말한다.</p>
+</blockquote>
+<pre><code class="python">&gt;&gt;&gt; age = 30
+&gt;&gt;&gt; f'나는 내년이면 {age+1}살이 된다.'
+'나는 내년이면 31살이 된다.'
+</code></pre>
+
+<p>딕셔너리는 f 문자열 포매팅에서 다음과 같이 사용할 수 있다.</p>
+<blockquote>
+<p>※ 딕셔너리는 Key와 Value라는 것을 한 쌍으로 갖는 자료형이다. 02-5에서 자세히 알아본다.</p>
+</blockquote>
+<pre><code class="python">&gt;&gt;&gt; d = {'name':'홍길동', 'age':30}
+&gt;&gt;&gt; f'나의 이름은 {d[&quot;name&quot;]}입니다. 나이는 {d[&quot;age&quot;]}입니다.'
+'나의 이름은 홍길동입니다. 나이는 30입니다.'
+</code></pre>
+
+<p>정렬은 다음과 같이 할 수 있다.</p>
+<pre><code>&gt;&gt;&gt; f'{&quot;hi&quot;:&lt;10}'  # 왼쪽 정렬
+'hi        '
+&gt;&gt;&gt; f'{&quot;hi&quot;:&gt;10}'  # 오른쪽 정렬
+'        hi'
+&gt;&gt;&gt; f'{&quot;hi&quot;:^10}'  # 가운데 정렬
+'    hi    '
+</code></pre>
+
+<p>공백 채우기는 다음과 같이 할 수 있다. </p>
+<pre><code class="python">&gt;&gt;&gt; f'{&quot;hi&quot;:=^10}'  # 가운데 정렬하고 '=' 문자로 공백 채우기
+'====hi===='
+&gt;&gt;&gt; f'{&quot;hi&quot;:!&lt;10}'  # 왼쪽 정렬하고 '!' 문자로 공백 채우기
+'hi!!!!!!!!'
+</code></pre>
+
+<p>소수점은 다음과 같이 표현할 수 있다.</p>
+<pre><code class="python">&gt;&gt;&gt; y = 3.42134234
+&gt;&gt;&gt; f'{y:0.4f}'  # 소수점 4자리까지만 표현
+'3.4213'
+&gt;&gt;&gt; f'{y:10.4f}'  # 소수점 4자리까지 표현하고 총 자리수를 10으로 맞춤
+'    3.4213'
+</code></pre>
+
+<p>f 문자열에서 <code>{ }</code> 문자를 표시하려면 다음과 같이 두 개를 동시에 사용해야 한다.</p>
+<pre><code class="python">&gt;&gt;&gt; f'{{ and }}'
+'{ and }'
+</code></pre>
+
+<p>지금까지는 문자열을 가지고 할 수 있는 기본적인 것에 대해 알아보았다. 이제부터는 문자열을 좀 더 자유자재로 다루기 위해 공부해야 할 것을 설명할 것이다. 지쳤다면 잠시 책을 접고 휴식을 취하자.</p>
+<h2 id="_19">문자열 관련 함수들</h2>
+<p>문자열 자료형은 자체적으로 함수를 가지고 있다. 이들 함수를 다른 말로 문자열 내장 함수라 한다. 이 내장 함수를 사용하려면 문자열 변수 이름 뒤에 ‘.’를 붙인 다음에 함수 이름을 써주면 된다. 이제 문자열의 내장 함수에 대해서 알아보자.</p>
+<h3 id="count">문자 개수 세기(count)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;hobby&quot;
+&gt;&gt;&gt; a.count('b')
+2
+</code></pre>
+
+<p>문자열 중 문자 b의 개수를 돌려준다.</p>
+<h3 id="1find">위치 알려주기1(find)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Python is the best choice&quot;
+&gt;&gt;&gt; a.find('b')
+14
+&gt;&gt;&gt; a.find('k')
+-1
+</code></pre>
+
+<p>문자열 중 문자 b가 처음으로 나온 위치를 반환한다. 만약 찾는 문자나 문자열이 존재하지 않는다면 -1을 반환한다.</p>
+<blockquote>
+<p>※ 파이썬은 숫자를 0부터 세기 때문에 b의 위치는 15가 아닌 14가 된다.</p>
+</blockquote>
+<h3 id="2index">위치 알려주기2(index)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short&quot;
+&gt;&gt;&gt; a.index('t')
+8
+&gt;&gt;&gt; a.index('k')
+Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ValueError: substring not found
+</code></pre>
+
+<p>문자열 중 문자 t가 맨 처음으로 나온 위치를 반환한다. 만약 찾는 문자나 문자열이 존재하지 않는다면 오류를 발생시킨다. 앞의 find 함수와 다른 점은 문자열 안에 존재하지 않는 문자를 찾으면 오류가 발생한다는 점이다.</p>
+<h3 id="join">문자열 삽입(join)</h3>
+<pre><code class="python">&gt;&gt;&gt; &quot;,&quot;.join('abcd')
+'a,b,c,d'
+</code></pre>
+
+<p>abcd 문자열의 각각의 문자 사이에 ','를 삽입한다.</p>
+<p>join 함수는 문자열뿐만 아니라 앞으로 배울 리스트나 튜플도 입력으로 사용할 수 있다(리스트와 튜플은 곧 배울 내용이니 여기에서는 잠시 눈으로만 살펴보자). join 함수의 입력으로 리스트를 사용하는 예는 다음과 같다.</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;,&quot;.join(['a', 'b', 'c', 'd'])
+'a,b,c,d'
+</code></pre>
+
+<h3 id="upper">소문자를 대문자로 바꾸기(upper)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;hi&quot;
+&gt;&gt;&gt; a.upper()
+'HI'
+</code></pre>
+
+<p>upper 함수는 소문자를 대문자로 바꾸어 준다. 만약 문자열이 이미 대문자라면 아무 변화도 일어나지 않을 것이다.</p>
+<h3 id="lower">대문자를 소문자로 바꾸기(lower)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;HI&quot;
+&gt;&gt;&gt; a.lower()
+'hi'
+</code></pre>
+
+<p>lower 함수는 대문자를 소문자로 바꾸어 준다.</p>
+<h3 id="lstrip">왼쪽 공백 지우기(lstrip)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot; hi &quot;
+&gt;&gt;&gt; a.lstrip()
+'hi '
+</code></pre>
+
+<p>문자열 중 가장 왼쪽에 있는 한 칸 이상의 연속된 공백들을 모두 지운다. lstrip에서 l은 left를 의미한다.</p>
+<h3 id="rstrip">오른쪽 공백 지우기(rstrip)</h3>
+<pre><code class="python">&gt;&gt;&gt; a= &quot; hi &quot;
+&gt;&gt;&gt; a.rstrip()
+' hi'
+</code></pre>
+
+<p>문자열 중 가장 오른쪽에 있는 한 칸 이상의 연속된 공백을 모두 지운다. rstrip에서 r는 right를 의미한다.</p>
+<h3 id="strip">양쪽 공백 지우기(strip)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot; hi &quot;
+&gt;&gt;&gt; a.strip()
+'hi'
+</code></pre>
+
+<p>문자열 양쪽에 있는 한 칸 이상의 연속된 공백을 모두 지운다.</p>
+<h3 id="replace">문자열 바꾸기(replace)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short&quot;
+&gt;&gt;&gt; a.replace(&quot;Life&quot;, &quot;Your leg&quot;)
+'Your leg is too short'
+</code></pre>
+
+<p>replace(바뀌게 될 문자열, 바꿀 문자열)처럼 사용해서 문자열 안의 특정한 값을 다른 값으로 치환해 준다.</p>
+<h3 id="split">문자열 나누기(split)</h3>
+<pre><code class="python">&gt;&gt;&gt; a = &quot;Life is too short&quot;
+&gt;&gt;&gt; a.split()
+['Life', 'is', 'too', 'short']
+&gt;&gt;&gt; b = &quot;a:b:c:d&quot;
+&gt;&gt;&gt; b.split(':')
+['a', 'b', 'c', 'd']
+</code></pre>
+
+<p>split 함수는 <code>a.split()</code>처럼 괄호 안에 아무 값도 넣어 주지 않으면 공백(스페이스, 탭, 엔터 등)을 기준으로 문자열을 나누어 준다. 만약 <code>b.split(':')</code>처럼 괄호 안에 특정 값이 있을 경우에는 괄호 안의 값을 구분자로 해서 문자열을 나누어 준다. 이렇게 나눈 값은 리스트에 하나씩 들어가게 된다. <code>['Life', 'is', 'too', 'short']</code>나 <code>['a', 'b', 'c', 'd']</code>가 리스트인데 02-3에서 자세히 알아볼 것이니 여기에서는 너무 신경 쓰지 않아도 된다.</p>
+<p>위에서 소개한 문자열 관련 함수는 문자열 처리에서 사용 빈도가 매우 높고 유용하다. 이 외에도 몇 가지가 더 있지만 자주 사용되지는 않는다.</p>
+</div>
+
+<div class="muted text-right" style="font-size: 12px;margin:10px 0;">
+    
+    마지막 편집일시 : 2020년 9월 18일 2:00 오후
+    
+</div>
+
+<!-- google adsense -->
+<!-- PC -->
+
+
+<!-- Mobile -->
+
+
+    
+        <div style="margin:20px 0;">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- wikidocs_mobile -->
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:300px;height:250px"
+                data-ad-client="ca-pub-9470517771012578"
+                data-ad-slot="8010300864"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    
+
+
+
+<!-- google adsense -->
+
+<!--
+
+-->
+
+<div class="clearfix">
+    <a href="javascript:show_comments();" class="label label-info">댓글 82</a>
+    <a href="#myModal" data-toggle="modal" title="피드백을 남겨주세요" class="label label-info">피드백</a>
+</div>
+
+<div class="user_comments" style="display:none">
+    <div class="comments">
+        
+    <div class="comment comment_border_top">
+        <a name="comment_1614"></a>
+        <span style="white-space:pre-wrap;">&gt;&gt;&gt; a = &quot;Pithon&quot;
+&gt;&gt;&gt; a[:1]
+&#39;P&#39;
+&gt;&gt;&gt; a[2:]
+&#39;thon&#39;
+&gt;&gt;&gt; a[:1] + &#39;y&#39; + a[2:]
+&#39;Python&#39;
+---
+a[1] 들을 a[0]으로 고치면 어떨까요</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">픔다</a>,
+            
+            2008년 7월 30일 3:54 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1615"></a>
+        <span style="white-space:pre-wrap;">여기에 질문해도 되는지 허허허
+피드백을 주시면 조치하겠습니다.
+
+한글의 경우 아래와 같은 오류가 발생합니다.
+
+&gt;&gt;&gt; pring &quot;한글 변수 %s의 대입&quot; % &quot;우하하 좋았어&quot;
+  File &quot;&lt;stdin&gt;&quot;, line 1
+    pring &quot;한글 변수 %s의 대입&quot; % &quot;우하하 좋았어&quot;
+                              ^
+SyntaxError: invalid syntax
+
+다른 방법이 있나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">온에어</a>,
+            
+            2009년 1월 3일 11:43 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1616"></a>
+        <span style="white-space:pre-wrap;">pring을 print로 바꾸어주세요. ^^</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2009년 1월 3일 11:46 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1617"></a>
+        <span style="white-space:pre-wrap;">허허허, 이런 실수를.. 감사합니다!</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">온에어</a>,
+            
+            2009년 1월 7일 5:12 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1618"></a>
+        <span style="white-space:pre-wrap;">포맷 코드의 또 다른 기능 
+1) 정렬과 공백에서 
+두번째 예제가 실행 결과와 다르네요.
+jane은 공백처리 실행대상 hi에 포함되지 않아서 
+hi          jane이 되어 버리네요</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">울렁증</a>,
+            
+            2009년 4월 9일 10:52 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1619"></a>
+        <span style="white-space:pre-wrap;">리플올리고 보니 
+게시판 자체에서 
+중복공백은 처리가 안되는듯 하네요</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">울렁증 </a>,
+            
+            2009년 4월 9일 10:54 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1620"></a>
+        <span style="white-space:pre-wrap;">예제 출력결과를 수정해 놓았습니다.
+감사합니다 ^^</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2009년 4월 9일 1:46 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1621"></a>
+        <span style="white-space:pre-wrap;">아래 예에서 hi의 위치가 오른쪽으로 가야 하는데, (제 웹브라우져에서는) 왼쪽에 있어 예와 맞지 않는 것 같습니다. 
+
+
+예 1) 정렬과 공백
+
+    &gt;&gt;&gt; print &quot;%10s&quot; % &quot;hi&quot;
+    hi
+    ^^^^^^^^^^
+
+
+즉 &quot;%10s&quot;의 의미는 길이가 10개인 문자열 공간에서 오른쪽으로 정렬하고 그 앞의 나머지는 공백으로 남겨 두라는 의미이다. 그렇다면 반대쪽인 왼쪽 정렬은 &quot;%-10s&quot;가 될 것이다. 확인해 보자.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">호누</a>,
+            
+            2009년 6월 1일 12:43 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1622"></a>
+        <span style="white-space:pre-wrap;">네, 잘못된 부분을 수정했습니다.
+알려주셔서 감사합니다. ^^</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2009년 6월 1일 5:11 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1623"></a>
+        <span style="white-space:pre-wrap;">항상 공부하면서 궁금해 하고 있는건데요.
+위 예제  a = &quot;Life is too short, You need Python&quot;  를 이야기 한다면
+
+&gt;&gt;&gt; a[3]
+&#39;e&#39;
+&gt;&gt;&gt; print a[3]
+e
+
+라고 나오는데요. &#39;e&#39; 와 e 의 차이는 뭔가요? 정말 아리송합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">정재화</a>,
+            
+            2009년 6월 7일 11:47 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1624"></a>
+        <span style="white-space:pre-wrap;">a[3]은 값을 가지고 있는 객체입니다.
+print a[3]은 그 값을 출력하는 것입니다.
+
+a[3]대신 a=&#39;e&#39; 와 print a의 차이라고 생각하시면 될듯합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2009년 6월 8일 9:42 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1625"></a>
+        <span style="white-space:pre-wrap;">음. 그렇군요. 전 서로 다른 Type 의 값으로 생각했거든요.
+오늘도 하나 배웠습니다. 감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">정재화</a>,
+            
+            2009년 6월 8일 11:56 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1626"></a>
+        <span style="white-space:pre-wrap;">3.1 버전에서는 print 를 모두 print()로 해야지 되네요. 
+그리고 line = &quot;Bell \a&quot; 를 line과 print(line)으로 출력할 경우 좀 다르네요.
+결과는 직접 해보시는 것이 이해가 빠를 듯 합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">캡틴 킴</a>,
+            
+            2009년 9월 20일 2:44 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1627"></a>
+        <span style="white-space:pre-wrap;">안녕하세요.
+점프 투 파이썬은 현재 파이썬 2.x대 버전을 기준으로 설명이 되어 있습니다.
+아직 3.x 버전에 대한 내용은 추가하지 않고 있는데요,
+좀 더 시간이 흐른뒤에 추가할 예정입니다. 
+감사합니다. ^^</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2009년 9월 21일 8:54 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1628"></a>
+        <span style="white-space:pre-wrap;">흠.. 정말 죄송한데요...ㅇㅅㅇ;; 문자열 곱하기를 응용한거에서..  &quot;다음과 같은 소스를 에디터로 작성해 실행시켜보자.&quot;
+이게 어떻게 하라는 건지 모르겠어요....다운받은 에디트플러스로 만들어보라는건가요..? 근데 그걸 어떻게 만드는지도 모르겠다는..ㅠ.ㅠ;</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김영국</a>,
+            
+            2010년 2월 4일 2:02 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1629"></a>
+        <span style="white-space:pre-wrap;">에디트플러스 사용방법은 &quot;부록&quot;에서 확인하실 수 있습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2010년 2월 8일 11:43 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1630"></a>
+        <span style="white-space:pre-wrap;">문자열의 길이를 알 수 있는 방법은 없나요 ?
+또는 배열의 크기를 알 수 있는 방법은요 ?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">창근s</a>,
+            
+            2010년 5월 14일 1:34 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1631"></a>
+        <span style="white-space:pre-wrap;">len이란 내장함수를 사용하면 됩니다.
+
+&gt;&gt;&gt; len(&quot;abc&quot;)
+3
+&gt;&gt;&gt; len([1,2,3])
+3</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2010년 5월 14일 1:42 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1632"></a>
+        <span style="white-space:pre-wrap;">join에 배열도 넣을 수 있는 것 같네요. 이 내용도 추가해주시면 좋을 것 같습니다.
+
+&gt;&gt;&gt; a = &quot;, &quot;
+&gt;&gt;&gt; a.join([&quot;Life&quot;, &quot;is&quot;, &quot;too&quot;, &quot;short&quot;])
+&#39;Life, is, too, short&#39;</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">nearfri</a>,
+            
+            2010년 5월 20일 10:15 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1633"></a>
+        <span style="white-space:pre-wrap;">넵 감사합니다. ^^
+리스트 부분에 보강하도록 하겠습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2010년 5월 20일 10:30 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1634"></a>
+        <span style="white-space:pre-wrap;">문자열.formatting() 기능은 % 과는 다른 듯 한데 언제부터 추가되었는지요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">무명씨</a>,
+            
+            2011년 4월 6일 11:12 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1635"></a>
+        <span style="white-space:pre-wrap;">print &quot;%-10s jane.&quot; % &#39;hi&#39; 
+hi        jane.
+^^^^^^^^^^
+
+이 스크립트 실행하면 빈 칸이 총 11개 아닌가요?
+%-10s 뒤에 한 칸 띄워져 있으니깐 11개가 생기는데요.
+10칸으로 할려면 %-10sjane 으로 해야 되는게 맞지 않나요?
+이해하는 데는 문제는 없지만 결과값이 다르게 나와서.. ^^
+
+이 스크립트 실행하면 빈 칸이 총 11개 아닌가요?
+%-10s 뒤에 한 칸 띄워져 있으니깐 11개가 생기는데요.
+10칸으로 할려면 %-10sjane 으로 해야 되는게 맞지 않나요?
+이해하는 데는 문제는 없지만 결과값이 다르게 나와서.. ^^
+python 3.2에서 실행하였습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">정원</a>,
+            
+            2011년 5월 18일 5:49 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1636"></a>
+        <span style="white-space:pre-wrap;">넵 맞습니다. 수정했습니다.
+알려주셔서 감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2011년 5월 19일 9:23 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1637"></a>
+        <span style="white-space:pre-wrap;">&gt;&gt;&gt; print &quot;%10.4f&quot; % 3.42134234
+3.4213
+^^^^
+
+에서 -가 없으므로 +니까 오른쪽 정렬이잖아요. 그렇다면 3.4213 왼쪽에 공백이 있어야 되는데 없네요??</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">나그네</a>,
+            
+            2011년 6월 26일 7:20 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1638"></a>
+        <span style="white-space:pre-wrap;">0 &lt;= a &lt; 3
+
+보다는 a[i]. 0&lt;=i&lt;3 이 정확한 표현이 아닐까요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">뜨거운고구마</a>,
+            
+            2011년 7월 13일 9:59 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1639"></a>
+        <span style="white-space:pre-wrap;">(역슬래시가 \ 로 쳐지네요)\n 해도 \n 그대로 나오고 줄 안바뀌는데요..?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">저는 </a>,
+            
+            2011년 9월 21일 2:20 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1640"></a>
+        <span style="white-space:pre-wrap;">위에 역슬래시 님
+print 치고 실행해보세요! 그럼 제대로 나와요 ㅎㅎ</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">역슬래쉬</a>,
+            
+            2011년 9월 27일 11:39 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1641"></a>
+        <span style="white-space:pre-wrap;">print &quot;%10.4f&quot; % 3.42134234  예제의 결과화면에서 앞에 공백이 있어야 할꺼 같아요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">바게</a>,
+            
+            2011년 10월 3일 5:12 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1642"></a>
+        <span style="white-space:pre-wrap;">문자열에서</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김성록</a>,
+            
+            2011년 10월 14일 4:10 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1643"></a>
+        <span style="white-space:pre-wrap;">문자열에서 줄바꿈 문자/n 출력 안되게 하는 방법 어떤건가요?
+그리고 문자열 소문자로 바꾸는 함수 lower사용 했는데 안되네요 왜 그럴까요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김성록</a>,
+            
+            2011년 10월 14일 4:44 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1644"></a>
+        <span style="white-space:pre-wrap;">김성록님// \n을 빼는 방법은 그냥 String.replace(&quot;\n&quot;, &quot;&quot;)로 처리하는 방법이 생각나네요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">Kor.Trickster</a>,
+            
+            2012년 4월 3일 1:41 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1645"></a>
+        <span style="white-space:pre-wrap;">저는/ &gt;&gt;&gt;print(multiline) 해야 결과를 볼 수 있습니다.
+&gt;&gt;&gt; multiline=&quot;life is too short\nYou need python\nPython is powerful language&quot;
+&gt;&gt;&gt; print(multiline)
+life is too short
+You need python
+Python is powerful language
+&gt;&gt;&gt; multiline=&quot;&quot;&quot;
+... life is too short
+... You need python
+... Python is powerful language
+... &quot;&quot;&quot;
+&gt;&gt;&gt; print(multiline)
+
+life is too short
+You need python
+Python is powerful language
+
+&gt;&gt;&gt; 
+바게/ 앞에 4칸의 공백이 있는 것이 맞습니다.
+김성록/ 문자열에서 줄바꿈 문자를 print(multiline)하면 \n은 줄바꿈(출력)됩니다. 대문자를 소문자로 바꾸는 lower()함수는 a.lower()
+&gt;&gt;&gt;a=&quot;HI&quot;
+&gt;&gt;&gt; a.lower()
+&#39;hi&#39;
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">starmomo</a>,
+            
+            2013년 5월 8일 4:43 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1646"></a>
+        <span style="white-space:pre-wrap;">[find와 index의 차이] find는 -1을 반환하고, index는 에러를 발생한다. upper/lower/count/find/index/join/strip/lstrip/rstrip/swapcase 등 유용한 함수를 배웠습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">starmomo</a>,
+            
+            2013년 5월 8일 4:52 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2106"></a>
+        <span style="white-space:pre-wrap;">위에서 나온대로 그대로 했는데 
+&quot;hello world&quot; 라고 그냥 치면 &#39;hello world&#39; 라고 출력되고 여러줄의 문자열 같은경우 열의 구분마다 \n이라는 코드가 포함되서 출력됩니다.
+무엇이 문제인가요???</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/212">윤종호</a>,
+            
+            2013년 12월 3일 2:34 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2109"></a>
+        <span style="white-space:pre-wrap;">@윤종호님, 테스트 하셨던 코드를 이곳에 보여 주시면 도움을 드릴 수 있을것 같네요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2013년 12월 3일 10:24 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2126"></a>
+        <span style="white-space:pre-wrap;">multiline= &quot;life is too short\n you need python&quot;
+&gt;&gt;&gt; multiline
+&#39;life is too short\n you need python&#39;
+&gt;&gt;&gt; multiline=&quot;&quot;&quot;
+life is too short
+you need python
+&quot;&quot;&quot;
+&gt;&gt;&gt; multiline
+&#39;\nlife is too short\nyou need python\n&#39;
+
+이렇게 되는데 어디가 문제인지 참....^^;; &quot;&quot;&quot;랑 \n 두 경우 모두 안되서 난감하네요...</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/212">윤종호</a>,
+            
+            2013년 12월 24일 6:54 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2128"></a>
+        <span style="white-space:pre-wrap;">@윤종호님, 정상적으로 된게 맞구요. 줄바꿈 문자를 확인하시려면
+print(multiline) 명령어를 수행 해 보세요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2013년 12월 24일 4:41 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2129"></a>
+        <span style="white-space:pre-wrap;">말씀해주신대로 해보니 잘 되네요!!!^^감사합니다.
+
+한가지 궁금한 점이 있는데 왜 그냥 코딩해서 실행하면 안되고 print 라는 명령어를 입력해야 하나요??</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/212">윤종호</a>,
+            
+            2013년 12월 24일 5:10 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2130"></a>
+        <span style="white-space:pre-wrap;">@윤종호님, multiline 이라는 변수는 문자열을 가리키는 변수일 뿐입니다. 파이썬 인터프리터에서 multiline 을 입력하면 multiline을 출력하는것이 아니라 multiline이 무엇인지 보여주는 역할을 하구요, print 문으로 multiline이라는 문자열을 출력하게 되면 문자열의 값이 화면에 출력됩니다. 문자열을 출력하게 되면 &quot;\n&quot; 문자는 줄바꿈으로 변환되구요..</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2013년 12월 24일 5:17 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2131"></a>
+        <span style="white-space:pre-wrap;">아 그리고 한가지 여쭤보고 싶은점이 있는데요.
+전 지금 20대 중반의 대학원 생입니다. 늦었지만 전부터 프로그래밍 이라는걸 해보고 싶어서 파이썬을 공부하기 시작했습니다.
+하지만 아무런 지식 없이 주위에서 c나 다른 언어 보다는 파이썬으로 시작해 보는게 좋겠다는 말을 들어서 파이썬으로 시작했는데요
+제가 궁금한것은 파이썬 이란 언어로 프로그래밍 이나 다른 언어들이 할 수 있는 대부분의 일들을 수행할 수 있는지,
+또 앞으로 더욱 많은 곳에서 쓰일 가능성이 많은지를 알고 싶습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/212">윤종호</a>,
+            
+            2013년 12월 24일 5:22 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2134"></a>
+        <span style="white-space:pre-wrap;">@윤종호님, 파이썬은 범용적인 언어이기 때문에 다른 대부분의 언어들이 하는것을 파이썬 역시 수행할 수 있습니다. 
+파이썬은 이미 상당히 많이 사용되고 있는 주류 언어가 되었습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2014년 1월 1일 10:07 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2135"></a>
+        <span style="white-space:pre-wrap;">안녕하세요 박응용님.
+다름이 아니라 한글 문자열 비교는 어떻게 해야하는지..
+
+wiki DB (.txt)를 불러와서 그 안에서 원하는 한글단어를 비교해서 해단 &lt;text&gt; 부분을 출력하려고 하는데 한글 비교가 안 돼서 애먹고 있습니다...
+
+상위 # -*- coding: ms949 -*-, # -*- coding: cp949 -*- 를 통해 인코딩도 해봤고
+따로 for문 올려서 각 리스트마다 인코딩하면서 비교도 해봤습니다.
+
+이거이거.. 어찌해야할까요... 
+.find()함수도 -1만 리턴하고...
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/254">천음</a>,
+            
+            2014년 1월 2일 4:02 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2267"></a>
+        <span style="white-space:pre-wrap;">print &#39;%4s&#39; &#39;ㅎ&#39; ..같은 경우.. 즉 한글의 경우 %4s 해야지 한칸 띄어지는데.. 이게 기준이 뭔가요? ; </span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/381">YongTak</a>,
+            
+            2014년 3월 19일 3:26 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2268"></a>
+        <span style="white-space:pre-wrap;">@YongTak 님 파이썬 2.7버전인 경우 한글 한자는 2바이트로 취급됩니다. %4s로 해야 한글 두글자가 들어갈 수 있는 공간이 생깁니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2014년 3월 20일 1:10 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2272"></a>
+        <span style="white-space:pre-wrap;">%s당 1바이트 들어간다는 말씀이시군요.. 감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/381">YongTak</a>,
+            
+            2014년 3월 26일 12:01 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2372"></a>
+        <span style="white-space:pre-wrap;">인덱싱에서,
+a = &quot;Life is too short, You need Python&quot;
+a[3]
+만 입력하고 실행하면 되나요? IDLE에서는 그냥 첫줄 엔터, a[3] 엔터 하면 제대로 &#39;e&#39;라는 값이 나왔는데 pycharm에서 위 2줄을 입력하고 실행하니 아무런 값이 안 나오네요. 다른 식으로 입력해야 하나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/646">찬호</a>,
+            
+            2014년 6월 30일 3:14 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2375"></a>
+        <span style="white-space:pre-wrap;">@찬호 님 interactive shell 에서는 return 된 값을 바로바로 띄워주지만 실제 파이썬 코드에서는 print 문을 이용해서 출력을 직접 해줘야 합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/648">ssut</a>,
+            
+            2014년 6월 30일 11:32 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2378"></a>
+        <span style="white-space:pre-wrap;">@ssut님 감사합니다. 이제 2.7, 3.4 양쪽 모두 잘 출력되네요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/646">찬호</a>,
+            
+            2014년 7월 1일 1:05 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2401"></a>
+        <span style="white-space:pre-wrap;">“Pithon”이란 문자열을 “Python&quot;으로 바꾸려면? 부분에서 아마도 a[1] = &quot;y&quot;와 같은 문법이 안되는 이유는 기본 스트링형은 readonly 영역에 할당하기 때문인것으로 추측됩니다. C와 비교를 해보아도 다음 코드는 수정이 불가능합니다.
+char *a = &quot;pithon&quot;;
+a[1] = &#39;y&#39;;
+실제 코딩해보니 컴파일에러는 발생하지 않지만 y로 치환되지 않습니다. 
+게다가 c++에서는 char* a = &quot;pithon&quot;; 부분을 warning처리 합니다. 이유는 상수 스트링을 케릭터형 포인터로 변환하기 때문인데 결국 &quot;python&quot;으로 바꿀수는 없습니다. 
+파이썬에서 문자열 수정이 안되는 이유는 이것과 같을거라 생각됩니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/674">손승환</a>,
+            
+            2014년 7월 22일 2:43 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2896"></a>
+        <span style="white-space:pre-wrap;">문자열 비교에 대해서도 언급해주면 좋겠군요.
+
+if &quot;String&quot;==&quot;String&quot; : 와 같은 문법이 사용가능한지.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/1425">창욱</a>,
+            
+            2015년 4월 14일 1:00 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3139"></a>
+        <span style="white-space:pre-wrap;">안녕하세요, 박응용님. 제가 print 함수를 이용해서 hello world 등의 프로그램을 만들어서 실행을 시켰는데요. Python 2.7에서도 그러고 Python 3.4에서도 그러고 똑같은 문제가 일어나는데요. (둘의 print 함수는 다른 형태로 각 버전의 형태에 맞게 사용하였습니다.) print 말고 다른 프로그램을 짜서 그래도 똑같은 오류가 나는데요. 프로그램을 실행하면 바로 꺼지는데, 여러 차례 실험해본 결과 마치 윈도우즈 배치 파일처럼 명령을 실행하고는 바로 꺼져 버리는 듯 합니다... 여러 컴퓨터에서 이미 수 차례 실험 해본 결과고 이걸 어떻게 해야 할지 Python에 대해 전문적인 지식을 가지고 계신 박응용님께 이 문제에 대한 해결 방안을 여쭈어 보고 싶습니다. 참고로 책에 참 알차고 값진 내용이 많더군요. 이러한 무상의 교육과 공급, 사용에 대한 제한이 없는 자유로운 사상은 컴퓨터, 아울러 다른 분야에 접목시켜도 더욱 더 자유롭고 신선한 발상을 가져다 줄 수 있다고 생각합니다. 이런 책을 집필해 주셔서 감사합니다. :)</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/1827">anonymous</a>,
+            
+            2015년 8월 9일 5:53 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3140"></a>
+        <span style="white-space:pre-wrap;">안녕하세요! 프로그래밍을 처음 접하는데 글들이 많은 도움이 되었습니다. 감사합니다^^
+질문이 있는데 어디다가 해야할지 몰라서 올려봅니다(실례가된다면 지우겠습니다..)
+파이썬 3.4버전에서
+현재 시간을 표시하려면
+&gt;&gt;&gt;import time
+&gt;&gt;&gt;time.asctime()
+인데
+이걸 IDLE 대화식 인터프리터에서 치면 잘 실행이 됩니다.
+그런데 IDLE 상단메뉴 file 에서  new file 을 만들어 
+&gt;&gt;&gt;가 뜨지않는 창에서 작성한 후 ti.py로 저장한 후
+run module 을 누르면 초기 IDLE창에 RESTART만 뜨고 시간이 안뜹니다..
+
+또 도스창에서 cd C:\
+cd Ptyhon34
+Python ti.py 를 쳐도 실행이 안되구요...
+그냥 바로 ti.py파일을 더블클릭해 실행하면 수행 후 곧바로 도스 창이 닫히니까
+input(&#39;Type Enter key..&#39;)를 마지막에 치고 저장하면
+도스창에 Type Enter key.. 만 떠요
+
+그렇다고 대화형 인터프리터에서(&gt;&gt;&gt;가 뜨는창) 저 모든걸 치면 창내에서 줄 바꿀때마다 시간이랑 결과는 바로바로 뜨는데
+저장했을시 더블클릭해 실행하거나 도스창에서 실행하거나 IDLE에서 import ti.py로 실행하거나 Run Module을 하면
+File &quot;ti.py&quot;, line 1
+   Python 3.4.3 &lt;v3.4.3:9b73f1c3e601, Feb 24 2015, 22:44:40&gt; [MSC v.1600 64 bit &lt;AMD64&gt;] on win34
+                                      ^
+SyntaxError: invalid syntax
+라면서 오류가 나구요..
+
+달력 띄우는 것인
+import calendar
+calendar.prmonth(2015,8)
+로 똑같이 했을땐 도스창에서 디렉토리로 이동해서 수행하는것도 잘 되고,
+저장한 파일 더블클릭해서 수행하는것도 바로 안꺼지고 달력과 함께 Type Enter key 뜨면서 잘되고
+IDLE에서 RUN MODLUE해서 하는것도 잘되는데... (아 그리고 대화형 인터프리터에서 import cal 쳤을때두요)
+
+뭐가 문제일까요? ㅠㅠ
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/1829">소연</a>,
+            
+            2015년 8월 11일 12:55 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3508"></a>
+        <span style="white-space:pre-wrap;">&quot;10.4%s&quot; % 3.42134234 는 &#39;    3.42&#39; 로 나오는 이유가 3 과 . , 4 , 2가 하나씩 1바이트여서 그런가요? 그리고 upper 함수에서 한 문자만 대문자로 만들 수는 없나요? 궁금해요ㅠㅠ</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/2448">희영</a>,
+            
+            2016년 1월 5일 9:04 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3550"></a>
+        <span style="white-space:pre-wrap;">10.4%s 대신에 %10.4f로 하면 될것 같아요. 3.42134234의 부동소숫점자리수를 
+제대로 표현하려면 스트링(s)대신 floating -point 에 해당하는 f를 쓰는것 같아요.
+
+그리고 한 character만 대문자로 바꾸는 것은 이 페이지의 내용을 조금 응용해서 다음과 같이 할 수 있을 것 같아요.
+
+a= &quot;python&quot;
+b= a[0]
+b= b.upper()
+a= b + a[1:] 하면
+
+
+Python을 출력할 수 있을 것 같아요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/2507">내 인생의 첫날</a>,
+            
+            2016년 1월 17일 9:45 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4286"></a>
+        <span style="white-space:pre-wrap;">멀티라인 출력 부분에서 
+댓글을 달았다가 
+제가 끝까지 확인안하고 댓글달아서 지웠는데 
+그래도 저처럼 실수 하는분을 위해서 남겨두겠습니다.
+
+인터프리터 쉘에서 테스트하다보니 
+&gt;&gt;&gt; ml=&quot;Life is too short\nYou need python&quot;
+&gt;&gt;&gt; ml
+&#39;Life is too short\nYou need python&#39;
+출력이 잘못됐나했더니
+멀티라인출력은print() 함수를 써야 제대로 보이네요
+&gt;&gt;&gt; print ml
+Life is too short
+You need python
+&gt;&gt;&gt;
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3618">kyunghwan</a>,
+            
+            2016년 9월 7일 6:32 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4593"></a>
+        <span style="white-space:pre-wrap;">고급 포매팅
+이름으로 넣기 부분에, \ 가 있어서 그래도 쳐서 출력하면 에러가 출려됩니다.
+일부러 줄 바꿈을 위해 \ 을 넣으신 건가요??</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3781">윤기웅</a>,
+            
+            2016년 11월 28일 8:07 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4594"></a>
+        <span style="white-space:pre-wrap;">@윤기웅님, \는 말씀하신데로 줄바꿈을 위해서 삽입된 거구요.. 굳이 필요없는 부분이라 삭제처리했습니다. 감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2016년 11월 29일 9:45 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4669"></a>
+        <span style="white-space:pre-wrap;">안녕하세요. 처음 배우는 입장이라서 감사하게 보고 있습니다. 
+이번 장 말미에 나온 .format 함수에 관하여 질문이 있습니다. 예제를 그대로 실행했을 때
+ &quot;I eat {0} apples&quot;.format(3)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in ?
+AttributeError: &#39;str&#39; object has no attribute &#39;format&#39;
+이렇게 에러가 나는데 원인이 궁금합니다. 버전이 2.4라서 그런것 같기도 합니다(아나콘다로 2.7버전을 사용했을 때는 괜찮았네요)</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4143">Gun-Woo</a>,
+            
+            2016년 12월 14일 6:22 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4822"></a>
+        <span style="white-space:pre-wrap;">문자열 형 변환에 대해서 궁금한 점이 있습니다.
+예를 들어서, 아래와 같이 float형을 string변환시 소수점아래 0 하나이하는 전부 소멸이 되어버리는데 이유를 알 수 있을까요?
+
+&gt;&gt;&gt; var = 107944.00000
+&gt;&gt;&gt; result = str(var)
+&gt;&gt;&gt; print(result)
+107944.0
+
+소수점 아래가 전부 0이 아닌경우는 아래와 같이 제대로 변환이 되는것 같습니다.
+&gt;&gt;&gt; var = 107944.01234
+&gt;&gt;&gt; result = str(var)
+&gt;&gt;&gt; print(result)
+107944.01234
+
+궁금해서 이래저래 검색을 해보았지만 찾기가 쉽지 않네요..^^;
+알려주시면 감사하겠습니다. (_ _)</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4401">py</a>,
+            
+            2017년 1월 22일 2:18 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4981"></a>
+        <span style="white-space:pre-wrap;">정말 좋은 사이트입니다. 한가지 궁금한점이 있어서 문의 드립니다. 
+&quot;3) 문자열 곱하기 응용
+문자열 곱하기를 좀 더 응용해 보자. 다음과 같은 소스를 에디터로 작성해 실행해 보자.&quot;
+이 부분의 내용을 에디터 말고 인터프리터로해도 똑같이 만들 수 있는지요?인터프리터로는 명령어 하나하나 실행되서 명령어 후-&gt;결과 이렇게 표시되는 것 같습니다.
+즉, 인터프리터로도 여러 명령어를 한번에 실행 하는 방법이 있는지요
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4615">왕국</a>,
+            
+            2017년 2월 22일 2:15 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4983"></a>
+        <span style="white-space:pre-wrap;">@왕국님, 인터프리터에서 여러 명령어를 한번에 실행하려면 세미콜론으로 구분지어서 입력하시면 됩니다.
+
+&gt;&gt;&gt; print(&quot;=&quot; * 50);print(&quot;My program&quot;);print(&quot;=&quot; * 50)
+==================================================
+My program
+==================================================</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 2월 22일 4:27 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4987"></a>
+        <span style="white-space:pre-wrap;">답변 감사합니다. 프로그래밍을 취미로 배우는 입장이지만...제가 본 그간의 책들 중에 가장 간결하고 이해하기 쉽게 쓰셨습니다. 감사합니다!</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4615">왕국</a>,
+            
+            2017년 2월 22일 10:11 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5024"></a>
+        <span style="white-space:pre-wrap;">&gt;&gt;&gt; &quot;{0:10.4f}&quot;.format(y)
+&#39; 3.4213&#39;
+
+이 예제에서 출력값의 공백이 하나가 아니라 네 개로 표시가 되어야 할 것 같습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4666">현동일</a>,
+            
+            2017년 2월 28일 1:22 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5026"></a>
+        <span style="white-space:pre-wrap;">@현동일님, 알려주신데로 수정했습니다. 감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 2월 28일 8:24 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5150"></a>
+        <span style="white-space:pre-wrap;">print(&#39;123&#39;);print(&#39;456&#39;)
+을 실행하면, 당연히...
+123
+456
+와 같이 됩니다. 모든 문제열 끝에 new line이 붙는군요...
+123456 과 같이 같은 line에 쭉~ 이어서 프린트 하기위해 print(&#39;123, end=&#39;&#39;) 를 넣으면 실시간으로 보이지 않구요
+코드를 종료한다음에 한번에 나타납니다.
+
+아래와 같은 코드를 종종 씁니다.
+
+import time
+
+i=0
+while True:
+	i += 1
+	if i%4 == 0 :
+		print (&#39;|&#39;, end=&#39;&#39;)
+	if i%4 == 1 :
+		print (&#39;/&#39;, end=&#39;&#39;)
+	if i%4 == 2 :
+		print (&#39;-&#39;, end=&#39;&#39;)
+	if i%4 == 3 :
+		print (&#39;\\&#39;, end=&#39;&#39;)
+
+	time.sleep(.5)
+	print (&#39;\b&#39;, end=&#39;&#39;)
+
+화면에 한개의 글자만 표시되어서 모래시계를 표시할 수 없나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4899">재성</a>,
+            
+            2017년 3월 28일 5:59 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5433"></a>
+        <span style="white-space:pre-wrap;">arr = input().split() 이러면 공백으로 구분한 리스트로 저장된다고 하셧는데
+arr = input().split(&quot; &quot;) 이거와 차이점이 무엇인가요 ?
+<a href="https://www.acmicpc.net/problem/1152" rel="nofollow">https://www.acmicpc.net/problem/1152</a>
+이문제에서 전자는 정답 후자는 오답으로 체크하는데 그 이유는 무엇일까요</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3468">오목</a>,
+            
+            2017년 7월 4일 12:03 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5434"></a>
+        <span style="white-space:pre-wrap;">@오목님, 위에서 설명한 공백은 정확하게는 화이트스페이스(공백, 탭, 리턴문자등)입니다. input().split() 로 사용하면 화이트스페이스에 해당되는 문자들로 구분되고 input().split(&quot; &quot;)로 사용하면 스페이스 1개로 구분한다는 의미입니다. 위에서는 간단하게 공백이라고 했는데 좀 더 명확한 설명을 추가하도록 하겠습니다. </span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 7월 4일 11:31 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5716"></a>
+        <span style="white-space:pre-wrap;">고급 문자열 포매팅을 공부하다가 맨마지막 {{and}}를 보고나서
+&quot;I ate {and} apples.&quot;.format(and=10)&quot;이라고 무심코 적어봤는데 에러가 떠요. 다른 단어는 다돼는데 and를 이름으로 하니까 안돼네요. 왜그런걸까요?
+그리고 위에랑 어느정도 연결되는 거 같긴한데
+&quot;{{and}},{and}&quot;.format(and=123)
+을 쳐봤는데 제가 예상했던 결과는 &#39;{and},123&#39;일거라 생각했는데 그냥 에러가 뜨더라구요.왜그럴까요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5931">영광</a>,
+            
+            2017년 12월 21일 7:16 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5717"></a>
+        <span style="white-space:pre-wrap;">@영광님, and는 파이썬 예약어라 오류가 발생합니다. and대신 def, class등을 사용해도 마찬가지입니다. 예약어 대신 다른것을 사용하시면 됩니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 12월 21일 8:46 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5772"></a>
+        <span style="white-space:pre-wrap;">질문있습니다. 마지막 고급문자열 포매팅에서 인덱스와 이름을 혼용해서 넣기를 연습해봤는데 이렇습니다.
+1.
+&gt;&gt;&gt; &quot;{0} apples, {number} bananas, {2} crayongs&quot;.format(2, number=8, 5)
+  File &quot;&lt;stdin&gt;&quot;, line 1
+SyntaxError: positional argument follows keyword argument
+2.
+&gt;&gt;&gt; &quot;{0} apples, {number} bananas, {1} crayongs&quot;.format(2, number=8, 5)
+  File &quot;&lt;stdin&gt;&quot;, line 1
+SyntaxError: positional argument follows keyword argument
+3.
+&gt;&gt;&gt; &quot;{0} apples, {1} bananas, {number} crayongs&quot;.format(2, 8, number=5)
+&#39;2 apples, 8 bananas, 5 crayongs&#39;
+
+1번에서 name=value(이름)이 가운데에 있자 저런 오류문을 출력했습니다. 그래서 이름은 인덱스에 포함되지않는가 싶어서 2번으로 해봤는데 동일했습니다. 그래서 이름을 마지막에 보내니 정상적으로 출력했습니다. 왜 이렇게 되는건지 궁금합니다. 파이썬으로 프로그래밍을 처음 시작해서 잘 모르겠습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6048">SuSeo</a>,
+            
+            2018년 1월 18일 6:49 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5775"></a>
+        <span style="white-space:pre-wrap;">@SuSeo님, number=5와 같은 형태가 keyword argument입니다. keyword 인수와 그냥 일반 인수가 같이 쓰일 경우에는 keyword인수를 항상 가장 마지막에 위치해야 합니다. 따라서 위 오류 예제는 다음과 같이 실행셔야 합니다.
+
+&gt;&gt;&gt; &quot;{0} apples, {number} bananas, {1} crayongs&quot;.format(2, 5, number=8)
+&#39;2 apples, 8 bananas, 5 crayongs&#39;</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2018년 1월 22일 3:30 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5794"></a>
+        <span style="white-space:pre-wrap;">안녕하세요! 파이썬을 공부하는 초보자입니다 ^^. 포매팅에서요 고급 포매팅을 쓰는 이유가 따로 있는 건가요?? 예를 들어서..%d를 쓰는것과 {0} .format()를 쓰는것과 또, %10s 와 &quot;{0:&gt;10}&quot; 이요. 제 생각엔 사용하는건 고급보단 앞에것이 더 쉬운것 같아 보여서요 ㅠㅠ</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6099">현종</a>,
+            
+            2018년 2월 1일 3:16 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5817"></a>
+        <span style="white-space:pre-wrap;">@현종님, 고급 포매팅의 경우 일반 %를 쓸때 보다 좀 더 많은일을 할 수 있는걸로 알고 있습니다. 좀 더 자세한 내용은 다음 URL참고 하셨으면 합니다.
+<a href="https://stackoverflow.com/questions/5082452/python-string-formatting-vs-format" rel="nofollow">https://stackoverflow.com/questions/5082452/python-string-formatting-vs-format</a></span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2018년 2월 6일 10:17 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5821"></a>
+        <span style="white-space:pre-wrap;">@응용님, 친절한 답변 감사드립니다!!^^ 주신 링크로 들어가서 읽어보니, 고급 포매팅은 튜플 같은 자료형에도 쓸수가 있다는 거군요!! 왜 {0}을 쓰는지 궁금했는데.. 덕분에 알게됐어요 ^^ </span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6099">현종</a>,
+            
+            2018년 2월 12일 9:37 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6334"></a>
+        <span style="white-space:pre-wrap;">문자열에 있는 문자의 수(공백 포함)를 모두 세는 함수는 어디에 있나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7218">최윤성</a>,
+            
+            2018년 11월 16일 2:10 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6335"></a>
+        <span style="white-space:pre-wrap;">a.count(&#39;&#39;)
+
+이렇게 입력하면 문자열에 있는 문자 수(공백 포함)+1이 나옵니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7218">최윤성</a>,
+            
+            2018년 11월 16일 5:12 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6357"></a>
+        <span style="white-space:pre-wrap;">@최윤성님 문자열의 수를 모두 세는 함수는 len 이라고 있습니다. 여기서는 설명이 안되어 있는데 본문에 설명을 추가하도록 하겠습니다. 
+
+&gt;&gt;&gt; len(&quot;abc&quot;)
+3
+
+감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2018년 11월 27일 11:07 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6363"></a>
+        <span style="white-space:pre-wrap;">&gt;&gt;&gt; &quot;{0:10s}&quot;.format(&quot;apple&quot;)
+&#39;apple    &#39;
+이렇게 나오는데
+오른쪽 정렬이 될줄 알았더니 왼쪽 정렬이 돼요..
+또
+&gt;&gt;&gt; {0:-10s}.format(&quot;apple&quot;)
+을 하면 에러가 뜨구요
+&quot;{0:0.4f}&quot;.format(&quot;3.4213424&quot;)
+가 잘 되니까
+포맷코드와 숫자를 사용하는 방법이 format함수에서도 쓸수있구나 생각했는데... 소수에서만 되나보네요..</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5931">영광</a>,
+            
+            2018년 12월 2일 6:23 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6365"></a>
+        <span style="white-space:pre-wrap;">@영광님, 왼쪽, 오른쪽 정렬은 다음과 같습니다.
+&gt;&gt;&gt; &quot;{0:&lt;10s}&quot;.format(&quot;apple&quot;)
+&#39;apple     &#39;
+&gt;&gt;&gt; &quot;{0:&gt;10s}&quot;.format(&quot;apple&quot;)
+&#39;     apple&#39;
+&gt;&gt;&gt;</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2018년 12월 2일 2:35 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6409"></a>
+        <span style="white-space:pre-wrap;">문자열의 요소값은 바꿀수 있는 값이 아니기 때문이다. immutable한 자료형이라고 부른다.
+
+라고 하셨는데, 뒤에 replace로
+
+a = &quot;Pithon&quot;
+a.replace(&quot;i&quot;, &quot;y&quot;)
+
+를 쓰니 Python이 만들어지네요. immutable자료형이 뭔지 헤깔려요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7440">준호</a>,
+            
+            2019년 1월 2일 10:03 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6521"></a>
+        <span style="white-space:pre-wrap;">&quot;%10f&quot; % 3.42134234
+
+위와 같은 코드를 실행해 보았습니다. 저는 결과물로 &#39;3.42134234&#39; 가 뜰것이라고 예상했는데, 아래와 같은 결과가 나왔습니다.
+
+&#39;  3.421342&#39;
+
+제 생각과 실제 결과물이 다른 이유가 무엇인가요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7385">SG</a>,
+            
+            2019년 3월 20일 4:45 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6845"></a>
+        <span style="white-space:pre-wrap;">f1=open(&quot;stu.txt&quot;,&#39;r&#39;)
+l=f1.readlines()
+for i in l:
+    if len(i)&gt;20:
+        a=i.split(&quot;      0&quot;)
+        print(a[0])
+        print(a[1])
+
+    else: print(i)
+
+f1.close()
+        
+이렇게 썼는데
+
+354654143513153
+
+dgfghghjgkj   6134853
+561351564566389486
+
+135084 98743 1241984
+
+Traceback (most recent call last):
+  File &quot;C:/Users/yoons/Desktop/message/bt.py&quot;, line 7, in &lt;module&gt;
+    print(a[1])
+IndexError: list index out of range
+
+오류가 나옵니다.
+
+파일 내용:
+354654143513153
+dgfghghjgkj   6134853      0561351564566389486
+135084 98743 1241984
+116504 84315 6494897
+256498 43749 1946513
+a[1]이 리스트 범위 초과라는데 어디서 문제가 생긴 건가요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7218">최윤성</a>,
+            
+            2019년 8월 2일 5:27 오후
+            
+            
+        </span>
+    </div>
+
+
+    </div>
+
+    
+    <a href="/loginForm" class="text-info" style="font-size:11px">※ 댓글 작성은 로그인이 필요합니다.</a>
+    <a href="#myModal" data-toggle="modal" style="font-size:11px">(또는 피드백을 이용해 주세요.)</a>
+    
+</div>
+
+<div class="page-prev-next">
+    <div class="clearfix">
+    <div class="pull-left">
+        <ul>
+            
+                <li><strong>이전글</strong> : <a href="javascript:page(12)">02-1 숫자형</a></li>
+            
+            
+                <li><strong>다음글</strong> : <a href="javascript:page(14)">02-3 리스트 자료형</a></li>
+            
+        </ul>
+    </div>
+
+
+</div>
+
+
+
+
+</div>
+
+<!--
+<div class="clearfix" style="font-family:consolas;margin:10px 0 10px 0;padding:0;">
+    <small><a href="/" class="menu_link pull-left">Published with WikiDocs</a></small>
+</div>
+-->
+
+<a href="#top" class="label label-default back-to-top">
+    <span class="glyphicon glyphicon-arrow-up"></span>
+    TOP
+</a>
+
+
+
+
+    </div>
+
+</div>
+
+<div style="display:none" class="prev_next_indicator">
+    
+    <a class="prev_icon" href="javascript:page(12)" role="button">
+        <span class="glyphicon glyphicon-chevron-left" style="font-size:2em;"></span>
+    </a>
+
+
+    <a class="next_icon" href="javascript:page(14)" role="button">
+        <span class="glyphicon glyphicon-chevron-right" style="font-size:2em;"></span>
+    </a>
+
+
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="myModalLabel" class="modal-title">이 페이지에 대한 피드백을 남겨주세요</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form">
+                    <input type="hidden" name="page_id" id="page_id" value="13" />
+                    <div class="form-group">
+                        <label class="control-label" for="email">답장받을 이메일 주소</label>
+                        <div class="">
+                            <input class="form-control" type="text" id="email" placeholder="Email" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="feedback">하고 싶은 말</label>
+                        <div class="controls">
+                            <textarea class="form-control" id="feedback" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;">※ 피드백은 저자에게 e-메일로 전달됩니다.</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="feedback_btn">전송하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>

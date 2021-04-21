@@ -1,0 +1,3263 @@
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="mzkAy71X1qQFWihQN535LoiToXg34MUg9nuor7Og9E8" />
+    <meta name="naver-site-verification" content="d7c116bce998e6961b8db93c8592550f1a82119f"/>
+    <meta name="description" content="온라인 책을 제작 공유하는 플랫폼 서비스">
+
+    <meta property="og:type" content="wikidocs">
+    <meta property="og:title" content="위키독스">
+    <meta property="og:description" content="온라인 책을 제작 공유하는 플랫폼 서비스">
+    <meta property="og:image" content="https://wikidocs.net/images/book/wikidocs_1.png">
+    <meta property="og:url" content="https://wikidocs.net">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="canonical" href="https://wikidocs.net/book/1">
+    <title>03-2 while문 - 점프 투 파이썬</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+    <link type="text/css" href="/static/book/css/style_stack.css?v=20210106_02" rel="stylesheet"  media="screen" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/book/js/utils.js"></script>
+    <script type="text/javascript" src="/static/book/js/base.js?v=20210103_02"></script>
+    
+    
+
+<link type="text/css" href="/static/highlight.js/styles/default.css?v=20191108" rel="stylesheet" />
+<link type="text/css" href="/static/apprise/apprise.min.css" rel="stylesheet"  />
+<link type="text/css" href="/static/book/css/markdown_stack.css?v=20191110_04" rel="stylesheet" />
+<link type="text/css" href="/static/treeview/bootstrap-treeview.min.css" rel="stylesheet" />
+
+<script type="text/javascript" src="/static/highlight.js/highlight.pack.js?v=20181204"></script>
+<script type="text/javascript" src="/static/apprise/apprise-1.5.min.js"></script>
+<script type="text/javascript" src="/static/scroll/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="/static/book/js/page.js?v=20210103_03"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- 수식입력 mathjax -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    displayAlign: "left"
+});
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- 수식입력 mathjax -->
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-9470517771012578",
+          enable_page_level_ads: true
+     });
+</script>
+
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2686629-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+    <!--
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    -->
+</head>
+<body>
+
+
+
+
+
+
+<div class="container">
+
+<div class="content row tex2jax_ignore" style="margin-top:0px;">
+
+    <div class="col-sm-3">
+        <div class="row">
+
+
+    <div class="col-sm-3 sidebar" style="padding:0;margin:0;overflow-x: hidden;">
+
+        
+        <div class="row">
+            <div class="col-xs-12" style="border-bottom:solid 1px #ddd;">
+                <button id="toggle_toc_btn" class="btn btn-sm btn-default" style="margin:10px;">목차보기</button>
+                <label for="toc_on" class="small">
+                    <input type="radio" id="toc_on" name="toc_on_off" value="show"> Show
+                </label>
+                <label for="toc_off" class="small">
+                    <input type="radio" id="toc_off" name="toc_on_off" value="hide"> Hide
+                </label>
+            </div>
+        </div>
+        
+
+        <div class="toc toc-checker">
+
+            <!--
+            <div style="padding:15px 10px 15px 15px;background:#f9f9f9;border-bottom:solid 1px #ccc;">
+                <a class="pull-right menu_link menu-toggle" style="cursor:pointer;margin-right:5px;"><span class="glyphicon glyphicon-menu-hamburger" title="메뉴"></span></a>
+                <span class="">
+                    <a href="/" class="menu_link" style="font-family:consolas;">WikiDocs</a>
+                </span>
+            </div>
+            -->
+
+            <div class="row">
+
+                <div class="col-xs-12" style="margin:;padding:0;">
+
+                    <div class="row" style="margin:0;padding:0;border-bottom:solid 1px #ccc;">
+                        <div class="col-xs-10">
+                            <input type="text" id="kw" name="kw" class="input-search" placeholder="검색어를 입력하세요." value="">
+                        </div>
+                        <div class="col-xs-2 clearfix">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group list-group-toc" style="margin:0;">
+
+                <a class="list-group-item " href="/book/1" style="margin:0;">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;" title="점프 투 파이썬">
+                        
+                            <i class="glyphicon glyphicon-book"></i>
+                        
+                        <strong>점프 투 파이썬</strong>
+                    </span>
+                </a>
+
+                
+                <a href="javascript:page(2)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00장 들어가기 전에">
+                        <span style="padding-left:0px">
+                        
+                        00장 들어가기 전에
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4319)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-1 머리말">
+                        <span style="padding-left:20px">
+                        
+                        00-1 머리말
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4320)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-2 저자소개">
+                        <span style="padding-left:20px">
+                        
+                        00-2 저자소개
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(742)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-3 주요변경이력">
+                        <span style="padding-left:20px">
+                        
+                        00-3 주요변경이력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4321)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="00-4 책 구입 안내">
+                        <span style="padding-left:20px">
+                        
+                        00-4 책 구입 안내
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(5)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01장 파이썬이란 무엇인가?">
+                        <span style="padding-left:0px">
+                        
+                        01장 파이썬이란 무엇인가?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4307)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-1 파이썬이란?">
+                        <span style="padding-left:20px">
+                        
+                        01-1 파이썬이란?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(6)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-2 파이썬의 특징">
+                        <span style="padding-left:20px">
+                        
+                        01-2 파이썬의 특징
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(7)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-3 파이썬으로 무엇을 할 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        01-3 파이썬으로 무엇을 할 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(8)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-4 파이썬 설치하기">
+                        <span style="padding-left:20px">
+                        
+                        01-4 파이썬 설치하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(9)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-5 파이썬 둘러보기">
+                        <span style="padding-left:20px">
+                        
+                        01-5 파이썬 둘러보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17684)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="01-6 파이썬과 에디터">
+                        <span style="padding-left:20px">
+                        
+                        01-6 파이썬과 에디터
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(11)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 파이썬 프로그래밍의 기초, 자료형">
+                        <span style="padding-left:0px">
+                        
+                        02장 파이썬 프로그래밍의 기초, 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(12)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-1 숫자형">
+                        <span style="padding-left:20px">
+                        
+                        02-1 숫자형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(13)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-2 문자열 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-2 문자열 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(14)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-3 리스트 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-3 리스트 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(15)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-4 튜플 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-4 튜플 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(16)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-5 딕셔너리 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-5 딕셔너리 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1015)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-6 집합 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-6 집합 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-7 불 자료형">
+                        <span style="padding-left:20px">
+                        
+                        02-7 불 자료형
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(18)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02-8 자료형의 값을 저장하는 공간, 변수">
+                        <span style="padding-left:20px">
+                        
+                        02-8 자료형의 값을 저장하는 공간, 변수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42526)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="02장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        02장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(19)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 프로그램의 구조를 쌓는다! 제어문">
+                        <span style="padding-left:0px">
+                        
+                        03장 프로그램의 구조를 쌓는다! 제어문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(20)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-1 if문">
+                        <span style="padding-left:20px">
+                        
+                        03-1 if문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(21)" class="list-group-item active">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-2 while문">
+                        <span style="padding-left:20px">
+                        
+                        03-2 while문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(22)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03-3 for문">
+                        <span style="padding-left:20px">
+                        
+                        03-3 for문
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42527)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="03장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        03장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(23)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 프로그램의 입력과 출력은 어떻게 해야 할까?">
+                        <span style="padding-left:0px">
+                        
+                        04장 프로그램의 입력과 출력은 어떻게 해야 할까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(24)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-1 함수">
+                        <span style="padding-left:20px">
+                        
+                        04-1 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(25)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-2 사용자 입력과 출력">
+                        <span style="padding-left:20px">
+                        
+                        04-2 사용자 입력과 출력
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(26)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04-3 파일 읽고 쓰기">
+                        <span style="padding-left:20px">
+                        
+                        04-3 파일 읽고 쓰기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42528)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="04장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        04장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(27)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 파이썬 날개달기">
+                        <span style="padding-left:0px">
+                        
+                        05장 파이썬 날개달기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(28)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-1 클래스">
+                        <span style="padding-left:20px">
+                        
+                        05-1 클래스
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(29)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-2 모듈">
+                        <span style="padding-left:20px">
+                        
+                        05-2 모듈
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1418)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-3 패키지">
+                        <span style="padding-left:20px">
+                        
+                        05-3 패키지
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(30)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-4 예외 처리">
+                        <span style="padding-left:20px">
+                        
+                        05-4 예외 처리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(32)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-5 내장 함수">
+                        <span style="padding-left:20px">
+                        
+                        05-5 내장 함수
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(33)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05-6 라이브러리">
+                        <span style="padding-left:20px">
+                        
+                        05-6 라이브러리
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(42529)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="05장 연습문제">
+                        <span style="padding-left:20px">
+                        
+                        05장 연습문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(34)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06장 파이썬 프로그래밍, 어떻게 시작해야 할까?">
+                        <span style="padding-left:0px">
+                        
+                        06장 파이썬 프로그래밍, 어떻게 시작해야 할까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(35)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-1 내가 프로그램을 만들 수 있을까?">
+                        <span style="padding-left:20px">
+                        
+                        06-1 내가 프로그램을 만들 수 있을까?
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(40)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-2 3과 5의 배수 합하기">
+                        <span style="padding-left:20px">
+                        
+                        06-2 3과 5의 배수 합하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(38)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-3 게시판 페이징하기">
+                        <span style="padding-left:20px">
+                        
+                        06-3 게시판 페이징하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(36)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-4 간단한 메모장 만들기">
+                        <span style="padding-left:20px">
+                        
+                        06-4 간단한 메모장 만들기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(37)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-5 탭을 4개의 공백으로 바꾸기">
+                        <span style="padding-left:20px">
+                        
+                        06-5 탭을 4개의 공백으로 바꾸기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(39)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-6 하위 디렉터리 검색하기">
+                        <span style="padding-left:20px">
+                        
+                        06-6 하위 디렉터리 검색하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(85800)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-7 파이보">
+                        <span style="padding-left:20px">
+                        
+                        06-7 파이보
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(744)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="06-8 코딩도장">
+                        <span style="padding-left:20px">
+                        
+                        06-8 코딩도장
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1669)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07장 정규표현식">
+                        <span style="padding-left:0px">
+                        
+                        07장 정규표현식
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(1642)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-1 정규 표현식 살펴보기">
+                        <span style="padding-left:20px">
+                        
+                        07-1 정규 표현식 살펴보기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-2 정규 표현식 시작하기">
+                        <span style="padding-left:20px">
+                        
+                        07-2 정규 표현식 시작하기
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(4309)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="07-3 강력한 정규 표현식의 세계로">
+                        <span style="padding-left:20px">
+                        
+                        07-3 강력한 정규 표현식의 세계로
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(17114)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="08장 종합문제">
+                        <span style="padding-left:0px">
+                        
+                        08장 종합문제
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(12769)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="09장 풀이">
+                        <span style="padding-left:0px">
+                        
+                        09장 풀이
+                        </span>
+                    </span>
+                </a>
+                
+                <a href="javascript:page(78308)" class="list-group-item ">
+                    <span style="white-space:nowrap;overflow:hidden;display:block;"
+                          title="10장 마치며">
+                        <span style="padding-left:0px">
+                        
+                        10장 마치며
+                        </span>
+                    </span>
+                </a>
+                
+            </div>
+        </div>
+
+        
+
+        <input type="hidden" name="request_mobile" id="request_mobile" value="0" />
+
+        <form id="search_form" action="/book/search/1" method="post">
+            <input type="hidden" name="keyword" id="keyword">
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+function myTrim(x) {
+    return x.replace(/^\s+|\s+$/gm,'');
+}
+
+function search_json() {
+    var kw = myTrim($("#kw").val());
+    if(!kw) {
+        return;
+    }
+
+    $.post("/book/search.json", {
+        "keyword": kw
+
+    }, function (json) {
+        if (json.success) {
+            location.href = "/book/search/result/1";
+        }
+
+    }, "json");
+}
+
+$(document).ready(function () {
+    $(".book-search").on("click", function() {
+        $("#search_form").submit();
+    });
+
+    $("#mobile_search_btn").on("click", function() {
+        search_json();
+    });
+
+    $('#kw').keyup(function(e) {
+        if (e.keyCode == 13) {
+            search_json();
+        }
+    });
+
+    $(".home").on("click", function() {
+        location.href = "/";
+    });
+
+    if (typeof(Storage) !== "undefined") {
+        if(localStorage.sidebar == "hidden") {
+            menuToggle();
+        }else {
+            $(".sidebar").show();
+            $(".toc-header").show();
+        }
+    }else {
+        $(".sidebar").show();
+        $(".toc-header").show();
+    }
+
+    $(".toc").css("display", "block");
+    if (typeof(Storage) !== "undefined") {
+        $(".sidebar").scrollTop(localStorage.sp);
+    }
+
+    $(".sidebar").css("overflow-y", "auto");
+
+    $(".toc_item").on("click", function() {
+        var page_id = $(this).attr("page_id");
+        // $(".selected_toc").removeClass("selected_toc");
+        // $(this).addClass("selected_toc");
+        page(page_id);
+
+    });
+
+    $(".menu-toggle").on("click", function() {
+        menuToggle();
+
+        if (typeof(Storage) !== "undefined") {
+            if(localStorage.sidebar == "hidden") {
+                localStorage.sidebar = "show";
+            }else {
+                localStorage.sidebar = "hidden";
+            }
+        }
+    });
+
+    
+    $("input[name=toc_on_off]").on("click", function() {
+        var result = $(this).val();
+        if (typeof(Storage) !== "undefined") {
+            localStorage.toc = result;
+        }
+    });
+    if (typeof(Storage) !== "undefined") {
+        if(localStorage.toc == "hide") {
+            $('#toc_off').prop('checked', true);
+            $(".toc-checker").hide();
+        }else {
+            $('#toc_on').prop('checked', true);
+            $(".toc-checker").removeClass("hide");
+            $(".toc-checker").show();
+        }
+    }
+    
+
+    $("#load_content").show();
+});
+
+
+function menuToggle(no_sidebar) {
+    if(!no_sidebar) {
+        $(".sidebar").toggle();
+        $(".toc-header").toggle();
+    }
+    $("#load_content").toggleClass("col-sm-offset-3");
+    $("#load_content").toggleClass("col-sm-9");
+    $("#load_content").toggleClass("col-sm-12");
+    $("#load_content").toggleClass("sidebar-padding");
+    $(".prev_next_indicator").toggle();
+    $(".menu-group").toggle();
+}
+
+function page(no) {
+    var scrollpos = $(".sidebar").scrollTop();
+    if (typeof(Storage) !== "undefined") {
+        localStorage.sp = scrollpos;
+    }
+
+    location.href = "/"+no;
+    return false;
+
+    $(".selected_toc").removeClass("selected_toc");
+    $(".toc_item").each(function() {
+        var page_id = $(this).attr("page_id");
+        if(page_id == no) {
+            $(this).addClass("selected_toc");
+        }
+    });
+
+    var url = "/load/"+no;
+    $("#load_content").load(url, function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success") {
+            // alert("External content loaded successfully!");
+            $("#load_content").scrollTop(0);
+            window.history.pushState("object or string", "03-2 while문", "/"+no);
+        }
+        if(statusTxt == "error") {
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        }
+    });
+
+}
+</script>
+
+
+
+    </div>
+
+    
+    <div class="page col-sm-offset-3 col-sm-9" id="load_content" style="display:none;margin-top:0px;">
+        
+
+
+
+
+
+
+
+<div class="btn-group pull-right menu-group" role="group">
+    <small>
+        <a class="menu_link menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" title="메뉴"></span></a>
+    </small>
+</div>
+<div class="menu-wikidocs">
+</div>
+
+
+<div class="clearfix page-depth">
+    <ol class="breadcrumb pull-left">
+        <li><small><a href="/book/1"><i class="glyphicon glyphicon-book"></i> <strong>점프 투 파이썬</strong></a></small></li>
+        
+        <li><small><a href="/19">03장 프로그램의 구조를 쌓는다! 제어문</a></small></li>
+        
+        <li><small><a href="/21">03-2 while문</a></small></li>
+        
+    </ol>
+    
+    <ol class="breadcrumb pull-right">
+        <li><a href="/"><small class=""><i class="glyphicon glyphicon-home"></i> WikiDocs</small></a></li>
+    </ol>
+    
+</div>
+
+
+<h1 class="page-subject">
+    03-2 while문
+    
+</h1>
+
+<div class="page-content tex2jax_process">
+    <div class="toc">
+<ul>
+<li><a href="#while">while문의 기본 구조</a></li>
+<li><a href="#while_1">while문 만들기</a></li>
+<li><a href="#while_2">while문 강제로 빠져나가기</a></li>
+<li><a href="#while_3">while문의 맨 처음으로 돌아가기</a></li>
+<li><a href="#_1">무한 루프</a></li>
+</ul>
+</div>
+<h2 id="while">while문의 기본 구조</h2>
+<p>반복해서 문장을 수행해야 할 경우 while문을 사용한다. 그래서 while문을 반복문이라고도 부른다.</p>
+<p>다음은 while문의 기본 구조이다.</p>
+<pre><code class="python">while &lt;조건문&gt;:
+    &lt;수행할 문장1&gt;
+    &lt;수행할 문장2&gt;
+    &lt;수행할 문장3&gt;
+    ...
+</code></pre>
+
+<p>while문은 조건문이 참인 동안에 while문 아래의 문장이 반복해서 수행된다.</p>
+<p>"열 번 찍어 안 넘어가는 나무 없다"는 속담을 파이썬 프로그램으로 만든다면 다음과 같이 될 것이다.</p>
+<pre><code class="python">&gt;&gt;&gt; treeHit = 0
+&gt;&gt;&gt; while treeHit &lt; 10:
+...     treeHit = treeHit +1
+...     print(&quot;나무를 %d번 찍었습니다.&quot; % treeHit)
+...     if treeHit == 10:
+...         print(&quot;나무 넘어갑니다.&quot;)
+...
+나무를 1번 찍었습니다.
+나무를 2번 찍었습니다.
+나무를 3번 찍었습니다.
+나무를 4번 찍었습니다.
+나무를 5번 찍었습니다.
+나무를 6번 찍었습니다.
+나무를 7번 찍었습니다.
+나무를 8번 찍었습니다.
+나무를 9번 찍었습니다.
+나무를 10번 찍었습니다.
+나무 넘어갑니다.
+</code></pre>
+
+<p>위 예에서 while문의 조건문은 <code>treeHit &lt; 10</code>이다. 즉 treeHit가 10보다 작은 동안에 while문 안의 문장을 계속 수행한다. whlie문 안의 문장을 보면 제일 먼저 <code>treeHit = treeHit + 1</code>로 treeHit 값이 계속 1씩 증가한다. 그리고 나무를 treeHit번만큼 찍었음을 알리는 문장을 출력하고 treeHit가 10이 되면 "나무 넘어갑니다."라는 문장을 출력한다. 그러고 나면 <code>treeHit &lt; 10</code> 조건문이 거짓이 되므로 while문을 빠져나가게 된다.</p>
+<blockquote>
+<p>※ treeHit = treeHit + 1은 프로그래밍을 할 때 매우 자주 사용하는 기법이다. treeHit 값을 1만큼씩 증가시킬 목적으로 사용하며, treeHit += 1 처럼 사용하기도 한다.</p>
+</blockquote>
+<p>다음은 while문이 반복되는 과정을 순서대로 정리한 표이다. 이렇게 긴 과정을 소스 코드 단 5줄로 만들 수 있다니 놀랍지 않은가?</p>
+<table>
+<thead>
+<tr>
+<th>treeHit</th>
+<th>조건문</th>
+<th>조건판단</th>
+<th>수행하는 문장</th>
+<th>while문</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0  &lt; 10</td>
+<td>참</td>
+<td>나무를 1번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1  &lt; 10</td>
+<td>참</td>
+<td>나무를 2번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2  &lt; 10</td>
+<td>참</td>
+<td>나무를 3번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3  &lt; 10</td>
+<td>참</td>
+<td>나무를 4번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4  &lt; 10</td>
+<td>참</td>
+<td>나무를 5번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5  &lt; 10</td>
+<td>참</td>
+<td>나무를 6번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>6</td>
+<td>6  &lt; 10</td>
+<td>참</td>
+<td>나무를 7번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7  &lt; 10</td>
+<td>참</td>
+<td>나무를 8번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8  &lt; 10</td>
+<td>참</td>
+<td>나무를 9번 찍었습니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9  &lt; 10</td>
+<td>참</td>
+<td>나무를 10번 찍었습니다. 나무 넘어갑니다.</td>
+<td>반복</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10 &lt; 10</td>
+<td>거짓</td>
+<td></td>
+<td>종료</td>
+</tr>
+</tbody>
+</table>
+<h2 id="while_1">while문 만들기</h2>
+<p>이번에는 여러 가지 선택지 중 하나를 선택해서 입력받는 예제를 만들어 보자. 먼저 다음과 같이 여러 줄짜리 문자열을 입력한다.</p>
+<pre><code class="python">&gt;&gt;&gt; prompt = &quot;&quot;&quot;
+... 1. Add
+... 2. Del
+... 3. List
+... 4. Quit
+...
+... Enter number: &quot;&quot;&quot;
+&gt;&gt;&gt;
+</code></pre>
+
+<p>이어서 number 변수에 0을 먼저 대입한다. 이렇게 변수를 먼저 설정해 놓지 않으면 다음에 나올 while문의 조건문인 <code>number != 4</code>에서 변수가 존재하지 않는다는 오류가 발생한다.</p>
+<pre><code class="python">&gt;&gt;&gt; number = 0
+&gt;&gt;&gt; while number != 4:
+...     print(prompt)
+...     number = int(input())
+...
+
+1. Add
+2. Del
+3. List
+4. Quit
+
+Enter number:
+</code></pre>
+
+<p>while문을 보면 number가 4가 아닌 동안 prompt를 출력하고 사용자로부터 번호를 입력받는다. 다음 결과 화면처럼 사용자가 값 4를 입력하지 않으면 계속해서 prompt를 출력한다.</p>
+<blockquote>
+<p>※ 여기에서 number = int(input())는 사용자의 숫자 입력을 받아들이는 것이라고만 알아두자. int나 input 함수에 대한 내용은 뒤의 내장 함수 부분에서 자세하게 다룬다.</p>
+</blockquote>
+<pre><code class="python">Enter number:
+1
+
+1. Add
+2. Del
+3. List
+4. Quit
+</code></pre>
+
+<p>4를 입력하면 조건문이 거짓이 되어 while문을 빠져나가게 된다.</p>
+<pre><code class="python">Enter number:
+4
+&gt;&gt;&gt;
+</code></pre>
+
+<h2 id="while_2">while문 강제로 빠져나가기</h2>
+<p>while문은 조건문이 참인 동안 계속해서 while문 안의 내용을 반복적으로 수행한다. 하지만 강제로 while문을 빠져나가고 싶을 때가 있다. 예를 들어 커피 자판기를 생각해 보자. 자판기 안에 커피가 충분히 있을 때에는 동전을 넣으면 커피가 나온다. 그런데 자판기가 제대로 작동하려면 커피가 얼마나 남았는지 항상 검사해야 한다. 만약 커피가 떨어졌다면 판매를 중단하고 "판매 중지" 문구를 사용자에게 보여주어야 한다. 이렇게 판매를 강제로 멈추게 하는 것이 바로 break문이다.</p>
+<p><img alt="" src="https://wikidocs.net/images/page/21/while_break.png" /></p>
+<p>다음 예는 커피 자판기 이야기를 파이썬 프로그램으로 표현해 본 것이다.</p>
+<pre><code class="python">&gt;&gt;&gt; coffee = 10
+&gt;&gt;&gt; money = 300
+&gt;&gt;&gt; while money:
+...     print(&quot;돈을 받았으니 커피를 줍니다.&quot;)
+...     coffee = coffee -1
+...     print(&quot;남은 커피의 양은 %d개입니다.&quot; % coffee)
+...     if coffee == 0:
+...         print(&quot;커피가 다 떨어졌습니다. 판매를 중지합니다.&quot;)
+...         break
+...
+</code></pre>
+
+<p>money가 300으로 고정되어 있으므로 <code>while money:</code>에서 조건문인 money는 0이 아니기 때문에 항상 참이다. 따라서 무한히 반복되는 무한 루프를 돌게 된다. 그리고 while문의 내용을 한 번 수행할 때마다 <code>coffee = coffee - 1</code>에 의해서 coffee의 개수가 1개씩 줄어든다. 만약 coffee가 0이 되면 <code>if coffee == 0:</code> 문장에서 <code>coffee == 0:</code>이 참이 되므로 if문 다음 문장 "커피가 다 떨어졌습니다. 판매를 중지합니다."가 수행되고 break문이 호출되어 while문을 빠져나가게 된다.</p>
+<p>하지만 실제 자판기는 위 예처럼 작동하지는 않을 것이다. 다음은 자판기의 실제 작동 과정과 비슷하게 만들어본 예이다. 이해가 안 되더라도 걱정하지 말자. 다음 예는 조금 복잡하니까 대화형 인터프리터를 사용하지 말고 IDLE 에디터를 사용해서 작성해 보자.</p>
+<blockquote>
+<p>※ 대화형 인터프리터가 아닌 IDLE 에디터에서 소스를 입력하는 예제에서는 실제 실습 환경을 반영해 &gt;&gt;&gt;(프롬프트)를 표시하지 않았다. 앞으로 어떤 창에 소스를 입력해야 할지 헷갈릴 때는 이를 참고하자.</p>
+</blockquote>
+<pre><code class="python"># coffee.py
+
+coffee = 10
+while True:
+    money = int(input(&quot;돈을 넣어 주세요: &quot;))
+    if money == 300:
+        print(&quot;커피를 줍니다.&quot;)
+        coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+        coffee = coffee -1
+    else:
+        print(&quot;돈을 다시 돌려주고 커피를 주지 않습니다.&quot;)
+        print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+    if coffee == 0:
+        print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+        break
+</code></pre>
+
+<p>위 프로그램 소스를 따로 설명하지는 않겠다. 여러분이 소스를 입력하면서 무슨 내용인지 이해할 수 있다면 지금껏 배운 if문이나 while문을 이해했다고 보면 된다. 만약 <code>money = int(input("돈을 넣어 주세요: "))</code> 문장이 이해되지 않는다면 이 문장은 사용자로부터 값을 입력받는 부분이고 입력받은 숫자를 money 변수에 대입하는 것이라고만 알아두자.</p>
+<p>이제 coffee.py 파일을 저장한 후 명령 프롬프트 창을 열어 프로그램을 직접 실행해 보자. </p>
+<blockquote>
+<p>※ 프로그램 소스를 에디터로 작성해서 실행시키는 방법이 기억나지 않는다면 01-6을 참고하자.</p>
+</blockquote>
+<p>다음과 같은 입력 란이 나타난다.</p>
+<pre><code class="no-highlight">C:\doit&gt;python coffee.py
+돈을 넣어 주세요:
+</code></pre>
+
+<p>입력 란에 여러 숫자를 입력해 보면서 결과를 확인하자.</p>
+<pre><code class="no-highlight">돈을 넣어 주세요: 500
+거스름돈 200를 주고 커피를 줍니다.
+돈을 넣어 주세요: 300
+커피를 줍니다.
+돈을 넣어 주세요: 100
+돈을 다시 돌려주고 커피를 주지 않습니다.
+남은 커피의 양은 8개입니다.
+돈을 넣어 주세요:
+</code></pre>
+
+<h2 id="while_3">while문의 맨 처음으로 돌아가기</h2>
+<p>while문 안의 문장을 수행할 때 입력 조건을 검사해서 조건에 맞지 않으면 while문을 빠져나간다. 그런데 프로그래밍을 하다 보면 while문을 빠져나가지 않고 while문의 맨 처음(조건문)으로 다시 돌아가게 만들고 싶은 경우가 생기게 된다. 이때 사용하는 것이 바로 continue문이다.</p>
+<p>1부터 10까지의 숫자 중에서 홀수만 출력하는 것을 while문을 사용해서 작성한다고 생각해보자. 어떤 방법이 좋을까?</p>
+<pre><code class="python">&gt;&gt;&gt; a = 0
+&gt;&gt;&gt; while a &lt; 10:
+...     a = a + 1
+...     if a % 2 == 0: continue
+...     print(a)
+...
+1
+3
+5
+7
+9
+</code></pre>
+
+<p>위 예는 1부터 10까지의 숫자 중 홀수만 출력하는 예이다. a가 10보다 작은 동안 a는 1만큼씩 계속 증가한다. <code>if a % 2 == 0</code>(a를 2로 나누었을 때 나머지가 0인 경우)이 참이 되는 경우는 a가 짝수일 때이다. 즉 a가 짝수이면 continue 문장을 수행한다. 이 continue문은 while문의 맨 처음(조건문: <code>a&lt;10</code>)으로 돌아가게 하는 명령어이다. 따라서 위 예에서 a가 짝수이면 <code>print(a)</code>는 수행되지 않을 것이다.</p>
+<h2 id="_1">무한 루프</h2>
+<p>이번에는 무한 루프(Loop)에 대해 알아보자. 무한 루프란 무한히 반복한다는 의미이다. 우리가 사용하는 일반 프로그램 중에서 무한 루프 개념을 사용하지 않는 프로그램은 거의 없다. 그만큼 자주 사용한다는 뜻이다.</p>
+<p>파이썬에서 무한 루프는 while문으로 구현할 수 있다. 다음은 무한 루프의 기본 형태이다. </p>
+<pre><code class="python">while True: 
+    수행할 문장1 
+    수행할 문장2
+    ...
+</code></pre>
+
+<p>while문의 조건문이 True이므로 항상 참이 된다. 따라서 while문 안에 있는 문장들은 무한하게 수행될 것이다.</p>
+<p>다음의 무한 루프 예이다.</p>
+<pre><code class="python">&gt;&gt;&gt; while True:
+...     print(&quot;Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.&quot;)
+...
+Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.
+Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.
+Ctrl+C를 눌러야 while문을 빠져나갈 수 있습니다.
+....
+</code></pre>
+
+<p>위 문장은 영원히 출력된다. 하지만 이 예처럼 아무 의미 없이 무한 루프를 돌리는 경우는 거의 없을 것이다. <code>[Ctrl+C]</code>를 눌러 빠져나가자.</p>
+</div>
+
+<div class="muted text-right" style="font-size: 12px;margin:10px 0;">
+    
+    마지막 편집일시 : 2019년 6월 30일 5:09 오후
+    
+</div>
+
+<!-- google adsense -->
+<!-- PC -->
+
+
+<!-- Mobile -->
+
+
+    
+        <div style="margin:20px 0;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 위키독스모바일2020 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9470517771012578"
+     data-ad-slot="4465552259"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+    
+
+
+
+<!-- google adsense -->
+
+<!--
+
+-->
+
+<div class="clearfix">
+    <a href="javascript:show_comments();" class="label label-info">댓글 88</a>
+    <a href="#myModal" data-toggle="modal" title="피드백을 남겨주세요" class="label label-info">피드백</a>
+</div>
+
+<div class="user_comments" style="display:none">
+    <div class="comments">
+        
+    <div class="comment comment_border_top">
+        <a name="comment_1647"></a>
+        <span style="white-space:pre-wrap;">안녕하세요, 좋은글 너무 잘 보고 있습니다.
+예제를 따라 하던 중 아래와 같은 에러를 만났습니다.
+
+  File &quot;coffee.py&quot;, line 5
+SyntaxError: Non-ASCII character &#39;\xb5&#39; in file coffee.py on line 5, but no enco
+ding declared; see <a href="http://www.python.org/peps/pep-0263.html" rel="nofollow">http://www.python.org/peps/pep-0263.html</a> for details
+
+
+어떻게 해야 해결할수 있을런지요?
+
+조언을 부탁드립니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">파이손</a>,
+            
+            2008년 8월 7일 9:38 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1648"></a>
+        <span style="white-space:pre-wrap;">소스 최 상단에 아래와 같은 문구를 넣어 주세요.
+
+# -*- coding: euc-kr -*-
+
+위 소스도 수정했습니다.
+감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2008년 8월 7일 9:53 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1649"></a>
+        <span style="white-space:pre-wrap;">정말 캄사합니다.
+덕분에 정말 파이손에 빠져들것 같습니다. ^^
+언제 저녁 한번 사고 싶습니다...</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">파이손</a>,
+            
+            2008년 8월 7일 6:56 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1650"></a>
+        <span style="white-space:pre-wrap;">우분투 에서 파이썬 공부하고 있는 초보자인데요 ^^;
+에디터를 gedit 로 사용하고 있는데 euc-kr 로 저장하면 글씨가 이상하게 나오고
+utf-8로 저장해야 한글이 제대로 나오네요 
+그리고 저장할때 문자 인코딩도 중요한가요 ? 
+첫문장의 # coding : 이건 꼭 써줘야하는건가요.. ?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">파이문</a>,
+            
+            2008년 8월 21일 5:38 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1651"></a>
+        <span style="white-space:pre-wrap;">한글 사용 시 # -*- coding: euc-kr -*-  나 # -*- coding: utf-8 -*-  은 꼭 써줘야 합니다.
+사용하시는 에디터의 인코딩이 euc-kr이 아닌 utf-8로 맞추어져 있는것 같습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2008년 8월 21일 9:42 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1652"></a>
+        <span style="white-space:pre-wrap;">파이썬에서는 c++ 에서 처럼
+
+a=1
+a++이런거 지원 안되나요??</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">codefly</a>,
+            
+            2009년 12월 5일 12:09 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1653"></a>
+        <span style="white-space:pre-wrap;">++는 지원이 안됩니다.
+아래처럼 사용할 수 있습니다.
+
+a=1
+a+=1</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2009년 12월 7일 9:32 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1654"></a>
+        <span style="white-space:pre-wrap;">덕분에 잘 배우고 있습니다.^^;
+언제나 파이썬으로 원하는 프로그램을 만들 수 있을 지는 요원하지만..+_+
+coffee.py 첫번째 if문의 print &quot;커피를 줍니다.&quot; 에서 들여쓰기가 한 칸 많네요. 사소한 것이지만.. 
+저같은 초보에게는 이런 에러메세지에도 당황할 수 있으니 수정해 주세요.^^</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">현수 </a>,
+            
+            2009년 12월 26일 11:08 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1655"></a>
+        <span style="white-space:pre-wrap;">수정했습니다.
+감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2009년 12월 28일 9:42 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1656"></a>
+        <span style="white-space:pre-wrap;">아으 ㅠ  어떻게 하는지 정말 모르겠어요 ㅠ..
+
+커피 자판기의 예로  소스를 에디터로 작성해서 실행시키라는 걸 모르면 1장 끝부분 또는 부록부분을 
+
+보라고 하셨잖아요.. 근데 1장의 끝부분이 어디를 말씀하시는건지 모르겠구요..ㅠ; 부록 부분을 봤는데
+
+-&gt;&gt; 에디트 플러스로 test.py와 같은 프로그램을 작성하고 저장한 후 Ctrl-1을 실행하면 
+
+파이썬이 자동으로 실행되는 것을 확인할 수 있을 것이다.   이건.. 이름을 test.py 로 만들고 실행시키라는거 아닌가요?
+
+근데 잠깐 켜졌다가 꺼지고 Ctrl-1은 어디서 실행시키는건지 모르겠어요..
+
+p.s (에디터 플러스에서 새파일 -&gt; 보통문서로 만드는건가요..?
+
+python 은 없구 c, java 이런거만 있던데..) 인터넷도 뒤져보고 해봤는데 정말 모르겠습니다~</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김영국</a>,
+            
+            2010년 2월 6일 2:30 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1657"></a>
+        <span style="white-space:pre-wrap;">Ctrl-1은 말 그대로 Ctrl키와 숫자 &quot;1&quot;을 동시에 누르라는 말입니다.
+부록 부분을 그대로 따라하시면 될텐데요,
+정확히 어떤 부분에서 막히시는지 알려주시면 부록부분을 보강하도록 하겠습니다.
+감사합니다. ^^</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2010년 2월 8일 11:49 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1658"></a>
+        <span style="white-space:pre-wrap;">죄송합니다.. 제가 정말 초보라서ㅠ.;; 부록 부분
+
+이제 에디트 플러스로 test.py와 같은 프로그램을 작성하고 저장한 후 Ctrl-1을 실행하면 파이썬이 자동으로 실행되는 것을 확인할 수 있을 것이다.
+
+여기에서
+
+에디트플러스 설정창은 그대로 따라서 했구요.  이제 test.py 와 같은 프로그램을 작성해야 하잖아요. 그런데 test.py를 어떻게 작성하냐는거죠 ㅠ.ㅠ;
+
+그러니까  [새파일]-&gt; 보통문서-&gt; 아무내용 쓰고-&gt; 저장할때 test.py 로 써라 라는건가요..</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김영국</a>,
+            
+            2010년 2월 9일 10:26 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1659"></a>
+        <span style="white-space:pre-wrap;">네, 그렇게 하시면 됩니다. ^^</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2010년 2월 10일 12:11 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1660"></a>
+        <span style="white-space:pre-wrap;">ㅇㅅㅇ;; 그..그런데요.. 그게.. 저장한 파이썬모양을 열어봐도 계속 잠깐 켜지고 꺼집니다..
+
+에디트플러스 3.12 최신버전이구요.. 다 따라했는데..ㅠ.ㅠ</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김영국</a>,
+            
+            2010년 2월 10일 2:13 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1661"></a>
+        <span style="white-space:pre-wrap;">에디트 플러스설정에서 기본설정=&gt;도구=&gt;사용자도구 화면에서 &quot;출력내용캡쳐&quot; 항목을 체크제거하시고 실행해 보세요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">박응용</a>,
+            
+            2010년 2월 11일 5:22 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1662"></a>
+        <span style="white-space:pre-wrap;">대체 뭐가 잘못된거지 ㅠ. 출력내용캡쳐 항목에 체크 안되있어요..  근데도 똑같아요~</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김영국</a>,
+            
+            2010년 2월 12일 1:06 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1663"></a>
+        <span style="white-space:pre-wrap;">위에 예제중에서요.
+elif money &gt; 300:
+        print &quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300)
+        coffee = coffee -1
+여기에서 coffee = coffee -1 이부분이 print보다 위로 가야될꺼같아요.
+해보니까 순차적으로 계산하는거같은데.
+커피 갯수빼는걸 뒤로 하니까 프린트할때 빼기전의 값을 적어주내요</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">김성일</a>,
+            
+            2010년 5월 3일 6:31 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1664"></a>
+        <span style="white-space:pre-wrap;">돈을 300원이나 300원 이상 입력하면 &quot;커피를 줍니다&quot; 라는 결과만 출력하지 남은 커피의 양은 출력하지 않습니다.
+따라서 coffee 양을 계산한는 부분을 print 위에 적으나 밑에 적으나 상관없습니다. 결과를 출력하지 않으니깐요.
+돈이 300원 보다 적게 입력되었을 경우에만 커피양을 알려줍니다. 
+
+혹시 예제에 추가적으로 커피 양을 알려주는 문장을 넣으셨다면 커피 양을 계산하는 다음에 커피 양을 알려주는 문장을 넣거나 또는
+영국님이 말씀하신데로 출력전에 먼저 커피양을 계산하고 출력하면 됩니다.
+결론은 커피 계산하는 문장 다음에 출력 문장을 넣어야 된다는 것이죠.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">정원</a>,
+            
+            2011년 5월 20일 2:20 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1665"></a>
+        <span style="white-space:pre-wrap;">파이썬 3 사용자입니다. int(raw_input(&quot;돈을 넣어 주세요: &quot;) 입력시 에러 발생하네요
+int(input(&quot;돈을 넣어 주세요: &quot;) 이렇게 입력하시면 되겠습니다</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">안</a>,
+            
+            2011년 6월 11일 3:35 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1666"></a>
+        <span style="white-space:pre-wrap;">&quot;나무 넘어갑니다..&quot; 너무 재밌는 예제네요.. ㅎㅎ</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">안진영</a>,
+            
+            2011년 10월 26일 2:44 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1668"></a>
+        <span style="white-space:pre-wrap;">감사히~ 잘 보고 있습니다. ^^
+근데, continue 부분 초보자에겐 자칫 모호할 수도 있겠는데요
+&quot;while문 (맨) 처음으로 되돌아가기&quot; 부분을 
+&quot;while문의 다음 조건 계속 검사하기&quot;로 고쳐보는 건 어떨까요?
+잡설이었습니당~ ;;</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">개발장군</a>,
+            
+            2012년 2월 15일 2:17 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_1667"></a>
+        <span style="white-space:pre-wrap;">[삽질의 현장] 에디터로 작성해보자 해서... &quot;아래의 예는 조금 복잡하니까 대화형 인터프리터를 이용하지 말고 에디터를 이용해서 작성해 보자.&quot;...이후, 삽질의 현장!
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 1
+SyntaxError: encoding problem: with BOM  
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 1
+SyntaxError: encoding problem: with BOM
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 1
+SyntaxError: encoding problem: with BOM  // euc-kr을 utf-8 수정하고, -*-을 _*_로 수정해서 해결. 했더니...
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 8
+    print (&quot;커피를 줍니다.&quot;)
+                                 ^
+TabError: inconsistent use of tabs and spaces in indentation   // 탭을 지우고 스페이스바로 맞춰서 해결 했더니...
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 11
+    print (&quot;거스름돈 %d를 죽 커피를 줍니다.&#39; % (money -300))
+                                                                       ^
+SyntaxError: EOL while scanning string literal
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 15
+    print (&quot;남은 커피의 양은 %d개 입니다ㅣ&quot; % coffee
+        ^
+SyntaxError: invalid syntax     // 괄호를 닫아 해결했더니....
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 15
+    print (&quot;남은 커피의 양은 %d개 입니다ㅣ&quot; % coffee)
+        ^
+SyntaxError: invalid syntax   // 마침표 대신 오타( | ) 때문인 줄 알았더니...
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 15
+    print (&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+        ^
+SyntaxError: invalid syntax   // 괄호를 앞으로 옮겨야 되는 줄 알았더니.... 
+andrew@Andy:~$ python3 coffee.py
+  File &quot;coffee.py&quot;, line 15
+    print (&quot;남은 커피의 양은 %d개 입니다.&quot;) % coffee
+        ^
+SyntaxError: invalid syntax  // 15라인 이전(14라인) 문장의 괄호가 없어서 넣어서 해결.
+andrew@Andy:~$ python3 coffee.py
+돈을 넣어 주세요: 100
+돈을 다시 돌려주고 커피를 주지 않습니다.
+남은 커피의 양은 10개 입니다.
+돈을 넣어 주세요: 200
+돈을 다시 돌려주고 커피를 주지 않습니다.
+남은 커피의 양은 10개 입니다.
+돈을 넣어 주세요: 300
+커피를 줍니다.
+돈을 넣어 주세요: 300
+커피를 줍니다.
+돈을 넣어 주세요: 200
+돈을 다시 돌려주고 커피를 주지 않습니다.
+남은 커피의 양은 8개 입니다.
+돈을 넣어 주세요: 300
+커피를 줍니다.
+돈을 넣어 주세요: 900
+거스름돈 600를 주고 커피를 줍니다.
+돈을 넣어 주세요: 100
+돈을 다시 돌려주고 커피를 주지 않습니다.
+남은 커피의 양은 6개 입니다.
+돈을 넣어 주세요: 1800
+거스름돈 1500를 주고 커피를 줍니다.
+돈을 넣어 주세요: 500
+거스름돈 200를 주고 커피를 줍니다.
+돈을 넣어 주세요: 200
+돈을 다시 돌려주고 커피를 주지 않습니다.
+남은 커피의 양은 4개 입니다.
+돈을 넣어 주세요: 300
+커피를 줍니다.
+돈을 넣어 주세요: 600
+거스름돈 300를 주고 커피를 줍니다.
+돈을 넣어 주세요: 1000
+거스름돈 700를 주고 커피를 줍니다.
+돈을 넣어 주세요: 500
+거스름돈 200를 주고 커피를 줍니다.
+커피가 다 떨어졌습니다. 판매를 중지 합니다.
+andrew@Andy:~$  // 잘 돌아 갑니다. ^^  힘~!</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/">starmomo</a>,
+            
+            2013년 5월 9일 4:07 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2215"></a>
+        <span style="white-space:pre-wrap;">리눅스에서 파이썬 연습을 하고 있습니다. 아래처럼 코딩했는데 syntax Error 가 나오는데 이유를 모르겠습니다.
+
+# -*- coding:utf-8 -*-
+#!/usr/bin/env python
+
+treeHit=0
+while treeHit &lt; 10:
+        treeHit=treeHit+1:
+        print &quot;나무를 %d번 찍었습니다.&quot; % treeHit
+        if treeHit==10:
+                print &quot;나무 넘어갑니다.&quot;</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/379">주영</a>,
+            
+            2014년 3월 4일 3:56 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2216"></a>
+        <span style="white-space:pre-wrap;">@주영님, &quot;treeHit=treeHit+1:&quot; 여기서 콜론 &quot;:&quot; 을 제거하시면 될 것 같습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2014년 3월 4일 4:08 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2222"></a>
+        <span style="white-space:pre-wrap;">이런식으로 되어있는줄 모르고 책을 사야지만 볼 수 있는줄 알고 책을 샀었네요 (왕초보책 살때도 그랬지만 =_=;) 보니 이책도 while과 else문이 같이 설명이 안되어있네요. while {} else {} 가 생각보다 많이 쓰인다고 들었는데요...</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/381">YongTak</a>,
+            
+            2014년 3월 4일 6:03 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2224"></a>
+        <span style="white-space:pre-wrap;">@YongTak 님, while / else 에 대한 내용도 &quot;점프 투 파이썬&quot;에 추가할 수 있도록 검토하겠습니다. 감사합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2014년 3월 4일 6:29 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2226"></a>
+        <span style="white-space:pre-wrap;">혹시 ebook도 무료로 업데이트해서 보내주시면 감사합니다 기존 구매한 독자들에게요 =_=;; (아니면 좀더 싸게요.. =_=; 추가 수정한 부분에 대해서만 ㅋ) </span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/381">YongTak</a>,
+            
+            2014년 3월 5일 10:04 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2227"></a>
+        <span style="white-space:pre-wrap;">@YongTak 님, 온라인 문서가 수정될 때마다 이북을 새로 보내드리긴 힘들구요, 변경사항이 아주 많아지거나 잘못된 내용이 기재된 경우 재 발송해 드리고 있습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2014년 3월 5일 1:55 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2285"></a>
+        <span style="white-space:pre-wrap;">질문드리겠습니다~
+커피자판기 코드에서 예외처리는 어떻게 하는지 궁급합니다.
+예를 들어 위 코드에선 
+int(input(&quot;돈을 넣어 주세요 : &quot;))
+라고 했을 때 숫자가 아닌 문자를 입력했을 시 에러가나면서 종료가 되더라구요
+int를 뺀 
+input(&quot;돈을 넣어 주세요 : &quot;))
+라고 하면 문자형으로 받기 때문에 if문에서 숫자 300때문에 에러가 납니다.
+요약하자면
+&#39;입력 받는 값이 정수형인지 문자형인지 비교하여 정수형을 입력 받았을 시 아래 코드로 넘어가고 문자형 일땐 print문과 함께 continue를 사용하여 다시 입력 받게끔&#39;
+하고싶은데 어떤 방법이 있겠습니까~
+
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/462">파이썬좋아좋아</a>,
+            
+            2014년 4월 11일 2:23 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2305"></a>
+        <span style="white-space:pre-wrap;">에디터는 sublime text3 사용중입니다
+
+[Decode error - output not utf-8]
+Traceback (most recent call last):
+  File &quot;C:\projcet\Pythonex\coffee.py&quot;, line 4, in &lt;module&gt;
+[Decode error - output not utf-8]
+
+에러가 떠서
+
+빌드 새로 만들어서 실행시켰는데
+
+{ &quot;cmd&quot;: [&quot;c:\\python34&quot;, &quot;-u&quot;, &quot;$file&quot;],
+ &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,
+&quot;selector&quot;: &quot;source.python&quot;,
+&quot;encoding&quot;: &quot;cp949&quot;
+}
+
+[WinError 5] 액세스가 거부되었습니다
+[cmd: [&#39;c:\\python34&#39;, &#39;-u&#39;, &#39;C:\\projcet\\Pythonex\\coffee.py&#39;]]
+[dir: C:\projcet\Pythonex]
+[path: C:\Program Files (x86)\Common Files\NetSarang;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Python34;C:\Program Files (x86)\Common Files\NetSarang;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Python34;C:\Program Files (x86)\ESTsoft\ALSee\x64;.;;.;]
+[Finished]
+
+이렇게 엑세스가 거부되네요 
+
+1. 권한 거부시 어떻게 해결해야하는지 도움 부탁드립니다.
+
+2. 위에 새로만든 빌드중 cp949 대신에 utf-8을 사용해되되는지요?
+
+3.  가능하다면 여러 언어를 지원하는 서비스를 만들때 cp949와 utf-8 중 어느게 더 유용한지 알고 싶습니다.
+
+감사합니다</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/501">Edward</a>,
+            
+            2014년 4월 27일 5:03 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2307"></a>
+        <span style="white-space:pre-wrap;">@Edward님, coffee.py 파일 작성 시 저장되는 파일 인코딩은 utf-8로 해 주세요. cp949보다는 유니코드인 utf-8을 사용하시는 것이 유리합니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2014년 4월 27일 9:31 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2332"></a>
+        <span style="white-space:pre-wrap;">while 문으로 구구단을 만들려고 하는데요
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+2 * 4 = 8
+2 * 5 = 10
+2 * 6 = 12
+2 * 7 = 14
+2 * 8 = 16
+2 * 9 = 18
+
+3 * 1 = 3
+3 * 2 = 6
+3 * 3 = 9
+3 * 4 = 12
+3 * 5 = 15
+3 * 6 = 18
+3 * 7 = 21
+3 * 8 = 24
+3 * 9 = 27...
+
+이렇게 만들고 싶은데 제가 짠 코드는 이렇습니다
+
+i = 2
+j = 1
+while i &lt;= 9:
+    while j &lt;= 9:
+        print i, &#39;*&#39;, j, &#39;=&#39;, i * j
+        j = j + 1
+    i = i + 1
+
+위의 코드를 실행하면 구구단이 2단 하나만 나옵니다. 제 생각에는 맨 마지막 줄의 i = i + 1 &lt;&lt;&lt; 이 코드가 무시되는 것 같습니다.
+어떻게 해야 하나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/543">Donghyun</a>,
+            
+            2014년 5월 19일 2:39 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2333"></a>
+        <span style="white-space:pre-wrap;">Donghyun 님, j가 9로 바뀐 후 다시 1로 초기화 해주는 과정이 빠져서 그런거 같습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2014년 5월 19일 8:37 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2479"></a>
+        <span style="white-space:pre-wrap;">초보이지만 구구단 수정해서 올려봅니다.
+
+i = 2
+j = 1
+while i &lt;= 9:
+    while j &lt;= 9:
+        print (i, &#39;*&#39;, j, &#39;=&#39;, i * j)
+        j = j + 1
+    i = i + 1
+    j=1
+    print(&quot;&quot;)
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/797">근영</a>,
+            
+            2014년 8월 26일 12:43 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2490"></a>
+        <span style="white-space:pre-wrap;">초보라 구구단 만들기에서도 좌절 느낄뻔....
+&gt;&gt;&gt; a=1
+&gt;&gt;&gt; b=1
+&gt;&gt;&gt; while a&lt;9:
+	a+=1
+	b=1
+	print(&quot;&quot;)
+	while b&lt;10:
+		print(&quot;%d * %d = %d&quot; %(a,b,a*b))
+		b+=1</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/812">Hyunseok</a>,
+            
+            2014년 8월 28일 1:44 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2669"></a>
+        <span style="white-space:pre-wrap;">위에 &quot;파이썬이좋아님&quot;이 질문하신 int(input(&quot;돈을 넣어 주세요 : &quot;)) 에서 입력값 없이 입력시 오류에 처리방법을 간단히 말씀드리자면
+
+while문 안에서 continue문을 만나면(입력값이 없는 경우)  조건문(while 1:)으로 돌아가기 때문에 try, except문을 이용 하시면 되겠습니다.
+
+coffee = 10
+while 1:
+    try:
+        money = int(input(&quot;돈을 넣어 주세요: &quot;))
+    except:
+        continue
+    if money == 300:
+        print(&quot;커피를 줍니다.&quot;)
+        coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+        coffee = coffee -1
+    else:
+        print(&quot;돈을 다시 돌려주고 커피를 주지 않습니다.&quot;)
+        print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+    if not coffee:
+        print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+        break</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/1034">병훈</a>,
+            
+            2014년 12월 4일 6:14 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_2946"></a>
+        <span style="white-space:pre-wrap;">a=1
+b=2
+while a&lt;10:
+	print str(b) + &quot; * &quot; + str(a) + &quot; = &quot; + str(a*b)
+	a += 1
+	if a == 10:
+		print &quot;\n&quot;
+		b += 1
+		a = 1
+		if b == 10: break
+		continue
+
+구구단 만들어봤는데.. 이런 간단한 것도 사람마다 제각각이군요ㅎㅎ
+&quot;점프 투 파이썬&quot; 덕분에 잘 배우고 있습니다~</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/1527">sseulgai</a>,
+            
+            2015년 5월 15일 5:41 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3008"></a>
+        <span style="white-space:pre-wrap;">열심히 따라해봅니다.
+while else문만으로는... 코딩이 반복되는게 생기네요
+
+coffee = 10
+while 1:
+	try:
+		money = int(input(&quot;돈을 넣어 주세요: &quot;))
+	except:
+		print(&quot;동전을 사용하세요.\n&quot;)
+		continue
+	if money == 300:
+		coffee = coffee -1 
+		print(&quot;커피를 줍니다.&quot;)
+		a=&quot;남은 커피의 양은 {0}개 입니다.&quot;.format(coffee)
+		print(a)
+		print(&quot;-&quot;*30,&quot;\n&quot;)
+	elif money &gt; 300:
+		print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+		coffee = coffee -1
+		print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+		print(&quot;-&quot;*30,&quot;\n&quot;)
+	else:
+		print(&quot;돈을 다시 돌려주고 커피를 주지 않습니다.&quot;)
+		print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+		print(&quot;-&quot;*30,&quot;\n&quot;)
+	if not coffee:
+		print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+		break
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/1645">병한</a>,
+            
+            2015년 6월 20일 5:28 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3009"></a>
+        <span style="white-space:pre-wrap;">배치파일에 대한 문의 드립니다.
+
+@ECHO OFF
+setlocal
+rem notepad++ 에서 python 소스 실행하기  ==인터넷 검색에서 퍼온거 따라해본것==
+
+rem for %%i in (&quot;커피판매.py&quot;) do d:\Python34\python.exe &quot;%%1&quot;   &lt;=이방법은 실패
+rem d:\Python34\python.exe &quot;$(FULL_CURRENT_PATH)&quot; %*       &lt;=이방법도 실패
+
+rem F5 를 누르고 배치파일만 선택하고 엔터치면 d:\Python34\python.exe &quot;$(FULL_CURRENT_PATH)&quot;  이렇게 실행되도록 하고싶은데ㅜㅜ...
+rem DOS도 어렵네 누가 좀 도와주세요
+
+rem 일단 이렇게라도 하는데 3항을 단축키로 만들어서라도 하고 싶지만 능력부족
+
+rem 1. notepad++ 에서 F5를 누른다고
+rem 2. 현재 배치파일 선택
+rem 3. 2항의 배치파일에서 한칸을 띄우고 &quot;$(FULL_CURRENT_PATH)&quot;을 입력
+rem 4. 이렇게 하면 notepad++에서 활성화중인 소스가 실행된다. (단 저장이 되어있어야함)
+
+d:\Python34\python.exe %1
+
+echo.
+PAUSE
+
+@ECHO ON
+
+어떻게 하면 될까요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/1645">병한</a>,
+            
+            2015년 6월 20일 11:15 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3821"></a>
+        <span style="white-space:pre-wrap;">윈도우에서 에디터로 Pycharm을 쓰고 있는 유저입니다.
+# coffee.py
+
+coffee = 10
+while True:
+    money = int(input(&quot;돈을 넣어 주세요: &quot;))
+    if money == 300:
+        print(&quot;커피를 줍니다.&quot;)
+        coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+        coffee = coffee -1
+    else:
+        print(&quot;돈을 다시 돌려주고 커피를 주지 않습니다.&quot;)
+        print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+    if not coffee:
+        print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+        break
+을 책에 있는 그대로 카피해서 Pycharm에 넣고 돌렸을 때는 되는데
+cmd에 들어가서 coffee.py하고 파일을 열면 에러가 뜹니다.
+어떻게 해결해야 되나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/2937">Terry</a>,
+            
+            2016년 4월 17일 3:12 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3824"></a>
+        <span style="white-space:pre-wrap;">@Terry님, 발생하는 오류를 알려주세요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2016년 4월 17일 6:32 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3825"></a>
+        <span style="white-space:pre-wrap;">Traceback (most recent call last):
+  File &quot;coffee.py&quot;, line 5, in &lt;module&gt;
+    money = int(input(&quot;\ub3c8\uc744 \ub123\uc5b4 \uc8fc\uc138\uc694: &quot;))
+  File &quot;C:\Python34\Lib\encodings\cp437.py&quot;, line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_map)
+UnicodeEncodeError: &#39;charmap&#39; codec can&#39;t encode characters in position 0-1: character maps to &lt;undefined&gt;
+
+라고 나옵니다</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/2937">Terry</a>,
+            
+            2016년 4월 17일 8:26 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3830"></a>
+        <span style="white-space:pre-wrap;">@Terry님, coffee.py 파일의 인코딩을 확인해 보셔야 할 것 같습니다. 파일 인코딩을 utf-8로 맞추고 다시 실행하시면 될 것 같네요. 파일 인코딩은 에디터에서 확인 및 변경할 수 있습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2016년 4월 18일 10:15 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3832"></a>
+        <span style="white-space:pre-wrap;">완전 초보라 그런데 어떻게 해야 하는지 좀 구체적으로 알려주실 수 있나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/2937">Terry</a>,
+            
+            2016년 4월 18일 10:17 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_3834"></a>
+        <span style="white-space:pre-wrap;">@Terry님, 에디트플러스를 사용하신다고 가정하고 설명드리면, coffee.py 파일을 에디트플러스로 여신 후에 [메뉴 -&gt; 문서 -&gt; 파일인코딩 -&gt; 인코딩변환 -&gt; UTF-8 선택 -&gt; 확인] 하시면 됩니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2016년 4월 18일 10:22 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4097"></a>
+        <span style="white-space:pre-wrap;">안녕하세요. 저는 ununtu teminal을이용해서 파이썬을 공부중인데요
+coffee.py파일을 gedit을이용해서 만들어놨는데
+terminal에서 어떻게 불러오는지 좀 자세하게 설명해주실수 있나요??</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3321">이</a>,
+            
+            2016년 7월 8일 11:26 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4101"></a>
+        <span style="white-space:pre-wrap;">@이님, gedit로 coffee.py 파일을 저장한 디렉터리를 먼저 알고 계셔야 합니다. 만약 /home/foo 라는 디렉터리에 coffee.py 파일을 저장하셨다면 터미널에서 다음과 같이 실행하시면 됩니다.
+python /home/foo/coffe.py</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2016년 7월 8일 5:07 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4314"></a>
+        <span style="white-space:pre-wrap;">윈도우에서 editplus를 쓰고 있습니다.
+
+# coffee.py
+
+coffee = 10
+while True:
+    money = int(input(&quot;돈을 넣어 주세요: &quot;))
+    if money == 300:
+        print(&quot;커피를 줍니다.&quot;)
+	coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+	coffee = coffee -1
+    else:
+        print(&quot;돈을 다시 돌려주고 커피를 주지 않습니다.&quot;)
+	print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+    if not coffee:
+        print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+	break
+
+라고 입력을 했는데
+File &quot;C:\Python\ex\coffee.py&quot;, line 8
+    coffee = coffee -1
+                     ^
+
+TabError: inconsisrant use of tabs and spaces in indentation
+이라고 에러메세지가 나옵니다.
+
+참고로 예제를 ctrl+c/v를 하면 문제가 발생하지 않습니다. -.-
+무슨 문제인건지...조언 부탁드립니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3669">tai woo</a>,
+            
+            2016년 9월 19일 9:51 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4538"></a>
+        <span style="white-space:pre-wrap;">우선, 재밌게 따라하면서 읽고 있습니다. 감사합니다. :)
+추가 개발로 예외 사항 처리를 포함하여 이것저것 해보고 있는데요. 숫자가 아닌 입력이 발생할 경우를 대응하려고 했을 때,
+
+coffee = 10
+while True:
+    try:
+    money = int(input(&quot;돈을 넣어 주세요: &quot;))
+    break
+    except ValueError: continue
+     print(&quot;숫자를 입력해주세요.&quot;)
+
+    if money == 300:
+        print(&quot;커피를 줍니다.&quot;)
+        coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+        coffee = coffee -1
+    elif money &lt; 300:
+        print(&quot;돈이 부족 합니다. 커피 가격은 %d입니다.&quot; % (300))
+        print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+    else:
+        print(&quot;안녕히 가세요.&quot;)
+    if money != int:
+        print(&quot;숫자를 입력하세요.&quot;)
+    elif not coffee:
+        print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+        break
+여기서 4번째 줄에 block 에러가 뜨네요 ㅠ 초보이다보니... 혹시 개선 방법이 있을까요?
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4007">Jake</a>,
+            
+            2016년 11월 21일 3:36 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4554"></a>
+        <span style="white-space:pre-wrap;">tai woo 님 코드 이상없는데요. 이상하네요.. ㅎ
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3924">용준</a>,
+            
+            2016년 11월 22일 5:20 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4556"></a>
+        <span style="white-space:pre-wrap;">Jake 님 try/except/continue 순서가 이상한거 같은데, 아래처럼 하려는게 맞으신가요..?
+
+coffee = 10
+while True:
+    try:
+        money = int(input(&quot;m: &quot;))
+    except:
+        print(&quot;give me number.&quot;)
+        continue
+
+    if money == 300:
+        print(&quot;coffee.&quot;)
+        coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;change %d and coffee.&quot; % (money -300))
+        coffee = coffee -1
+    else:
+        print (&quot;not enough money. here is your money %d&quot; %money)
+
+    if not coffee:
+        print(&quot;sold out.&quot;)
+        break</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3924">용준</a>,
+            
+            2016년 11월 22일 5:34 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4557"></a>
+        <span style="white-space:pre-wrap;">@용준님: 오오 감사합니다! 감동 ㅠ 예외처리가 잘 되네요. </span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4007">Jake</a>,
+            
+            2016년 11월 22일 5:50 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_4815"></a>
+        <span style="white-space:pre-wrap;">while문에서 나무부분이요 마지막에 print(&quot;나무 넘어갑니다.&quot;). 부분에서 들여쓰기오류가 게속뜨는데 똑같이했는데 왜그런건가요...</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4392">김건일</a>,
+            
+            2017년 1월 20일 1:42 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5030"></a>
+        <span style="white-space:pre-wrap;">실행은 어떤걸로 하나요??
+cmd 도스창으로 돌려야하는건지, Notepad++와 같은 에디터로하는지 궁금합니다</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4688">홍준</a>,
+            
+            2017년 3월 2일 2:56 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5031"></a>
+        <span style="white-space:pre-wrap;">@홍준님, cmd창을 열고 C:\Python&gt;python coffee.py 처럼 실행하셔도 되고, 에디터로 실행하셔도 됩니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 3월 2일 3:42 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5103"></a>
+        <span style="white-space:pre-wrap;">감사합니다
+
+여기까지만 배웠는데도 소인수분해, 최대공약수, 최소공배수 등을 구할 수 있는 프로그램을 만들 수 있게 됬네요 ㅎㅎ 더 배워서 더 많은 걸 만들고 싶습니다</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4796">Olga Park</a>,
+            
+            2017년 3월 17일 5:09 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5107"></a>
+        <span style="white-space:pre-wrap;">열번찍어 안넘어가는 나무 없다 예시 드는 부분에서 if treeHit == 10: 여기서 왜 =가 두개인가요...?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4411">형준</a>,
+            
+            2017년 3월 19일 8:59 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5138"></a>
+        <span style="white-space:pre-wrap;">treehit의 값과 10이 같으면 print(&quot;나무 넘어갑니다&quot;) 문장을 실행시키기 위해서 == 을 씁니다.
+
+==의 의미 : 같음</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3070">라이퀴아</a>,
+            
+            2017년 3월 27일 4:07 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5209"></a>
+        <span style="white-space:pre-wrap;">1000만원을 이율이 5퍼센트인 은행에 저축할 때, 저축액이 2배가 되려면 몇 년이 지나야 하는지를 계산해 주는 프로그램을 while문을 가지고 짜려고 하는데 어떻게 해야할까요 ㅜㅜ 도움요청드립니다 </span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5055">윤환</a>,
+            
+            2017년 4월 15일 6:11 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5249"></a>
+        <span style="white-space:pre-wrap;">질문입니다
+딕셔너리 쌍 추가,삭제하기
+&gt;&gt;&gt;a = {1: &#39;a&#39;}
+&gt;&gt;&gt;a[2] = &#39;b&#39;
+&gt;&gt;&gt;a
+{1:&#39;a&#39;, 2: &#39;b&#39;}
+가 나오내요 
+즉, 거꾸로 나오네요 맞나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/4781">이충근</a>,
+            
+            2017년 4월 25일 9:47 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5312"></a>
+        <span style="white-space:pre-wrap;">항상 감사합니다 @박응용 님. 자판기와 실제로 비슷하게 해보는 예제의 else문을 &quot;돈이부족하면 더 입력하게 하자!&quot;라고 생각해서 수정해봤는데
+두번째 if문 elif절에서 coffee=coffee-1이 잘못되었다고 나오네요... 초보자라 어디가 잘못된지 잘 모르겠습니다. 어떤 조언이든지 감사합니다:D
+#coffee.py
+#-*- coding= utf-8 -*-
+coffee=10
+while True:
+	money=int(input(&quot;돈을 넣어 주세요: &quot;))
+	if money==300:
+		print(&quot;커피를 줍니다.&quot;)
+		coffee-=1
+	elif money&gt;300:
+		print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot;%(money-300))
+		coffee-=1
+	else:
+		print(&quot;남은 커피의 양은 %d 개 입니다.&quot;%coffee)
+		print(&quot;%d원이 더 필요합니다.&quot;%(300-money))
+		addmoney=int(input(&quot;돈을 더 넣으세요 :&quot;))
+		if (money+addmoney)==300:
+			print(&quot;커피를 줍니다.&quot;)
+			coffee-=1
+		elif (money+addmoney)&gt;300:
+			print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot;%((money+addmoney)-1)
+			coffee=coffee-1
+		else: 
+			continue
+	if not coffee:
+		print(&quot;커피가 다 떨어졌습니다. 내일 또 오세요~&quot;)
+		break</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5020">jinhyeong</a>,
+            
+            2017년 5월 16일 5:34 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5313"></a>
+        <span style="white-space:pre-wrap;">@jinhyeong 님, 다음 문장이 잘못되었네요.
+print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot;%((money+addmoney)-1)
+다음과 같이 바꾸셔야 합니다.
+print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot;% money+addmoney)
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 5월 16일 6:05 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5314"></a>
+        <span style="white-space:pre-wrap;">@박응용 님 감사합니다! 말씀해주신대로 수정하였더니 잘 작동되네요! 혹시 돈을 부족하게 입력했을때 300이 될때까지 돈을 더 넣으라는 input이 뜨게 하려면 어떻게해야 하는지요..? 무한루프를 이용해야 하는 건가요?
++ 첫번째 else문의 if절 시작하기 전에 while True:를 넣었더니 돈을 받다가 멈춰버리네요 ㅎㅎ..</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5020">jinhyeong</a>,
+            
+            2017년 5월 16일 7:43 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5471"></a>
+        <span style="white-space:pre-wrap;">자판기 문제에서 이런 오류가 발생해요 ㅜ 초보라 뭘 만져야하는지도 모르고..
+Traceback (most recent call last):
+  File &quot;C:\Users\장규\Desktop\1.py&quot;, line 2, in &lt;module&gt;
+    while true:
+NameError: name &#39;true&#39; is not defined
+
+그래서 첫문장 while true : 를 while coffee: 로 하니까 정상 작동해요...
+왜 그런건가요? 이게 맞나요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5425">학렬</a>,
+            
+            2017년 7월 24일 6:56 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5475"></a>
+        <span style="white-space:pre-wrap;">@학렬님, true 대신 True로 변경해 보세요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 7월 26일 9:28 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5479"></a>
+        <span style="white-space:pre-wrap;">@박응용 님 감사합니다 ! 덕분에 더더욱 파이썬에 재미들렸습니다</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5425">학렬</a>,
+            
+            2017년 7월 27일 3:28 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5547"></a>
+        <span style="white-space:pre-wrap;">좋은 지식 공유해 주셔서 무척 감사합니다.
+왕초보라서 첫번째 예제부터 이해안되네요.
+while문은 앞에 조건(treeHit&lt;10)이 참일 때만이 작동하는걸로 알고 있습니다.
+하지만 작동하다가 treeHit가 누적되어 최종 treeHit==10이 되어도 &quot;print(&quot;커피가 다 떨어졌습니다. 판매를 중지합니다.&quot;)&quot;라는 값을 출력해주네요.
+그러면 treeHit&lt;10이 거짓인데도 작동할수 있다,이렇게 이해해도 되는걸까요?
+
+&gt;&gt;&gt; treeHit = 0
+&gt;&gt;&gt; while treeHit &lt; 10:
+...    treeHit = treeHit +1
+...    print(&quot;나무를 %d번 찍었습니다.&quot; % treeHit)
+...    if treeHit == 10:
+...        print(&quot;나무 넘어갑니다.&quot;)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+계속 보다 보니깐 좀 이해가네요...아래 if문을 탭을 주지 않고 그냥 계속해서 아래에다 썼는데도 작동이 문제 없네요.그건 아래 if문은 위의while문에 속해 있지 않는다는것을 말해주는거 아닐까요?
+if treeHit == 10:
+    print(&quot;나무 넘어갑니다.&quot;)</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5527">Quan</a>,
+            
+            2017년 8월 27일 8:35 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5548"></a>
+        <span style="white-space:pre-wrap;">while True일때 무한 반복하는 것으로 알고 있습니다.
+그러면 300을 입력하였을 때 coffee값이 0으로 변할때까지 계속 &quot;print(&quot;커피를 줍니다.&quot;)&quot;동작을 반복해야 하는거 아닌가요?왜서 while True인데도 그냥 한번만 반복하고 멈출까요?
+coffee = 10
+while True:
+    money = int(input(&quot;돈을 넣어 주세요: &quot;))
+    if money == 300:
+        print(&quot;커피를 줍니다.&quot;)
+        coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+        coffee = coffee -1
+    else:
+        print(&quot;돈을 다시 돌려주고 커피를 주지 않습니다.&quot;)
+        print(&quot;남은 커피의 양은 %d개 입니다.&quot; % coffee)
+    if not coffee:
+        print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+        break</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5527">Quan</a>,
+            
+            2017년 8월 27일 9:55 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5554"></a>
+        <span style="white-space:pre-wrap;">@Quan님, 10번 반복되는게 맞습니다. 1번만 반복된다면 들여쓰기라던지 뭔가 코딩상의 오류로 보이네요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2017년 8월 29일 8:48 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5565"></a>
+        <span style="white-space:pre-wrap;">전 커피머신에서 while true: 하고 넣으면     while true:  NameError: name &#39;true&#39; is not defined 라고 오류가 나네요
+그런데 true 대신에 coffee 넣으면 되고, 1 넣어도 되는데 true 나 happy나 뭘 넣어도 위같은 오류가 나오는 신기..</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5569">케로</a>,
+            
+            2017년 9월 7일 9:34 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_5600"></a>
+        <span style="white-space:pre-wrap;">@케로 true 대신 &#39;true&#39; 혹은 True, happy 대신 &#39;happy&#39; 넣으시면 오류 나지 않으실 것 같아요 이 내용은 02-7 자료형의 참과 거짓 부분을 참고하시면 이해가실 것 같습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/5624">재영</a>,
+            
+            2017년 9월 27일 10:24 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6004"></a>
+        <span style="white-space:pre-wrap;">마지막 예제에서 *기호들이 어떻게 자동으로 가운데 정렬이 되는건가요?</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6581">경성</a>,
+            
+            2018년 5월 29일 8:12 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6016"></a>
+        <span style="white-space:pre-wrap;">아래와 같이 여러줄 입력을 어떻게 하는지요?
+3.6.5 쉘에서 첫번쨰 줄 입력 후 바로 다음 줄에 &gt;&gt;&gt;가 표시됩니다.
+
+&gt;&gt;&gt; prompt = &quot;&quot;&quot;
+... 1. Add
+... 2. Del
+... 3. List
+... 4. Quit
+...
+... Enter number: &quot;&quot;&quot;
+&gt;&gt;&gt;</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6587">일환</a>,
+            
+            2018년 5월 31일 1:30 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6047"></a>
+        <span style="white-space:pre-wrap;">coffee 예시에서 현재는 
+coffee=10
+while True:
+로 되어있어서 문제가 나타나지 않는데 이걸 바꿔서 
+coffee = 0
+while True:
+로 시작해버리면 coffee가 없는데도 while문이 시작해버려서 coffee가 없는데도 돈을 먹게 되네요.
+while coffee &gt; 0:
+으로 바꾸는게 맞는 것 같습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6674">동건</a>,
+            
+            2018년 6월 20일 5:30 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6149"></a>
+        <span style="white-space:pre-wrap;">&#39;조건에 맞지 않는 경우 맨 처음으로 돌아가기&#39;의 문구가 헷갈립니다.
+a = 0
+while a &lt; 10:
+    a = a+1
+    if a % 2 == 0: continue
+    print(a)
+이 continue문은 while문의 맨 처음(조건문: a&lt;10)으로 돌아가게 하는 명령어이다.
+
+a가 짝수가 &#39;맞다면&#39; continue문이 실행되어서 맨 처음으로 돌아가고, 짝수가 &#39;아니면&#39; continue문이 실행되지 않아서 print(a)가 실행되는 것으로 이해했는데요.
+그렇다면 &#39;조건에 맞는 경우 맨 처음으로 돌아가기&#39;가 맞는 것이 아닌가요? 잘 모르겠습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6844">Jonny</a>,
+            
+            2018년 8월 1일 4:57 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6150"></a>
+        <span style="white-space:pre-wrap;">@Jonny님, 문구가 잘못되었네요. 알려주셔서 감사합니다. 문구는 수정조치 했습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2018년 8월 1일 5:29 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6151"></a>
+        <span style="white-space:pre-wrap;">와~ 엄청 빠른 피드백 감사합니다 :)</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6844">Jonny</a>,
+            
+            2018년 8월 1일 5:44 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6205"></a>
+        <span style="white-space:pre-wrap;">여러줄 쓰기 에서
+&gt;&gt;&gt; prompt 
+&#39;\n1.Add\n2.Del\n3.List\n4.Quit\n...\nenter number : &#39; &lt;&lt;&lt; 요런식으로 나오는데 설정어떻게 할수있나요??</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/6937">김진운</a>,
+            
+            2018년 8월 29일 12:34 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6389"></a>
+        <span style="white-space:pre-wrap;">[풀이4] 별 표시하기1 예제에 대한 문의사항이 있습니다.
+
+i = 0
+while True:
+    i += 1  # while문 수행 시 1씩 증가
+    if i &gt; 5: break  # i 값이 5보다 크면 while문을 벗어난다.
+    print (&#39;*&#39; * i)  # i 값 개수만큼 *를 출력한다.
+
+위의 해답대로 문제를 풀었는데, 아래와 같은 결과가 나왔습니다.
+
+*
+**
+***
+****
+*****
+
+제 생각에는, if i &gt; 5: break 에서 문제가 생긴 것 같습니다.
+i가 5가 될때까지는 false인데, i가 6이 될 때 true가 되면서 while을 빠져 나옵니다.
+
+확인 부탁드립니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7336">SG</a>,
+            
+            2018년 12월 12일 2:16 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6398"></a>
+        <span style="white-space:pre-wrap;">@SG님 풀이에 오류가 있었네요. 알려주셔서 감사합니다. 풀이는 수정해 두었습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2018년 12월 20일 9:23 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6414"></a>
+        <span style="white-space:pre-wrap;">질문이 있습니다.!
+커피 머신에서 IDLE 에서 했을 때 저장을 하면 SyntaxError가 생겨서 명령 프롬프트 창에서 실행이 안됩니다 ㅜㅜ 
+IDLE 에서 엔터를 치면 그대로 잘 실행이 되는데 말이지요. 저장할 때 invalid syntax 라고 뜹니다.
+명령 프롬프트에서 뜨는 오류는 이거에요.
+
+ C:\doit&gt;python coffee.py
+  File &quot;&lt;stdin&gt;&quot;, line 1
+    C:\doit&gt;python coffee.py
+                           ^
+SyntaxError: unexpected character after line continuation character</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7466">지완</a>,
+            
+            2019년 1월 5일 6:58 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6415"></a>
+        <span style="white-space:pre-wrap;">@지완님, 혹시 coffee.py 파일 안에 &quot; C:\doit&gt;python coffee.py&quot; 이런 문장이 있나요? 작성하신 소스코드를 전부 보여주시면 좋을것 같습니다.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/3">박응용</a>,
+            
+            2019년 1월 6일 11:02 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6416"></a>
+        <span style="white-space:pre-wrap;"># coffee.py
+
+coffee = 10
+while True:
+    money = int(input(&quot;돈을 넣어 주세요: &quot;))
+    if money == 300:
+        print(&quot;커피를 줍니다.&quot;)
+        coffee = coffee -1
+    elif money &gt; 300:
+        print(&quot;거스름돈 %d를 주고 커피를 줍니다.&quot; % (money -300))
+        coffee = coffee -1
+    else:
+        print(&quot;돈을 다시 돌려주고 커피를 주지 않습니다.&quot;)
+        print(&quot;남은 커피의 양은 %d개 입니다. % coffee)
+    if coffee == 0:
+        print(&quot;커피가 다 떨어졌습니다. 판매를 중지 합니다.&quot;)
+        break
+이렇게 작성했습니다. 말씀하신 문장을 맨 위나 아래에 넣어도 오류가 생기네요. 저장을 하면 &quot;EOL while scanning string literal&quot; 이라고 나오구요, Shell에서 &quot;C:\doit&gt;python coffee.py&quot;라고 실행을 하면 &quot;SyntaxError: unexpected character after line continuation character&quot;라고 오류가 생겨요. 명령 프롬프트 창에서 실행하면 어제와 같이 오류가 생기구요. 똑같은 작성을 몇 번 해봤는데 무엇을 빼먹은 건지 알 수가 없어요 ㅜㅜ</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7466">지완</a>,
+            
+            2019년 1월 6일 2:36 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6419"></a>
+        <span style="white-space:pre-wrap;">@지완님 
+print(&quot;남은 커피의 양은 %d개 입니다. % coffee) 
+이부분 % coffee앞에서 문장이 안끝나서 그런것같아요. 지나가다 말씀드려요..ㅎㅎ
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7471">Jellie</a>,
+            
+            2019년 1월 8일 2:41 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6420"></a>
+        <span style="white-space:pre-wrap;">@Jellie님 
+감사합니다! ㅜㅜ 큰 따옴표를 안 넣었네요. 고맙습니다 ㅎㅎㅎ</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/7466">지완</a>,
+            
+            2019년 1월 8일 10:01 오후
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_6973"></a>
+        <span style="white-space:pre-wrap;">안녕하세요 !!
+
+
+coffee=10
+
+
+while True:
+    money=int(input(&quot;돈을 넣어 주세요 :&quot;))
+
+    if money==300:
+        print(&quot;잠시만 기다리세요~ 뜨거운 커피가 나오는 중입니다&quot;)
+        coffee=coffee-1
+
+    elif money&gt;300:
+        print(&quot;여기, 거스름돈 %d원 입니다! 그리고 따뜻한 커피가 나오는 중입니다.&quot; %(money-300) )
+        coffee=coffee-1
+
+    else:
+        print(&quot;돈이 부족합니다 커피는 300원입니다&quot;)
+        print(&quot;남은 커피의 양은 %d잔 입니다.&quot; %coffee)
+
+    if not coffee:
+        print(&quot;커피가 다 떨어졌습니다.. 다음에 이용해주세요 !&quot;)
+        break
+
+
+이렇게 코딩을 그대로 짰는데요  에디터는 VisualStudio CODE 이구  인코딩도 &quot;PYTHONIOENCODING&quot;: &quot;UTF-8&quot;
+                } 했는데요...
+
+빌드실행을  하면 밑에처럼 오류가 나네요 ㅠㅠ
+
+돈을 넣어 주세요 :C:/ProgramData/Anaconda3/Scripts/activate
+Traceback (most recent call last):
+  File &quot;c:\code\coffee.py&quot;, line 6, in &lt;module&gt;
+    money=int(input(&quot;돈을 넣어 주세요 :&quot;))
+ValueError: invalid literal for int() with base 10: &#39;C:/ProgramData/Anaconda3/Scripts/activate&#39;
+터미널 프로세스가 종료 코드 1(으)로 종료되었습니다.
+
+터미널을 종료하려면 아무 키나 누르세요.</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/8846">니나노멜로디</a>,
+            
+            2019년 10월 4일 6:11 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_7005"></a>
+        <span style="white-space:pre-wrap;">채력 10의 나무가 쓰러졌다. (디리리링 디딩)</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/8899">Jung_Min</a>,
+            
+            2019년 10월 19일 9:47 오전
+            
+            
+        </span>
+    </div>
+
+    <div class="comment comment_border_top">
+        <a name="comment_7060"></a>
+        <span style="white-space:pre-wrap;">@니나노멜로디 님.
+실행한 결과를 보니 금액을 입력하지 않고 그냥 엔터키를 입력하는 경우
+빈문자열(&#39;&#39;)이 int함수의 매개변수로 입력되어서 int함수 실행시에 오류가 발생하는 것 같습니다.
+이를 해결하기 위해서는 그냥 엔터키를 입력한 경우에 대한 예외처리를 하시면 될 것 같습니다.
+-----------------------------------------
+money = input(&quot;돈을 넣어 주세요 :&quot;)
+if money == &#39;&#39;:
+    print(&quot;다시 입력하세요!&quot;)
+    continue
+
+money = int(money)
+-----------------------------------------
+참고로 ValueError: invalid literal for int() with base 10 메시지는
+int함수에서 처리할 수 없는 십진수 형태가 입력되어서 발생하는 error 메시지 입니다.
+</span>
+        <span style="font-size:11px;color:#888;">
+            -
+            
+                <a class="menu_link" href="/profile/info/book/9028">WooJin</a>,
+            
+            2019년 11월 13일 1:20 오후
+            
+            
+        </span>
+    </div>
+
+
+    </div>
+
+    
+    <a href="/loginForm" class="text-info" style="font-size:11px">※ 댓글 작성은 로그인이 필요합니다.</a>
+    <a href="#myModal" data-toggle="modal" style="font-size:11px">(또는 피드백을 이용해 주세요.)</a>
+    
+</div>
+
+<div class="page-prev-next">
+    <div class="clearfix">
+    <div class="pull-left">
+        <ul>
+            
+                <li><strong>이전글</strong> : <a href="javascript:page(20)">03-1 if문</a></li>
+            
+            
+                <li><strong>다음글</strong> : <a href="javascript:page(22)">03-3 for문</a></li>
+            
+        </ul>
+    </div>
+
+
+</div>
+
+
+
+
+</div>
+
+<!--
+<div class="clearfix" style="font-family:consolas;margin:10px 0 10px 0;padding:0;">
+    <small><a href="/" class="menu_link pull-left">Published with WikiDocs</a></small>
+</div>
+-->
+
+<a href="#top" class="label label-default back-to-top">
+    <span class="glyphicon glyphicon-arrow-up"></span>
+    TOP
+</a>
+
+
+
+
+    </div>
+
+</div>
+
+<div style="display:none" class="prev_next_indicator">
+    
+    <a class="prev_icon" href="javascript:page(20)" role="button">
+        <span class="glyphicon glyphicon-chevron-left" style="font-size:2em;"></span>
+    </a>
+
+
+    <a class="next_icon" href="javascript:page(22)" role="button">
+        <span class="glyphicon glyphicon-chevron-right" style="font-size:2em;"></span>
+    </a>
+
+
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="myModalLabel" class="modal-title">이 페이지에 대한 피드백을 남겨주세요</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form" role="form">
+                    <input type="hidden" name="page_id" id="page_id" value="21" />
+                    <div class="form-group">
+                        <label class="control-label" for="email">답장받을 이메일 주소</label>
+                        <div class="">
+                            <input class="form-control" type="text" id="email" placeholder="Email" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="feedback">하고 싶은 말</label>
+                        <div class="controls">
+                            <textarea class="form-control" id="feedback" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;">※ 피드백은 저자에게 e-메일로 전달됩니다.</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="feedback_btn">전송하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>

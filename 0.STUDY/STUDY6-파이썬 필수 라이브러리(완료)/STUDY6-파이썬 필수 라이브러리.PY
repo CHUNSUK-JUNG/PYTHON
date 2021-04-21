@@ -1,6 +1,93 @@
 # 출처 [https://wikidocs.net/book/5445, 파이썬 필수 라이브러리]
 
 
+# [목차]
+# 01장 텍스트 처리 서비스
+#     01-01 문자열 말줄임 - textwrap.shorten
+#     01-02 문자열 줄바꿈 - textwrap.wrap
+#     01-03 문자열의 차이 - diff_match_patch
+# 02장 바이너리 데이터 서비스
+#     02-01 C 구조체 다루기 - struct
+# 03장 데이터형
+#     03-01 두 날짜의 차이 - datetime.date
+#     03-02 날짜 더하기 - datetime.timedelta
+#     03-03 윤년확인 - calendar.isleap
+#     03-04 데크 - collections.deque
+#     03-05 키값이 있는 튜플 - collections.namedtuple
+#     03-06 동일한 요소의 갯수 - collections.Counter
+#     03-07 딕셔너리의 초깃값 - collections.defaultdict
+#     03-08 우선 순위 큐 - heapq
+#     03-09 예쁘게 출력하기 - pprint
+#     03-10 이진 탐색 - bisect
+#     03-11 상수 집합 - enum
+#     03-12 위상정렬 - graphlib.TopologicalSorter
+#     03-13 가짜 데이터 생성기 - faker
+# 04장 숫자와 수학모듈
+#     04-01 최대공약수 - math.gcd
+#     04-02 최소공배수 - math.lcm
+#     04-03 정확한 소숫점 연산 - decimal.Decimal
+#     04-04 유리수 - fractions
+#     04-05 난수생성 - random
+#     04-06 평균값과 중앙값 - statistics
+#     04-07 기호 계산 - sympy
+# 05장 함수형 프로그래명 모듈
+#     05-01 무한 반복자 - itertools.cycle
+#     05-02 누적합 계산 - itertools.accumulate
+#     05-03 키값으로 분류 - itertools.groupby
+#     05-04 사이즈가 큰 것을 기준으로 묶기 - itertools.zip_longest
+#     05-05 순열 - itertools.permutations
+#     05-06 조합 - itertools.combinations
+#     05-07 함수로 정렬 - functools.cmp_to_key
+#     05-08 함수의 결과를 캐시 - functools.lru_cache
+#     05-09 인수를 지정하여 함수 재정의 - functools.partial
+#     05-10 함수 적용하여 단일값으로 줄여나가기 - functools.reduce
+#     05-11 래퍼함수의 속성 유지 - functools.wraps
+#     05-12 다중 수준 정렬 - operator.itemgetter
+# 06장 파일과 디렉터리 액세스
+#     06-01 파일 시스템 경로를 객체로 다루기 - pathlib
+#     06-02 파일 시스템 경로 - os.path
+#     06-03 여러파일을 한꺼번에 처리하기 - fileinput
+#     06-04 디렉터리와 파일비교 - filecmp
+#     06-05 임시파일 - tempfile
+#     06-06 파일 검색 - glob
+#     06-07 파일 매치- fnmatch
+#     06-08 파일에서 임의의 줄 가져오기 - linecache
+#     06-09 파일 카피 - shutil
+# 07장 데이터 지속성
+#     07-01 객체 저장하고 불러오기 - pickle
+#     07-02 안전하게 pickle 사용하기 - copyreg
+#     07-03 딕셔너리를 영구적으로 저장 - shelve
+#     07-04 SQLite 데이터베이스 - sqlite3
+# 08장 데이터 압축 및 보관
+#     08-01 데이터 압축하기1 - zlib
+#     08-02 압축하여 파일로 저장하기 - gzip
+#     08-03 데이터 압축하기2 - bz2
+#     08-04 데이터 압축하기3 - lzma
+#     08-05 파일 합치기1 - zipfile
+#     08-06 파일 합치기2 - tarfile
+# 09장 파일 형식
+#     09-01 CSV 파일 읽고 쓰기 - csv
+#     09-02 ini 파일 처리하기 - configparser
+# 10장 암호화 서비스
+#     10-01 문자열 해싱 - hashlib
+#     10-02 메시지 인증을 위한 키 해싱 - hmac
+#     10-03 편리한 난수 생성기 - secrets
+# 11장 일반 운영체제 서비스
+#     11-01 문자열을 파일처럼 사용하기 - io.StringIO
+#     11-02 명령행 파서 - argparse
+#     11-03 로그파일 생성하기 - logging
+#     11-04 에코없이 암호 입력하기 - getpass
+#     11-05 터미널 그래픽 애플리케이션 - curses
+#     11-06 시스템 환경 확인하기 - platform
+#     11-07 C 라이브러리 사용하기 - ctypes
+# 12장 동시실행
+#     12-01 스레드 기반의 병렬처리 - threading
+#     12-02 프로세스 기반의 병렬처리 - multiprocessing
+#     12-03 병렬작업 실행하기 - concurrent.futures
+#     12-04 시스템 명령어 실행 - subprocess
+#     12-05 이벤트 스케줄러 - sched
+
+
 # [01장 텍스트 처리 서비스]
 
 # [01-01 문자열 말줄임 - textwrap.shorten]
@@ -706,7 +793,36 @@ print(heapq.nlargest(3, data)) '''
 
 # [03-09 예쁘게 출력하기 - pprint]
 # pprint는 데이터를 예쁘게 출력할 수 있게 해주는 파이썬 표준 라이브러리이다.
-# pprint는 네트워크 프로그램에서 복잡한 구조를 지닌 json 데이터를 출력하는 용도로 많이 사용된다.
+# 문제
+# 다음은 어느 병실의 입원 환자 3명에 대한 딕셔너리 정보이다.
+# >>> patients
+# [{'job': '청소원', 'company': '주식회사 고', 'ssn': '780820-1284721', 'residence': '강원도 성남시 삼성가 (은정이동)', 
+# 'current_location': (Decimal('68.576801'), Decimal('67.848311')), 'blood_group': 'B-', 'website': ['https://www.igimgim.com/', 'https://www.noryubag.com/'], 
+# 'username': 'hyeonsugmun', 'name': '오정남', 'sex': 'M', 'address': '광주광역시 관악 구 역삼283길 (은경노이리)', 'mail': 'ci@daum.net', 'birthdate': datetime.date(1939, 2, 28)},
+# {'job': '패션 디자이너', 'company': '(유) 곽', 'ssn': '790726-2477976', 'residence': '서울특별시 강남구 테헤란로 (우진김김동)', 'current_location': (Decimal('3.4377915'),
+# Decimal('-86.946072')), 'blood_group': 'B+', 'website': ['http://www.ju.kr/', 'http://www.jusighoesa.kr/', 'http://www.igim.com/', 'http://www.baggimgim.com/'], 
+# 'username': 'jangyeongceol', 'name': '이지훈', 'sex': 'M', 'address': '강원도 안산시 상록구 언주길 (수민김김읍)', 'mail': 'sanghun69@nate.com', 
+# 'birthdate': datetime.date(1948, 5, 19)}, {'job': '미용사', 'company': '최박', 'ssn': '040125-1449947', 'residence': '인천광역시 관악구 백제고분길 (성 호백김리)', 
+# 'current_location': (Decimal('51.603972'), Decimal('-107.817835')), 'blood_group': 'AB+', 'website': ['https://www.yuhanhoesa.kr/', 'https://gimhani.com/', 'https://www.imun.net/'],
+# 'username': 'hyeonjeonghan', 'name': '이춘자', 'sex': 'F', 'address': '충청북도 양주시 반포대4길', 'mail': 'kgweon@hanmail.net', 'birthdate': datetime.date(1940, 12, 6)}]
+# 하지만 딕셔너리가 너무 복잡해서 출력해 보아도 무슨 내용인지 파악하기가 쉽지 않다. 위 딕셔너리를 보기 편하게 출력하시오.
+# 풀이
+# 데이터를 보기 좋게 출력하려면 pprint를 사용하면 된다.
+# >>> import pprint
+# >>> pprint.pprint(patients)
+''' import pprint
+from decimal import *
+import datetime
+patients=[{'job': '청소원', 'company': '주식회사 고', 'ssn': '780820-1284721', 'residence': '강원도 성남시 삼성가 (은정이동)', 
+'current_location': (Decimal('68.576801'), Decimal('67.848311')), 'blood_group': 'B-', 'website': ['https://www.igimgim.com/', 'https://www.noryubag.com/'], 
+'username': 'hyeonsugmun', 'name': '오정남', 'sex': 'M', 'address': '광주광역시 관악 구 역삼283길 (은경노이리)', 'mail': 'ci@daum.net', 'birthdate': datetime.date(1939, 2, 28)},
+{'job': '패션 디자이너', 'company': '(유) 곽', 'ssn': '790726-2477976', 'residence': '서울특별시 강남구 테헤란로 (우진김김동)', 'current_location': (Decimal('3.4377915'),
+Decimal('-86.946072')), 'blood_group': 'B+', 'website': ['http://www.ju.kr/', 'http://www.jusighoesa.kr/', 'http://www.igim.com/', 'http://www.baggimgim.com/'], 
+'username': 'jangyeongceol', 'name': '이지훈', 'sex': 'M', 'address': '강원도 안산시 상록구 언주길 (수민김김읍)', 'mail': 'sanghun69@nate.com', 
+'birthdate': datetime.date(1948, 5, 19)}, {'job': '미용사', 'company': '최박', 'ssn': '040125-1449947', 'residence': '인천광역시 관악구 백제고분길 (성 호백김리)', 
+'current_location': (Decimal('51.603972'), Decimal('-107.817835')), 'blood_group': 'AB+', 'website': ['https://www.yuhanhoesa.kr/', 'https://gimhani.com/', 'https://www.imun.net/'],
+'username': 'hyeonjeonghan', 'name': '이춘자', 'sex': 'F', 'address': '충청북도 양주시 반포대4길', 'mail': 'kgweon@hanmail.net', 'birthdate': datetime.date(1940, 12, 6)}]
+pprint.pprint(patients) '''
 
 # [03-10 이진 탐색 - bisect]
 # bisect는 이진 탐색 알고리즘을 구현한 파이썬 표준 라이브러리이다. bisect.bisect 함수는 정렬된 리스트에 값을 삽입할 때 정렬을 유지할 수 있는 인덱스를 리턴한다.
@@ -3115,79 +3231,132 @@ with io.StringIO(src) as f:  # 문자열을 파일객체럼 만든다.
     result = execute(f)
     print(result) '''
 
-[11-02 명령행 파서 - argparse]
-argparse는 파이썬 스크립트의 명령행 옵션을 파싱할때 사용하는 모듈이다.
-
-문제
-다음과 같이 동작하는 add_mul.py를 작성하시오.
-
-$ python add_mul.py -a 1 2 3 4 5
-합은 15입니다.
-$ python add_mul.py --add 1 2 3 4 5
-합은 15입니다.
-$ python add_mul.py -m 1 2 3 4 5
-곱은 120입니다.
-$ python add_mul.py --mul 1 2 3 4 5
-곱은 120입니다.
-$ python add_mul.py -a 1 2 3 4 5 -m 1 2 3 4 5
-합은 15입니다.
-곱은 120입니다.
--a 또는 --add 옵션을 주었을 경우에는 뒤따라오는 정수들의 합을 출력하고 -m 또는 --mul 옵션을 주었을 경우에는 뒤따라오는 정수들의 곱을 출력해야 한다. 그리고 두 개의 옵션을 함께 사용할 수도 있어야 한다.
-
-풀이
-이 문제는 sys.argv 모듈을 사용하여 해결할 수도 있지만 다음처럼 argparse 모듈을 사용하는 것이 편리하고 안전하다.
-
-[add_mul.py]
-
-import argparse
+# [11-02 명령행 파서 - argparse]
+# argparse는 파이썬 스크립트의 명령행 옵션을 파싱할때 사용하는 모듈이다.
+# 문제
+# 다음과 같이 동작하는 add_mul.py를 작성하시오.
+# $ python add_mul.py -a 1 2 3 4 5
+# 합은 15입니다.
+# $ python add_mul.py --add 1 2 3 4 5
+# 합은 15입니다.
+# $ python add_mul.py -m 1 2 3 4 5
+# 곱은 120입니다.
+# $ python add_mul.py --mul 1 2 3 4 5
+# 곱은 120입니다.
+# $ python add_mul.py -a 1 2 3 4 5 -m 1 2 3 4 5
+# 합은 15입니다.
+# 곱은 120입니다.
+# -a 또는 --add 옵션을 주었을 경우에는 뒤따라오는 정수들의 합을 출력하고 -m 또는 --mul 옵션을 주었을 경우에는 뒤따라오는 정수들의 곱을 출력해야 한다. 그리고 두 개의 옵션을 함께 사용할 수도
+# 있어야 한다.
+# 풀이
+# 이 문제는 sys.argv 모듈을 사용하여 해결할 수도 있지만 다음처럼 argparse 모듈을 사용하는 것이 편리하고 안전하다.
+# [add_mul.py]
+# import argparse
+# import functools
+# parser = argparse.ArgumentParser()
+# parser.add_argument('-a', '--add', type=int, nargs='+', metavar='N', help='더할 숫자')
+# parser.add_argument('-m', '--mul', type=int, nargs='+', metavar='N', help='곱할 숫자')
+# args = parser.parse_args()
+# if args.add:
+#     print("합은 %d입니다." % functools.reduce(lambda x, y: x + y, args.add))
+# if args.mul:
+#     print("곱은 %d입니다." % functools.reduce(lambda x, y: x * y, args.mul))
+# parser = argparse.ArgumentParser() 로 만든 parser객체에 add_argument함수를 사용하여 명령행을 파싱하는 규칙을 만들면 된다. -a, --add 는 명령행 옵션을 의미하고 type은 뒤따라오는 숫자의 
+# 자료형을 의미한다. nargs는 뒤따라오는 숫자의 갯수를 의미하는데 +를 사용하면 1개 이상의 값이 필요함을 의미한다.
+# metavar나 help는 다음처럼 -h 옵션으로 도움말을 출력할때 도움말을 잘 표현하기 위해 사용된다.
+# $ python add_mul.py -h
+# usage: add_mul.py [-h] [-a N [N ...]] [-m N [N ...]]
+# optional arguments:
+#   -h, --help            show this help message and exit
+#   -a N [N ...], --add N [N ...]
+#                         더할 숫자
+#   -m N [N ...], --mul N [N ...]
+#                         곱할 숫자
+# metavar에 사용된 N이라는 문자가 설명문에 어떻게 표시되고 help 문자열이 어떻게 보이는지 확인할 수 있다.
+''' import argparse
 import functools
-
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--add', type=int, nargs='+', metavar='N', help='더할 숫자')
 parser.add_argument('-m', '--mul', type=int, nargs='+', metavar='N', help='곱할 숫자')
-
 args = parser.parse_args()
-
 if args.add:
     print("합은 %d입니다." % functools.reduce(lambda x, y: x + y, args.add))
 if args.mul:
-    print("곱은 %d입니다." % functools.reduce(lambda x, y: x * y, args.mul))
-parser = argparse.ArgumentParser() 로 만든 parser객체에 add_argument함수를 사용하여 명령행을 파싱하는 규칙을 만들면 된다. -a, --add 는 명령행 옵션을 의미하고 type은 뒤따라오는 숫자의 자료형을 의미한다. nargs는 뒤따라오는 숫자의 갯수를 의미하는데 +를 사용하면 1개 이상의 값이 필요함을 의미한다.
+    print("곱은 %d입니다." % functools.reduce(lambda x, y: x * y, args.mul)) '''
 
-metavar나 help는 다음처럼 -h 옵션으로 도움말을 출력할때 도움말을 잘 표현하기 위해 사용된다.
-
-$ python add_mul.py -h
-usage: add_mul.py [-h] [-a N [N ...]] [-m N [N ...]]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -a N [N ...], --add N [N ...]
-                        더할 숫자
-  -m N [N ...], --mul N [N ...]
-                        곱할 숫자
-metavar에 사용된 N이라는 문자가 설명문에 어떻게 표시되고 help 문자열이 어떻게 보이는지 확인할 수 있다.
-
-[11-03 로그파일 생성하기 - logging]
-logging은 로그를 파일에 출력하기 위해 사용하는 모듈이다.
-
-로그는 파일뿐만 아니라 소켓, 이메일, 콘솔등 다양한 방법으로 출력이 가능하다.
-
-문제
-다음 myfunc 함수에서 "함수가 시작되었습니다." 라는 문자열을 print로 출력하는 대신 debug.log 라는 로그파일에 저장할 수 있도록 변경하시오.
-
-def myfunc():
-    print("함수가 시작되었습니다.")
-
-myfunc()
-단, 출력되는 문자열은 다음과 같이 시간 + 메시지 형식이어야 함
-
-[2021-04-06 00:35:32,089] 함수가 시작되었습니다.
-풀이
-로그 파일에 로그를 작성하기 위해서는 파이썬 logging 모듈을 사용해야 한다. 다음처럼 dictConfig로 표시할 로그를 설정하고 logging.debug로 로그를 출력하면 된다.
-
-from logging.config import dictConfig
+# [11-03 로그파일 생성하기 - logging]
+# logging은 로그를 파일에 출력하기 위해 사용하는 모듈이다.
+# 로그는 파일뿐만 아니라 소켓, 이메일, 콘솔등 다양한 방법으로 출력이 가능하다.
+# 문제
+# 다음 myfunc 함수에서 "함수가 시작되었습니다." 라는 문자열을 print로 출력하는 대신 debug.log 라는 로그파일에 저장할 수 있도록 변경하시오.
+# def myfunc():
+#     print("함수가 시작되었습니다.")
+# myfunc()
+# 단, 출력되는 문자열은 다음과 같이 시간 + 메시지 형식이어야 함
+# [2021-04-06 00:35:32,089] 함수가 시작되었습니다.
+# 풀이
+# 로그 파일에 로그를 작성하기 위해서는 파이썬 logging 모듈을 사용해야 한다. 다음처럼 dictConfig로 표시할 로그를 설정하고 logging.debug로 로그를 출력하면 된다.
+# from logging.config import dictConfig
+# import logging
+# dictConfig({
+#     'version': 1,
+#     'formatters': {
+#         'default': {
+#             'format': '[%(asctime)s] %(message)s',
+#         }
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'debug.log',
+#             'formatter': 'default',
+#         },
+#     },
+#     'root': {
+#         'level': 'DEBUG',
+#         'handlers': ['file']
+#     }
+# })
+# def myfunc():
+#     logging.debug("함수가 시작되었습니다.")
+# myfunc()
+# 이와 같이 프로그램을 수정한 후 실행해 보면 debug.log 파일에 다음과 같은 로그가 출력되는 것을 확인할 수 있다.
+# [debug.log]
+# [2021-04-06 00:35:32,089] 함수가 시작되었습니다.
+# dictConfig에 설정한 내용을 자세히 알아보자.
+# version을 고정값 "1"로 지정했다
+# version은 고정값 “1”을 사용해야 한다. 만약 다른 값을 입력하면 ValueError가 발생한다. 이 값은 의미 없어 보일 수도 있지만, logging 모듈이 미래에 업그레이드 될때 현재 설정을 보장해 주는 
+# 안전장치이다.
+# formatters에 로그를 출력할 형식을 정의했다
+# formatters에는 ‘로그를 출력할 형식’을 정의한다. 여기서는 default 포맷터를 등록했다. default 포맷터에 사용한 항목은 다음과 같다.
+# asctime: 현재 시간
+# message: 출력 내용
+# 다음과 같은 항목도 추가로 사용가능하다.
+# levelname: 로그의 레벨(debug, info, warning, error, critical)
+# module: 로그를 호출한 모듈명
+# handlers에 로그를 출력할 방법을 정의했다
+# handlers에는 ‘로그를 출력하는 방법’을 정의한다. 여기서는 file이라는 핸들러를 등록했다. file 핸들러에 사용한 항목은 다음과 같다.
+# level: 출력 로그 레벨, 여기서는 DEBUG를 사용
+# class: 로그 핸들러 클래스, FileHandler를 사용.
+# filename: 로그 파일명
+# formatter: 포맷터, default 설정
+# root에 DEBUG 로그를 출력하도록 설정하고 이를 위해 file 핸들러를 추가했다
+# root는 ‘최상위 로거’를 의미한다. 로그 레벨은 DEBUG로 설정하고, 로그를 출력할 핸들러로 file 핸들러를 추가했다.
+# level: 로그 레벨, DEBUG로 설정
+# handler: 로그 핸들러, 위에서 정의한 file로 설정
+# 참고로 로그 레벨은 다음과 같이 5단계로 구성된다.
+# 1단계 DEBUG: 디버깅 목적으로 사용
+# 2단계 INFO: 일반 정보를 출력할 목적으로 사용
+# 3단계 WARNING: 경고 정보를 출력할 목적으로(작은 문제) 사용
+# 4단계 ERROR: 오류 정보를 출력할 목적으로(큰 문제) 사용
+# 5단계 CRITICAL: 아주 심각한 문제를 출력할 목적으로 사용
+# 설명에서 짐작할 수 있듯이 로그 레벨의 순서는 다음과 같다. 그리고 설정한 레벨 이상의 로그만 출력될 것이다.
+# DEBUG < INFO < WARNING < ERROR < CRITICAL
+# 예를 들어 핸들러나 로거에서 로그 레벨을 INFO로 설정하면 DEBUG 로그는 출력되지 않고 INFO 이상의 로그, 즉 INFO, WARNING, ERROR, CRITICAL만 출력된다.
+# 만약 ERROR로 설정하면 ERROR, CRITICAL 로그만 출력된다.
+''' from logging.config import dictConfig
 import logging
-
 dictConfig({
     'version': 1,
     'formatters': {
@@ -3208,230 +3377,369 @@ dictConfig({
         'handlers': ['file']
     }
 })
-
-
 def myfunc():
     logging.debug("함수가 시작되었습니다.")
+myfunc() '''
 
+# [11-04 에코없이 암호 입력하기 - getpass]
+# getpass는 비밀번호 입력시 비밀번호가 화면에 노출되지 않게 해 주는 모듈이다.
+# 문제
+# 다음은 사용자의 비밀번호를 묻는 프로그램이다.
+# passwd = input("Password:")
+# 하지만 위 프로그램을 실행하면 다음처럼 입력하는 비밀번호가 화면에 노출된다.
+# Password:abcde1234
+# 입력받는 비밀번호가 화면에 노출(에코)되지 않도록 프로그램을 변경하시오.
+# 풀이
+# 다음은 getpass 모듈을 이용한 풀이이다.
+# import getpass
+# passwd = getpass.getpass("Password:")
+# input 대신에 getpass.getpass를 사용하면 화면에 입력하는 비밀번호가 노출되지 않는다.
 
-myfunc()
-이와 같이 프로그램을 수정한 후 실행해 보면 debug.log 파일에 다음과 같은 로그가 출력되는 것을 확인할 수 있다.
-
-[debug.log]
-
-[2021-04-06 00:35:32,089] 함수가 시작되었습니다.
-dictConfig에 설정한 내용을 자세히 알아보자.
-
-version을 고정값 "1"로 지정했다
-
-version은 고정값 “1”을 사용해야 한다. 만약 다른 값을 입력하면 ValueError가 발생한다. 이 값은 의미 없어 보일 수도 있지만, logging 모듈이 미래에 업그레이드 될때 현재 설정을 보장해 주는 안전장치이다.
-
-formatters에 로그를 출력할 형식을 정의했다
-
-formatters에는 ‘로그를 출력할 형식’을 정의한다. 여기서는 default 포맷터를 등록했다. default 포맷터에 사용한 항목은 다음과 같다.
-
-asctime: 현재 시간
-message: 출력 내용
-다음과 같은 항목도 추가로 사용가능하다.
-
-levelname: 로그의 레벨(debug, info, warning, error, critical)
-module: 로그를 호출한 모듈명
-handlers에 로그를 출력할 방법을 정의했다
-
-handlers에는 ‘로그를 출력하는 방법’을 정의한다. 여기서는 file이라는 핸들러를 등록했다. file 핸들러에 사용한 항목은 다음과 같다.
-
-level: 출력 로그 레벨, 여기서는 DEBUG를 사용
-class: 로그 핸들러 클래스, FileHandler를 사용.
-filename: 로그 파일명
-formatter: 포맷터, default 설정
-root에 DEBUG 로그를 출력하도록 설정하고 이를 위해 file 핸들러를 추가했다
-
-root는 ‘최상위 로거’를 의미한다. 로그 레벨은 DEBUG로 설정하고, 로그를 출력할 핸들러로 file 핸들러를 추가했다.
-
-level: 로그 레벨, DEBUG로 설정
-handler: 로그 핸들러, 위에서 정의한 file로 설정
-참고로 로그 레벨은 다음과 같이 5단계로 구성된다.
-
-1단계 DEBUG: 디버깅 목적으로 사용
-2단계 INFO: 일반 정보를 출력할 목적으로 사용
-3단계 WARNING: 경고 정보를 출력할 목적으로(작은 문제) 사용
-4단계 ERROR: 오류 정보를 출력할 목적으로(큰 문제) 사용
-5단계 CRITICAL: 아주 심각한 문제를 출력할 목적으로 사용
-설명에서 짐작할 수 있듯이 로그 레벨의 순서는 다음과 같다. 그리고 설정한 레벨 이상의 로그만 출력될 것이다.
-
-DEBUG < INFO < WARNING < ERROR < CRITICAL
-예를 들어 핸들러나 로거에서 로그 레벨을 INFO로 설정하면 DEBUG 로그는 출력되지 않고 INFO 이상의 로그, 즉 INFO, WARNING, ERROR, CRITICAL만 출력된다.
-
-만약 ERROR로 설정하면 ERROR, CRITICAL 로그만 출력된다.
-
-[11-04 에코없이 암호 입력하기 - getpass]
-getpass는 비밀번호 입력시 비밀번호가 화면에 노출되지 않게 해 주는 모듈이다.
-
-문제
-다음은 사용자의 비밀번호를 묻는 프로그램이다.
-
-passwd = input("Password:")
-하지만 위 프로그램을 실행하면 다음처럼 입력하는 비밀번호가 화면에 노출된다.
-
-Password:abcde1234
-입력받는 비밀번호가 화면에 노출(에코)되지 않도록 프로그램을 변경하시오.
-
-풀이
-다음은 getpass 모듈을 이용한 풀이이다.
-
-import getpass
-
-passwd = getpass.getpass("Password:")
-input 대신에 getpass.getpass를 사용하면 화면에 입력하는 비밀번호가 노출되지 않는다.
-
-[11-05 터미널 그래픽 애플리케이션 - curses]
-curses는 터미널 그래픽 애플리케이션을 만들 수 있는 모듈이다.
-
-문제
-사용자에게 1~100 사이의 숫자 두개를 더하는 문제를 3회 반복하여 풀게하시오. 단 하나의 문제를 풀고 다음 문제를 풀때는 화면을 모두 클리어 하여 이전 문제가 보이지 않게 해야 하고 덧셈에 사용되는 숫자는 잘 보일수 있도록 강조된 색상으로 표현하시오. 그리고 3개의 문제를 모두 풀면 최종결과(맞은갯수와 틀린갯수)를 표시하시오.
-
-[출력 형식의 예]
-
-
-
-풀이
-터미널을 제어하기 위해서는 curses 모듈을 사용해야 한다. curses 모듈을 사용하면 화면을 clear하거나 원하는 위치에 문자열을 삽입할 수 있고 또 문자에 색을 입힐수 있다.
-
-다음은 curses 모듈을 사용한 풀이이다.
-
-import curses
+# [11-05 터미널 그래픽 애플리케이션 - curses]
+# curses는 터미널 그래픽 애플리케이션을 만들 수 있는 모듈이다.
+# 문제
+# 사용자에게 1~100 사이의 숫자 두개를 더하는 문제를 3회 반복하여 풀게하시오. 단 하나의 문제를 풀고 다음 문제를 풀때는 화면을 모두 클리어 하여 이전 문제가 보이지 않게 해야 하고 덧셈에 
+# 사용되는 숫자는 잘 보일수 있도록 강조된 색상으로 표현하시오. 그리고 3개의 문제를 모두 풀면 최종결과(맞은갯수와 틀린갯수)를 표시하시오.
+# [출력 형식의 예]
+# 풀이
+# 터미널을 제어하기 위해서는 curses 모듈을 사용해야 한다. curses 모듈을 사용하면 화면을 clear하거나 원하는 위치에 문자열을 삽입할 수 있고 또 문자에 색을 입힐수 있다.
+# 다음은 curses 모듈을 사용한 풀이이다.
+# import curses
+# import random
+# try:
+#     stdscr = curses.initscr()
+#     curses.start_color()
+#     curses.use_default_colors()
+#     curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK)
+#     success = 0
+#     failure = 0
+#     for i in range(3):
+#         stdscr.clear()  # 문제가 변경되면 화면을 클리어한다.
+#         a = random.randint(1, 100)
+#         b = random.randint(1, 100)
+#         result = a + b
+#         stdscr.addstr(0, 0, str(a), curses.color_pair(1) | curses.A_BOLD)
+#         stdscr.addstr(" + ")
+#         stdscr.addstr(str(b), curses.color_pair(1) | curses.A_BOLD)
+#         stdscr.addstr(" = ?")
+#         answer = stdscr.getstr(1, 0, 3)
+#         if result == int(answer):
+#             success += 1
+#         else:
+#             failure += 1
+#     stdscr.addstr(3, 0, "맞은갯수:%d, 틀린갯수:%d" % (success, failure))
+#     stdscr.addstr(5, 0, "Press enter key...")
+#     stdscr.getkey()
+# finally:
+#     curses.endwin()
+# curses로 터미널을 제어하기 위해서는 가장먼저 initscr()을 호출하여 터미널 객체 stdscr을 생성해야 한다.
+# stdscr = curses.initscr()
+# 그리고 프로그램이 종료된 후에는 다시 터미널을 원상태로 복구하기 위해 curses.endwin()을 반드시 호출해야 한다. 여기서는 curses.endwin()이 프로그램 정상수행 여부에 상관없이 항상 
+# 호출되도록 하기 위해 try .. finally 절에 사용하였다.
+# curses.endwin()
+# 글씨에 색을 표시하기 위해서는 다음과 같은 과정이 필요하다.
+# curses.start_color()
+# curses.use_default_colors()
+# curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK)
+# start_color와 use_default_color를 호출하여 색상을 초기화하고 검은색 배경의 하늘색 글씨를 사용하기 위해 init_pair로 글색상을 생성하였다.
+# 숫자를 화면에 표시할 때 만든 색상을 사용하였다.
+# stdscr.addstr는 화면에 문자열을 출력할 때 사용한다. stdscr.addstr(0, 0, "abc") 와 같이 사용되면 0번째 줄 0번째 열부터 "abc"라는 문자열을 출력하라는 의미이다. 만약 줄과 열에 대한
+# 값을 생략하면 현재 커서의 위치에서 문자열을 출력한다.
+# 사용자의 입력을 얻기 위해서는 다음과 같이 stdscr.getstr 을 사용하였다.
+# answer = stdscr.getstr(1, 0, 3)
+# stdscr.getstr(1, 0, 3)의 의미는 1번째 줄 0번째 열에서 3개의 문자만 입력 받겠다는 의미이다. 입력받아야 할 숫자는 1~100 사이의 숫자 두개의 합에 대한 결과이므로 3개의 문자로 충분하다.
+# 그리고 마지막으로 화면이 종료되기 전에 최종결과를 표시해 주기 위해 stdscr.getkey()로 사용자의 아무 키나 입력받도록 해 주었다. 이 과정이 없다면 최종결과를 볼 틈도 없이 프로그램이 종료될 것이다.
+''' import curses
 import random
-
 try:
     stdscr = curses.initscr()
-
     curses.start_color()
     curses.use_default_colors()
     curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK)
-
     success = 0
     failure = 0
-
     for i in range(3):
         stdscr.clear()  # 문제가 변경되면 화면을 클리어한다.
         a = random.randint(1, 100)
         b = random.randint(1, 100)
         result = a + b
-
         stdscr.addstr(0, 0, str(a), curses.color_pair(1) | curses.A_BOLD)
         stdscr.addstr(" + ")
         stdscr.addstr(str(b), curses.color_pair(1) | curses.A_BOLD)
         stdscr.addstr(" = ?")
-
         answer = stdscr.getstr(1, 0, 3)
-
         if result == int(answer):
             success += 1
         else:
             failure += 1
-
     stdscr.addstr(3, 0, "맞은갯수:%d, 틀린갯수:%d" % (success, failure))
     stdscr.addstr(5, 0, "Press enter key...")
     stdscr.getkey()
-
 finally:
-    curses.endwin()
+    curses.endwin() '''
 
-curses로 터미널을 제어하기 위해서는 가장먼저 initscr()을 호출하여 터미널 객체 stdscr을 생성해야 한다.
+# [11-06 시스템 환경 확인하기 - platform]
+# platform 모듈을 사용하면 시스템 환경을 확인할 수 있다.
+# 문제
+# 현재 시스템의 CPU 및 OS정보를 출력하시오.
+# 풀이
+# platform 모듈을 사용하면 CPU 및 OS정보를 쉽게 취득할 수 있다.
+# >>> import platform
+# >>>
+# >>> info = platform.uname()
+# >>> print(info)
+# uname_result(system='Windows', node='DESKTOP-8R43RU6', release='10', version='10.0.18362', machine='AMD64', processor='AMD64 Family 23 Model 17 Stepping 0, AuthenticAMD')
+# platform의 uname함수를 사용하면 namedtuple 형태의 시스템 정보를 얻을 수 있다.
+# CPU정보는 다음과 같다.
+# >>> print(info.processor)
+# AMD64 Family 23 Model 17 Stepping 0, AuthenticAMD
+# OS정보는 다음과 같다.
+# >>> print(info.system)
+# Windows
+# 다음은 processor와 system 이외의 것들에 대한 간략한 설명이다.
+# node - 네트워크 이름
+# release - 시스템의 릴리즈 번호
+# version - 시스템의 릴리즈 버전
+# machine - 시스템의 유형
 
-stdscr = curses.initscr()
-그리고 프로그램이 종료된 후에는 다시 터미널을 원상태로 복구하기 위해 curses.endwin()을 반드시 호출해야 한다. 여기서는 curses.endwin()이 프로그램 정상수행 여부에 상관없이 항상 호출되도록 하기 위해 try .. finally 절에 사용하였다.
-
-curses.endwin()
-글씨에 색을 표시하기 위해서는 다음과 같은 과정이 필요하다.
-
-curses.start_color()
-curses.use_default_colors()
-curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK)
-start_color와 use_default_color를 호출하여 색상을 초기화하고 검은색 배경의 하늘색 글씨를 사용하기 위해 init_pair로 글색상을 생성하였다.
-
-숫자를 화면에 표시할 때 만든 색상을 사용하였다.
-
-stdscr.addstr는 화면에 문자열을 출력할 때 사용한다. stdscr.addstr(0, 0, "abc") 와 같이 사용되면 0번째 줄 0번째 열부터 "abc"라는 문자열을 출력하라는 의미이다. 만약 줄과 열에 대한 값을 생략하면 현재 커서의 위치에서 문자열을 출력한다.
-
-사용자의 입력을 얻기 위해서는 다음과 같이 stdscr.getstr 을 사용하였다.
-
-answer = stdscr.getstr(1, 0, 3)
-stdscr.getstr(1, 0, 3)의 의미는 1번째 줄 0번째 열에서 3개의 문자만 입력 받겠다는 의미이다. 입력받아야 할 숫자는 1~100 사이의 숫자 두개의 합에 대한 결과이므로 3개의 문자로 충분하다.
-
-그리고 마지막으로 화면이 종료되기 전에 최종결과를 표시해 주기 위해 stdscr.getkey()로 사용자의 아무 키나 입력받도록 해 주었다. 이 과정이 없다면 최종결과를 볼 틈도 없이 프로그램이 종료될 것이다.
-
-
-[11-06 시스템 환경 확인하기 - platform]
-platform 모듈을 사용하면 시스템 환경을 확인할 수 있다.
-
-문제
-현재 시스템의 CPU 및 OS정보를 출력하시오.
-
-풀이
-platform 모듈을 사용하면 CPU 및 OS정보를 쉽게 취득할 수 있다.
-
->>> import platform
->>>
->>> info = platform.uname()
->>> print(info)
-uname_result(system='Windows', node='DESKTOP-8R43RU6', release='10', version='10.0.18362', machine='AMD64', processor='AMD64 Family 23 Model 17 Stepping 0, AuthenticAMD')
-platform의 uname함수를 사용하면 namedtuple 형태의 시스템 정보를 얻을 수 있다.
-
-CPU정보는 다음과 같다.
-
->>> print(info.processor)
-AMD64 Family 23 Model 17 Stepping 0, AuthenticAMD
-OS정보는 다음과 같다.
-
->>> print(info.system)
-Windows
-다음은 processor와 system 이외의 것들에 대한 간략한 설명이다.
-
-node - 네트워크 이름
-release - 시스템의 릴리즈 번호
-version - 시스템의 릴리즈 버전
-machine - 시스템의 유형
-
-[11-07 C 라이브러리 사용하기 - ctypes]
-ctypes 모듈을 사용하면 C로 작성된 라이브러리를 파이썬에서 쉽게 사용할 수 있다.
-
-문제
-다음과 같이 작성되어진 C 프로그램이 있다.
-
-[파일명:mylib.c]
-
-int add(int a, int b)
-{
-    return a + b;
-}
-두 개의 정수를 입력받아 더하여 리턴하는 간단한 add 함수이다. 이 add함수를 파이썬에서 불러서 사용하시오.
-
-풀이
-mylib.c에 작성된 add함수를 파이썬에서 사용하기 위해서는 먼저 다음처럼 mylib.so(shared library)파일을 만들어야 한다.
-
-$ gcc -c mylib.c 
-$ gcc -shared mylib.o -o mylib.so
-mylib.so가 만들어지면 파이썬 ctypes 모듈을 사용하여 다음과 같이 사용할 수 있다.
-
->>> import ctypes
->>> mylib = ctypes.cdll.LoadLibrary('./mylib.so')
->>> mylib.add(3, 4)
-7
-ctypes.cdll의 LoadLibrary로 현재 디렉터리에 만들어진 mylib.so를 읽어 사용하면 된다.
+# [11-07 C 라이브러리 사용하기 - ctypes]
+# ctypes 모듈을 사용하면 C로 작성된 라이브러리를 파이썬에서 쉽게 사용할 수 있다.
+# 문제
+# 다음과 같이 작성되어진 C 프로그램이 있다.
+# [파일명:mylib.c]
+# int add(int a, int b)
+# {
+#     return a + b;
+# }
+# 두 개의 정수를 입력받아 더하여 리턴하는 간단한 add 함수이다. 이 add함수를 파이썬에서 불러서 사용하시오.
+# 풀이
+# mylib.c에 작성된 add함수를 파이썬에서 사용하기 위해서는 먼저 다음처럼 mylib.so(shared library)파일을 만들어야 한다.
+# $ gcc -c mylib.c 
+# $ gcc -shared mylib.o -o mylib.so
+# mylib.so가 만들어지면 파이썬 ctypes 모듈을 사용하여 다음과 같이 사용할 수 있다.
+# >>> import ctypes
+# >>> mylib = ctypes.cdll.LoadLibrary('./mylib.so')
+# >>> mylib.add(3, 4)
+# 7
+# ctypes.cdll의 LoadLibrary로 현재 디렉터리에 만들어진 mylib.so를 읽어 사용하면 된다.
 
 
-[12장 동시실행]
+# [12장 동시실행]
 
-[12-01 스레드 기반의 병렬처리 - threading]
-threading모듈은 한 프로세스에서 2가지 또는 그 이상의 일을 동시에 수행하도록 한다.
+# [12-01 스레드 기반의 병렬처리 - threading]
+# threading모듈은 한 프로세스에서 2가지 또는 그 이상의 일을 동시에 수행하도록 한다.
+# 문제
+# 다음 프로그램은 페이지번호를 입력받아 위키독스의 페이지 리소스를 wikidocs_페이지번호.html 파일로 저장하는 프로그램이다.
+# import urllib.request
+# def get_wikidocs(page):
+#     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+#     resource = 'https://wikidocs.net/{}'.format(page)
+#     try:
+#         with urllib.request.urlopen(resource) as s:
+#             with open('wikidocs_%s.html' % page, 'wb') as f:
+#                 f.write(s.read())
+#     except urllib.error.HTTPError:
+#         return 'Not Found'
+# A씨는 다음처럼 10개의 위키독스 페이지가 필요하다고 한다.
+# [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
+# 위 프로그램을 사용하면 페이지수 만큼 실행하여 원하는 결과를 얻을 수 있다. 하지만 A씨는 10개의 요청을 하나씩 보내기 보다는 동시에 요청하여 보다 빠른 속도로 리소스를 얻기 원한다. 
+# 동시요청이 가능하도록 프로그램을 수정하시오.
+# 풀이
+# 동시요청을 위해서는 threading 모듈을 사용하면 된다. 먼저 threading 없이 10개의 페이지를 요청할 경우 얼마의 시간이 소요되는지 측정해 보자.
+# import urllib.request
+# def get_wikidocs(page):
+#     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+#     resource = 'https://wikidocs.net/{}'.format(page)
+#     try:
+#         with urllib.request.urlopen(resource) as s:
+#             with open('wikidocs_%s.html' % page, 'wb') as f:
+#                 f.write(s.read())
+#     except urllib.error.HTTPError:
+#         return 'Not Found'
+# import time
+# start = time.time()
+# pages = [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
+# for page in pages:
+#     get_wikidocs(page)
+# end = time.time()
+# print("수행시간: %f 초" % (end - start))
+# 출력결과는 다음과 같다.
+# wikidocs page:12
+# wikidocs page:13
+# wikidocs page:14
+# wikidocs page:15
+# wikidocs page:17
+# wikidocs page:18
+# wikidocs page:20
+# wikidocs page:21
+# wikidocs page:22
+# wikidocs page:24
+# 수행시간: 10.096202 초
+# 10개의 페이지 리소스를 저장하는데 10초 정도의 시간이 소요되었다.
+# 이번에는 threading 모듈을 사용하여 페이지 리소스를 동시에 저장하도록 변경해 보자.
+# import urllib.request
+# def get_wikidocs(page):
+#     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+#     resource = 'https://wikidocs.net/{}'.format(page)
+#     try:
+#         with urllib.request.urlopen(resource) as s:
+#             with open('wikidocs_%s.html' % page, 'wb') as f:
+#                 f.write(s.read())
+#     except urllib.error.HTTPError:
+#         return 'Not Found'
+# import time
+# import threading
+# start = time.time()
+# pages = [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
+# threads = []
+# for page in pages:
+#     t = threading.Thread(target=get_wikidocs, args=(page, ))
+#     t.start()
+#     threads.append(t)
+# for t in threads:
+#     t.join()  # 스레드가 모두 종료될 때까지 기다린다.
+# end = time.time()
+# print("수행시간: %f 초" % (end - start))
+# threading.Thread로 get_wikidocs함수를 실행하는 스레드 t를 생성해 주었다. target은 실행할 함수 그리고 args는 함수에 전달해야할 파라미터를 의미한다. 이렇게 스레드를 생성한 후
+# t.start()를 실행하면 스레드가 독립적으로 실행된다. (각각의 스레드는 이전 스레드의 종료를 기다리지 않고 곧바로 실행된다.) 그리고 만들어진 각각의 스레드 t는 threads라는 리스트 
+# 변수에 담아 주었다. 이렇게 하는 이유는 생성된 스레드가 모두 종료된 후에 수행시간을 출력하기 위해서이다. 생성된 스레드를 모두 종료하기 위해서는 생성된 각 스레드마다 join() 함수를 
+# 호출해 주어야만 한다. 만약 join 없이 위 프로그램을 실행하면 아직 스레드가 종료되지 않은 상태에서 수행시간이 출력되어 버리기 때문에 정확한 수행시간을 출력할 수 없게 된다.
+# 출력결과는 다음과 같다.
+# wikidocs page:12
+# wikidocs page:13
+# wikidocs page:14
+# wikidocs page:15
+# wikidocs page:17
+# wikidocs page:18
+# wikidocs page:20
+# wikidocs page:21
+# wikidocs page:22
+# wikidocs page:24
+# 수행시간: 2.453772 초
+# 10초 정도 걸리던 작업이 2.4초 가량으로 상당히 단축된 것을 확인할 수 있다.
+# import urllib.request
+# def get_wikidocs(page):
+#     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+#     resource = 'https://wikidocs.net/{}'.format(page)
+#     try:
+#         with urllib.request.urlopen(resource) as s:
+#             with open('wikidocs_%s.html' % page, 'wb') as f:
+#                 f.write(s.read())
+#     except urllib.error.HTTPError:
+#         return 'Not Found'
+# import time
+# import threading
+# start = time.time()
+# pages = [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
+# threads = []
+# for page in pages:
+#     t = threading.Thread(target=get_wikidocs, args=(page, ))
+#     t.start()
+#     threads.append(t)
+# for t in threads:
+#     t.join()  # 스레드가 모두 종료될 때까지 기다린다.
+# end = time.time()
+# print("수행시간: %f 초" % (end - start))
 
-문제
-다음 프로그램은 페이지번호를 입력받아 위키독스의 페이지 리소스를 wikidocs_페이지번호.html 파일로 저장하는 프로그램이다.
-
-import urllib.request
-
-
+# [12-02 프로세스 기반의 병렬처리 - multiprocessing]
+# multiprocessing 모듈을 사용하면 멀티 프로세스를 활용하여 2가지 또는 그 이상의 일을 동시에 수행할 수 있다.
+# 문제
+# 다음은 CPU 연산이 많은 heavy_work 함수를 4번 수행하고 총 소요된 시간을 측정하는 예제이다.
+# import time
+# def heavy_work(name):
+#     result = 0
+#     for i in range(4000000):
+#         result += i
+#     print('%s done' % name)
+# start = time.time()
+# for i in range(4):
+#     heavy_work(i)
+# end = time.time()
+# print("수행시간: %f 초" % (end - start))
+# 실행 결과는 다음과 같다.
+# 0 done
+# 1 done
+# 2 done
+# 3 done
+# 수행시간: 2.027041 초
+# heavy_work 함수를 동시에 실행하여 수행시간을 단축하시오.
+# 풀이
+# 다음은 threading 모듈을 사용한 풀이이다.
+# import time
+# def heavy_work(name):
+#     result = 0
+#     for i in range(4000000):
+#         result += i
+#     print('%s done' % name)
+# if __name__ == '__main__':
+#     import threading
+#     start = time.time()
+#     threads = []
+#     for i in range(4):
+#         t = threading.Thread(target=heavy_work, args=(i, ))
+#         t.start()
+#         threads.append(t)
+#     for t in threads:
+#         t.join()  # 스레드가 모두 종료될 때까지 기다린다.
+#     end = time.time()
+#     print("수행시간: %f 초" % (end - start))
+# 실행 결과는 다음과 같다.
+# 2 done
+# 0 done
+# 1 done
+# 3 done
+# 수행시간: 2.005648 초
+# 스레드는 이처럼 CPU연산만 수행하는 경우에 수행시간에 전혀 이득이 없음을 확인할 수 있다.
+# ※ 파이썬 스레드는 메모리 관리를 위해 하나의 thread만이 Python object에 접근할 수 있도록 제한하는데 이것을 GIL(Global Interpreter Lock)이라고 한다. 이러한 이유로 스레드는 GIL에 
+# 영향을 받지 않는 I/O가 주로 발생하는 작업(네트워크 통신, 파일 읽고 쓰기등)에 유리하다.
+# 이번에는 threading대신 multiprocessing 모듈을 사용해 보자.
+# ※ multiprocessing 모듈은 멀티 프로세스와 별개의 메모리를 사용하여 완전히 독립적인 병렬 프로그래밍이 가능하다. 단, 여러개의 CPU를 가지고 있는 멀티코어 환경에서만 가능하다.
+# import time
+# def heavy_work(name):
+#     result = 0
+#     for i in range(4000000):
+#         result += i
+#     print('%s done' % name)
+# if __name__ == '__main__':
+#     import multiprocessing
+#     start = time.time()
+#     procs = []
+#     for i in range(4):
+#         p = multiprocessing.Process(target=heavy_work, args=(i, ))
+#         p.start()
+#         procs.append(p)
+#     for p in procs:
+#         p.join()  # 프로세스가 모두 종료될 때까지 기다린다.
+#     end = time.time()
+#     print("수행시간: %f 초" % (end - start))
+# 사용방법은 threading 모듈을 사용하는 것과 거의 동일하다. multiprocessing.Process 클래스로 프로세스를 생성한다. target에는 실행할 함수명을 지정하고 args에는 그 함수에 전달할
+# 파라미터를 설정한다. 스레드와 마찬가지로 start함수로 프로세스를 실행하고 join함수로 프로세스가 종료될때까지 기다린다.
+# multiprocessing.Process를 사용한 결과는 다음과 같다.
+# 0 done
+# 3 done
+# 1 done
+# 2 done
+# 수행시간: 0.663679 초
+# 멀티코어 환경에서 무려 3배 이상의 속도향상이 있음을 확인할 수 있다.
+# multiprocessing.Process 과 비슷하게 multiprocessing.Pool 을 사용할 수도 있다. 사용방법은 다음과 같다.
+# import time
+# def heavy_work(name):
+#     result = 0
+#     for i in range(4000000):
+#         result += i
+#     print('%s done' % name)
+# if __name__ == '__main__':
+#     import multiprocessing
+#     start = time.time()
+#     pool = multiprocessing.Pool(processes=4)
+#     pool.map(heavy_work, range(4))
+#     pool.close()
+#     pool.join()
+#     end = time.time()
+#     print("수행시간: %f 초" % (end - start))
+# multiprocessing.Pool(processes=4) 과 같이 pool 객체를 만든후 실행할 함수와 파라미터를 인자로 하여 map함수를 호출하여 프로세스를 실행할 수 있다. multiprocessing.Pool은 포크할 
+# 프로세스의 갯수를 지정할 수 있는 특징이 있다. 위 예에서는 4개의 프로세스를 실행하도록 설정하였다.
+''' import urllib.request
 def get_wikidocs(page):
     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
     resource = 'https://wikidocs.net/{}'.format(page)
@@ -3441,335 +3749,170 @@ def get_wikidocs(page):
                 f.write(s.read())
     except urllib.error.HTTPError:
         return 'Not Found'
-A씨는 다음처럼 10개의 위키독스 페이지가 필요하다고 한다.
-
-[12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
-위 프로그램을 사용하면 페이지수 만큼 실행하여 원하는 결과를 얻을 수 있다. 하지만 A씨는 10개의 요청을 하나씩 보내기 보다는 동시에 요청하여 보다 빠른 속도로 리소스를 얻기 원한다. 동시요청이 가능하도록 프로그램을 수정하시오.
-
-풀이
-동시요청을 위해서는 threading 모듈을 사용하면 된다. 먼저 threading 없이 10개의 페이지를 요청할 경우 얼마의 시간이 소요되는지 측정해 보자.
-
-import urllib.request
-
-
-def get_wikidocs(page):
-    print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
-    resource = 'https://wikidocs.net/{}'.format(page)
-    try:
-        with urllib.request.urlopen(resource) as s:
-            with open('wikidocs_%s.html' % page, 'wb') as f:
-                f.write(s.read())
-    except urllib.error.HTTPError:
-        return 'Not Found'
-
-
 import time
-
 start = time.time()
-
 pages = [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
 for page in pages:
     get_wikidocs(page)
-
 end = time.time()
-
 print("수행시간: %f 초" % (end - start))
-출력결과는 다음과 같다.
-
-wikidocs page:12
-wikidocs page:13
-wikidocs page:14
-wikidocs page:15
-wikidocs page:17
-wikidocs page:18
-wikidocs page:20
-wikidocs page:21
-wikidocs page:22
-wikidocs page:24
-수행시간: 10.096202 초
-10개의 페이지 리소스를 저장하는데 10초 정도의 시간이 소요되었다.
-
-이번에는 threading 모듈을 사용하여 페이지 리소스를 동시에 저장하도록 변경해 보자.
-
-import urllib.request
-
-
-def get_wikidocs(page):
-    print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
-    resource = 'https://wikidocs.net/{}'.format(page)
-    try:
-        with urllib.request.urlopen(resource) as s:
-            with open('wikidocs_%s.html' % page, 'wb') as f:
-                f.write(s.read())
-    except urllib.error.HTTPError:
-        return 'Not Found'
-
-
 import time
-import threading
-
-start = time.time()
-
-pages = [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
-threads = []
-for page in pages:
-    t = threading.Thread(target=get_wikidocs, args=(page, ))
-    t.start()
-    threads.append(t)
-
-for t in threads:
-    t.join()  # 스레드가 모두 종료될 때까지 기다린다.
-
-end = time.time()
-
-print("수행시간: %f 초" % (end - start))
-threading.Thread로 get_wikidocs함수를 실행하는 스레드 t를 생성해 주었다. target은 실행할 함수 그리고 args는 함수에 전달해야할 파라미터를 의미한다. 이렇게 스레드를 생성한 후 t.start()를 실행하면 스레드가 독립적으로 실행된다. (각각의 스레드는 이전 스레드의 종료를 기다리지 않고 곧바로 실행된다.) 그리고 만들어진 각각의 스레드 t는 threads라는 리스트 변수에 담아 주었다. 이렇게 하는 이유는 생성된 스레드가 모두 종료된 후에 수행시간을 출력하기 위해서이다. 생성된 스레드를 모두 종료하기 위해서는 생성된 각 스레드마다 join() 함수를 호출해 주어야만 한다. 만약 join 없이 위 프로그램을 실행하면 아직 스레드가 종료되지 않은 상태에서 수행시간이 출력되어 버리기 때문에 정확한 수행시간을 출력할 수 없게 된다.
-
-출력결과는 다음과 같다.
-
-wikidocs page:12
-wikidocs page:13
-wikidocs page:14
-wikidocs page:15
-wikidocs page:17
-wikidocs page:18
-wikidocs page:20
-wikidocs page:21
-wikidocs page:22
-wikidocs page:24
-수행시간: 2.453772 초
-10초 정도 걸리던 작업이 2.4초 가량으로 상당히 단축된 것을 확인할 수 있다.
-
-[12-02 프로세스 기반의 병렬처리 - multiprocessing]
-multiprocessing 모듈을 사용하면 멀티 프로세스를 활용하여 2가지 또는 그 이상의 일을 동시에 수행할 수 있다.
-
-문제
-다음은 CPU 연산이 많은 heavy_work 함수를 4번 수행하고 총 소요된 시간을 측정하는 예제이다.
-
-import time
-
-
 def heavy_work(name):
     result = 0
     for i in range(4000000):
         result += i
     print('%s done' % name)
-
-
-start = time.time()
-
-for i in range(4):
-    heavy_work(i)
-
-end = time.time()
-
-print("수행시간: %f 초" % (end - start))
-실행 결과는 다음과 같다.
-
-0 done
-1 done
-2 done
-3 done
-수행시간: 2.027041 초
-heavy_work 함수를 동시에 실행하여 수행시간을 단축하시오.
-
-풀이
-다음은 threading 모듈을 사용한 풀이이다.
-
-import time
-
-
-def heavy_work(name):
-    result = 0
-    for i in range(4000000):
-        result += i
-    print('%s done' % name)
-
-
-if __name__ == '__main__':
-    import threading
-
-    start = time.time()
-    threads = []
-    for i in range(4):
-        t = threading.Thread(target=heavy_work, args=(i, ))
-        t.start()
-        threads.append(t)
-
-    for t in threads:
-        t.join()  # 스레드가 모두 종료될 때까지 기다린다.
-
-    end = time.time()
-
-    print("수행시간: %f 초" % (end - start))
-실행 결과는 다음과 같다.
-
-2 done
-0 done
-1 done
-3 done
-수행시간: 2.005648 초
-스레드는 이처럼 CPU연산만 수행하는 경우에 수행시간에 전혀 이득이 없음을 확인할 수 있다.
-
-※ 파이썬 스레드는 메모리 관리를 위해 하나의 thread만이 Python object에 접근할 수 있도록 제한하는데 이것을 GIL(Global Interpreter Lock)이라고 한다. 이러한 이유로 스레드는 GIL에 영향을 받지 않는 I/O가 주로 발생하는 작업(네트워크 통신, 파일 읽고 쓰기등)에 유리하다.
-
-이번에는 threading대신 multiprocessing 모듈을 사용해 보자.
-
-※ multiprocessing 모듈은 멀티 프로세스와 별개의 메모리를 사용하여 완전히 독립적인 병렬 프로그래밍이 가능하다. 단, 여러개의 CPU를 가지고 있는 멀티코어 환경에서만 가능하다.
-
-import time
-
-
-def heavy_work(name):
-    result = 0
-    for i in range(4000000):
-        result += i
-    print('%s done' % name)
-
-
 if __name__ == '__main__':
     import multiprocessing
-
     start = time.time()
     procs = []
     for i in range(4):
         p = multiprocessing.Process(target=heavy_work, args=(i, ))
         p.start()
         procs.append(p)
-
     for p in procs:
         p.join()  # 프로세스가 모두 종료될 때까지 기다린다.
-
     end = time.time()
-
     print("수행시간: %f 초" % (end - start))
-사용방법은 threading 모듈을 사용하는 것과 거의 동일하다. multiprocessing.Process 클래스로 프로세스를 생성한다. target에는 실행할 함수명을 지정하고 args에는 그 함수에 전달할 파라미터를 설정한다. 스레드와 마찬가지로 start함수로 프로세스를 실행하고 join함수로 프로세스가 종료될때까지 기다린다.
-
-multiprocessing.Process를 사용한 결과는 다음과 같다.
-
-0 done
-3 done
-1 done
-2 done
-수행시간: 0.663679 초
-멀티코어 환경에서 무려 3배 이상의 속도향상이 있음을 확인할 수 있다.
-
-multiprocessing.Process 과 비슷하게 multiprocessing.Pool 을 사용할 수도 있다. 사용방법은 다음과 같다.
-
 import time
-
-
 def heavy_work(name):
     result = 0
     for i in range(4000000):
         result += i
     print('%s done' % name)
-
-
 if __name__ == '__main__':
     import multiprocessing
-
     start = time.time()
     pool = multiprocessing.Pool(processes=4)
     pool.map(heavy_work, range(4))
     pool.close()
     pool.join()
-
     end = time.time()
+    print("수행시간: %f 초" % (end - start)) '''
 
-    print("수행시간: %f 초" % (end - start))
-multiprocessing.Pool(processes=4) 과 같이 pool 객체를 만든후 실행할 함수와 파라미터를 인자로 하여 map함수를 호출하여 프로세스를 실행할 수 있다. multiprocessing.Pool은 포크할 프로세스의 갯수를 지정할 수 있는 특징이 있다. 위 예에서는 4개의 프로세스를 실행하도록 설정하였다.
-
-[12-03 병렬작업 실행하기 - concurrent.futures]
-스레드를 구현하기 위해서는 threading 모듈을 사용하고 멀티 프로세스 프로그램을 구현하기 위해서는 multiprocessing 모듈을 사용해야 한다. 하지만 일반적인 경우에 concurrent.futures를 사용하면 동일한 규칙으로 스레드와 멀티 프로세스 코드를 쉽게 작성할 수 있다.
-
-문제
-다음은 multiprocessing 챕터에서 다루었던 풀이이다.
-
-※ 참고 : https://wikidocs.net/124290
-
-import time
-
-
+# [12-03 병렬작업 실행하기 - concurrent.futures]
+# 스레드를 구현하기 위해서는 threading 모듈을 사용하고 멀티 프로세스 프로그램을 구현하기 위해서는 multiprocessing 모듈을 사용해야 한다. 하지만 일반적인 경우에 concurrent.futures를 
+# 사용하면 동일한 규칙으로 스레드와 멀티 프로세스 코드를 쉽게 작성할 수 있다.
+# 문제
+# 다음은 multiprocessing 챕터에서 다루었던 풀이이다.
+# ※ 참고 : https://wikidocs.net/124290
+# import time
+# def heavy_work(name):
+#     result = 0
+#     for i in range(4000000):
+#         result += i
+#     print('%s done' % name)
+# if __name__ == '__main__':
+#     import multiprocessing
+#     start = time.time()
+#     procs = []
+#     for i in range(4):
+#         p = multiprocessing.Process(target=heavy_work, args=(i, ))
+#         p.start()
+#         procs.append(p)
+#     for p in procs:
+#         p.join()  # 프로세스가 모두 종료될 때까지 기다린다.
+#     end = time.time()
+#     print("수행시간: %f 초" % (end - start))
+# heavy_work 함수를 여러 프로세스가 동시에 호출하는 코드이다. 현재 heavy_work함수는 result를 계산만 하고 그 값을 리턴하지 않고 있다. heavy_work함수가 계산된 result를 리턴하도록 
+# 수정하고 메인 프로세스에서는 호출된 heavy_work 함수의 리턴값을 모두 더해서 출력하도록 수정하시오.
+# 풀이
+# multiprocess 모듈로 포크한 프로세스의 수행 결과를 메인 프로세스에서 취합하는 방법에는 여러가지가 있겠지만 가장 일반적으로 사용되는 concurrent.futures 모듈로 이 문제를 풀어보자.
+# import time
+# def heavy_work(name):
+#     result = 0
+#     for i in range(4000000):
+#         result += i
+#     print('%s done' % name)
+#     return result  # 결과를 리턴하도록 변경
+# if __name__ == '__main__':
+#     import concurrent.futures
+#     start = time.time()
+#     total_result = 0
+#     pool = concurrent.futures.ProcessPoolExecutor(max_workers=4)
+#     procs = []
+#     for i in range(4):
+#         procs.append(pool.submit(heavy_work, i))
+#     for p in concurrent.futures.as_completed(procs):
+#         total_result += p.result()
+#     end = time.time()
+#     print("수행시간: %f 초" % (end - start))
+#     print("총결괏값: %s" % total_result)
+# 우선 heavy_work함수가 계산된 result를 리턴하도록 변경했다. 그리고 multiprocessing.Process를 사용하는 대신 concurrent.futures.ProcessPoolExecutor로 변경하였다. 두 개의 모듈이 
+# 하는 역할은 여러개의 프로세스를 동시에 실행하는 것으로 동일하다. 단, concurrent.futures.ProcessPoolExecutor 는 max_workers를 지정하여 포크할 프로세스의 최대 갯수를 지정하는 것이 가능하다.
+# pool.submit(heavy_work, i)는 프로세스를 포크하여 heavy_work함수를 호출한다. i 는 heavy_work 함수에 전달되는 파라미터이다.
+# concurrent.futures.as_completed(procs)는 수행된 프로세스들이 모두 종료될 때까지 대기하게 하고 p.result()로 수행된 프로세스의 결과를 얻을 수 있게 해 준다.
+# 수행 결과는 다음과 같다.
+# 2 done
+# 0 done
+# 1 done
+# 3 done
+# 수행시간: 0.926396 초
+# 총결괏값: 31999992000000
+# 이전에 살펴보았던 위키독스의 여러 페이지 리소스를 스레드를 이용하여 가져오는 예제도 concurrent.futures.ThreadPoolExecutor 를 사용하여 다음과 같이 변경할 수 있다.
+# ※ 참고 : https://wikidocs.net/124143
+# import urllib.request
+# def get_wikidocs(page):
+#     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
+#     resource = 'https://wikidocs.net/{}'.format(page)
+#     try:
+#         with urllib.request.urlopen(resource) as s:
+#             with open('wikidocs_%s.html' % page, 'wb') as f:
+#                 f.write(s.read())
+#     except urllib.error.HTTPError:
+#         return 'Not Found'
+# if __name__ == '__main__':
+#     import time
+#     import concurrent.futures
+#     start = time.time()
+#     pages = [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
+#     pool = concurrent.futures.ThreadPoolExecutor(max_workers=4)
+#     threads = []
+#     for page in pages:
+#         threads.append(pool.submit(get_wikidocs, page))
+#     concurrent.futures.wait(threads)  # 스레드가 모두 종료되기를 기다린다.
+#     end = time.time()
+#     print("수행시간: %f 초" % (end - start))
+# 위 예제에서는 리턴값이 필요없으므로 concurrent.futures.as_completed 대신 concurrent.futures.wait 를 사용했다.
+''' import time
 def heavy_work(name):
     result = 0
     for i in range(4000000):
         result += i
     print('%s done' % name)
-
-
 if __name__ == '__main__':
     import multiprocessing
-
     start = time.time()
     procs = []
     for i in range(4):
         p = multiprocessing.Process(target=heavy_work, args=(i, ))
         p.start()
         procs.append(p)
-
     for p in procs:
         p.join()  # 프로세스가 모두 종료될 때까지 기다린다.
-
     end = time.time()
-
     print("수행시간: %f 초" % (end - start))
-heavy_work 함수를 여러 프로세스가 동시에 호출하는 코드이다. 현재 heavy_work함수는 result를 계산만 하고 그 값을 리턴하지 않고 있다. heavy_work함수가 계산된 result를 리턴하도록 수정하고 메인 프로세스에서는 호출된 heavy_work 함수의 리턴값을 모두 더해서 출력하도록 수정하시오.
-
-풀이
-multiprocess 모듈로 포크한 프로세스의 수행 결과를 메인 프로세스에서 취합하는 방법에는 여러가지가 있겠지만 가장 일반적으로 사용되는 concurrent.futures 모듈로 이 문제를 풀어보자.
-
 import time
-
-
 def heavy_work(name):
     result = 0
     for i in range(4000000):
         result += i
     print('%s done' % name)
     return result  # 결과를 리턴하도록 변경
-
-
 if __name__ == '__main__':
     import concurrent.futures
-
     start = time.time()
-
     total_result = 0
     pool = concurrent.futures.ProcessPoolExecutor(max_workers=4)
-
     procs = []
     for i in range(4):
         procs.append(pool.submit(heavy_work, i))
-
     for p in concurrent.futures.as_completed(procs):
         total_result += p.result()
-
     end = time.time()
-
     print("수행시간: %f 초" % (end - start))
     print("총결괏값: %s" % total_result)
-우선 heavy_work함수가 계산된 result를 리턴하도록 변경했다. 그리고 multiprocessing.Process를 사용하는 대신 concurrent.futures.ProcessPoolExecutor로 변경하였다. 두 개의 모듈이 하는 역할은 여러개의 프로세스를 동시에 실행하는 것으로 동일하다. 단, concurrent.futures.ProcessPoolExecutor 는 max_workers를 지정하여 포크할 프로세스의 최대 갯수를 지정하는 것이 가능하다.
-
-pool.submit(heavy_work, i)는 프로세스를 포크하여 heavy_work함수를 호출한다. i 는 heavy_work 함수에 전달되는 파라미터이다.
-
-concurrent.futures.as_completed(procs)는 수행된 프로세스들이 모두 종료될 때까지 대기하게 하고 p.result()로 수행된 프로세스의 결과를 얻을 수 있게 해 준다.
-
-수행 결과는 다음과 같다.
-
-2 done
-0 done
-1 done
-3 done
-수행시간: 0.926396 초
-총결괏값: 31999992000000
-이전에 살펴보았던 위키독스의 여러 페이지 리소스를 스레드를 이용하여 가져오는 예제도 concurrent.futures.ThreadPoolExecutor 를 사용하여 다음과 같이 변경할 수 있다.
-
-※ 참고 : https://wikidocs.net/124143
-
 import urllib.request
-
-
 def get_wikidocs(page):
     print("wikidocs page:{}".format(page))  # 페이지 호출시 출력
     resource = 'https://wikidocs.net/{}'.format(page)
@@ -3779,128 +3922,87 @@ def get_wikidocs(page):
                 f.write(s.read())
     except urllib.error.HTTPError:
         return 'Not Found'
-
-
 if __name__ == '__main__':
     import time
     import concurrent.futures
-
     start = time.time()
-
     pages = [12, 13, 14, 15, 17, 18, 20, 21, 22, 24]
     pool = concurrent.futures.ThreadPoolExecutor(max_workers=4)
-
     threads = []
     for page in pages:
         threads.append(pool.submit(get_wikidocs, page))
-
     concurrent.futures.wait(threads)  # 스레드가 모두 종료되기를 기다린다.
-
     end = time.time()
+    print("수행시간: %f 초" % (end - start)) '''
 
-    print("수행시간: %f 초" % (end - start))
-위 예제에서는 리턴값이 필요없으므로 concurrent.futures.as_completed 대신 concurrent.futures.wait 를 사용했다.
+# [12-04 시스템 명령어 실행 - subprocess]
+# subprocess는 시스템 명령을 다양한 방법으로 실행할 수 있는 모듈이다.
+# 문제
+# 다음은 유닉스(리눅스) 시스템에서 현재 디렉터리의 파일목록을 자세하게 출력하고 싶을때 사용하는 명령어이다.
+# ls -l
+# 위 명령을 실행하여 그 결과를 out.txt 라는 파일에 저장하는 코드를 작성하시오.
+# 풀이
+# 시스템 명령어를 실행하는 방법에는 os.system, os.spawn 등이 있지만 사용방법이 다양하고 유연한 subprocess를 사용하는 것이 가장 일반적인 방법이다. 실제로 파이썬 os.system 문서를 보면
+# os.system 대신 subprocess를 사용하라고 권고하고 있다.
+# 다음은 subprocess를 사용한 풀이이다.
+# import subprocess
+# with open('out.txt', 'wb') as f:
+#     out = subprocess.run(['ls', '-l'], capture_output=True)
+#     f.write(out.stdout)
+# ※ 만약 윈도우 시스템이라면 ['ls', '-l'] 대신 ['dir']을 사용하면 된다.
+# ls -l 이라는 명령어는 ['ls', '-l'] 처럼 공백을 기준으로 split된 문자열을 리스트로 전달해야 한다.
+# 다음처럼 shlex를 사용하면 보다 쉽게 명령어를 구분할 수 있다. 명령어가 복잡할 경우 shlex를 사용하면 편리하다.
+# import shlex
+# command = shlex.split('ls -l')
+# print(command)  # ['ls', '-l'] 출력
+# capture_output은 명령을 실행한 결과를 저장할 수 있다. capture_output을 True로 설정하면 위와 같이 CompletedProcess의 객체(out)를 리턴받아 표준출력에 해당되는 out.stdout 또는
+# 표준에러에 해당되는 out.stderr를 구할 수 있다.
+# out.stdout은 바이트 데이터이므로 파일 작성시 'wb' 모드를 주어야 한다. 만약 출력 결과로 바이트 대신 문자열을 얻고 싶다면 다음처럼 text=True 옵션을 추가하면 된다.
+# out = subprocess.run(['ls', '-l'], capture_output=True, text=True)
+# 만약 text=True 옵션을 추가했다면 출력결과는 바이트가 아닌 문자열이 되므로 파일쓰기 모드도 'wb' 대신 'w'로 바꾸어야 한다.
+# 만약 다음처럼 복잡한 형태의 명령어를 실행하는 경우에는 shell=True 옵션을 사용하는 것이 유리하다.
+# import subprocess
+# subprocess.run('find ./ -name "*.html"|xargs grep "python"', shell=True)
+# ※ 위에서 사용한 복잡한 find 명령어는 현재 디렉터리의 하위 디렉터리를 포함한 모든 html 파일에서 "python"이라는 문자열이 포함되어 있는 부분을 전부 찾으라는 명령어이다.
+# shell=True 옵션을 주면 명령어를 공백으로 구분할 필요없이 전체 명령어를 한 개의 문자열로 전달하면 된다.
 
-[12-04 시스템 명령어 실행 - subprocess]
-subprocess는 시스템 명령을 다양한 방법으로 실행할 수 있는 모듈이다.
-
-문제
-다음은 유닉스(리눅스) 시스템에서 현재 디렉터리의 파일목록을 자세하게 출력하고 싶을때 사용하는 명령어이다.
-
-ls -l
-위 명령을 실행하여 그 결과를 out.txt 라는 파일에 저장하는 코드를 작성하시오.
-
-풀이
-시스템 명령어를 실행하는 방법에는 os.system, os.spawn 등이 있지만 사용방법이 다양하고 유연한 subprocess를 사용하는 것이 가장 일반적인 방법이다. 실제로 파이썬 os.system 문서를 보면 os.system 대신 subprocess를 사용하라고 권고하고 있다.
-
-다음은 subprocess를 사용한 풀이이다.
-
-import subprocess
-
-with open('out.txt', 'wb') as f:
-    out = subprocess.run(['ls', '-l'], capture_output=True)
-    f.write(out.stdout)
-※ 만약 윈도우 시스템이라면 ['ls', '-l'] 대신 ['dir']을 사용하면 된다.
-
-ls -l 이라는 명령어는 ['ls', '-l'] 처럼 공백을 기준으로 split된 문자열을 리스트로 전달해야 한다.
-
-다음처럼 shlex를 사용하면 보다 쉽게 명령어를 구분할 수 있다. 명령어가 복잡할 경우 shlex를 사용하면 편리하다.
-
-import shlex
-
-command = shlex.split('ls -l')
-print(command)  # ['ls', '-l'] 출력
-capture_output은 명령을 실행한 결과를 저장할 수 있다. capture_output을 True로 설정하면 위와 같이 CompletedProcess의 객체(out)를 리턴받아 표준출력에 해당되는 out.stdout 또는 표준에러에 해당되는 out.stderr를 구할 수 있다.
-
-out.stdout은 바이트 데이터이므로 파일 작성시 'wb' 모드를 주어야 한다. 만약 출력 결과로 바이트 대신 문자열을 얻고 싶다면 다음처럼 text=True 옵션을 추가하면 된다.
-
-out = subprocess.run(['ls', '-l'], capture_output=True, text=True)
-만약 text=True 옵션을 추가했다면 출력결과는 바이트가 아닌 문자열이 되므로 파일쓰기 모드도 'wb' 대신 'w'로 바꾸어야 한다.
-
-만약 다음처럼 복잡한 형태의 명령어를 실행하는 경우에는 shell=True 옵션을 사용하는 것이 유리하다.
-
-import subprocess
-
-subprocess.run('find ./ -name "*.html"|xargs grep "python"', shell=True)
-※ 위에서 사용한 복잡한 find 명령어는 현재 디렉터리의 하위 디렉터리를 포함한 모든 html 파일에서 "python"이라는 문자열이 포함되어 있는 부분을 전부 찾으라는 명령어이다.
-
-shell=True 옵션을 주면 명령어를 공백으로 구분할 필요없이 전체 명령어를 한 개의 문자열로 전달하면 된다.
-
-[12-05 이벤트 스케줄러 - sched]
-sched 모듈은 프로그램 수행 후 지정된 시간에 원하는 이벤트를 실행하도록 해 준다.
-
-문제
-다음과 같은 프로그램이 있다.
-
-def print_a(a):
-    print(a)
-
-
-def print_b(b):
-    print(b)
-
-
-def print_c(c):
-    print(c)
-
-
-print_a("A")
-print_b("B")
-print_c("C")
-print_a, print_b, print_c 함수를 한번씩 호출하는 프로그램이다. 이 프로그램을 다음과 같이 동작하도록 수정하시오.
-
-프로그램 실행 후 5초 후에 print_a를 호출
-프로그램 실행 후 3초 후에 print_b를 호출
-프로그램 실행 후 7초 후에 print_c를 호출
-풀이
-time.sleep을 사용해서 이 문제를 풀 수도 있지만 프로그램 실행시간을 기준으로 스케줄을 작성해야 할 경우에는 sched 모듈을 사용하는 것이 가장 편리하다. 다음은 sched를 사용한 풀이이다.
-
-def print_a(a):
-    print(a)
-
-
-def print_b(b):
-    print(b)
-
-
-def print_c(c):
-    print(c)
-
-
-import sched
-
-s = sched.scheduler()
-s.enter(5, 1, print_a, ('A',))  # 5초 후에 실행
-s.enter(3, 1, print_b, ('B',))  # 3초 후에 실행
-s.enter(7, 1, print_c, ('C',))  # 7초 후에 실행
-s.run()
-sched.scheduler() 로 스케줄러 객체 s를 생성한 후 s.enter 로 실행할 이벤트를 등록하면 된다. enter함수의 첫번째 파라미터는 delay시간(초)을 의미한다. 두번째 파라미터는 우선순위(priority)로 만약 동일한 delay시간에 1개 이상의 이벤트가 등록될 경우 우선순위가 높은 것(낮은 숫자가 우선순위가 높다)부터 시작된다. 세번째 파라미터는 실행할 함수이고 네번째 파라미터는 실행할 함수에 전달해야 하는 파라미터 값이다.
-
-s.enter로 이벤트를 등록한 후 s.run으로 스케줄을 시작한다.
-
-실행 결과는 다음과 같다.
-
-B
-A
-C
-프로그램 실행 후 3초 후에 B가 실행되고 그리고 2초 뒤(총 5초 경과 후)에 A 그리고 또 2초 뒤(총 7초 경과후)에 C가 출력된다.
+# [12-05 이벤트 스케줄러 - sched]
+# sched 모듈은 프로그램 수행 후 지정된 시간에 원하는 이벤트를 실행하도록 해 준다.
+# 문제
+# 다음과 같은 프로그램이 있다.
+# def print_a(a):
+#     print(a)
+# def print_b(b):
+#     print(b)
+# def print_c(c):
+#     print(c)
+# print_a("A")
+# print_b("B")
+# print_c("C")
+# print_a, print_b, print_c 함수를 한번씩 호출하는 프로그램이다. 이 프로그램을 다음과 같이 동작하도록 수정하시오.
+# 프로그램 실행 후 5초 후에 print_a를 호출
+# 프로그램 실행 후 3초 후에 print_b를 호출
+# 프로그램 실행 후 7초 후에 print_c를 호출
+# 풀이
+# time.sleep을 사용해서 이 문제를 풀 수도 있지만 프로그램 실행시간을 기준으로 스케줄을 작성해야 할 경우에는 sched 모듈을 사용하는 것이 가장 편리하다. 다음은 sched를 사용한 풀이이다.
+# def print_a(a):
+#     print(a)
+# def print_b(b):
+#     print(b)
+# def print_c(c):
+#     print(c)
+# import sched
+# s = sched.scheduler()
+# s.enter(5, 1, print_a, ('A',))  # 5초 후에 실행
+# s.enter(3, 1, print_b, ('B',))  # 3초 후에 실행
+# s.enter(7, 1, print_c, ('C',))  # 7초 후에 실행
+# s.run()
+# sched.scheduler() 로 스케줄러 객체 s를 생성한 후 s.enter 로 실행할 이벤트를 등록하면 된다. enter함수의 첫번째 파라미터는 delay시간(초)을 의미한다. 두번째 파라미터는
+# 우선순위(priority)로 만약 동일한 delay시간에 1개 이상의 이벤트가 등록될 경우 우선순위가 높은 것(낮은 숫자가 우선순위가 높다)부터 시작된다. 세번째 파라미터는 실행할 함수이고 
+# 네번째 파라미터는 실행할 함수에 전달해야 하는 파라미터 값이다.
+# s.enter로 이벤트를 등록한 후 s.run으로 스케줄을 시작한다.
+# 실행 결과는 다음과 같다.
+# B
+# A
+# C
+# 프로그램 실행 후 3초 후에 B가 실행되고 그리고 2초 뒤(총 5초 경과 후)에 A 그리고 또 2초 뒤(총 7초 경과후)에 C가 출력된다.

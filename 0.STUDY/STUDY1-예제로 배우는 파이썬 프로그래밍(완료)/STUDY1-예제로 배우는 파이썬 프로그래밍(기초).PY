@@ -1,7 +1,76 @@
 # 출처 [http://pythonstudy.xyz/, 예제로 배우는 파이썬 프로그래밍]
 
 
-# [PYTHON 기초]
+# [목차]
+
+# [Python 기초]
+# Python 소개
+# Python 설치
+# Python 시작하기
+# Python 간단한 프로그램
+# Python 편집기
+# Python 코딩의 기초
+# 기본 데이타 타입
+# 연산자
+# 문자열과 바이트
+# 조건문
+# 반복문
+# 컬렉션: List
+# 컬렉션: Tuple
+# 컬렉션: Dictionary
+# 컬렉션: Set
+# 함수
+# 모듈 (Module)
+# 패키지
+# 클래스
+# 예외처리
+# 유닛 테스트
+# Python Comprehension
+# Iterator와 Generator
+# 쓰레드 (Thread)
+
+# [Python 데이타]
+# Python DB API
+# MySQL 쿼리
+# MySQL DML
+# SQLite 사용
+# MSSQL 사용
+# JSON 데이타
+# 파일 데이타 처리
+# CSV 파일 사용하기
+
+# [Python 활용]
+# 정규 표현식 Regex
+# numpy 사용하기
+# 파이썬 Web Scraping
+# 파이썬 Selenium 사용하기
+# 파이썬 엑셀 사용하기
+# Matplotlib 차트/플롯 그리기
+# pandas 데이타 분석
+# 파이썬 이미지 처리 (Pillow)
+# 파이썬 영상 처리 (OpenCV)
+# 파이썬에서 SSH 클라이언트 사용
+
+# [Python 팁]
+# Python Tools for Visual Studio
+# 기존 Python코드를 VS 프로젝트로
+# Visual Studio Code 사용
+# pip 패키지 관리자
+# Python 디버깅 (PDB)
+# 파이썬 가상환경
+# 파일과 디렉토리
+# 메일 보내기 (SMTP)
+# 난수 (random)
+# 직렬화와 역직렬화
+# 파이썬 코딩 스타일
+# 파이썬 Object Interning
+# 아나콘다 (Anaconda)
+# Jupyter Notebook
+# 정수 / HexString 변환
+# 문자열/바이트배열 변환
+
+
+# [Python 기초]
 
 # [Python 소개]
 # 1. Python 언어
