@@ -30,9 +30,7 @@
 # 아래 순서에 따라 설치하시면 됩니다. (파이썬은 이미 설치되어 있어야 합니다.)
 # 1) FFmpeg: 동영상 파일을 생성해주는 라이브러리
 # 아래 사이트에서 설치파일 받아서 설치합니다.
-# https://www.wikihow.com/Install-FFmpeg-on-Windows (아래의 사이트로 연결됨)
-# https://ffmpeg.org/download.html
-# Windows builds from gyan.dev 선택
+# https://ffmpeg.org/download.html (Windows builds from gyan.dev 선택)
 # https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z 다운로드 후, 압축 풀기
 # 압축 해제한 폴더를 c:\bin (임의로 만든 폴더임) 폴더로 복사한다.
 # win+R -> sysdm.cpl 실행하여, 환경변수에 path 설정한다.
@@ -79,10 +77,11 @@
 #                 [--video_dir VIDEO_DIR | --video_output_dir ...
 # 마님에 디폴트로 들어 있는 샘플코드를 이용해서 동영상 하나를 만들어 봅니다.
 # 아래 명령어에 의해 동영상 파일이 생성되어 자동 재생될 것입니다. 만약 도중에 에러가 나면 위의 기본 라이브러리가 제대로 설치되었는 지 확인해야합니다.
-# C:\bin\manim-master>python  -m  manim  example_scenes.py  SquareToCircle  -pl
-# 아래와 같은 동영상이 자동 실행될 것입니다. https://youtu.be/pBuX1mKnqgc
+# https://docs.manim.community/en/v0.4.0/tutorials/quickstart.html#start-a-new-project 접속하여, STYDY10 폴더에 예제를 생성하고 터미널에서 아래와 같이 실행한다.
+# manim scene.py SquareToCircle -pql
+# 동영상이 재생되고, media 폴더에 생성된다.
 
-# [02-3 새로운 폴더에서 마님 사용하기]
+# [02-3 새로운 폴더에서 마님 사용하기-무시해도됨]
 # 앞 챕터에서 설치한 C:\dev\manim 폴더가 아닌 다른 폴더에서 마님을 이용한 동영상 제작을 하고자 할 때는 다음과 같이 하면 됩니다.
 # 다른 폴더를 사용하고자 하는 경우가 생기는 것은, 동영상을 제작하다보면 마님 라이브러리 코드를 수정해야하는 경우가 있기에, 원본 라이브러리는 C:\dev\manim에 남겨두고, 
 # 다른 폴더에서 라이브러리를 수정하고 싶은 경우가 생기기 때문입니다.
@@ -96,7 +95,6 @@
 # cmd 창은 윈도우 키 + R을 누르면 나타나는 실행 창에서 cmd를 치고 확인을 누르면 됩니다.
 # 동영상이 동작되면 OK.
 # 동영상 제작을 위한 모든 환경구성이 끝났습니다. 이제 다음 챕터에서 간단한 예제부터 시작해서 본격적으로 개발을 시작해 봅니다.
-
 
 # [03장 마님 시작하기]
 # 로그래밍 언어를 배울 때 가장 먼저 해보는 것이 “Hello World” 같은 간단한 문자열을 출력해보는 것입니다. 여기서도 마님을 이용해서 문자열을 출력하는 동영상을 만들어볼 것입니다. 
@@ -123,10 +121,10 @@
 # 그냥 cmd 창에서 코드 실행을 하는 것이 편리할 겁니다.
 # notepad++에 HelloWord 코드 작성하기
 # 아래 코드를 notepad++ 편집기를 이용해 작성해 봅니다.
-# from manimlib.imports import *
+# from manim import *
 # class Hello_World(Scene):
 #     def construct(self):
-#         text=TextMobject("Hello World")
+#         text=MathTex("Hello World")
 #         self.play(Write(text))
 #         self.wait()
 # 작성된 코드를 02장 개발환경 구축하기에서 개발 폴더로 만들어 놓은 곳에 저장합니다. 여기서는 C:\now\manim\src\hello.py 로 저장하는 것으로 하겠습니다.
@@ -134,39 +132,35 @@
 # 실행해 보기
 # cmd 창을 열어서 C:\now\manim 폴더로 이동 후, 다음과 같이 명령어를 입력해서 실행해 봅니다.
 # cmd창 및 해당 폴더로 이동하는 방법을 모른다면, 02-3 새로운 폴더에서 마님 사용하기에 있는 방법 참조하기 바랍니다.
-# C:\now\manim>python -m manim src\hello.py Hello_World -pl
+# C:\now\manim>manim hello.py Hello_World -pql
 # `Hello World' 라는 글자가 1초에 걸쳐 칠판에 써지듯이 나타나서 1초가 유지되는 동영상이 만들어 질것입니다.
-''' from manimlib.imports import *
+''' from manim import *
 class Hello_World(Scene):
     def construct(self):
-        text=TextMobject("Hello World")
+        text=MathTex("Hello World")
         self.play(Write(text))
         self.wait() '''
 
 # [03-2 Hello World 코드 및 실행방법 설명]
 # Hello World 코드 설명
 # #src\hello.py
-# from manimlib.imports import *
+# from manim import *
 # class Hello_World(Scene):
 #     def construct(self):
-#         text=TextMobject("Hello World")
+#         text=MathTex("Hello World")
 #         self.play(Write(text))
 #         self.wait()
-# 마님에서 사용되는 여러 패키지들은 모두 manimlib\imports.py 파일내에 미리 import로 선언되어 있습니다. 그래서, 코딩할 때 from manimlib.imports import * 문구를 삽입해 놓으면, 마님에
-# 사용되는 모든 모듈 및 클래스들을 사용할 수 있습니다.
-# from manimlib.imports import *
-# 이처럼 imports.py 파일에다가 필요한 모든 모듈들을 import를 해놓고 이 imports 파일의 모든 것을 import하는 방법은, 매번 새로운 파일을 생성해서 코딩을 할 때마다, 많은 줄에 걸쳐서
-# import를 써야하는 수고를 덜어주기에, 매우 편리한 코딩 팁입니다.
+# from manim import * 문구를 삽입해 놓으면, 마님에 사용되는 모든 모듈 및 클래스들을 사용할 수 있습니다.
+# from manim import *
 # 마님에 의해 만들어지는 동영상을 만들려면 Scene를 상속받는 임의의 클래스를 만들고, construct라는 메서드를 만들어서, 그 메서드에 실행될 코드를 작성하면 됩니다.construct가 동영상 
-# 실행의 main 함수 같은 역할을 담당하는 것입니다. 즉, 마님이 실행될 때 이construct 메서드가 자동으로 호출되게 됩니다.
+# 실행의 main 함수 같은 역할을 담당하는 것입니다. 즉, 마님이 실행될 때 이 construct 메서드가 자동으로 호출되게 됩니다.
 # class Hello_World(Scene):  # 매님의 Scene 클래스를 상속받는 Hello_World 클래스 생성
 #     def construct(self):   # 자동 실행되는 메서드
-# 마님의 동작구조는 어떤 객체를 만들어서 좌표내에 에니매이션 효과를 넣어서 표출 하는 것입니다. 위의 Hello_World는 문자열을 포함할 수 있는 TextMobject 객체를 만들어서 이를 화면의
+# 마님의 동작구조는 어떤 객체를 만들어서 좌표내에 에니매이션 효과를 넣어서 표출 하는 것입니다. 위의 Hello_World는 문자열을 포함할 수 있는 MathTex 객체를 만들어서 이를 화면의
 # 중앙에 Write라는 애니 메이션을 걸어서 객체를 화면에 표출합니다.
-# #TextMobject는 문자열을 표현하는 매님의 대표적인 객제
-# text=TextMobject("Hello World")
-# #Scene 클래스에는 객체를 화면에 표출하는 여러 메이메이션들이 있고,
-# # Write는 화면에 글자를 펜으로 쓰듯이 보여주는 애니메이션
+# #MathTex는 문자열을 표현하는 매님의 대표적인 객제
+# text=MathTex("Hello World")
+# #Scene 클래스에는 객체를 화면에 표출하는 여러 메이메이션들이 있고, Write는 화면에 글자를 펜으로 쓰듯이 보여주는 애니메이션 
 # self.play(Write(text))
 # 애니메이션을 걸어서 어떤 객체를 표출할 때는 play 메서드를 사용합니다. play 메서드는 Scene 클래스에 정의되어 있고, Hello_World 클래스가 Scene을 상속하고 있으므로, self.play를 하면 
 # Scene에 있는 play 메서드가 호출될 수 있습니다.
@@ -179,9 +173,7 @@ class Hello_World(Scene):
 # 예를 들어 위 예제에서 Hello World 글자가 화면에 써지는 시간을 5초로 늘리고 싶으면 self.play(Write(text), run_time=5) 처럼 run_time 값만 바꿔주면 됩니다.
 # Hello World 실행 방법
 # 작성된 src\hello.py 파일을 이용해서 동영상을 제작할 때 아래와 같은 명령어를 사용했습니다.
-# C:\now\manim\python -m manim src\hello.py Hello_World -pl
-# -m 옵션은, 파이썬에서 어떤 모듈을 직접 실행시키고자 할 때 사용됩니다. 이 때 해당 모듈의 '이름'만을 적어야하고 파일 확장자인 .py는 적지 않습니다. 여기서는 manim.py파일인 minim 모듈을
-# 실행키는 것입니다.
+# C:\now\manim\manim hello.py Hello_World -pql
 # 일반적으로 python.exe에 의해 실행시키는 것은 스크립트입니다. 이 스크립트에서 여러 모듈들을 사용하는 것이고. 그런데, 이 모듈을 직접 실행시키고자 만든 것이 -m 옵션입니다. 이 옵션 뒤에 
 # 모듈 이름을 적으면 해당 모듈이 실행됩니다.
 # 이-m 옵션은 이러한 모듈 실행을 위한 기능외에 부수적으로 몇 가지 유용한 목적으로 사용될 수 있고, 마님에서도 여러 편리한 목적을 위해 -m 을 사용하도록 가이드되어 있습니다.
@@ -255,6 +247,11 @@ class Hello_World(Scene):
 #   --to-twitch           Stream to twitch
 #   --with-key TWITCH_KEY
 #                         Stream key for twitch
+# 클래스가 하나이고, 고화질로 동영상을 만드는 경우, 터미널에서 "manim test.py --high_quality, -pql" 입력하면 된다.
+# -pql
+# -p, --preview         Automatically open the saved file once its done
+# -q {k,p,h,m,l}, --quality {k,p,h,m,l} Render at specific quality, short form of the --*_quality flags
+# -l                    DEPRECATED: USE -ql or --quality l
 
 # [03-3 Hello World 만들기 (파이참 이용)]
 # 앞 챕터에서 살펴본 notepad++로도 마님 개발이 충분하나, 좀 더 편리하게 개발하기 위해서는 파이참(PyCham)을 사용하길 권장합니다.
@@ -281,10 +278,10 @@ class Hello_World(Scene):
 # (4) 파이참 프로젝트 창에서 manim 프로젝트를 선택하고 마우스 우클릭 - New - Directory 선택하고, 새로 생성할 폴더 이름인 src 입력 : 이 src 폴더에 작업한 파일들을 저장할 것입니다.
 # (5) 파이참에서 src 폴더를 선택하고 마우스 우클릭 - New - Python File 선택 후, New Python file 이름을 hello.py로 타이핑하고 Enter
 # (6) hello.py에 아래 내용 타이핑
-# from manimlib.imports import *
+# from manim import *
 # class Hello_World(Scene):
 #     def construct(self):
-#         text=TextMobject("Hello World")
+#         text=MathTex("Hello World")
 #         self.play(Write(text))
 #         self.wait()
 # (7) 파이참의 프로젝트 창에서 hello.py 파일이 선택된 상태에서 Ctrl-Shift-F10 누름. 파이참 프로그램의 하단부에 있는 실행창에 아래와 같은 메시지가 나오긴 하지만 동영상이 만들어지진 않을 것입니다.
@@ -321,7 +318,7 @@ class Hello_World(Scene):
 # 파이참에서 manim 프로젝트가 안만들어져 있으면 앞 챕터인 03-3 Hello World 만들기(파이참 이용)을 참조해서 manim 프로젝트를 만드시기 바랍니다.
 # manim 프로젝트에서 src 폴더를 선택하고 마우스 우클릭 - New - Python File 선택하고, New Python file로hello_graph.py 타이핑하고 Enter
 # hello_graph.py의 내용으로 아래 코드 타이핑
-# from manimlib.imports import *
+# from manim import *
 # class DrawSine(GraphScene):
 #     CONFIG = {
 #         "x_min" : -10,
@@ -332,10 +329,8 @@ class Hello_World(Scene):
 #     }
 #     def construct(self):
 #         self.setup_axes()
-
 #         func = lambda x: np.sin(x)
 #         graph = self.get_graph(func, x_min=-10,x_max=10)
-
 #         self.play(ShowCreation(graph))
 #         self.wait()
 # 타이핑 에러를 줄이기 위해서, 위 내용을 복사해서 붙여넣기 하는것도 좋습니다.
@@ -354,7 +349,7 @@ class Hello_World(Scene):
 # 캡처한 이미지입니다.
 # DrawSine 클래스의 코드 설명
 # hello_graph.py 파일에 있는 코드를 다시 적어보면 아래와 같습니다.
-# from manimlib.imports import *  
+# from manim import *  
 # class DrawSine(GraphScene):  
 #     CONFIG = {  
 #         "x_min" : -10,  
@@ -365,10 +360,8 @@ class Hello_World(Scene):
 #     }  
 #     def construct(self):  
 #         self.setup_axes()  
-
 #         func = lambda x: np.sin(x)  
 #         graph = self.get_graph(func, x_min=-10,x_max=10)  
-
 #         self.play(ShowCreation(graph))  
 #         self.wait()
 # 한 줄씩 코드 설명을 해보겠습니다.
@@ -466,7 +459,7 @@ class Hello_World(Scene):
 #         self.play(FadeIn(graph), run_time=4)  
 #         self.wait()
 # 이 코드를 동영상으로 만드는 Run을 실행해보겠습니다. 파이참에서 Shift - F10 키를 누르면 동영상 파일이 생성되고, 완성되면 자동 실행 됩니다.
-''' from manimlib.imports import *  
+'''from manim import *
 class DrawSine(GraphScene):  
     CONFIG = {  
         "x_min" : -10,  
@@ -490,12 +483,12 @@ class DrawSine(GraphScene):
 # 2.파이참 실행하고 앞 챕터에서 만들었던 마님 프로젝트 Open
 # 3.파이참 프로젝트 창에서 example_scenes.py 선택하고 마우스 우클릭 - Run 'example_scenes' 선택. 혹은 단축키로 Ctrl+Shift+F10 누름
 # 4.파이참 메뉴에서 Run - Edit Configuration을 선택해서 아래 내용처럼 일부 항목 수정
-# * Parameters: -pl
+# * Parameters: -pql
 # * Interpreter options: -m manim
 # 앞 장의 Hellow World 만들기나 Hello Graph 만들기에서는 src 폴더 밑에 소스코드를 뒀기에, 소스 폴더와 같은 위치로 자동 지정되는 Working diectory 값을 수동으로 C:\now\manim으로 바꿔야했지만, 
 # 지금의 경우는 examplescenes.py 파일이 C:\now\manim에 있기에 자동으로 지정된 Working directory를 그대로 사용해도 됩니다.
 # 즉, 마님을 실행할 때는 manim.py 파일이 있는 폴더를 Working directory로 해야합니다.
-# 또한 Parameters의 값에 실행할 클래스 이름을 지정하지 않고 그냥 -pl 옵션만을 붙인것은, examples_scenes.py 안에 여러 개의 실행가능한 클래스가 있기에, 실행 시키고 나서 어떤 클래스를 
+# 또한 Parameters의 값에 실행할 클래스 이름을 지정하지 않고 그냥 -pql 옵션만을 붙인것은, examples_scenes.py 안에 여러 개의 실행가능한 클래스가 있기에, 실행 시키고 나서 어떤 클래스를 
 # 선택하겠다는 것입니다.
 # 5.이제 Shift-F10을 눌러서 실행시키면, 아래와 같이 5개의 클래스 리스트가 출력되고 어떤 클래스 선택할 지 번호를 물어보게 됩니다. 1~5번내에서 숫자를 입력하면 해당 번호의 클래스가 동작해서, 
 # 동영상이 만들어지고 Play됩니다.
@@ -511,3 +504,140 @@ class DrawSine(GraphScene):
 # 예를 들어, Hello World라는 텍스트 객체를 화면의 중앙에 FadeIn 효과를 주며 표출하는 경우를 생각해보면, 객체 좌표계 애니메이션이라는 개념이 와 닿을 것입니다.
 # 여기서 얘기한 객체 좌표계 애니메이션이 마님 동영상을 제작하는데 있어 가장 중요한 요소이고, 이를 이해하는 것이 동영상 제작을 이해하는 것입니다.
 # 다음 장부터 이 3가지 요소인 좌표계 객체 애니메이션에 대해서 하나하나 자세히 설명하겠습니다.
+
+
+# [04장 좌표계]
+
+# [04-1 좌표계 개요]
+# 마님은 화면을 가로방향의 x축과 세로 방향의 y축의 (x,y)와 같은 조합으로 화면의 특정 위치를 가르키도록 합니다. 이 때 x축은 왼쪽 끝이 -7.1 오른쪽 끝이 7.1 값을 가지고, y축은 맨 아래가 -4.0 맨 위가 4.0의 
+# 값을 가집니다.
+# x축의 값이 -7.1 ~ +7.1이라고 해서 소숫점 한 개 자리까지만 인식하는 것은 아니고 파이썬에서 지원하는 float 변수형이 지원하는 소숫점 자릿수까지 인식합니다.
+# 마님에서의 화면 좌표 분해능은 위 그림과 같이 정수단위가 아니고, float 변수가 지원하는 소숫점 자릿수까지의 분해능을 같습니다. 위 그림은 편이상 정수단위의 구분만을 한 것이고, 실제로는 아주 촘촘하게 좌표를 
+# 구분할 수 있습니다.
+# (x,y) 형태의 좌푯값을 표현하기 위해 numpy의 array를 좌푯값으로 사용합니다. 그런데, numpy의 array는 x,y,z의 3개 값을 가지기에 마님에서는 앞의 x,y 값만 유효하게 사용하고 z는 0으로 처리합니다. 
+# (2차원 그래프의 경우. 3차원 그래프를 표현할 때는 z값도 사용)
+# numpy는 파이썬에서 행렬, 벡터 등 수학 연산을 지원하는 유명한 라이브러리로 manim에서 필요한 패키지를 설치할 때 자동으로 설치됩니다. 그러나, 만약 numpy가 설치되지 않았거나 지워졌다면 cmd 창에서 
+# pip install numpy 명령어를 통해 쉽게 설치할 수 있습니다.
+# 예를 들어 어떤 객체 mob를 화면의 (-2.0, 3.0)의 위치로 이동시킨다면, mob.move(np.array([-2.0, 3.0, 0]))과 같이 하면됩니다. 이처럼 객체를 좌표계의 절대좌표를 꼭 집어서 이동시킬 수도 있고, 어떤
+# 다른 걕체의 오른 편 처럼 상대적인 위치를 지정해서 이동시킬 수도 있습니다.
+
+# [04-2 절대위치로 이동: move_to]
+# 앞 장에서 살펴봤듯이 마님은 화면을 (x,y) 좌표로 접근할 수 있습니다. x는 [-7.1, 7.1] 사잇값을, y는 [-4.0, 4.0] 사이의 값을 가집니다.
+# 어떤 객체를 화면의 좌표값 위치로 이동하는 메서드는 move_to 입니다. 화면의 (2,3)위치로 이동시킨다면 obj.move_to(np.array([2,3,0]))로 하면됩니다.
+# move_to
+# maninlib.mobject.Mobject.move_to(point_or_mobject, aligned_edge=ORIGIN, coor_mask=np.array([1, 1, 1]))
+# 객체를 화면의 좌표 혹은 대상 객체의 위치로 이동시킴
+# Parameters: point_or_mobject  
+#   옮겨질 대상이 되는 위치 혹은 객체. 만약 객체의 경우는 그 객체의 위치로 이동 됨.  
+# Parameters: aligned_edge   
+#   옮길때 객체의 기준이되는 방향. 만약 aligned_edge=LEFT라면, 목표가 되는 객체의 왼쪽면에 옮겨지는 객체의 왼쪽 면이 맞닿는 구조. 아래 설명 부분에서의 그림을 참조하면 이해될 것임
+# Parameters: coor_mask=np.array([1, 1, 1])   
+#   이동할 때 사용되는 좌표계 마스크 값. [0.5, 0.5,0]으로하면 원래 목적지의 1/2 지점으로 이동  
+# Returns: self    
+#   목적지로 이동된 객체  
+# 예제를 가지고 move_to 메서드를 설명해보겠습니다.
+# 화면에 아래 그림과 같이 사각형1과 사각형2가 있을 때, 사각형1을 사각형2가 있는 쪽으로 이동시켜 보겠습니다.
+# (1)다른 파라미터 없이 move_to(rect1, rect2)로 하면, rect2이 중앙에 rect1이 이동합니다.
+# (2)aligned_edge=LEFT로하면, rect2의 LEFT면에 rect1의 LEFT면이 맞닿는 형태로 이동됩니다.
+# (3)(4)(5) aligned_edge=RIGHT/UP/DOWN 으로하면 rect2의 RIGHT/UP/DOWN면에 rect1의 RIGHT/UP/DOWN면이 맞닿는 형태로 이동합니다.
+# 그림으로 보면 이해가 쉽습니다.
+# 만약 이동하는 곳이 위치를 나타내는 점이라면, 그 위치를 기준으로해서 LEFT/RIGHT/UP/DOWN으로 이동됩니다.
+# 위에서 설명한 이동방법을 실제 코드를 가지고 테스트해보겠습니다.
+# 사각형을 그리는 Rectangle 클래스, 그리고 self.play 안에 객체의 이동 메서드를 넣고 애니메이션을 하는 방법 등 아직 낯설은 코드들이 있어 다 이해되지 못하다면, 여기서는 move_to가 어떻게 쓰이는지만 
+# 주의깊게 보고 넘어가도 됩니다.
+# from manimlib.imports import *
+# class MoveToTest(Scene):  
+#     def construct(self):  
+#         direction = [ORIGIN, LEFT, RIGHT, UP, DOWN]  
+#         for d in direction:  
+#             self.move_to_obj(d)  
+#         for d in direction:  
+#             self.move_to_point(d)  
+#         self.move_to_point_mask(ORIGIN, mask=np.array([0.5,0.5,0]))  
+#     def move_to_obj(self, direction):  
+#         rect1 = Rectangle(width=0.4, height=0.2, stroke_color=RED)  
+#         rect2 = Rectangle(width=1, height=1, stroke_color=BLUE).move_to(np.array([2, 3, 0]))  
+#         self.add(rect1,rect2)  
+#         self.wait()  
+#         self.play(rect1.move_to, rect2, {"aligned_edge":direction})  
+#         self.wait()  
+#         self.remove(rect1,rect2)  
+#     def move_to_point(self, direction):  
+#         rect1 = Rectangle(width=0.4, height=0.2, stroke_color=RED)  
+#         rect2 = Rectangle(width=1, height=1, stroke_color=BLUE).move_to(np.array([2, 3, 0]))  
+#         tgt_point = np.array([2,3,0])  
+#         self.add(rect1, rect2)  
+#         self.wait()  
+#         self.play(rect1.move_to, tgt_point, {"aligned_edge": direction})  
+#         self.wait()  
+#         self.remove(rect1, rect2)  
+#     def move_to_point_mask(self, direction, mask):  
+#         rect1 = Rectangle(width=0.4, height=0.2, stroke_color=RED)  
+#         rect2 = Rectangle(width=1, height=1, stroke_color=BLUE).move_to(np.array([2, 3, 0]))  
+#         tgt_point = np.array([2,3,0])  
+#         self.add(rect1, rect2)  
+#         self.wait()  
+#         self.play(rect1.move_to, tgt_point, {"aligned_edge": direction, "coor_mask":mask})  
+#         self.wait()  
+#         self.remove(rect1, rect2)
+# 생성된 동영상
+# https://youtu.be/A9FBGgjoz20
+# 위 코드에서 특이하게 사용된 몇 가지만 설명하도록하겠습니다.
+# direction = [ORIGIN, LEFT, RIGHT, UP, DOWN]
+# 코드를 간단하게 하기위해 방향을 나타내는 4가지 값을 리스트로 지정했습니다.
+# 방향을 나타내는 이 4가지 값은 manimlib.constants에 정의되어 있는 상수들로 numpy의 array 형태입니다. (앞 장에서 얘기했듯이 마님의 좌표는 numpy의 array 형태로 사용됩니다.)
+# ORIGIN = np.array((0., 0., 0.))  
+# UP = np.array((0., 1., 0.))  
+# DOWN = np.array((0., -1., 0.))  
+# RIGHT = np.array((1., 0., 0.))  
+# LEFT = np.array((-1., 0., 0.))
+# 선언된 값에서 알 수 있듯이 각 값들은 원점/위/아래/오른쪽/왼쪽을 가리키는 단위 벡터의 값 형태를 취하고 있습니다. 따라서, 이러한 값에 상수배를 하면 원하는 방향의 벡터값을 얻을 수 있습니다.
+# rect1 = Rectangle(width=0.4, height=0.2, stroke_color=RED)
+# Rectangle은 사각형 객체를 생성하는 클래스입니다. 가로(width), 세로(height) 높이를 지정해 줬고, 선 색상도 RED로 지정해서 생성했습니다.
+# rect2 = Rectangle(width=1, height=1, stroke_color=BLUE).move_to(np.array([2, 3, 0]))
+# Rectangle 클래스에 의해 만들어진 객체에 이어 바로 move_to 메서드를 이용해서 해당 객체를 이용시켰습니다.
+# 이렇게 코딩하면 코드가 간단해져서 좋습니다.
+# self.play(rect1.move_to, rect2, {"aligned_edge":direction})
+# 애니메이션을 동작시키는 play 메서드는 인자(파리미터)로 2종류의 값을 받을 수 있습니다. 하나는 Animation 클래스이고 다른 하나는 객체의 메서드입니다.
+# 위 경우는 객체의 메서드를 인자로 받았고, 이 객체의 메서드를 애니메이션해줍니다. 여기서는 move_to 메서드를 사용했기에, 객체의 이동을 애니메이션 해줍니다.
+# 객체의 메서드를 첫번 째 인자로 받은 경우, 두번 째 인자부터는 객체의 메서드에 대한 인자가 됩니다. 그리고 객체의 메서드의 인자로 딕셔너리값을 지정해야할 경우는 위에서 처럼 딕셔너리 
+# 표현을 써야합니다. {"aligned_edge":direction}
+# 따라서, 위 코드는 rect1.move_to(rect2, aligned_edge=direction) 을 play하는 코드인 것입니다.
+# move_to는 마님 동영상을 만들면서 빈번하게 사용되는 메서드입니다. 따라서, 그 사용방법에 익숙해져야하는데, 두 가지만을 기억하고 있으면 됩니다. 화면의 좌표나 어떤 객체가 있는 곳으로 이동시키고자
+# 할 때는 move_to를 사용하면 된다는 점 aligned_edge파라미터의 값에 따라 이동되는 모습 (위 그림)
+''' from manim import *
+class MoveToTest(Scene):  
+    def construct(self):  
+        direction = [ORIGIN, LEFT, RIGHT, UP, DOWN]  
+        for d in direction:  
+            self.move_to_obj(d)  
+        for d in direction:  
+            self.move_to_point(d)  
+        self.move_to_point_mask(ORIGIN, mask=np.array([0.5,0.5,0]))  
+    def move_to_obj(self, direction):  
+        rect1 = Rectangle(width=0.4, height=0.2, stroke_color=RED)  
+        rect2 = Rectangle(width=1, height=1, stroke_color=BLUE).move_to(np.array([2, 3, 0]))  
+        self.add(rect1,rect2)  
+        self.wait()  
+        self.play(rect1.move_to, rect2, {"aligned_edge":direction})  
+        self.wait()  
+        self.remove(rect1,rect2)  
+    def move_to_point(self, direction):  
+        rect1 = Rectangle(width=0.4, height=0.2, stroke_color=RED)  
+        rect2 = Rectangle(width=1, height=1, stroke_color=BLUE).move_to(np.array([2, 3, 0]))  
+        tgt_point = np.array([2,3,0])  
+        self.add(rect1, rect2)  
+        self.wait()  
+        self.play(rect1.move_to, tgt_point, {"aligned_edge": direction})  
+        self.wait()  
+        self.remove(rect1, rect2)  
+    def move_to_point_mask(self, direction, mask):  
+        rect1 = Rectangle(width=0.4, height=0.2, stroke_color=RED)  
+        rect2 = Rectangle(width=1, height=1, stroke_color=BLUE).move_to(np.array([2, 3, 0]))  
+        tgt_point = np.array([2,3,0])  
+        self.add(rect1, rect2)  
+        self.wait()  
+        self.play(rect1.move_to, tgt_point, {"aligned_edge": direction, "coor_mask":mask})  
+        self.wait()  
+        self.remove(rect1, rect2) '''
+
