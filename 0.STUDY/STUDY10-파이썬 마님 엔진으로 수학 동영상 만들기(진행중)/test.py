@@ -1,25 +1,29 @@
-from manim import *
+from manimlib.imports import *
 
-class CoordinateEx2(Scene):
+class CoordinateEx1(Scene):
     def construct(self):
-        dot = Dot()
+        #1. create objects
+        title = self.get_title()
+        body = self.get_body()
+        subtitle = self.get_subtitle()
 
-        dot.to_edge(LEFT)
-        self.add(dot)
-        self.wait()
+        #2. locate objects
+        title.move_to(ORIGIN).to_edge(UP, buff=1)
+        body.next_to(title, DOWN, buff=1)
+        subtitle.to_edge(DOWN, buff=0.5)
 
-        for i in range(0,5):
-            self.move_dot(dot)
+        #3. animate objects
+        self.play(FadeIn(title), run_time=2)
+        self.play(FadeIn(body), run_time=2)
+        self.play(FadeIn(subtitle), run_time=2)
+        self.wait(2)
 
+    def get_text(self, str, color=WHITE, size=0.4):
+        return Text(str, font='굴림', stroke_width=1, color=color, size=size)
 
-    def move_dot(self, dot):
-        d1 = dot.copy()
-        d2 = dot.copy()
-        d3 = dot.copy()
+    def get_title(self):
+        t1 = self.get_text("IMF 국제통화기금", color=BLUE, size=0.4 )
+        t2 = self.get_text("2020 세계 경제 전망", color=WHITE, size=0.6)
 
-        self.play(
-            d1.to_corner, UR,
-            d2.to_edge, RIGHT,
-            d3.to_corner, DR,
-        )
-        self.remove(d1, d2, d3)
+        t2.next_to(t1, RIGHT, buff=0.3)
+        text = VGroup(t1, t2)
