@@ -1497,6 +1497,107 @@
 
 # [CHAP05]
 
+# [Do it! 실습 5-1] 양의 정수인 팩토리얼 구하기
+# def factorial(n: int) -> int:
+#     """양의 정수 n의 팩토리얼을 구하는 과정"""
+#     if n > 0:
+#         return n * factorial(n - 1)
+#     else:
+#         return 1
+# if __name__ == '__main__':
+#     n = int(input('출력할 팩토리얼 값을 입력하세요.: '))
+#     print(f'{n}의 팩토리얼은 {factorial(n)}입니다.')
+
+# [보충수업 5-1] 양의 정수인 팩토리얼 구하기(n이 음수면 ValueError 예외 처리 발생)
+# def factorial(n : int) -> int:
+#     """양의 정수 n의 팩토리얼값을 재귀적으로 구함(n이 음수면 ValueError 예외 처리 발생)"""
+#     if n > 0:
+#         return n * factorial(n - 1)
+#     elif n == 0:
+#         return 1
+#     else:
+#         raise ValueError
+# if __name__ == '__main__':
+#     n = int(input('출력할 팩토리얼 값을 입력하세요.: '))
+#     try:
+#         print(f'{n}의 팩토리얼은 {factorial(n)}입니다.')
+#     except ValueError:
+#         print(f'{n}의 팩토리얼은 구할 수 없습니다.')
+
+# [Do it! 실습 5-2] 유클리드 호제법으로 최대 공약수 구하기
+# def gcd(x: int, y: int) -> int:
+#     """정숫값 x와 y의 최대 공약수를 반환"""
+#     if y == 0:
+#         return x
+#     else:
+#         return gcd(y, x % y)
+# if __name__ == '__main__':
+#     print('두 정숫값의 최대 공약수를 구합니다.')
+#     x = int(input('첫 번째 정숫값을 입력하세요.: '))
+#     y = int(input('두 번째 정숫값을 입력하세요.: '))
+#     print(f'두 정숫값의 최대 공약수는 {gcd(x, y)}입니다.')
+
+# [Do it! 실습 5-3] 순수한 재귀 함수 구현하기
+# def recur(n: int) -> int:
+#     """순수한 재귀 함수 recur의 구현"""
+#     if n > 0:
+#         recur(n - 1)
+#         print(n)
+#         recur(n - 2)
+# x = int(input('정숫값을 입력하세요.: '))
+# recur(x)
+
+# recur 함수를 거꾸로 출력(Do it! 실습 5-3 수정)
+# def recur(n: int) -> int:
+#     """순수한 재귀 함수 recur의 구현(거꾸로 출력)"""
+#     if n > 0:
+#         recur(n - 2)
+#         print(n)
+#         recur(n - 1)
+# x = int(input('정숫값을 입력하세요.: '))
+# recur(x)
+
+# [Do it! 실습 5-4] 재귀 함수의 구현(꼬리 재귀를 제거)
+# def recur(n: int) -> int:
+#     """꼬리 재귀를 제거한 함수 recur"""
+#     while n > 0:
+#         recur(n - 1)
+#         print(n)
+#         n = n - 2
+# x = int(input('정수값을 입력하세요.: '))
+# recur(x)
+
+# [Do it! 실습 5-5] 스택으로 재귀 함수 구현하기(재귀를 제거)
+# from stack import Stack  # stack.py의 Stack 클래스를 임포트
+# def recur(n: int) -> int:
+#     """재귀를 제거한 함수 recur"""
+#     s = Stack(n)
+#     while True:
+#         if n > 0:
+#             s.push(n)         # n 값을 푸시
+#             n = n - 1
+#             continue
+#         if not s.is_empty():  # 스택이 비어 있지 않으면
+#             n = s.pop()       # 저장하고 있는 값을 n에 팝
+#             print(n)
+#             n = n - 2
+#             continue
+#         break
+# x = int(input('정수값을 입력하세요.: '))
+# recur(x)
+
+# [Do it! 실습 5-6] 하노이의 탑 구현하기
+# def move(no: int, x: int, y: int) -> None:
+#     """원반을 no개를 x 기둥에서 y 기둥으로 옮김"""
+#     if no > 1:
+#         move(no - 1, x, 6 - x - y)
+#     print(f'원반 [{no}]을(를) {x}기둥에서 {y}기둥으로 옮깁니다.')
+#     if no > 1:
+#         move(no - 1, 6 - x - y, y)
+# print('하노이의 탑을 구현하는 프로그램입니다.')
+# n = int(input('원반의 개수를 입력하세요.: '))
+# move(n, 1, 3)
+
 # [Do it! 실습 5-7] 각 열에 1개 퀸을 배치한 조합을 재귀적으로 나열하기
 # pos = [0] * 8  # 각 열에서 퀸의 위치를 출력
 # def put() -> None:
@@ -1513,3 +1614,2035 @@
 #         else:
 #             set(i + 1)  # 다음 열에 퀸을 배치
 # set(0)  # 0 열에 퀸을 배치
+
+# [Do it! 실습 5-8] 행과 열에 퀸을 1개 배치하는 조합을 재귀적으로 나열하기
+# pos = [0] * 8       # 각 열에서 퀸의 위치
+# flag = [False] * 8  # 각 행에 퀸을 배치했는지 체크
+# def put() -> None:
+#     """각 열에 놓은 퀸의 위치를 출력"""
+#     for i in range(8):
+#         print(f'{pos[i]:2}', end='')
+#     print()
+# def set(i: int) -> None:
+#     """i 열의 알맞은 위치에 퀸을 배치"""
+#     for j in range(8):
+#         if not flag[j]:  # j 행에 퀸을 배치하지 않았으면
+#             pos[i] = j   # 퀸을 j 행에 배치
+#             if i == 7:   # 모든 열에 퀸을 배치를 완료
+#                 put()
+#             else:
+#                 flag[j] = True
+#                 set(i + 1)  # 다음 열에 퀸을 배치
+#                 flag[j] = False
+# set(0)  # 0열에 퀸을 배치
+
+# [Do it! 실습 5-9] 8퀸 문제 알고리즘 구현하기
+# pos = [0] * 8          # 각 열에 배치한 퀸의 위치
+# flag_a = [False] * 8   # 각 행에 퀸을 배치했는지 체크
+# flag_b = [False] * 15  # 대각선 방향(↙↗)으로 퀸을 배치했는지 체크
+# flag_c = [False] * 15  # 대각선 방향( ↘↖)으로 퀸을 배치했는지 체크
+# def put() -> None:
+#     """각 열에 배치한 퀸의 위치를 출력"""
+#     for i in range(8):
+#         print(f'{pos[i]:2}', end='')
+#     print()
+# def set(i: int) -> None:
+#     """i 열의 알맞은 위치에 퀸을 배치"""
+#     for j in range(8):
+#         if(     not flag_a[j]            # j행에 퀸이 배치 되지 않았다면
+#             and not flag_b[i + j]        # 대각선 방향(↙↗)으로 퀸이 배치 되지 않았다면
+#             and not flag_c[i - j + 7]):  # 대각선 방향( ↘↖)으로 퀸이 배치 되지 않았다면
+#             pos[i] = j  # 퀸을 j행에 배치
+#             if i == 7:  # 모든 열에 퀸을 배치하는 것을 완료
+#                 put()
+#             else:
+#                 flag_a[j] = flag_b[i + j] = flag_c[i - j + 7] = True
+#                 set(i + 1)  # 다음 열에 퀸을 배치
+#                 flag_a[j] = flag_b[i + j] = flag_c[i - j + 7] = False
+# set(0)  # 0열에 퀸을 배치
+
+# [Do it! 실습 5-9] 8퀸 문제 알고리즘 구현하기(퀸을 놓는 상황을 네모로 표시)
+# pos = [0] * 8          # 각 열에 배치한 퀸의 위치
+# flag_a = [False] * 8   # 각 행에 퀸을 배치했는지 체크
+# flag_b = [False] * 15  # 대각선 방향(↙↗)으로 퀸을 배치했는지 체크
+# flag_c = [False] * 15  # 대각선 방향( ↘↖)으로 퀸을 배치했는지 체크
+# def put() -> None:
+#     """퀸을 놓는 상황을 □와 ■로 출력"""
+#     for j in range(8):
+#         for i in range(8):
+#             print('■' if pos[i] == j else '□', end='')
+#         print()
+#     print()
+# def set(i: int) -> None:
+#     """i 열의 알맞은 위치에 퀸을 놓기"""
+#     for j in range(8):
+#         if(     not flag_a[j]           # j 행에 아직 퀸을 놓지 않았으면
+#             and not flag_b[i + j]       # 대각선 방향(↙↗)으로 퀸이 배치 되지 않았다면
+#             and not flag_c[i - j + 7]): # 대각선 방향( ↘↖)으로 퀸이 배치 되지 않았다면
+#             pos[i] = j          # 퀸을 j 행에 놓기
+#             if i == 7:          # 모든 열에 퀸을 배치하는 것을 완료
+#                 put()
+#             else:
+#                 flag_a[j] = flag_b[i + j] = flag_c[i - j + 7] = True
+#                 set(i + 1)      # 다음 열에 퀸을 놓기
+#                 flag_a[j] = flag_b[i + j] = flag_c[i - j + 7] = False
+# set(0)          # 0 열에 퀸을 놓기
+
+
+# [CHAP06]
+
+# 병합 정렬 알고리즘 구현하기(heapq.merge를 사용)
+# from typing import MutableSequence
+# import heapq
+# def merge_sort(a: MutableSequence) -> None:
+#     """병합 정렬(heapq.merge를 사용)"""
+#     atype = type(a)
+#     def _merge_sort(a: MutableSequence, left: int, right: int) -> None:
+#         """a[left]～a[right]를 재귀적으로 병합 정렬"""
+#         if left < right:
+#             center = (left + right) // 2
+#             _merge_sort(a, left, center)            # 앞부분 배열의 병합 정렬
+#             _merge_sort(a, center + 1, right)       # 뒷부분 배열의 병합 정렬
+#             buff = atype(heapq.merge(a[left: center+1], a[center + 1: right+1]))
+#             for i in range(len(buff)):
+#                 a[left + i] = buff[i]
+#     _merge_sort(a, 0, len(a))       # 배열 전체를 병합 정렬
+# if __name__ == '__main__':
+#     print('병합 정렬을 수행합니다(heapq.merge를 사용).')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     merge_sort(x)       # 배열 x를 병합 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# 고정 길이 스택 클래스(collections.deque을 사용) 구현 예제
+# from typing import Any
+# from collections import deque
+# class Stack:
+#     """고정 길이 스택 클래스(collections.deque을 사용)"""
+#     def __init__(self, maxlen: int = 256) -> None:
+#         """초기화 선언"""
+#         self.capacity = maxlen
+#         self.__stk = deque([], maxlen)
+#     def __len__(self) -> int:
+#         """스택에 쌓여있는 데이터 개수를 반환"""
+#         return len(self.__stk)
+#     def is_empty(self) -> bool:
+#         """스택이 비어 있는지 판단"""
+#         return not self.__stk
+#     def is_full(self) -> bool:
+#         """스택이 가득 찼는지 판단"""
+#         return len(self.__stk) == self.__stk.maxlen
+#     def push(self, value: Any) -> None:
+#         """스택에 value를 푸시"""
+#         self.__stk.append(value)
+#     def pop(self) -> Any:
+#         """스택에서 데이터를 팝"""
+#         return self.__stk.pop()
+#     def peek(self) -> Any:
+#         """스택에서 데이터를 피크"""
+#         return self.__stk[-1]
+#     def clear(self) -> None:
+#         """스택을 비웁니다"""
+#         self.__stk.clear()
+#     def find(self, value: Any) -> Any:
+#         """스택에서 value를 찾아 인덱스(없으면 -1)를 반환"""
+#         try:
+#             return self.__stk.index(value)
+#         except ValueError:
+#             return -1
+#     def count(self, value: Any) -> int:
+#         """스택에 포함된 value의 개수를 반환"""
+#         return self.__stk.count(value)
+#     def __contains__(self, value: Any) -> bool:
+#         """스택에 value가 포함되어 있는지 판단"""
+#         return self.count(value)
+#     def dump(self) -> int:
+#         """스택 안에 있는 모든 데이터를 나열"""
+#         print(list(self.__stk))
+
+# 정렬을 마친 두 배열의 병합 (heapq.merege 사용）
+# import heapq
+# a = [2, 1, 6, 8, 11, 13]
+# b = [1, 2, 3, 4, 9, 16, 21]
+# c = list(heapq.merge(a, b))  # 배열 a와 b를 병합하여 c에 저장
+# print('배열 a와 b를 병합하여 배열 c에 저장하였습니다.')
+# print(f'배열 a: {a}')
+# print(f'배열 b: {b}')
+# print(f'배열 c: {c}')
+
+# [Do it! 실습 6-1] 버블 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def bubble_sort(a: MutableSequence) -> None:
+#     """버블 정렬"""
+#     n = len(a)
+#     for i in range(n - 1):
+#         for j in range(n - 1, i, -1):
+#             if a[j - 1] > a[j]:
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+# if __name__ == '__main__':
+#     print('버블 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     bubble_sort(x)  # 배열 x를 버블 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-2] 버블 정렬 알고리즘 구현(정렬 과정을 출력)
+# from typing import MutableSequence
+# def bubble_sort_verbose(a: MutableSequence) -> None:
+#     """버블 정렬(정렬 과정을 출력)"""
+#     ccnt = 0  # 비교 횟수
+#     scnt = 0  # 교환 횟수
+#     n = len(a)
+#     for i in range(n - 1):
+#         print(f'패스 {i + 1}')
+#         for j in range(n - 1, i, -1):
+#             for m in range(0, n - 1):
+#                print(f'{a[m]:2}' + ('  ' if m != j - 1 else
+#                                     ' +' if a[j - 1] > a[j] else ' -'), 
+#                                     end='')
+#             print(f'{a[n - 1]:2}')
+#             ccnt += 1
+#             if a[j - 1] > a[j]:
+#                 scnt += 1
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+#         for m in range(0, n - 1):
+#            print(f'{a[m]:2}', end='  ')
+#         print(f'{a[n - 1]:2}')
+#     print(f'비교를 {ccnt}번 했습니다.')
+#     print(f'교환을 {scnt}번 했습니다.')
+# if __name__ == '__main__':
+#     print('버블 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     bubble_sort_verbose(x)  # 배열 x를 버블 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-3] 버블 정렬 알고리즘 구현하기(알고리즘의 개선 1) - 정렬 과정을 출력
+# from typing import MutableSequence
+# def bubble_sort2_verbose(a: MutableSequence) -> None:
+#     """버블 정렬(교환 횟수에 따른 중단)"""
+#     ccnt = 0  # 비교 횟수
+#     scnt = 0  # 교환 횟수
+#     n = len(a)
+#     for i in range(n - 1):
+#         print(f"패스 {i + 1}")
+#         exchng = 0  # 패스에서의 교환 횟수
+#         for j in range(n - 1, i, -1):
+#             for m in range(0, n - 1):
+#                 print(
+#                     f"{a[m]:2}"
+#                     + ("  " if m != j - 1 else " +" if a[j - 1] > a[j] else " -"),
+#                     end="",
+#                 )
+#             print(f"{a[n - 1]:2}")
+#             ccnt += 1
+#             if a[j - 1] > a[j]:
+#                 scnt += 1
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+#                 exchng += 1
+#         for m in range(0, n - 1):
+#             print(f"{a[m]:2}", end="  ")
+#         print(f"{a[n - 1]:2}")
+#         if exchng == 0:  # 교환이 수행되지 않았으면 작업을 중단
+#             break
+#     print(f"비교를 {ccnt}번 했습니다.")
+#     print(f"교환을 {scnt}번 했습니다.")
+# if __name__ == "__main__":
+#     print("버블 정렬을 수행합니다")
+#     num = int(input("원소 수를 입력하세요.: "))
+#     x = [None] * num        # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f"x[{i}]: "))
+#     bubble_sort2_verbose(x)  # 배열 x를 버블 정렬
+#     print("오름차순으로 정렬했습니다.")
+#     for i in range(num):
+#         print(f"x[{i}] = {x[i]}")
+
+# [Do it! 실습 6-3]버블 정렬 알고리즘 구현하기(알고리즘의 개선 1)
+# from typing import MutableSequence
+# def bubble_sort(a: MutableSequence) -> None:
+#     """버블 정렬(교환 횟수에 따른 중단)"""
+#     n = len(a)
+#     for i in range(n - 1):
+#         exchng = 0  # 패스에서 교환 횟수
+#         for j in range(n - 1, i, -1):
+#             if a[j - 1] > a[j]:
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+#                 exchng += 1
+#         if exchng == 0:
+#             break
+# if __name__ == '__main__':
+#     print('버블 정렬을 합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     bubble_sort(x)      # 배열 x를 버블 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-4] 버블 정렬 알고리즘 구현하기(알고리즘의 개선 2) - 정렬 과정을 출력
+# from typing import MutableSequence
+# def bubble_sort3_verbose(a: MutableSequence) -> None:
+#     """버블 정렬(스캔 범위를 제한)"""
+#     ccnt = 0  # 비교 횟수
+#     scnt = 0  # 교환 횟수
+#     n = len(a)
+#     k = 0
+#     i = 0
+#     while k < n - 1:
+#         print(f'패스 {i + 1}')
+#         i += 1
+#         last = n - 1
+#         for j in range(n - 1, k, -1):
+#             for m in range(0, n - 1):
+#                print(f'{a[m]:2}' + ('  ' if m != j - 1 else
+#                                     ' +' if a[j - 1] > a[j] else ' -'),
+#                      end='')
+#             print(f'{a[n - 1]:2}')
+#             ccnt += 1
+#             if a[j - 1] > a[j]:
+#                 scnt += 1
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+#                 last = j
+#         k = last
+#         for m in range(0, n - 1):
+#            print(f'{a[m]:2}', end='  ')
+#         print(f'{a[n - 1]:2}')
+#     print(f'비교를 {ccnt}번 했습니다.')
+#     print(f'교환을 {scnt}번 했습니다.')
+# if __name__ == '__main__':
+#     print('버블 정렬을 수행합니다')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     bubble_sort3_verbose(x)  # 배열 x를 버블
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-4] 버블 정렬 알고리즘 구현하기(알고리즘의 개선 2)
+# from typing import MutableSequence
+# def bubble_sort(a: MutableSequence) -> None:
+#     """버블 정렬(스캔 범위를 제한)"""
+#     n = len(a)
+#     k = 0
+#     while k < n - 1:
+#         last = n - 1
+#         for j in range(n - 1, k, -1):
+#             if a[j - 1] > a[j]:
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+#                 last = j
+#         k = last
+# if __name__ == '__main__':
+#     print('버블 정렬을 합니다.')
+#     num = int(input('원솟수를 입력하세요.: '))
+#     x = [None] * num    # 원솟수 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     bubble_sort(x)      # 배열 x를 버블 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-5] 셰이커 정렬 알고리즘 구현하기(정렬 과정을 출력)
+# from typing import MutableSequence
+# def shaker_sort_verbose(a: MutableSequence) -> None:
+#     """"셰이커 정렬(정렬 과정을 출력)"""
+#     ccnt = 0  # 비교 횟수
+#     scnt = 0  # 교환 횟수
+#     left = 0
+#     n = len(a)
+#     right = len(a) - 1
+#     last = right
+#     i = 0
+#     while left < right:
+#         print(f'패스{i + 1}')
+#         i += 1
+#         for j in range(right, left, -1):
+#             for m in range(0, n - 1):
+#                print(f'{a[m]:2}' + ('  ' if m != j - 1 else
+#                                     ' +' if a[j - 1] > a[j] else ' -'),
+#                      end='')
+#             print(f'{a[n - 1]:2}')
+#             ccnt += 1
+#             if a[j - 1] > a[j]:
+#                 scnt += 1
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+#                 last = j
+#         left = last
+#         for m in range(0, n - 1):
+#            print(f'{a[m]:2}', end='  ')
+#         print(f'{a[n - 1]:2}')
+#         if (left == right):
+#              break
+#         print(f'패스 {i + 1}')
+#         i += 1
+#         for j in range(left, right):
+#             for m in range(0, n - 1):
+#                print(f'{a[m]:2}' + ('  ' if m != j else
+#                                     ' +' if a[j] > a[j + 1] else ' -'),
+#                      end='')
+#             print(f'{a[n - 1]:2}')
+#             if a[j] > a[j + 1]:
+#                 scnt += 1
+#                 a[j], a[j + 1] = a[j + 1], a[j]
+#                 last = j
+#         right = last
+#         for m in range(0, n - 1):
+#            print(f'{a[m]:2}', end='  ')
+#         print(f'{a[n - 1]:2}')
+#     print(f'비교를 {ccnt}번 했습니다.')
+#     print(f'교환을 {scnt}번 했습니다.')
+# if __name__ == '__main__':
+#     print('셰이커 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     shaker_sort_verbose(x)  # 배열 x를 단순 교환 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-5] 셰이커 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def shaker_sort(a: MutableSequence) -> None:
+#     """셰이커 정렬"""
+#     left = 0
+#     right = len(a) - 1
+#     last = right
+#     while left < right:
+#         for j in range(right, left, -1):
+#             if a[j - 1] > a[j]:
+#                 a[j - 1], a[j] = a[j], a[j - 1]
+#                 last = j
+#         left = last
+#         for j in range(left, right):
+#             if a[j] > a[j + 1]:
+#                 a[j], a[j + 1] = a[j + 1], a[j]
+#                 last = j
+#         right = last
+# if __name__ == '__main__':
+#     print('셰이커 정렬을 수행합니다')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     shaker_sort(x)      # 배열 x를 단순 교환 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-6] 단순 선택 정렬 알고리즘 구현
+# from typing import MutableSequence
+# def selection_sort(a: MutableSequence) -> None:
+#     """단순 선택 정렬"""
+#     n = len(a)
+#     for i in range(n - 1):
+#         min = i  # 정렬 할 부분에서 가장 작은 원소의 인덱스
+#         for j in range(i + 1, n):
+#             if a[j] < a[min]:
+#                 min = j
+#         a[i], a[min] = a[min], a[i]  # 정렬 할 부분에서 맨 앞의 원소와 가장 작은 원소를 교환 
+# if __name__ == '__main__':
+#     print('단순 선택 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     selection_sort(x)  # 배열 x를 단순 선택 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-7] 단순 삽입 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def insertion_sort(a: MutableSequence) -> None:
+#     """단순 삽입 정렬"""
+#     n = len(a)
+#     for i in range(1, n):
+#         j = i
+#         tmp = a[i]
+#         while j > 0 and a[j - 1] > tmp:
+#             a[j] = a[j - 1]
+#             j -= 1
+#         a[j] = tmp
+# if __name__ == '__main__':
+#     print('단순 삽입 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     insertion_sort(x)  # 배열 x를 단순 삽입 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-8] 셸 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def shell_sort(a: MutableSequence) -> None:
+#     """셸 정렬"""
+#     n = len(a)
+#     h = n // 2
+#     while h > 0:
+#         for i in range(h, n):
+#             j = i - h
+#             tmp = a[i]
+#             while j >= 0 and a[j] > tmp:
+#                 a[j + h] = a[j]
+#                 j -= h
+#             a[j + h] = tmp
+#         h //= 2
+# if __name__ == '__main__':
+#     print('셸 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     shell_sort(x)  # 배열 x를 셸 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-9] 셸 정렬 알고리즘 구현하기(h * 3 + 1의 수열 사용)
+# from typing import MutableSequence
+# def shell_sort(a: MutableSequence) -> None:
+#     """셸 정렬(h * 3 + 1의 수열 사용)"""
+#     n = len(a)
+#     h = 1
+#     while h < n // 9:
+#         h = h * 3 + 1
+#     while h > 0:
+#         for i in range(h, n):
+#             j = i - h
+#             tmp = a[i]
+#             while j >= 0 and a[j] > tmp:
+#                 a[j + h] = a[j]
+#                 j -= h
+#             a[j + h] = tmp
+#         h //= 3
+# if __name__ == '__main__':
+#     print('셸 정렬을 수행합니다(h * 3 + 1의 수열 사용).')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num  # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     shell_sort(x)  # 배열 x를 셸 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-10] 배열을 두 그룹으로 나누기
+# from typing import MutableSequence
+# def partition(a: MutableSequence) -> None:
+#     """배열을 분할하여 출력"""
+#     n = len(a)
+#     pl = 0         # 왼쪽 커서
+#     pr = n - 1     # 오른쪽 커서
+#     x = a[n // 2]  # 피벗(가운데 원소)
+#     while pl <= pr:
+#         while a[pl] < x: pl += 1
+#         while a[pr] > x: pr -= 1
+#         if pl <= pr:
+#             a[pl], a[pr] = a[pr], a[pl]
+#             pl += 1
+#             pr -= 1
+#     print(f'피벗은 {x}입니다.')
+#     print('피벗 이하인 그룹입니다.')
+#     print(*a[0 : pl])           # a[0] ~ a[pl - 1]
+#     if pl > pr + 1:
+#         print('피벗과 일치하는 그룹입니다.')
+#         print(*a[pr + 1 : pl])  # a[pr + 1] ~ a[pl - 1]
+#     print('피벗 이상인 그룹입니다.')
+#     print(*a[pr + 1 : n])       # a[pr + 1] ~ a[n - 1]
+# if __name__ == '__main__':
+#     print('배열을 나눕니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     partition(x)         # 배열 x를 나누어서 출력
+
+# [Do it! 실습 6-10] 퀵 정렬 알고리즘 구현
+# from typing import MutableSequence
+# def qsort(a: MutableSequence, left: int, right: int) -> None:
+#     """a[left] ~ a[right]를 퀵 정렬"""
+#     pl = left                   # 왼쪽 커서
+#     pr = right                  # 오른쪽 커서
+#     x = a[(left + right) // 2]  # 피벗(가운데 요소)
+#     while pl <= pr:    # 실습 6-10과 같은 while 문
+#         while a[pl] < x: pl += 1
+#         while a[pr] > x: pr -= 1
+#         if pl <= pr:
+#             a[pl], a[pr] = a[pr], a[pl]
+#             pl += 1
+#             pr -= 1
+#     if left < pr: qsort(a, left, pr)
+#     if pl < right: qsort(a, pl, right)
+# def quick_sort(a: MutableSequence) -> None:
+#     """퀵 정렬"""
+#     qsort(a, 0, len(a) - 1)
+# if __name__ == '__main__':
+#     print('퀵 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num   # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     quick_sort(x)      # 배열 x를 퀵 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-12] 퀵 정렬 알고리즘 구현(비재귀적인 퀵 정렬)
+# from stack import Stack  # 실습 4C-1의 파일 import
+# from typing import MutableSequence
+# def qsort(a: MutableSequence, left: int, right: int) -> None:
+#     """a[left] ~ a [right]를 퀵 정렬(비재귀 버전)"""
+#     range = Stack(right - left + 1)  # 스택 생성
+#     range.push((left, right))
+#     while not range.is_empty():
+#         pl, pr = left, right = range.pop()  # 왼쪽, 오른쪽 커서를 꺼냄
+#         x = a[(left + right) // 2]          # 피벗(중앙 요소)
+#         while pl <= pr:
+#             while a[pl] < x: pl += 1
+#             while a[pr] > x: pr -= 1
+#             if pl <= pr:                        # 실습 6-10, 실습 6-11과 같음
+#                 a[pl], a[pr] = a[pr], a[pl]
+#                 pl += 1
+#                 pr -= 1
+#         if left < pr: range.push((left, pr))    # 왼쪽 그룹의 커서를 저장
+#         if pl < right: range.push((pl, right))  # 오른쪽 그룹의 커서를 저장
+# def quick_sort(a: MutableSequence) -> None:
+#     """퀵 정렬"""
+#     qsort(a, 0, len(a) - 1)
+# if __name__ == '__main__':
+#     print('비재귀적인 퀵 정렬')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     quick_sort(x)       # 배열 x를 퀵 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-13] 퀵 정렬 알고리즘 구현하기(원소 수가 9개 미만인 경우 단순 삽입 정렬)
+# from typing import MutableSequence
+# def sort3(a: MutableSequence, idx1: int, idx2: int, idx3: int):
+#     """a[idx1], a[idx2], a[idx3]을 오름차순으로 정렬하고 가운데 값의 인덱스를 반환"""
+#     if a[idx2] < a[idx1]: a[idx2], a[idx1] = a[idx1], a[idx2]
+#     if a[idx3] < a[idx2]: a[idx3], a[idx2] = a[idx2], a[idx3]
+#     if a[idx2] < a[idx1]: a[idx2], a[idx1] = a[idx1], a[idx2]
+#     return idx2
+# def insertion_sort(a: MutableSequence, left: int, right: int) -> None:
+#     """a[left] ~ a[right]를 단순 삽입 정렬"""
+#     for i in range(left + 1, right + 1):
+#         j = i
+#         tmp = a[i]
+#         while j > 0 and a[j - 1] > tmp:
+#             a[j] = a[j - 1]
+#             j -= 1
+#         a[j] = tmp
+# def qsort(a: MutableSequence, left: int, right: int) -> None:
+#     """a[left] ~ a[right]를 퀵 정렬"""
+#     if right - left < 9:            # 원소 수가 9개 미만이면 단순 삽입 정렬을 호출
+#         insertion_sort(a, left, right)
+#     else:                           # 원소 수가 9개 이상이면 퀵 정렬을 수행
+#         pl = left                   # 왼쪽 커서
+#         pr = right                  # 오른쪽 커서
+#         m = sort3(a, pl, (pl + pr) // 2, pr)
+#         x = a[m]
+
+#         a[m], a[pr - 1] = a[pr - 1], a[m]
+#         pl += 1
+#         pr -= 2
+#         while pl <= pr:
+#             while a[pl] < x: pl += 1
+#             while a[pr] > x: pr -= 1
+#             if pl <= pr:
+#                 a[pl], a[pr] = a[pr], a[pl]
+#                 pl += 1
+#                 pr -= 1
+#         if left < pr: qsort(a, left, pr)
+#         if pl < right: qsort(a, pl, right)
+# def quick_sort(a: MutableSequence) -> None:
+#     """퀵 정렬"""
+#     qsort(a, 0, len(a) - 1)
+# if __name__ == '__main__':
+#     print('퀵 정렬을 합니다(원소 수가 9개 미만이면 단순 삽입 정렬).')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     quick_sort(x)       # 배열 x를 퀵 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-14] 정렬을 마친 두 배열을 병합하기
+# from typing import Sequence, MutableSequence
+# def merge_sorted_list(a: Sequence, b: Sequence, c: MutableSequence) -> None:
+#     """정렬을 마친 배열 a와 b를 병합하여 c에 저장"""
+#     pa, pb, pc = 0, 0, 0                 # 각 배열의 커서
+#     na, nb, nc = len(a), len(b), len(c)  # 각 배열의 원소수 
+#     while pa < na and pb < nb:  # pa와 pb를 비교하여 작은 값을 pc에 저장
+#         if a[pa] <= b[pb]:
+#             c[pc] = a[pa]
+#             pa += 1
+#         else:
+#             c[pc] = b[pb]
+#             pb += 1
+#         pc += 1
+#     while pa < na:              # a에 남은 원소를 복사
+#         c[pc] = a[pa]
+#         pa += 1
+#         pc += 1
+#     while pb < nb:              # b에 남은 원소를 복사
+#         c[pc] = b[pb]
+#         pb += 1
+#         pc += 1
+# if __name__ == '__main__':
+#     a = [2, 4, 6, 8, 11, 13]
+#     b = [1, 2, 3, 4, 9, 16, 21]
+#     c = [None] * (len(a) + len(b))
+#     print('정렬을 마친 두 배열의 병합을 수행합니다.')
+#     merge_sorted_list(a, b, c)  # 배열 a와 b를 병합하여 c에 저장
+#     print('배열 a와 b를 병합하여 배열 c에 저장하였습니다.')
+#     print(f'배열 a: {a}')
+#     print(f'배열 b: {b}')
+#     print(f'배열 c: {c}')
+
+# [Do it! 실습 6-15] 병합 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def merge_sort(a: MutableSequence) -> None:
+#     """병합 정렬"""
+#     def _merge_sort(a: MutableSequence, left: int, right: int) -> None:
+#         """a[left] ~ a[right]를 재귀적으로 병합 정렬"""
+#         if left < right:
+#             center = (left + right) // 2
+#             _merge_sort(a, left, center)            # 배열 앞부분을 병합 정렬
+#             _merge_sort(a, center + 1, right)       # 배열 뒷부분을 병합 정렬
+#             p = j = 0
+#             i = k = left
+#             while i <= center:
+#                  buff[p] = a[i]
+#                  p += 1
+#                  i += 1
+#             while i <= right and j < p:
+#                  if buff[j] <= a[i]:
+#                      a[k] = buff[j]
+#                      j += 1
+#                  else:
+#                      a[k] = a[i]
+#                      i += 1
+#                  k += 1
+#             while j < p:
+#                 a[k] = buff[j]
+#                 k += 1
+#                 j += 1
+#     n = len(a)
+#     buff = [None] * n           # 작업용 배열을 생성
+#     _merge_sort(a, 0, n - 1)    # 배열 전체를 병합 정렬
+#     del buff                    # 작업용 배열을 소멸
+# if __name__ == '__main__':
+#     print('병합 정렬을 수행합니다')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     merge_sort(x)       # 배열 x를 병합 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-16] 힙 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def heap_sort(a: MutableSequence) -> None:
+#     """힙 정렬"""
+#     def down_heap(a: MutableSequence, left: int, right: int) -> None:
+#         """a[left] ~ a[right]를 힙으로 만들기"""
+#         temp = a[left]      # 루트
+#         parent = left
+#         while parent < (right + 1) // 2:
+#             cl = parent * 2 + 1     # 왼쪽 자식
+#             cr = cl + 1             # 오른쪽 자식
+#             child = cr if cr <= right and a[cr] > a[cl] else cl  # 큰 값을 선택합니다.
+#             if temp >= a[child]:
+#                 break
+#             a[parent] = a[child]
+#             parent = child
+#         a[parent] = temp
+#     n = len(a)
+#     for i in range((n - 1) // 2, -1, -1):   # a[i] ~ a[n-1]을 힙으로 만들기
+#         down_heap(a, i, n - 1)
+#     for i in range(n - 1, 0, -1):
+#         a[0], a[i] = a[i], a[0]     # 최댓값인 a[0]과 마지막 원소 a[i]를 교환
+#         down_heap(a, 0, i - 1)      # a[0] ~ a[i-1]을 힙으로 만들기
+# if __name__ == '__main__':
+#     print('힙 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요. : '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     heap_sort(x)        # 배열 x를 힙 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6-17] 도수 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def fsort(a: MutableSequence, max: int) -> None:
+#     """도수 정렬(배열 원솟값은 0 이상 max 이하)"""
+#     n = len(a)           # 정렬할 배열 a
+#     f = [0] * (max + 1)  # 누적 도수 분포표 배열 f
+#     b = [0] * n          # 작업용 배열 b
+#     for i in range(n):              f[a[i]] += 1                     # [1단계]
+#     for i in range(1, max + 1):     f[i] += f[i - 1]                 # [2단계]
+#     for i in range(n - 1, -1, -1):  f[a[i]] -= 1; b[f[a[i]]] = a[i]  # [3단계]
+#     for i in range(n):              a[i] = b[i]                      # [4단계]
+# def counting_sort(a: MutableSequence) -> None:
+#     """도수 정렬"""
+#     fsort(a, max(a))
+# if __name__ == '__main__':
+#     print('도수 정렬을 합니다.')
+#     num = int(input('원소 수를 입력하세요. : '))
+#     x = [None] * num  # 원소 수가 num인 배열을 생성
+#     for i in range(num):  # 양수만 입력받음
+#         while True:
+#             x[i] = int(input(f'x[{i}] : '))
+#             if x[i] >= 0: break
+#     counting_sort(x)  # 배열 x를 도수 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6C-1] 이진 삽입 정렬 알고리즘 구현하기
+# from typing import MutableSequence
+# def binary_insertion_sort(a: MutableSequence) -> None:
+#     """이진 삽입 정렬"""
+#     n = len(a)
+#     for i in range(1, n):
+#         key = a[i]
+#         pl = 0      # 검색 범위의 맨 앞 원소 인덱스
+#         pr = i - 1  # 검색 범위의 맨 끝 원소 인덱스
+#         while True:
+#             pc = (pl + pr) // 2  # 검색 범위의 중앙 원소 인덱스
+#             if a[pc] == key:     # 검색 성공
+#                 break
+#             elif a[pc] < key:
+#                 pl = pc + 1
+#             else:
+#                 pr = pc - 1
+#             if pl > pr:
+#                 break
+#         pd = pc + 1 if pl <= pr else pr + 1  # 삽입할 위치의 인덱스
+#         for j in range(i, pd, -1):
+#             a[j] = a[j - 1]
+#         a[pd] = key
+# if __name__ == "__main__":
+#     print("이진 삽입 정렬을 수행합니다.")
+#     num = int(input("원소 수를 입력하세요.: "))
+#     x = [None] * num          # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f"x[{i}]: "))
+#     binary_insertion_sort(x)  # 배열 x를 이진 삽입 정렬
+#     print("오름차순으로 정렬했습니다.")
+#     for i in range(num):
+#         print(f"x[{i}] = {x[i]}")
+
+# [Do it! 실습 6C-2] 이진 삽입 정렬 알고리즘의 구현(bisect.insort 사용)
+# from typing import MutableSequence
+# import bisect
+# def binary_insertion_sort(a: MutableSequence) -> None:
+#     """이진 삽입 정렬(bisect.insort을 사용)"""
+#     for i in range(1, len(a)):
+#         bisect.insort(a, a.pop(i), 0, i)
+# if __name__ == '__main__':
+#     print('이진 삽입 정렬을 수행합니다.')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num            # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     binary_insertion_sort(x)    # 배열 x를 이진 삽입 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6C-3] 퀵 정렬 알고리즘 구현(배열을 나누는 과정 출력)
+# from typing import MutableSequence
+# def qsort(a: MutableSequence, left: int, right: int) -> None:
+#     """a[left] ~ a[right]를 퀵 정렬(배열을 나누는 과정 출력)"""
+#     pl = left                   # 왼쪽 커서
+#     pr = right                  # 오른쪽 커서
+#     x = a[(left + right) // 2]  # 피벗(가운데 원소)
+#     print(f'a[{left}] ~ a[{right}]: ', *a[left : right + 1])  # 새로 추가된 부분
+#     while pl <= pr:                     
+#         while a[pl] < x: pl += 1
+#         while a[pr] > x: pr -= 1
+#         if pl <= pr:                    
+#             a[pl], a[pr] = a[pr], a[pl]
+#             pl += 1
+#             pr -= 1
+#     if left < pr: qsort(a, left, pr)   
+#     if pl < right: qsort(a, pl, right)
+# def quick_sort(a: MutableSequence) -> None:
+#     """퀵 정렬"""
+#     qsort(a, 0, len(a) - 1)
+# if __name__ == '__main__':
+#     print('퀵 정렬을 수행합니다(배열을 나누는 과정 출력).')
+#     num = int(input('원소 수를 입력하세요.: '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}]: '))
+#     quick_sort(x)       # 배열 x를 퀵 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6C-4] sorted() 함수를 사용하여 정렬하기
+# print('sorted() 함수를 사용하여 정렬합니다.')
+# num = int(input('원소 수를 입력하세요.: '))
+# x = [None] * num    # 원소 수가 num인 배열을 생성
+# for i in range(num):
+#     x[i] = int(input(f'x[{i}]: '))
+# # 배열 x를 오름차순으로 정렬
+# x = sorted(x)
+# print('오름차순으로 정렬했습니다.')
+# for i in range(num):
+#     print(f'x[{i}] = {x[i]}')
+# # 배열 x를 내림차순으로 정렬
+# x = sorted(x, reverse = True)
+# print('내림차순으로 정렬했습니다.')
+# for i in range(num):
+#     print(f'x[{i}] = {x[i]}')
+
+# [Do it! 실습 6C-5] 힙 정렬 알고리즘 구현하기(heapq.push와 heapq.pop를 사용）
+# import heapq
+# from typing import MutableSequence
+# def heap_sort(a: MutableSequence) -> None:
+#     """힙 정렬(heapq.push와 heapq.pop를 사용)"""
+#     heap = []
+#     for i in a:
+#         heapq.heappush(heap, i)
+#     for i in range(len(a)):
+#         a[i] = heapq.heappop(heap)
+# if __name__ == '__main__':
+#     print('힙 정렬을 수행합니다(heapq.push와 heapq.pop를 사용).')
+#     num = int(input('원소 수를 입력하세요. : '))
+#     x = [None] * num    # 원소 수가 num인 배열을 생성
+#     for i in range(num):
+#         x[i] = int(input(f'x[{i}] : '))
+#     heap_sort(x)        # 배열 x를 힙 정렬
+#     print('오름차순으로 정렬했습니다.')
+#     for i in range(num):
+#         print(f'x[{i}] = {x[i]}')
+
+
+# [CHAP07]
+
+# 문자열에 포함되어 있는 문자열을 검색(find 계열 함수）
+# txt = input('문자열 txt: ')  # 문자열 나열
+# ptn = input('문자열 ptn: ')  # 검색할 문자
+# c = txt.count(ptn)
+# if c == 0:                                                  # 포함된 문자가 없음
+#     print('ptn은 txt에 포함되어 있지 않습니다.')
+# elif c == 1:                                                # 포함된 문자가 １개만 있는 경우
+#     print('ptn이 txt에 포함되어 있는 인덱스: ', txt.find(ptn))
+# else:                                                       # 포함된 문자가 2개 이상 있는 경우
+#     print('ptn이 txt에 포함되어 있는 맨 앞 인덱스: ', txt.find(ptn))
+#     print('ptn이 txt에 포함되어 있는 맨 끝 인덱스: ', txt.rfind(ptn))
+
+# 문자열에 포함되어 있는 문자열을 검색(index 계열 함수)
+# txt = input('문자열 txt: ')
+# ptn = input('문자열 ptn: ')
+# c = txt.count(ptn)
+# if c == 0:                                                  # 포함된 문자가 없음
+#     print('ptn은 txt에 포함되어 있지 않습니다.')
+# elif c == 1:                                                # 포함된 문자가 １개만 있는 경우
+#     print('ptn이 txt에 포함되어 있는 인덱스: ', txt.index(ptn))
+# else:                                                       # 포함된 문자가 2개 이상 있는 경우
+#     print('ptn이 txt에 포함되어 있는 맨 앞 인덱스: ', txt.index(ptn))
+#     print('ptn이 txt에 포함되어 있는 맨 끝 인덱스: ', txt.rindex(ptn))
+
+# [Do it! 실습 7-1] 브루트 포스법으로 문자열 검색하기
+# def bf_match(txt: str, pat: str) -> int:
+#     """브루트 포스법으로 문자열 검색"""
+#     pt = 0  # txt(텍스트)를 따라가는 커서
+#     pp = 0  # pat(패턴)를 따라가는 커서
+#     while pt != len(txt) and pp != len(pat):
+#         if txt[pt] == pat[pp]:
+#             pt += 1
+#             pp += 1
+#         else:
+#             pt = pt - pp + 1
+#             pp = 0
+#     return pt - pp if pp == len(pat) else -1
+# if __name__ == '__main__':
+#     s1 = input('텍스트를 입력하세요.: ')  # 텍스트용 문자열
+#     s2 = input('패턴을 입력하세요.: ')    # 패턴용 문자열
+#     idx = bf_match(s1, s2)  # 문자열 s1~s2를 브루트 포스법으로 검색
+#     if idx == -1:
+#         print('텍스트 안에 패턴이 존재하지 않습니다.')
+#     else:
+#         print(f'{(idx + 1)}번째 문자에서 일치합니다.')
+
+# [Do it! 실습 7-2] KMP법으로 문자열 검색하기
+# def kmp_match(txt: str, pat: str) -> int:
+#     """KMP법에 의한 문자열 검색"""
+#     pt = 1  # txt를 따라가는 커서
+#     pp = 0  # pat를 따라가는 커서
+#     skip = [0] * (len(pat) + 1)  # 건너뛰기 표
+#     # 건너뛰기 표 만들기
+#     skip[pt] = 0
+#     while pt != len(pat):
+#         if pat[pt] == pat[pp]:
+#             pt += 1
+#             pp += 1
+#             skip[pt] = pp
+#         elif pp == 0:
+#             pt += 1
+#             skip[pt] = pp
+#         else:
+#             pp = skip[pp]
+#     # 검색하기
+#     pt = pp = 0
+#     while pt != len(txt) and pp != len(pat):
+#         if txt[pt] == pat[pp]:
+#             pt += 1
+#             pp += 1
+#         elif pp == 0:
+#             pt += 1
+#         else:
+#             pp = skip[pp]
+#     return pt - pp if pp == len(pat) else -1
+# if __name__ == '__main__':
+#     s1 = input('텍스트를 입력하세요.: ')  # 텍스트용 문자열
+#     s2 = input('패턴을 입력하세요.: ')    # 패턴용 문자열
+#     idx = kmp_match(s1, s2)  # 문자열 s1~s2를 KMP법으로 검색
+#     if idx == -1:
+#         print('텍스트 안에 패턴이 존재하지 않습니다.')
+#     else:
+#         print(f'{(idx + 1)}번째 문자에서 일치합니다.')
+
+# [Do it! 실습 7-3] 보이어 무어법으로 문자열 검색하기(0~255 문자)
+# def bm_match(txt: str, pat: str) -> int:
+#     """보이어 무어법에 의한 문자열 검색"""
+#     skip = [None] * 256  # 건너뛰기 표
+#     # 건너뛰기 표 만들기
+#     for pt in range(256):
+#         skip[pt] = len(pat)
+#     for pt in range(len(pat)):
+#         skip[ord(pat[pt])] = len(pat) - pt - 1
+#     # 검색하기
+#     while pt < len(txt):
+#         pp = len(pat) - 1
+#         while txt[pt] == pat[pp]:
+#             if pp == 0:
+#                 return pt
+#             pt -= 1
+#             pp -= 1
+#         pt += skip[ord(txt[pt])] if skip[ord(txt[pt])] > len(pat) - pp \
+#               else len(pat) - pp
+#     return -1
+# if __name__ == '__main__':
+#     s1 = input('텍스트를 입력하세요.: ')  # 텍스트 문자열
+#     s2 = input('패턴을 입력하세요.: ')    # 패턴 문자열
+#     idx = bm_match(s1, s2)  # 문자열 s1~s2를 KMP법으로 검색
+#     if idx == -1:
+#         print('텍스트 안에 패턴이 존재하지 않습니다.')
+#     else:
+#         print(f'{(idx + 1)}번째 문자에서 일치합니다.')
+
+
+# [CHAP08]
+
+# [Do it! 실습 8-1] 포인터로 연결 리스트 만들기
+# from __future__ import annotations
+# from typing import Any, Type
+# class Node:
+#     """연결 리스트용 노드 클래스"""
+#     def __init__(self, data: Any = None, next: Node = None):
+#         """초기화"""
+#         self.data = data  # 데이터
+#         self.next = next  # 뒤쪽 포인터
+
+# Do it! 실습 8-1 [B]
+# class LinkedList:
+#     """연결 리스트 클래스"""
+#     def __init__(self) -> None:
+#         """초기화"""
+#         self.no = 0          # 노드의 개수
+#         self.head = None     # 머리 노드
+#         self.current = None  # 주목 노드
+#     def __len__(self) -> int:
+#         """연결 리스트의 노드 개수를 반환"""
+#         return self.no
+
+# Do it! 실습 8-1 [C]
+    # def search(self, data: Any) -> int:
+    #     """data와 값이 같은 노드를 검색"""
+    #     cnt = 0
+    #     ptr = self.head
+    #     while ptr is not None:
+    #         if ptr.data == data:
+    #             self.current = ptr
+    #             return cnt
+    #         cnt += 1
+    #         ptr = ptr.next
+    #     return -1
+    # def __contains__(self, data: Any) -> bool:
+    #     """연결 리스트에 data가 포함되어 있는가?"""
+    #     return self.search(data) >= 0
+
+# Do it! 실습 8-1 [D]
+#     def add_first(self, data: Any) -> None:
+#         """맨 앞에 노드를 삽입"""
+#         ptr = self.head  # 삽입 전의 머리 노드
+#         self.head = self.current = Node(data, ptr)
+#         self.no += 1
+
+# Do it! 실습 8-1 [E]
+#     def add_last(self, data: Any):
+#         """맨 끝에 노드를 삽입"""
+#         if self.head is None :    # 리스트가 비어 있으면
+#             self.add_first(data)  # 맨앞에 노드 삽입
+#         else:
+#             ptr = self.head
+#             while ptr.next is not None:
+#                 ptr = ptr.next  # while문을 종료할 때 ptr은 꼬리 노드를 참조
+#             ptr.next = self.current = Node(data, None)
+#             self.no += 1
+
+# Do it! 실습 8-1 [F]
+#     def remove_first(self) -> None:
+#         """머리 노드를 삭제"""
+#         if self.head is not None:  # 리스트가 비어 있으면
+#             self.head = self.current = self.head.next
+#         self.no -= 1
+
+# Do it! 실습 8-1 [G]
+#     def remove_last(self):
+#         """꼬리 노드 삭제"""
+#         if self.head is not None:
+#             if self.head.next is None :  # 노드가 1개 뿐이라면
+#                 self.remove_first()      # 머리 노드를 삭제
+#             else:
+#                 ptr = self.head  # 스캔 중인 노드
+#                 pre = self.head  # 스캔 중인 노드의 앞쪽 노드
+#                 while ptr.next is not None:
+#                     pre = ptr
+#                     ptr = ptr.next # while문 종료시 ptr은 꼬리 노드를 참조하고 pre는 맨끝에서 두 번째 노드를 참조
+#                 pre.next = None  # pre는 삭제 뒤 꼬리 노드
+#                 self.current = pre
+#                 self.no -= 1
+
+# Do it! 실습 8-1 [H]
+#     def remove(self, p: Node) -> None:
+#         """노드 p를 삭제"""
+#         if self.head is not None:
+#             if p is self.head:       # p가 머리 ​​노드이면
+#                 self.remove_first()  # 머리 노드를 삭제
+#             else:
+#                 ptr = self.head
+#                 while ptr.next is not p:
+#                     ptr = ptr.next
+#                     if ptr is None:
+#                         return  # ptr은 리스트에 존재하지 않음
+#                 ptr.next = p.next
+#                 self.current = ptr
+#                 self.no -= 1
+#     def remove_current_node(self) -> None:
+#         """주목 노드를 삭제"""
+#         self.remove(self.current)
+#     def clear(self) -> None:
+#         """전체 노드를 삭제"""
+#         while self.head is not None:  # 전체가 비어 있게 될 때까지
+#             self.remove_first()       # 머리 노드를 삭제
+#         self.current = None
+#         self.no = 0
+#     def next(self) -> bool:
+#         """주목 노드를 한 칸 뒤로 진행"""
+#         if self.current is None or self.current.next is None:
+#             return False  # 진행할 수 없음
+#         self.current = self.current.next
+#         return True
+
+# Do it! 실습 8-1 [I]
+#     def print_current_node(self) -> None:
+#         """주목 노드를 출력"""
+#         if self.current is None:
+#             print('주목 노드가 존재하지 않습니다.')
+#         else:
+#             print(self.current.data)
+#     def print(self) -> None:
+#         """모든 노드를 출력"""
+#         ptr = self.head
+#         while ptr is not None:
+#             print(ptr.data)
+#             ptr = ptr.next
+
+# Do it! 실습 8-1 [J]
+#     def __iter__(self) -> LinkedListIterator:
+#         """이터레이터(반복자)를 반환"""
+#         return LinkedListIterator(self.head)
+# class LinkedListIterator:
+#     """클래스 LinkedList의 이터레이터(반복자)용 클래스"""
+#     def __init__(self, head: Node):
+#         self.current = head
+#     def __iter__(self) -> LinkedListIterator:
+#         return self
+#     def __next__(self) -> Any:
+#         if self.current is None:
+#             raise StopIteration
+#         else:
+#             data = self.current.data
+#             self.current = self.current.next
+#             return data
+
+# [Do it! 실습 8-2] 포인터로 이용한 연결 리스트 클래스 LinkedList 사용하기
+# from enum import Enum
+# from linked_list import LinkedList
+# Menu = Enum('Menu', ['머리에노드삽입', '꼬리에노드삽입', '머리노드삭제',
+#                      '꼬리노드삭제', '주목노드출력', '주목노드이동',
+#                      '주목노드삭제', '모든노드삭제', '검색', '멤버십판단',
+#                      '모든노드출력', '스캔', '종료',])
+# def select_Menu() -> Menu:
+#     """메뉴 선택"""
+#     s = [f'({m.value}){m.name}' for m in Menu]
+#     while True:
+#         print(*s, sep='  ', end='')
+#         n = int(input(': '))
+#         if 1 <= n <= len(Menu):
+#             return Menu(n)
+# lst = LinkedList()  # 연결 리스트를 생성
+# while True:
+#     menu = select_Menu()  # 메뉴 선택
+#     if menu == Menu.머리에노드삽입:  # 맨 앞에 노드 삽입
+#         lst.add_first(int(input('머리에 넣을 값을 입력하세요.: ')))
+#     elif menu == Menu.꼬리에노드삽입:  # 맨 끝에 노드 삽입
+#         lst.add_last(int(input('꼬리에 넣을 값을 입력하세요.: ')))
+#     elif menu == Menu.머리노드삭제:  # 맨 앞 노드 삭제
+#         lst.remove_first()
+#     elif menu == Menu.꼬리노드삭제:  # 맨 끝 노드 삭제
+#         lst.remove_last()
+#     elif menu == Menu.주목노드출력:  # 주목 노드 출력
+#         lst.print_current_node()
+#     elif menu == Menu.주목노드이동:  # 주목 노드를 한 칸 뒤로 이동
+#         lst.next()
+#     elif menu == Menu.주목노드삭제:  # 주목 노드 삭제
+#         lst.remove_current_node()
+#     elif menu == Menu.모든노드삭제:  # 모든 노드를 삭제
+#         lst.clear()
+#     elif menu == Menu.검색:  # 노드를 검색
+#         pos = lst.search(int(input('검색할 값을 입력하세요.: ')))
+#         if pos >= 0:
+#             print(f'그 값의 데이터는 {pos + 1}번째에 있습니다.')
+#         else:
+#             print('해당 데이터가 없습니다.')
+#     elif menu == Menu.멤버십판단:  # 멤버십 판단
+#         print('그 값의 데이터는 포함되어' + (' 있습니다.' if int(input('멤버십 판단할 값을 입력하세요.: ')) in lst else ' 있지 않습니다.'))
+#     elif menu == Menu.모든노드출력:  # 모든 노드 출력
+#         lst.print()
+#     elif menu == Menu.스캔:  # 모든 노드 스캔
+#         for e in lst:
+#             print(e)
+#     else:  # 종료
+#         break
+
+# [Do it! 실습 8-3] 커서를 이용한 선형 리스트 클래스 ArrayLinkedList 사용하기
+# from enum import Enum
+# from array_list import ArrayLinkedList
+# Menu = Enum('Menu', ['머리에노드삽입', '꼬리에노드삽입', '머리노드삭제',
+#                      '꼬리노드삭제', '주목노드출력', '주목노드이동',
+#                      '주목노드삭제', '모든노드삭제', '검색', '멤버십판단',
+#                      '모든노드출력', '스캔', '종료'])
+# def select_Menu() -> Menu:
+#     """메뉴 선택"""
+#     s = [f'({m.value}){m.name}' for m in Menu]
+#     while True:
+#         print(*s, sep = '  ', end='')
+#         n = int(input(' : '))
+#         if 1 <= n <= len(Menu):
+#             return Menu(n)
+# lst = ArrayLinkedList(100)  # 선형 리스트를 생성
+# while True:
+#     menu = select_Menu()  # 메뉴 선택
+#     if menu == Menu.머리에노드삽입:               # 맨 앞에 노드 삽입
+#         lst.add_first(int(input('머리 노드에 넣을 값을 입력하세요.: ')))                                  
+#     elif menu == Menu.꼬리에노드삽입:             # 맨 끝에 노드 삽입
+#         lst.add_last(int(input('꼬리 노드에 넣을 값을 입력하세요.: ')))
+#     elif menu == Menu.머리노드삭제:             # 맨 앞 노드를 삭제
+#         lst.remove_first()
+#     elif menu == Menu.꼬리노드삭제:             # 맨 끝 노드를 삭제
+#         lst.remove_last()
+#     elif menu == Menu.주목노드출력:             # 주목 노드를 출력
+#         lst.print_current_node()
+#     elif menu == Menu.주목노드이동:             # 주목 노드를 한 칸 뒤로 이동
+#         lst.next()
+#     elif menu == Menu.주목노드삭제:             # 주목 노드를 삭제
+#         lst.remove_current_node()
+#     elif menu == Menu.모든노드삭제:             # 모두 삭제
+#         lst.clear()
+#     elif menu == Menu.검색:                     # 검색
+#         pos = lst.search(int(input('검색할 값을 입력하세요.: ')))
+#         if pos >= 0:
+#             print(f'이 키를 갖는 데이터는 {pos + 1}번째에 있습니다.')
+#         else:
+#             print('해당 데이터가 없습니다.')
+#     elif menu == Menu.멤버십판단:               # 멤버십을 판단
+#         print('그 값의 데이터는 포함되어'
+#               +('있습니다.' if int(input('판단할 값을 입력하세요.')) in lst else ' 있지 않습니다.'))
+#     elif menu == Menu.모든노드출력:             # 모든 노드를 출력
+#         lst.print()
+#     elif menu == Menu.스캔:                     # 모든 노드 스캔
+#         for e in lst:
+#              print(e)
+#     else:                                       # 종료
+#         break
+
+# [Do it! 실습 8-3] 커서로 선형 리스트 만들기
+# from __future__ import annotations
+# from typing import Any, Type
+# Null = -1
+# class Node:
+#     """선형 리스트용 노드 클래스(배열 커서 버전)"""
+#     def __init__(self, data = Null, next = Null, dnext = Null):
+#         """초기화"""
+#         self.data  = data   # 데이터
+#         self.next  = next   # 리스트의 뒤쪽 포인터
+#         self.dnext = dnext  # 프리 리스트의 뒤쪽 포인터
+# class ArrayLinkedList:
+#     """선형 리스트 클래스(배열 커서 버전)"""
+#     def __init__(self, capacity: int):
+#         """초기화"""
+#         self.head = Null                   # 머리 노드
+#         self.current = Null                # 주목 노드
+#         self.max = Null                    # 사용 중인 맨끝 레코드
+#         self.deleted = Null                # 프리 리스트의 머리 노드
+#         self.capacity = capacity           # 리스트의 크기
+#         self.n = [Node()] * self.capacity  # 리스트 본체
+#         self.no = 0
+#     def __len__(self) -> int:
+#         """선형 리스트의 노드 수를 반환"""
+#         return self.no
+#     def get_insert_index(self):
+#         """다음에 삽입할 레코드의 첨자를 구합니다"""
+#         if self.deleted == Null:  # 삭제 레코드는 존재하지 않습니다
+#             if self.max+1 < self.capacity:
+#                 self.max += 1
+#                 return self.max   # 새 레코드를 사용
+#             else:
+#                 return Null       # 크기 초과
+#         else:
+#             rec = self.deleted                # 프리 리스트에서
+#             self.deleted = self.n[rec].dnext  # 맨 앞 rec를 꺼내기
+#             return rec
+#     def delete_index(self, idx: int) -> None:
+#         """레코드 idx를 프리 리스트에 등록"""
+#         if self.deleted == Null:      # 삭제 레코드는 존재하지 않습니다
+#             self.deleted = idx        # idx를 프리 리스트의
+#             self.n[idx].dnext = Null  # 맨 앞에 등록
+#         else:
+#             rec = self.deleted        # idx를 프리 리스트의
+#             self.deleted = idx        # 맨 앞에 삽입
+#             self.n[idx].dnext = rec
+#     def search(self, data: Any) -> int:
+#         """data와 값이 같은 노드를 검색"""
+#         cnt = 0
+#         ptr = self.head             # 현재 스캔 중인 노드
+#         while ptr != Null:
+#             if self.n[ptr].data == data:
+#                 self.current = ptr
+#                 return cnt          # 검색 성공
+#             cnt += 1
+#             ptr = self.n[ptr].next  # 뒤쪽 노드에 주목
+#         return Null                 # 검색 실패
+#     def __contains__(self, data: Any) -> bool:
+#         """선형 리스트에 data가 포함되어 있는지 확인"""
+#         return self.search(data) >= 0
+#     def add_first(self, data: Any):
+#         """머리 노드에 삽입"""
+#         ptr = self.head                     # 삽입하기 전의 머리 노드
+#         rec = self.get_insert_index()
+#         if rec != Null:
+#             self.head = self.current = rec  # rec번째 레코드에 삽입
+#             self.n[self.head] = Node(data, ptr)
+#             self.no += 1
+#     def add_last(self, data: Any) -> None:
+#         """꼬리 노드에 삽입"""
+#         if self.head == Null:     # 리스트가 비어 있으면
+#             self.add_first(data)  # 맨 앞에 노드 삽입
+#         else:
+#             ptr = self.head
+#             while self.n[ptr].next != Null:
+#                 ptr = self.n[ptr].next
+#             rec = self.get_insert_index()
+#             if rec != Null:       # rec번째 레코드에 삽입
+#                 self.n[ptr].next = self.current = rec
+#                 self.n[rec] = Node(data)
+#                 self.no += 1
+#     def remove_first(self) -> None:
+#         """머리 노드를 삭제"""
+#         if self.head != Null:  # 리스트가 비어 있으면
+#             ptr = self.n[self.head].next
+#             self.delete_index(self.head)
+#             self.head = self.current = ptr
+#             self.no -= 1
+#     def remove_last(self) -> None:
+#         """꼬리 노드를 삭제"""
+#         if self.head != Null:
+#             if self.n[self.head].next == Null:  # 노드가 1개 뿐이면
+#                 self.remove_first()             # 머리 노드를 삭제
+#             else:
+#                 ptr = self.head                 # 스캔 중인 노드
+#                 pre = self.head                 # 스캔 중인 노드의 앞쪽 노드
+#                 while self.n[ptr].next != Null:
+#                     pre = ptr
+#                     ptr = self.n[ptr].next
+#                 self.n[pre].next = Null  # pre는 삭제한 뒤의 꼬리 노드
+#                 self.delete_index(ptr)
+#                 self.current = pre
+#                 self.no -= 1
+#     def remove(self, p: int) -> None:
+#         """레코드 p를 삭제"""
+#         if self.head != Null:
+#             if p == self.head:       # p가 머리 노드면
+#                 self.remove_first()  # 머리 노드를 삭제
+#             else:
+#                 ptr = self.head
+#                 while self.n[ptr].next != p:
+#                     ptr = self.n[ptr].next
+#                     if ptr == Null:
+#                         return  # p는 리스트에 존재하지 않음
+#                 #self.n[ptr].next = Null
+#                 self.delete_index(p)
+#                 self.n[ptr].next = self.n[p].next
+#                 self.current = ptr
+#                 self.no -= 1
+#     def remove_current_node(self) -> None:
+#         """주목 노드를 삭제"""
+#         self.remove(self.current)
+#     def clear(self) -> None:
+#         """모든 노드를 삭제"""
+#         while self.head != Null:  # 리스트 전체가 빌 때까지
+#             self.remove_first()   # 머리 노드를 삭제
+#         self.current = Null
+#     def next(self) -> bool:
+#         """주목 노드를 한 칸 뒤로 진행"""
+#         if self.current == Null or self.n[self.current].next == Null:
+#             return False  # 진행할 수 없음
+#         self.current = self.n[self.current].next
+#         return True
+#     def print_current_node(self) -> None:
+#         """주목 노드를 출력"""
+#         if self.current == Null:
+#             print('주목 노드가 없습니다.')
+#         else:
+#             print(self.n[self.current].data)
+#     def print(self) -> None:
+#         """모든 노드를 출력"""
+#         ptr = self.head
+#         while ptr != Null:
+#             print(self.n[ptr].data)
+#             ptr = self.n[ptr].next
+#     def dump(self) -> None:
+#         """배열을 덤프"""
+#         for i in self.n:
+#             print(f'[{i}]  {i.data} {i.next} {i.dnext}')
+#     def __iter__(self) -> ArrayLinkedListIterator:
+#         """이터레이터를 반환"""
+#         return ArrayLinkedListIterator(self.n, self.head)
+# class ArrayLinkedListIterator:
+#     """클래스 ArrayLinkedList의 이터레이터용 클래스"""
+#     def __init__(self, n: int, head: int):
+#         self.n = n
+#         self.current = head
+#     def __iter__(self) -> ArrayLinkedListIterator:
+#         return self
+#     def __next__(self) -> Any:
+#         if self.current == Null:
+#             raise StopIteration
+#         else:
+#             data = self.n[self.current].data
+#             self.current = self.n[self.current].next
+#             return data
+
+# 원형 이중 연결 리스트 구현하기
+# Do it! 실습 8-5 [A] 
+# from __future__ import annotations
+# from typing import Any, Type
+# class Node:
+#     """원형 이중 연결 리스트용 노드 클래스"""
+#     def __init__(self, data: Any = None, prev: Node = None,
+#                        next: Node = None) -> None:
+#         """초기화"""
+#         self.data = data          # 데이터
+#         self.prev = prev or self  # 앞쪽 포인터
+#         self.next = next or self  # 뒤쪽 포인터
+# class DoubleLinkedList:
+#     """원형 이중 연결 리스트 클래스"""
+#     def __init__(self) -> None:
+#         """초기화"""
+#         self.head = self.current = Node()  # 더미 노드를 생성
+#         self.no = 0
+#     def __len__(self) -> int:
+#         """선형 리스트의 노드 수를 반환"""
+#         return self.no
+#     def is_empty(self) -> bool:
+#         """리스트가 비어 있는가?"""
+#         return self.head.next is self.head  
+
+# Do it! 실습 8-5 [B]
+#     def search(self, data: Any) -> Any:
+#         """data와 값이 같은 노드를 검색"""
+#         cnt = 0
+#         ptr = self.head.next  # 현재 스캔 중인 노드
+#         while ptr is not self.head:
+#             if data == ptr.data:
+#                 self.current = ptr
+#                 return cnt  # 검색 성공
+#             cnt += 1
+#             ptr = ptr.next  # 뒤쪽 노드에 주목
+#         return -1           # 검색 실패
+#     def __contains__(self, data: Any) -> bool:
+#         """연결 리스트에 data가 포함되어 있는가?"""
+#         return self.search(data) >= 0
+
+# Do it! 실습 8-5 [C]
+#     def print_current_node(self) -> None:
+#         """주목 노드를 출력"""
+#         if self.is_empty():
+#             print('주목 노드는 없습니다.')
+#         else:
+#             print(self.current.data)
+#     def print(self) -> None:
+#         """모든 노드를 출력"""
+#         ptr = self.head.next  # 더미 노드의 뒤쪽 노드
+#         while ptr is not self.head:
+#             print(ptr.data)
+#             ptr = ptr.next
+#     def print_reverse(self) -> None:
+#         """모든 노드를 역순으로 출력"""
+#         ptr = self.head.prev  # 더미 노드의 앞쪽 노드
+#         while ptr is not self.head:
+#             print(ptr.data)
+#             ptr = ptr.prev
+#     def next(self) -> bool:
+#         """주목 노드를 한 칸 뒤로 이동"""
+#         if self.is_empty() or self.current.next is self.head:
+#             return False  # 이동할 수 없음
+#         self.current = self.current.next
+#         return True
+#     def prev(self) -> bool:
+#         """주목 노드를 한 칸 앞으로 이동"""
+#         if self.is_empty() or self.current.prev is self.head:
+#             return False  # 이동할 수 없음
+#         self.current = self.current.prev
+#         return True
+
+# Do it! 실습 8-5[D]
+#     def add(self, data: Any) -> None:
+#         """주목 노드의 바로 뒤에 노드를 삽입"""
+#         node = Node(data, self.current, self.current.next)
+#         self.current.next.prev = node
+#         self.current.next = node
+#         self.current = node
+#         self.no += 1
+#     def add_first(self, data: Any) -> None:
+#         """맨 앞에 노드를 삽입"""
+#         self.current = self.head  # 더미 노드 head의 바로 뒤에 삽입
+#         self.add(data)
+#     def add_last(self, data: Any) -> None:
+#         """맨 뒤에 노드를 삽입"""
+#         self.current = self.head.prev  # 꼬리 노드 head.prev의 바로 뒤에 삽입
+#         self.add(data)
+
+# Do it! 실습 8-5[E]
+#     def remove_current_node(self) -> None:
+#         """주목 노드 삭제"""
+#         if not self.is_empty():
+#             self.current.prev.next = self.current.next
+#             self.current.next.prev = self.current.prev
+#             self.current = self.current.prev
+#             self.no -= 1
+#             if self.current is self.head:
+#                 self.current = self.head.next
+#     def remove(self, p: Node) -> None:
+#         """노드 p를 삭제"""
+#         ptr = self.head.next
+#         while ptr is not self.head:
+#             if ptr is p:  # p를 발견
+#                 self.current = p
+#                 self.remove_current_node()
+#                 break
+#             ptr = ptr.next
+#     def remove_first(self) -> None:
+#         """머리 노드 삭제"""
+#         self.current = self.head.next  # 머리 노드 head.next를 삭제
+#         self.remove_current_node()
+#     def remove_last(self) -> None:
+#         """꼬리 노드 삭제"""
+#         self.current = self.head.prev  # 꼬리 노드 head.prev를 삭제
+#         self.remove_current_node()
+#     def clear(self) -> None:
+#         """모든 노드를 삭제"""
+#         while not self.is_empty():  # 리스트 전체가 빌 때까지
+#             self.remove_first()  # 머리 노드를 삭제
+#         self.no = 0
+
+# Do it! 실습 8-5[F]
+#     def __iter__(self) -> DoubleLinkedListIterator:
+#         """반복자를 반환"""
+#         return DoubleLinkedListIterator(self.head)
+#     def __reversed__(self) -> DoubleLinkedListReverseIterator:
+#         """내림차순 반복자를 반환"""
+#         return DoubleLinkedListReverseIterator(self.head)
+# class DoubleLinkedListIterator:
+#     """DoubleLinkedList의 반복자용 클래스"""
+#     def __init__(self, head: Node):
+#         self.head = head
+#         self.current = head.next
+#     def __iter__(self) -> DoubleLinkedListIterator:
+#         return self
+#     def __next__(self) -> Any:
+#         if self.current is self.head:
+#             raise StopIteration
+#         else:
+#             data = self.current.data
+#             self.current = self.current.next
+#             return data
+# class DoubleLinkedListReverseIterator:
+#     """DoubleLinkedList의 내림차순 반복자용 클래스"""
+#     def __init__(self, head: Node):
+#         self.head = head
+#         self.current = head.prev
+#     def __iter__(self) -> DoubleLinkedListReverseIterator:
+#         return self
+#     def __next__(self) -> Any:
+#         if self.current is self.head:
+#             raise StopIteration
+#         else:
+#             data = self.current.data
+#             self.current = self.current.prev
+#             return data
+
+# [Do it! 실습 8-6] 원형 이중 연결 리스트 클래스 DoubleLinkedList 구현하기
+# from enum import Enum
+# from double_list import DoubleLinkedList
+# Menu = Enum('Menu', ['머리에노드삽입', '꼬리에노드삽입', '주목노드바로뒤삽입',
+#                      '머리노드삭제', '꼬리노드삭제', '주목노드출력',
+#                      '주목노드이동', '주목노드역순이동', '주목노드삭제',
+#                      '모든노드삭제', '검색', '멤버십판단', '모든노드출력',
+#                      '모든노드역순출력', '모든노드스캔', '모든노드역순스캔', '종료'])
+# def select_Menu() -> Menu:
+#     """메뉴 선택"""
+#     s = [f'({m.value}){m.name}' for m in Menu]
+#     while True:
+#         print(*s, sep = '  ', end='')
+#         n = int(input(': '))
+#         if 1 <= n <= len(Menu):
+#             return Menu(n)
+# lst = DoubleLinkedList()  # 원형・이중 연결 리스트 생성
+# while True:
+#     menu = select_Menu()  # 메뉴 선택
+#     if menu == Menu.머리에노드삽입:  # 맨 앞에 노드 삽입
+#         lst.add_first(int(input('머리 노드에 넣을 값을 입력하세요.: ')))
+#     elif menu == Menu.꼬리에노드삽입:  # 맨 끝에 노드 삽입
+#         lst.add_last(int(input('꼬리 노드에 넣을 값을 입력하세요.: ')))
+#     elif menu == Menu.주목노드바로뒤삽입:  # 주목 노드 바로 뒤에 삽입
+#         lst.add(int(input('주목 노드 바로 뒤에 넣을 값을 입력하세요 : ')))
+#     elif menu == Menu.머리노드삭제:  # 맨 앞 노드 삭제
+#         lst.remove_first()
+#     elif menu == Menu.꼬리노드삭제:  # 맨 끝 노드 삭제
+#         lst.remove_last()
+#     elif menu == Menu.주목노드출력:  # 주목 노드 출력
+#         lst.print_current_node()
+#     elif menu == Menu.주목노드이동:  # 주목 노드를 한 칸 뒤로 이동
+#         lst.next()
+#     elif menu == Menu.주목노드역순이동:  # 주목 노드를 한 칸 앞으로 이동
+#         lst.prev()
+#     elif menu == Menu.주목노드삭제:  # 주목 노드 삭제
+#         lst.remove_current_node()
+#     elif menu == Menu.모든노드삭제:  # 모두 삭제
+#         lst.clear()
+#     elif menu == Menu.검색:  # 검색
+#         pos = lst.search(int(input('검색할 값을 입력하세요.: ')))
+#         if pos >= 0:
+#             print(f'그 값의 데이터는 {pos + 1}번째에 있습니다.')
+#         else:
+#             print('해당 데이터가 없습니다.')
+#     elif menu == Menu.멤버십판단:  # 멤버십 판단
+#         print('그 값의 데이터는 포함되어'
+#               +(' 있습니다.' if int(input('판단할 값을 입력하세요.: ')) in lst else ' 있지 않습니다.'))
+#     elif menu == Menu.모든노드출력:  # 모든 노드를 출력
+#         lst.print()
+#     elif menu == Menu.모든노드역순출력:  # 모든 노드 역순 출력
+#         lst.print_reverse()
+#     elif menu == Menu.모든노드스캔:  # 모든 노드 스캔
+#         for e in lst:
+#              print(e)
+#     elif menu == Menu.모든노드역순스캔:  # 모든 노드 역순 스캔
+#         for e in reversed(lst):
+#              print(e)
+#     else:  # 종료
+#         break
+
+
+# [CHAP01]
+
+# [Do it! 실습 9-1] 이진 검색 트리의 구현
+# from __future__ import annotations
+# from typing import Any, Type
+# class Node:
+#     """이진 검색 트리의 노드"""
+#     def __init__(self, key: Any, value: Any, left: Node = None,
+#                  right: Node = None):
+#         """생성자"""
+#         self.key = key      # 키
+#         self.value = value  # 값
+#         self.left = left    # 왼쪽 포인터(왼쪽 자식 참조)
+#         self.right = right  # 오른쪽 포인터(오른쪽 자식 참조)
+# class BinarySearchTree:
+#     """이진 검색 트리"""
+#     def __init__(self):
+#         """초기화"""
+#         self.root = None  # 루트
+
+# Do it! 실습 9-1[B]
+#     def search(self, key: Any) -> Any:
+#         """키 key를 갖는 노드를 검색"""
+#         p = self.root           # 루트에 주목
+#         while True:
+#             if p is None:       # 더 이상 진행할 수 없으면
+#                 return None     # 검색 실패
+#             if key == p.key:    # key와 노드 p의 키가 같으면
+#                 return p.value  # 검색 성공
+#             elif key < p.key:   # key 쪽이 작으면
+#                 p = p.left      # 왼쪽 서브 트리에서 검색
+#             else:               # key 쪽이 크면
+#                 p = p.right     # 오른쪽 서브 트리에서 검색
+
+# Do it! 실습 9-1[C]
+#     def add(self, key: Any, value: Any) -> bool:
+#         """키가 key이고, 값이 value인 노드를 삽입"""
+#         def add_node(node: Node, key: Any, value: Any) -> None:
+#             """node를 루트로 하는 서브 트리에 키가 key이고, 값이 value인 노드를 삽입"""
+#             if key == node.key:
+#                 return False  # key가 이진검색트리에 이미 존재
+#             elif key < node.key:
+#                 if node.left is None:
+#                     node.left = Node(key, value, None, None)
+#                 else:
+#                     add_node(node.left, key, value)
+#             else:
+#                 if node.right is None:
+#                     node.right = Node(key, value, None, None)
+#                 else:
+#                     add_node(node.right, key, value)
+#             return True
+#         if self.root is None:
+#             self.root = Node(key, value, None, None)
+#             return True
+#         else:
+#             return add_node(self.root, key, value)
+
+# Do it! 실습 9-1[D]
+#     def remove(self, key: Any) -> bool:
+#         """키가 key인 노드를 삭제"""
+#         p = self.root           # 스캔 중인 노드
+#         parent = None           # 스캔 중인 노드의 부모 노드
+#         is_left_child = True    # p는 parent의 왼쪽 자식 노드인지 확인
+#         while True:
+#             if p is None:       # 더 이상 진행할 수 없으면
+#                 return False    # 그 키는 존재하지 않음
+#             if key == p.key:    # key와 노드 p의 키가 같으면
+#                 break           # 검색 성공
+#             else:
+#                 parent = p                  # 가지를 내려가기 전에 부모를 설정
+#                 if key < p.key:             # key 쪽이 작으면
+#                     is_left_child = True    # 여기서 내려가는 것은 왼쪽 자식
+#                     p = p.left              # 왼쪽 서브 트리에서 검색
+#                 else:                       # key 쪽이 크면
+#                     is_left_child = False   # 여기서 내려가는 것은 오른쪽 자식
+#                     p = p.right             # 오른쪽 서브 트리에서 검색
+#         if p.left is None:                  # p에 왼쪽 자식이 없으면
+#             if p is self.root:
+#                 self.root = p.right
+#             elif is_left_child:
+#                 parent.left = p.right       # 부모의 왼쪽 포인터가 오른쪽 자식을 가리킴
+#             else:
+#                 parent.right = p.right      # 부모의 오른쪽 포인터가 오른쪽 자식을 가리킴
+#         elif p.right is None:               # p에 오른쪽 자식이 없으면
+#             if p is self.root:
+#                 self.root = p.left
+#             elif is_left_child:
+#                 parent.left = p.left        # 부모의 왼쪽 포인터가 왼쪽 자식을 가리킴
+#             else:
+#                 parent.right = p.left       # 부모의 오른쪽 포인터가 왼쪽 자식을 가리킴
+#         else:
+#             parent = p
+#             left = p.left                   # 서브 트리 안에서 가장 큰 노드
+#             is_left_child = True
+#             while left.right is not None:   # 가장 큰 노드 left를 검색
+#                 parent = left
+#                 left = left.right
+#                 is_left_child = False
+#             p.key = left.key                # left의 키를 p로 이동
+#             p.value = left.value            # left의 데이터를 p로 이동
+#             if is_left_child:
+#                 parent.left = left.left     # left를 삭제
+#             else:
+#                 parent.right = left.left    # left를 삭제
+#         return True
+
+# Do it! 실습 9-1[E]
+#     def dump(self) -> None:
+#         """덤프(모든 노드를 키의 오름차순으로 출력)"""
+#         def print_subtree(node: Node):
+#             """node를 루트로 하는 서브 트리의 노드를 키의 오름차순으로 출력"""
+#             if node is not None:
+#                 print_subtree(node.left)            # 왼쪽 서브 트리를 오름차순으로 출력
+#                 print(f'{node.key}  {node.value}')  # node를 출력
+#                 print_subtree(node.right)           # 오른쪽 서브 트리를 오름차순으로 출력
+#         print_subtree(self.root)
+
+# Do it! 실습 9-1[F]
+#     def min_key(self) -> Any:
+#         """가장 작은 키"""
+#         if self.root is None:
+#             return None
+#         p = self.root
+#         while p.left is not None:
+#             p = p.left
+#         return p.key
+#     def max_key(self) -> Any:
+#         """가장 큰 키"""
+#         if self.root is None:
+#             return None
+#         p = self.root
+#         while p.right is not None:
+#             p = p.right
+#         return p.key
+
+# [Do it! 실습 9-2] 이진 검색 트리 클래스 BinarySearchTree 사용하기
+# from enum import Enum
+# from bst import BinarySearchTree
+# Menu = Enum('Menu', ['삽입', '삭제', '검색', '덤프', '키의범위', '종료'])
+# def select_Menu() -> Menu:
+#     """메뉴 선택"""
+#     s = [f'({m.value}){m.name}' for m in Menu]
+#     while True:
+#         print(*s, sep = '  ', end='')
+#         n = int(input(': '))
+#         if 1 <= n <= len(Menu):
+#             return Menu(n)
+# tree = BinarySearchTree()  # 이진 검색 트리를 생성
+# while True:
+#     menu = select_Menu()  # 메뉴 선택
+#     if menu == Menu.삽입:  # 삽입
+#         key = int(input('삽입할 키를 입력하세요.: '))
+#         val = input('삽입할 값을 입력하세요.: ')
+#         if not tree.add(key, val):
+#             print('삽입에 실패했습니다!')
+#     elif menu == Menu.삭제:  # 삭제
+#         key = int(input('삭제할 키를 입력하세요.: '))
+#         tree.remove(key)
+#     elif menu == Menu.검색:  # 검색
+#         key = int(input('검색할 키를 입력하세요.: '))
+#         t = tree.search(key)
+#         if t is not None:
+#             print(f'이 키를 갖는 값은 {t}입니다.')
+#         else:
+#             print('해당 데이터가 없습니다.')
+#     elif menu == Menu.덤프:  # 덤프(모두 출력)
+#         tree.dump()
+#     elif menu == Menu.키의범위 :  # 키의 범위(최솟값과 최댓값)
+#         print(f'키의 최솟값은 {tree.min_key()}입니다.')
+#         print(f'키의 최댓값은 {tree.max_key()}입니다.')
+#     else:  # 종료
+#         break
+
+# [Do it! 실습 9C-1] 이진 검색 트리의 구현(키를 내림차순으로 덤프)
+# from __future__ import annotations
+# from typing import Any, Type
+# class Node:
+#     """이진검색트리의 노드"""
+#     def __init__(self, key: Any, value: Any, left: Node = None,
+#                  right: Node = None):
+#         """생성자"""
+#         self.key = key          # 키
+#         self.value = value      # 값
+#         self.left = left        # 왼쪽 포인터(왼쪽 자식에 대한 참조)
+#         self.right = right      # 오른쪽 포인터(오른쪽 자식에 대한 참조)
+# class BinarySearchTree:
+#     """이진검색트리"""
+#     def __init__(self):
+#         """초기화"""
+#         self.root = None        # 루트
+#     def search(self, key: Any) -> Any:
+#         """키 key를 갖는 노드를 검색"""
+#         p = self.root # 루트에 주목
+#         while True:
+#             if p is None:                       # 더 이상 진행할 수 없으면
+#                 return None                     # ... 검색 실패
+#             if key == p.key:                    # key와 노드 p의 키가 같으면
+#                 return p.value                  # ... 검색 성공
+#             elif key < p.key:                   # key 쪽이 작으면
+#                 p = p.left                      # ... 왼쪽 서브 트리에서 검색
+#             else:                               # key 쪽이 크면
+#                 p = p.right                     # ... 오른쪽 서브 트리에서 검색
+#     def add(self, key: Any, value: Any) -> bool:
+#         """키가 key이고, 값이 value인 노드를 삽입"""
+#         def add_node(node: Node, key: Any, value: Any) -> None:
+#             """node를 루트로 하는 서브 트리에 키가 key이고, 값이 value인 노드를 삽입"""
+#             if key == node.key:
+#                 return False # key가 이진검색트리에 이미 존재
+#             elif key < node.key:
+#                 if node.left is None:
+#                     node.left = Node(key, value, None, None)
+#                 else:
+#                     add_node(node.left, key, value)
+#             else:
+#                 if node.right is None:
+#                     node.right = Node(key, value, None, None)
+#                 else:
+#                     add_node(node.right, key, value)
+#             return True
+#         if self.root is None:
+#             self.root = Node(key, value, None, None)
+#             return True
+#         else:
+#             return add_node(self.root, key, value)
+#     def remove(self, key: Any) -> bool:
+#         """키가 key인 노드를 삭제"""
+#         p = self.root           # 스캔 중인 노드
+#         parent = None           # 스캔 중인 노드의 부모 노드
+#         is_left_child = True    # p는 parent의 왼쪽 자식 노드입니까?
+#         while True:
+#             if p is None:                       # 더 이상 진행할 수 없으면
+#                 return False                    # ... 그 키는 존재하지 않음
+#             if key == p.key:                    # key와 노드 p의 키가 같으면
+#                 break                           # ... 검색 성공
+#             else:
+#                 parent = p                      # 가지를 내려가기 전에 부모를 설정
+#                 if key < p.key:                 # key 쪽이 작으면
+#                     is_left_child = True        # ... 여기서 내려가는 것은 왼쪽 자식
+#                     p = p.left                  #... 왼쪽 서브 트리에서 검색
+#                 else:                           # key 쪽이 크면
+#                     is_left_child = False       # ... 여기서 내려가는 것은 오른쪽 자식
+#                     p = p.right                 # ... 오른쪽 서브 트리에서 검색
+#         if p.left is None:                      # p에 왼쪽 자식이 없으면 ...
+#             if p is self.root:
+#                 self.root = p.right
+#             elif is_left_child:
+#                 parent.left = p.right           # 부모의 왼쪽 포인터가 오른쪽 자식을 가리킵니다.
+#             else:
+#                 parent.right = p.right          # 부모의 오른쪽 포인터가 오른쪽 자식을 가리킵니다.
+#         elif p.right is None:                   # p에 오른쪽 자식이 없으면 ...
+#             if p is self.root:
+#                 self.root = p.left
+#             elif is_left_child:
+#                 parent.left = p.left            # 부모의 왼쪽 포인터가 왼쪽 자식을 가리킵니다.
+#             else:
+#                 parent.right = p.left           # 부모의 오른쪽 포인터가 왼쪽 자식을 가리킵니다.
+#         else:
+#             parent = p
+#             left = p.left                       # 서브 트리 안에서 가장 큰 노드
+#             is_left_child = True
+#             while left.right is not None:       # 가장 큰 노드 left를 검색
+#                 parent = left
+#                 left = left.right
+#                 is_left_child = False
+#             p.key = left.key                    # left의 키를 p로 이동
+#             p.value = left.value                # left의 데이터를 p로 이동
+#             if is_left_child:
+#                 parent.left = left.left         # left를 삭제
+#             else:
+#                 parent.right = left.left        # left를 삭제
+#         return True
+#     def dump(self, reverse = False) -> None:
+#         """덤프(모든 노드를 키의 오름차순/내림차순으로 출력)"""
+#         def print_subtree(node: Node):
+#             """node를 루트로 하는 서브 트리의 노드를 키의 오름차순으로 출력"""
+#             if node is not None:
+#                 print_subtree(node.left)                # 왼쪽 서브 트리를 오름차순으로 출력
+#                 print(f'{node.key}  {node.value}')      # node를 출력
+#                 print_subtree(node.right)               # 오른쪽 서브 트리를 오름차순으로 출력
+#         def print_subtree_rev(node: Node):
+#             """node를 루트로 하는 서브 트리의 노드를 키의 내림차순으로 출력"""
+#             if node is not None:
+#                 print_subtree_rev(node.right)           # 오른쪽 서브 트리를 내림차순으로 출력
+#                 print(f'{node.key}  {node.value}')      # node를 출력
+#                 print_subtree_rev(node.left)            # 왼쪽 서브 트리를 내림차순으로 출력
+#         print_subtree_rev(self.root) if reverse else print_subtree(self.root)
+#     def min_key(self) -> Any:
+#         """가장 작은 키"""
+#         if self.root is None:
+#             return None
+#         p = self.root
+#         while p.left is not None:
+#             p = p.left
+#         return p.key
+#     def max_key(self) -> Any:
+#         """가장 큰 키"""
+#         if self.root is None:
+#             return None
+#         p = self.root
+#         while p.right is not None:
+#             p = p.right
+#         return p.key
+
+# [Do it! 실습 9C-1] 이진 검색 트리 클래스 BinarySearchTree 사용하기(오름차순, 내림차순으로 덤프)
+# from enum import Enum
+# from bst2 import BinarySearchTree
+# Menu = Enum('Menu', ['삽입', '삭제', '검색', '오름차순덤프', '내림차순덤프', '키의범위', '종료'])
+# def select_Menu() -> Menu:
+#     """메뉴 선택"""
+#     s = [f'({m.value}){m.name}' for m in Menu]
+#     while True:
+#         print(*s, sep = '  ', end='')
+#         n = int(input(' : '))
+#         if 1 <= n <= len(Menu):
+#             return Menu(n)
+# tree = BinarySearchTree()  # 이진 검색 트리를 생성
+# while True:
+#     menu = select_Menu()  # 메뉴 선택
+#     if menu == Menu.삽입:  # 삽입
+#         key = int(input('삽입할 키를 입력하세요.: '))
+#         val = input('삽입할 값을 입력하세요.: ')
+#         if not tree.add(key, val):
+#             print('삽입에 실패했습니다!')
+#     elif menu == Menu.삭제:  # 삭제
+#         key = int(input('삭제할 키를 입력하세요.: '))
+#         tree.remove(key)
+#     elif menu == Menu.검색:  # 검색
+#         key = int(input('검색할 키를 입력하세요.: '))
+#         t = tree.search(key)
+#         if t is not None:
+#             print(f'이 키를 갖는 값은 {t}입니다.')
+#         else:
+#             print('해당 데이터가 없습니다.')
+#     elif menu == Menu.오름차순덤프:  # 오름차순 덤프
+#         tree.dump()
+#     elif menu == Menu.내림차순덤프:  # 내림차순 덤프
+#         tree.dump(reverse = True)
+#     elif menu == Menu.키의범위 :  # 키의 범위(최솟값과 최댓값)
+#         print(f'키의 최솟값은 {tree.min_key()}입니다.')
+#         print(f'키의 최댓값은 {tree.max_key()}입니다.')      
+#     else:# 종료
+#         break
