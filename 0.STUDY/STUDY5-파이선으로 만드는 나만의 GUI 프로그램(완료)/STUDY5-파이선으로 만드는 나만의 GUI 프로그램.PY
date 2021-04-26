@@ -162,7 +162,7 @@
 # 윈도우 위젯의 타이틀을 설정한다. 만약 타이틀을 설정하지 않을 경우 setWindowTitle함수가 자동으로 실행되어서, 
 # 코드파일이 저장되어 있는 상위 폴더이름이 윈도우 타이틀이 된다.
 # move(x1,y1)
-# 기준점(창의 왼쪽 위)을 기준으로 지정 좌표로 창을 이동시킨다.여기서는 위젯을 스크린의 x=300px, y=300px의 위치로 이동
+# 기준점(창의 왼쪽 위)을 기준으로 지정 좌표로 창을 이동시킨다. 여기서는 위젯을 스크린의 x=300px, y=300px의 위치로 이동
 # resize(x,y)
 # 앞서 만든 부모가 존재하는 위젯(wwp)의 크기를 재조정함. 여기서는 위젯의 크기를 너비 400px, 높이 200px로 조절
 # self.show()
@@ -639,7 +639,7 @@ if __name__ == '__main__':
 # btn1 = QPushButton('Button1', self)
 # btn1.move(80, 13)
 # 푸시버튼을 하나 만들고, x=80, y=13에 위치하도록 옮겨줍니다.
-''' import sys
+import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 class MyApp(QWidget):
     def __init__(self):
@@ -660,7 +660,7 @@ class MyApp(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
-    sys.exit(app.exec_()) '''
+    sys.exit(app.exec_())
 
 # (4-2.박스 레이아웃)
 # 박스 레이아웃 클래스를 이용하면 훨씬 유연하고 실용적인 레이아웃을 할 수 있습니다. (QBoxLayout 공식 문서 참고)
