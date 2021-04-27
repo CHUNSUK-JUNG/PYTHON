@@ -154,15 +154,19 @@ class MemoPad(QMainWindow):
         zoominoutmenu.addAction(zoominaction)
         zoominoutmenu.addAction(zoomoutaction)
         formatmenu.addMenu(zoominoutmenu)
-
-
-
     def helpMenu(self):
         menubar = self.menuBar()
-        formatmenu = menubar.addMenu('&Help(H)')
-
-
-
+        helpmenu = menubar.addMenu('&Help(H)')
+        helpaction = QAction('&Help(H)', self)
+        helpaction.setShortcut('H1')
+        helpaction.setStatusTip('Help')
+        helpaction.triggered.connect(qApp.exit)
+        helpmenu.addAction(helpaction)
+        versionaction = QAction('&Version(V)', self)
+        versionaction.setShortcut('Ctrl+Shift+V')
+        versionaction.setStatusTip('Version')
+        versionaction.triggered.connect(qApp.exit)
+        helpmenu.addAction(versionaction)
     def windowStatusbar(self):
         self.date = QDate.currentDate()
         self.statusBar().showMessage(self.date.toString(Qt.DefaultLocaleLongDate))
