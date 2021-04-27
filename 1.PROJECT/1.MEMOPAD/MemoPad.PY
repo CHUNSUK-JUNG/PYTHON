@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-class MemoPad(QMainWindow):
+class MemoPad(QMainWindow): 
     def __init__(self):
         super().__init__()
         self.initUi()
@@ -10,12 +10,13 @@ class MemoPad(QMainWindow):
         self.windowInit()
         self.windowCenter()
         self.windowMenubar()
+        self.windowToolbar()
         self.windowStatusbar()
         self.toolTip()
         self.show()
     def windowInit(self):
         self.setWindowTitle('Memo Pad') # 열려져 있는 파일 이름 표기방법 추가
-        self.setWindowIcon(QIcon('WindowIcon.png'))
+        self.setWindowIcon(QIcon('.\\icon\\WindowIcon.png'))
         self.setGeometry(300, 300, 400, 400)
     def windowCenter(self):
         qr = self.frameGeometry()
@@ -28,6 +29,27 @@ class MemoPad(QMainWindow):
         self.formatMenu()
         self.viewMenu()
         self.helpMenu()
+    def windowToolbar(self):
+        self.toolbar = self.addToolBar('Open')
+        openaction = QAction('Open', self)
+        openaction.setStatusTip('Open')
+        openaction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(openaction)
+        self.toolbar = self.addToolBar('Save')
+        saveaction = QAction('Save', self)
+        saveaction.setStatusTip('Save')
+        saveaction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(saveaction)
+        self.toolbar = self.addToolBar('Print')
+        printaction = QAction('Print', self)
+        printaction.setStatusTip('Print')
+        printaction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(printaction)
+        self.toolbar = self.addToolBar('Exit')
+        exitaction = QAction('Exit', self)
+        exitaction.setStatusTip('Exit')
+        exitaction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(exitaction)
     def fileMenu(self):
         menubar = self.menuBar()
         filemenu = menubar.addMenu('&File(F)')
@@ -102,7 +124,7 @@ class MemoPad(QMainWindow):
         copyaction.triggered.connect(qApp.exit)
         editmenu.addAction(copyaction)
         pasteaction = QAction('&Paste(P)', self)
-        pasteaction.setShortcut('Ctrl+C')
+        pasteaction.setShortcut('Ctrl+V')
         pasteaction.setStatusTip('Paste')
         pasteaction.triggered.connect(qApp.exit)
         editmenu.addAction(pasteaction)
@@ -144,12 +166,12 @@ class MemoPad(QMainWindow):
         formatmenu = menubar.addMenu('&View(V)')
         zoominoutmenu = QMenu('&Zoon In/Zoon Out(Z)', self)
         zoominaction = QAction('Zoom &In(I)', self)
-        zoominaction.setShortcut('Ctrl+plus')
+        zoominaction.setShortcut('Ctrl++')
         zoominaction.setStatusTip('Zoom In')
         zoominaction.triggered.connect(qApp.exit)
         zoomoutaction = QAction('Zoom &Out(O)', self)
-        zoomoutaction.setShortcut('Ctrl+minus')
-        zoomoutaction.setStatusTip('Export')
+        zoomoutaction.setShortcut('Ctrl+-')
+        zoomoutaction.setStatusTip('Zomm Out')
         zoomoutaction.triggered.connect(qApp.exit)
         zoominoutmenu.addAction(zoominaction)
         zoominoutmenu.addAction(zoomoutaction)
@@ -158,7 +180,7 @@ class MemoPad(QMainWindow):
         menubar = self.menuBar()
         helpmenu = menubar.addMenu('&Help(H)')
         helpaction = QAction('&Help(H)', self)
-        helpaction.setShortcut('H1')
+        helpaction.setShortcut('F1')
         helpaction.setStatusTip('Help')
         helpaction.triggered.connect(qApp.exit)
         helpmenu.addAction(helpaction)
