@@ -639,7 +639,7 @@ if __name__ == '__main__':
 # btn1 = QPushButton('Button1', self)
 # btn1.move(80, 13)
 # 푸시버튼을 하나 만들고, x=80, y=13에 위치하도록 옮겨줍니다.
-import sys
+''' import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 class MyApp(QWidget):
     def __init__(self):
@@ -660,7 +660,7 @@ class MyApp(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_()) '''
 
 # (4-2.박스 레이아웃)
 # 박스 레이아웃 클래스를 이용하면 훨씬 유연하고 실용적인 레이아웃을 할 수 있습니다. (QBoxLayout 공식 문서 참고)

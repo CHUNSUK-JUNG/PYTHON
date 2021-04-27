@@ -1,39 +1,15 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QMessageBox, QApplication
-
-
-class Example(QWidget):
-
-    def __init__(self):
-        super().__init__()
-
-        self.initUI()
-
-    def initUI(self):
-
-        self.setGeometry(300, 300, 250, 150)
-        self.setWindowTitle('Message box')
-        self.show()
-
-    def closeEvent(self, event):
-
-        reply = QMessageBox.question(self, 'Message',
-                                     "Are you sure to quit?", QMessageBox.Yes |
-                                     QMessageBox.No, QMessageBox.No)
-
-        if reply == QMessageBox.Yes:
-
-            event.accept()
-        else:
-
-            event.ignore()
-
-
-def main():
-    app = QApplication(sys.argv)
-    ex = Example()
-    sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()
+        # 툴바 만들기
+        self.toolbar = self.addToolBar('Exit')
+        self.toolbar.addAction(exitAction)
+        self.toolbar.addAction(editAction)
+        self.toolbar.addAction(printAction)
+        self.toolbar.addAction(helpAction)
+        
+        # 버튼 만들기
+        quitbtn = QPushButton('Quit', self) #6
+        QToolTip.setFont(QFont('SansSerif', 10))
+        quitbtn.setToolTip('<b>QuitButton</b>')
+        quitbtn.move(350, 100)
+        quitbtn.resize(50, 20) #quitbtn.resize(quitbtn.sizeHint())
+        ex1 = Calculator()
+        quitbtn.clicked.connect(Calculator) #7
