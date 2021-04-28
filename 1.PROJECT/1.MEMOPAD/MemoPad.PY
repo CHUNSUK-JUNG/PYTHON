@@ -9,21 +9,25 @@ class MemoPad(QMainWindow):
     def initUi(self):
         self.windowInit()
         self.windowCenter()
+        self.textEdit()
         self.windowMenubar()
         self.windowToolbar()
         self.windowStatusbar()
         self.toolTip()
-        self.textedit = QTextEdit()
-        self.setCentralWidget(self.textedit)
     def windowInit(self):
         self.setWindowTitle('Memo Pad') # 열려져 있는 파일 이름 표기방법 추가
         self.setWindowIcon(QIcon('./1.MEMOPAD/icon/Title.png'))
-        self.setGeometry(300, 300, 500, 500)
+        self.setGeometry(300, 300, 600, 600)
     def windowCenter(self):
         qr = self.frameGeometry()
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+    def textEdit(self):
+        self.textedit = QTextEdit()
+        self.textedit.setStyleSheet("font:20pt;" "color: red;" "border-style: solid;" "border-width: 2px;"
+            "border-color: #FA8072;" "border-radius: 3px")
+        self.setCentralWidget(self.textedit)
     def windowMenubar(self):
         self.fileMenu()
         self.editMenu()
@@ -238,25 +242,6 @@ class MemoPad(QMainWindow):
             event.accept()
         else:
             event.ignore()
-
-# class Window(QWidget):
-#     def __init__(self):
-#         super().__init__()
-#         self.qboxLayout()
-#     def qboxLayout(self):
-#         layout = QBoxLayout(QBoxLayout.LeftToRight)
-#         self.setLayout(layout)
-#         label = QLabel("Label 1")
-#         layout.addWidget(label, 0)
-#         label = QLabel("Label 2")
-#         layout.addWidget(label, 0)
-#         layout2 = QBoxLayout(QBoxLayout.TopToBottom)
-#         layout.addLayout(layout2)
-#         label = QLabel("Label 3")
-#         layout2.addWidget(label, 0)
-#         label = QLabel("Label 4")
-#         layout2.addWidget(label, 0)
-
 
 def main():
     app = QApplication(sys.argv)
