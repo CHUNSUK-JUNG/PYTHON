@@ -6,6 +6,7 @@
 # 02. 설치 (Installation)
 #     01) 파이참 설치
 #     02) 아나콘다 설치
+#     03) PyQt5와 Qt designer 설치 (GUI창 만들기 지원 프로그램)
 # 03. 기초 (Basics)
 #     01) 창 띄우기
 #     02) 어플리케이션 아이콘 넣기
@@ -142,6 +143,12 @@
 # 'OK' 버튼을 클릭합니다.
 # 이제 실행하면 결과에 'Hello, World!'가 출력되는 것을 확인할 수 있습니다.
 # 이제 파이썬과 PyQt5를 이용해서 GUI 프로그래밍을 시작할 준비가 되었습니다. 간단한 프로그램부터 만들어 보겠습니다.
+
+# (2-3 Qt designer 설치 (GUI창 만들기 지원 프로그램))
+# PyQt5 설치 : pip install PyQt5
+# PySide2 설치 : pip install PySide2
+# PySide2 설치 폴더내 (C:\Python38\Lib\site-packages\PySide2), designer.exe 실행
+# designer로 만든 .ui 파일의 .py파일로의 변환 명령어 : pyuic5 -x 파일명.ui -o 파일명.py
 
 
 # [3.기초 (Basics)]

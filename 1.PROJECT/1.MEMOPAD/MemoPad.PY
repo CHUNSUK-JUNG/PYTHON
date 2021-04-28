@@ -2,10 +2,13 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-class MemoPad(QMainWindow): 
+
+
+class MemoPad(QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUi()
+
     def initUi(self):
         self.windowInit()
         self.windowCenter()
@@ -14,26 +17,31 @@ class MemoPad(QMainWindow):
         self.windowToolbar()
         self.windowStatusbar()
         self.toolTip()
+
     def windowInit(self):
-        self.setWindowTitle('Memo Pad') # 열려져 있는 파일 이름 표기방법 추가
+        self.setWindowTitle('Memo Pad')  # 열려져 있는 파일 이름 표기방법 추가
         self.setWindowIcon(QIcon('./1.MEMOPAD/icon/Title.png'))
         self.setGeometry(300, 300, 600, 600)
+
     def windowCenter(self):
         qr = self.frameGeometry()
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+
     def textEdit(self):
         self.textedit = QTextEdit()
-        self.textedit.setStyleSheet("font:20pt;" "color: red;" "border-style: solid;" "border-width: 2px;"
-            "border-color: #FA8072;" "border-radius: 3px")
+        self.textedit.setStyleSheet('border-style: solid;' 'border-width: 2px;'
+                                    'border-color: black;' 'border-radius: 5px')
         self.setCentralWidget(self.textedit)
+
     def windowMenubar(self):
         self.fileMenu()
         self.editMenu()
         self.formatMenu()
         self.viewMenu()
         self.helpMenu()
+
     def fileMenu(self):
         menubar = self.menuBar()
         filemenu = menubar.addMenu('&File(F)')
@@ -84,24 +92,30 @@ class MemoPad(QMainWindow):
         exitaction.setStatusTip('Exit')
         exitaction.triggered.connect(qApp.exit)
         filemenu.addAction(exitaction)
+
     def newAction(self):
         self.textedit.setText("")
+
     def openAction(self):
-        openfile = QFileDialog.getOpenFileName(self, 'Open File', './1.MEMOPAD/')
+        openfile = QFileDialog.getOpenFileName(
+            self, 'Open File', './1.MEMOPAD/')
         if openfile[0]:
-            with open(openfile[0],'r') as f:
+            with open(openfile[0], 'r') as f:
                 texteditcontent = f.read()
                 self.textedit.setText(texteditcontent)
         else:
             pass
+
     def saveAction(self):
-        savefile = QFileDialog.getSaveFileName(self, 'Save File', './1.MEMOPAD/')
+        savefile = QFileDialog.getSaveFileName(
+            self, 'Save File', './1.MEMOPAD/')
         if savefile[0]:
             with open(savefile[0], 'w') as f:
                 texteditcontent = self.textedit.toPlainText()
                 f.write(texteditcontent)
         else:
             pass
+
     def editMenu(self):
         menubar = self.menuBar()
         editmenu = menubar.addMenu('&Edit(E)')
@@ -150,19 +164,49 @@ class MemoPad(QMainWindow):
         moveaction.setStatusTip('Move')
         moveaction.triggered.connect(qApp.exit)
         editmenu.addAction(moveaction)
+
     def formatMenu(self):
         menubar = self.menuBar()
         formatmenu = menubar.addMenu('F&ormat(O)')
         fontaction = QAction('&Font(F)', self)
         fontaction.setShortcut('Ctrl+Shift+F')
         fontaction.setStatusTip('Font')
-        fontaction.triggered.connect(qApp.exit)
+        fontaction.triggered.connect(self.fontAction)
         formatmenu.addAction(fontaction)
-        coloraction = QAction('&Color(C)', self)
-        coloraction.setShortcut('Ctrl+Shift+C')
-        coloraction.setStatusTip('Color')
-        coloraction.triggered.connect(qApp.exit)
-        formatmenu.addAction(coloraction)
+        colormenu = QMenu('&Color(C)', self)
+        fontcoloraction = QAction('&Font Color(F)', self)
+        fontcoloraction.setShortcut('Ctrl+Shift+C')
+        fontcoloraction.setStatusTip('Font Color')
+        fontcoloraction.triggered.connect(self.fontcolorAction)
+        backgroundcoloraction = QAction('&Background Color(B)', self)
+        backgroundcoloraction.setShortcut('Ctrl+Shift+B')
+        backgroundcoloraction.setStatusTip('Background Color')
+        backgroundcoloraction.triggered.connect(self.backgroundcolorAction)
+        colormenu.addAction(fontcoloraction)
+        colormenu.addAction(backgroundcoloraction)
+        formatmenu.addMenu(colormenu)
+
+    def fontAction(self):
+        fontformat, ok = QFontDialog.getFont()
+        if ok:
+           self.textedit.setFont(fontformat)
+        else:
+            pass
+
+    def fontcolorAction(self):
+        fontcolorformat = QColorDialog.getColor()
+        if fontcolorformat.isValid():
+            self.textedit.setStyleSheet('color:{};'.format(fontcolorformat.name()))
+        else:
+            pass
+
+    def backgroundcolorAction(self):
+        backgroundcolorformat = QColorDialog.getColor()
+        if backgroundcolorformat.isValid():
+            self.textedit.setStyleSheet('background-color:{};'.format(backgroundcolorformat.name()))
+        else:
+            pass
+
     def viewMenu(self):
         menubar = self.menuBar()
         formatmenu = menubar.addMenu('&View(V)')
@@ -178,6 +222,7 @@ class MemoPad(QMainWindow):
         zoominoutmenu.addAction(zoominaction)
         zoominoutmenu.addAction(zoomoutaction)
         formatmenu.addMenu(zoominoutmenu)
+
     def helpMenu(self):
         menubar = self.menuBar()
         helpmenu = menubar.addMenu('&Help(H)')
@@ -191,9 +236,11 @@ class MemoPad(QMainWindow):
         versionaction.setStatusTip('Version')
         versionaction.triggered.connect(qApp.exit)
         helpmenu.addAction(versionaction)
+
     def windowToolbar(self):
         self.fileToolbar()
         self.formatToolbar()
+
     def fileToolbar(self):
         self.toolbar = self.addToolBar('File')
         newaction = QAction(QIcon('./1.MEMOPAD/icon/New.png'), 'New', self)
@@ -210,25 +257,32 @@ class MemoPad(QMainWindow):
         self.toolbar.addAction(saveaction)
         printaction = QAction(QIcon('./1.MEMOPAD/icon/Print.png'), 'Print', self)
         printaction.setStatusTip('Print')
-        printaction.triggered.connect(qApp.exit)
+        printaction.triggered.connect(qApp.exit) # 변경해야함
         self.toolbar.addAction(printaction)
         exitaction = QAction(QIcon('./1.MEMOPAD/icon/Exit.png'), 'Exit', self)
         exitaction.setStatusTip('Exit')
         exitaction.triggered.connect(qApp.exit)
         self.toolbar.addAction(exitaction)
+
     def formatToolbar(self):
         self.toolbar = self.addToolBar('Format')
         fontaction = QAction(QIcon('./1.MEMOPAD/icon/Font.png'), 'Font', self)
         fontaction.setStatusTip('Font')
-        fontaction.triggered.connect(qApp.exit)
+        fontaction.triggered.connect(self.fontAction)
         self.toolbar.addAction(fontaction)
-        coloraction = QAction(QIcon('./1.MEMOPAD/icon/Color.png'), 'Color', self)
-        coloraction.setStatusTip('Color')
-        coloraction.triggered.connect(qApp.exit)
-        self.toolbar.addAction(coloraction)
+        fontcoloraction = QAction(QIcon('./1.MEMOPAD/icon/FontColor.png'), 'Font Color', self)
+        fontcoloraction.setStatusTip('Color')
+        fontcoloraction.triggered.connect(self.fontcolorAction)
+        self.toolbar.addAction(fontcoloraction)
+        backgroundcoloraction = QAction(QIcon('./1.MEMOPAD/icon/BackgroundColor.png'), 'Background Color', self)
+        backgroundcoloraction.setStatusTip('Background Color')
+        backgroundcoloraction.triggered.connect(self.backgroundcolorAction)
+        self.toolbar.addAction(backgroundcoloraction)
+
     def windowStatusbar(self):
         self.date = QDate.currentDate()
         self.statusBar().showMessage(self.date.toString(Qt.DefaultLocaleLongDate))
+
     def toolTip(self):
         QToolTip.setFont(QFont('SansSerif', 10))
         self.setToolTip('This is a <b>QWidget</b> widget')
@@ -236,18 +290,21 @@ class MemoPad(QMainWindow):
         btn.setToolTip('This is a <b>QPushButton</b> widget')
         btn.move(100, 100)
 
-    def closeEvent(self, event):    
-        reply = QMessageBox.question(self, 'Exit', 'Are you exit?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+    def closeEvent(self, event):
+        reply = QMessageBox.question(
+            self, 'Exit', 'Are you exit?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
             event.accept()
         else:
             event.ignore()
+
 
 def main():
     app = QApplication(sys.argv)
     screen = MemoPad()
     screen.show()
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()
