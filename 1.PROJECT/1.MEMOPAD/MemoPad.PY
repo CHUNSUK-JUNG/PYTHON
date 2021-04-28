@@ -13,11 +13,12 @@ class MemoPad(QMainWindow):
         self.windowToolbar()
         self.windowStatusbar()
         self.toolTip()
-        self.show()
+        self.textedit = QTextEdit()
+        self.setCentralWidget(self.textedit)
     def windowInit(self):
         self.setWindowTitle('Memo Pad') # 열려져 있는 파일 이름 표기방법 추가
-        self.setWindowIcon(QIcon('.\\icon\\WindowIcon.png'))
-        self.setGeometry(300, 300, 400, 400)
+        self.setWindowIcon(QIcon('./1.MEMOPAD/icon/Title.png'))
+        self.setGeometry(300, 300, 500, 500)
     def windowCenter(self):
         qr = self.frameGeometry()
         cp = QDesktopWidget().availableGeometry().center()
@@ -29,39 +30,18 @@ class MemoPad(QMainWindow):
         self.formatMenu()
         self.viewMenu()
         self.helpMenu()
-    def windowToolbar(self):
-        self.toolbar = self.addToolBar('Open')
-        openaction = QAction('Open', self)
-        openaction.setStatusTip('Open')
-        openaction.triggered.connect(qApp.exit)
-        self.toolbar.addAction(openaction)
-        self.toolbar = self.addToolBar('Save')
-        saveaction = QAction('Save', self)
-        saveaction.setStatusTip('Save')
-        saveaction.triggered.connect(qApp.exit)
-        self.toolbar.addAction(saveaction)
-        self.toolbar = self.addToolBar('Print')
-        printaction = QAction('Print', self)
-        printaction.setStatusTip('Print')
-        printaction.triggered.connect(qApp.exit)
-        self.toolbar.addAction(printaction)
-        self.toolbar = self.addToolBar('Exit')
-        exitaction = QAction('Exit', self)
-        exitaction.setStatusTip('Exit')
-        exitaction.triggered.connect(qApp.exit)
-        self.toolbar.addAction(exitaction)
     def fileMenu(self):
         menubar = self.menuBar()
         filemenu = menubar.addMenu('&File(F)')
         newaction = QAction('&New(N)', self)
         newaction.setShortcut('Ctrl+N')
         newaction.setStatusTip('New')
-        newaction.triggered.connect(qApp.exit)
+        newaction.triggered.connect(self.newAction)
         filemenu.addAction(newaction)
         openaction = QAction('&Open(O)', self)
         openaction.setShortcut('Ctrl+O')
         openaction.setStatusTip('Open')
-        openaction.triggered.connect(qApp.exit)
+        openaction.triggered.connect(self.openAction)
         filemenu.addAction(openaction)
         newwindowaction = QAction('New &Window(W)', self)
         newwindowaction.setShortcut('Ctrl+W')
@@ -71,7 +51,7 @@ class MemoPad(QMainWindow):
         saveaction = QAction('&Save(S)', self)
         saveaction.setShortcut('Ctrl+S')
         saveaction.setStatusTip('Save')
-        saveaction.triggered.connect(qApp.exit)
+        saveaction.triggered.connect(self.saveAction)
         filemenu.addAction(saveaction)
         saveasaction = QAction('Save &As(A)', self)
         saveasaction.setShortcut('Ctrl+Shift+A')
@@ -83,11 +63,6 @@ class MemoPad(QMainWindow):
         printaction.setStatusTip('Print')
         printaction.triggered.connect(qApp.exit)
         filemenu.addAction(printaction)
-        exitaction = QAction('&Exit(E)', self)
-        exitaction.setShortcut('Ctrl+E')
-        exitaction.setStatusTip('Exit')
-        exitaction.triggered.connect(qApp.exit)
-        filemenu.addAction(exitaction)
         importmenu = QMenu('&Import/Export(I)', self)
         importaction = QAction('&Import(I)', self)
         importaction.setShortcut('Ctrl+Shift+I')
@@ -100,6 +75,29 @@ class MemoPad(QMainWindow):
         importmenu.addAction(importaction)
         importmenu.addAction(exportaction)
         filemenu.addMenu(importmenu)
+        exitaction = QAction('&Exit(E)', self)
+        exitaction.setShortcut('Ctrl+E')
+        exitaction.setStatusTip('Exit')
+        exitaction.triggered.connect(qApp.exit)
+        filemenu.addAction(exitaction)
+    def newAction(self):
+        self.textedit.setText("")
+    def openAction(self):
+        openfile = QFileDialog.getOpenFileName(self, 'Open File', './1.MEMOPAD/')
+        if openfile[0]:
+            with open(openfile[0],'r') as f:
+                texteditcontent = f.read()
+                self.textedit.setText(texteditcontent)
+        else:
+            pass
+    def saveAction(self):
+        savefile = QFileDialog.getSaveFileName(self, 'Save File', './1.MEMOPAD/')
+        if savefile[0]:
+            with open(savefile[0], 'w') as f:
+                texteditcontent = self.textedit.toPlainText()
+                f.write(texteditcontent)
+        else:
+            pass
     def editMenu(self):
         menubar = self.menuBar()
         editmenu = menubar.addMenu('&Edit(E)')
@@ -152,7 +150,7 @@ class MemoPad(QMainWindow):
         menubar = self.menuBar()
         formatmenu = menubar.addMenu('F&ormat(O)')
         fontaction = QAction('&Font(F)', self)
-        fontaction.setShortcut('Ctrl+F')
+        fontaction.setShortcut('Ctrl+Shift+F')
         fontaction.setStatusTip('Font')
         fontaction.triggered.connect(qApp.exit)
         formatmenu.addAction(fontaction)
@@ -189,6 +187,41 @@ class MemoPad(QMainWindow):
         versionaction.setStatusTip('Version')
         versionaction.triggered.connect(qApp.exit)
         helpmenu.addAction(versionaction)
+    def windowToolbar(self):
+        self.fileToolbar()
+        self.formatToolbar()
+    def fileToolbar(self):
+        self.toolbar = self.addToolBar('File')
+        newaction = QAction(QIcon('./1.MEMOPAD/icon/New.png'), 'New', self)
+        newaction.setStatusTip('New')
+        newaction.triggered.connect(self.newAction)
+        self.toolbar.addAction(newaction)
+        openaction = QAction(QIcon('./1.MEMOPAD/icon/Open.png'), 'Open', self)
+        openaction.setStatusTip('Open')
+        openaction.triggered.connect(self.openAction)
+        self.toolbar.addAction(openaction)
+        saveaction = QAction(QIcon('./1.MEMOPAD/icon/Save.png'), 'Save', self)
+        saveaction.setStatusTip('Save')
+        saveaction.triggered.connect(self.saveAction)
+        self.toolbar.addAction(saveaction)
+        printaction = QAction(QIcon('./1.MEMOPAD/icon/Print.png'), 'Print', self)
+        printaction.setStatusTip('Print')
+        printaction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(printaction)
+        exitaction = QAction(QIcon('./1.MEMOPAD/icon/Exit.png'), 'Exit', self)
+        exitaction.setStatusTip('Exit')
+        exitaction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(exitaction)
+    def formatToolbar(self):
+        self.toolbar = self.addToolBar('Format')
+        fontaction = QAction(QIcon('./1.MEMOPAD/icon/Font.png'), 'Font', self)
+        fontaction.setStatusTip('Font')
+        fontaction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(fontaction)
+        coloraction = QAction(QIcon('./1.MEMOPAD/icon/Color.png'), 'Color', self)
+        coloraction.setStatusTip('Color')
+        coloraction.triggered.connect(qApp.exit)
+        self.toolbar.addAction(coloraction)
     def windowStatusbar(self):
         self.date = QDate.currentDate()
         self.statusBar().showMessage(self.date.toString(Qt.DefaultLocaleLongDate))
@@ -197,20 +230,39 @@ class MemoPad(QMainWindow):
         self.setToolTip('This is a <b>QWidget</b> widget')
         btn = QPushButton('Button', self)
         btn.setToolTip('This is a <b>QPushButton</b> widget')
-        btn.move(50, 50)
+        btn.move(100, 100)
+
     def closeEvent(self, event):    
         reply = QMessageBox.question(self, 'Exit', 'Are you exit?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
             event.accept()
         else:
-            event.ignore()    
+            event.ignore()
+
+# class Window(QWidget):
+#     def __init__(self):
+#         super().__init__()
+#         self.qboxLayout()
+#     def qboxLayout(self):
+#         layout = QBoxLayout(QBoxLayout.LeftToRight)
+#         self.setLayout(layout)
+#         label = QLabel("Label 1")
+#         layout.addWidget(label, 0)
+#         label = QLabel("Label 2")
+#         layout.addWidget(label, 0)
+#         layout2 = QBoxLayout(QBoxLayout.TopToBottom)
+#         layout.addLayout(layout2)
+#         label = QLabel("Label 3")
+#         layout2.addWidget(label, 0)
+#         label = QLabel("Label 4")
+#         layout2.addWidget(label, 0)
 
 
 def main():
     app = QApplication(sys.argv)
-    ex = MemoPad()
+    screen = MemoPad()
+    screen.show()
     sys.exit(app.exec_())
-
 
 if __name__ == '__main__':
     main()
