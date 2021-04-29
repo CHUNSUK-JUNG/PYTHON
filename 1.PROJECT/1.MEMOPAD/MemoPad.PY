@@ -1,8 +1,8 @@
-import sys
+import inspect, os, random, sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-
+from PyQt5.QtPrintSupport import *
 
 class MemoPad(QMainWindow):
     def __init__(self):
@@ -16,7 +16,6 @@ class MemoPad(QMainWindow):
         self.windowMenubar()
         self.windowToolbar()
         self.windowStatusbar()
-        self.toolTip()
 
     def windowInit(self):
         self.setWindowTitle('Memo Pad')  # 열려져 있는 파일 이름 표기방법 추가
@@ -31,8 +30,8 @@ class MemoPad(QMainWindow):
 
     def textEdit(self):
         self.textedit = QTextEdit()
-        self.textedit.setStyleSheet('border-style: solid;' 'border-width: 2px;'
-                                    'border-color: black;' 'border-radius: 5px')
+        self.textedit.setStyleSheet('border-style : solid;' 'border-width : 2px;'
+                                    'border-color : black;' 'border-radius : 5px')
         self.setCentralWidget(self.textedit)
 
     def windowMenubar(self):
@@ -58,7 +57,7 @@ class MemoPad(QMainWindow):
         newwindowaction = QAction('New &Window(W)', self)
         newwindowaction.setShortcut('Ctrl+W')
         newwindowaction.setStatusTip('New Window')
-        newwindowaction.triggered.connect(qApp.exit)
+        newwindowaction.triggered.connect(self.newwindowAction)
         filemenu.addAction(newwindowaction)
         saveaction = QAction('&Save(S)', self)
         saveaction.setShortcut('Ctrl+S')
@@ -68,7 +67,7 @@ class MemoPad(QMainWindow):
         saveasaction = QAction('Save &As(A)', self)
         saveasaction.setShortcut('Ctrl+Shift+A')
         saveasaction.setStatusTip('Save As')
-        saveasaction.triggered.connect(qApp.exit)
+        saveasaction.triggered.connect(self.saveAction)
         filemenu.addAction(saveasaction)
         printaction = QAction('&Print(P)', self)
         printaction.setShortcut('Ctrl+P')
@@ -90,29 +89,58 @@ class MemoPad(QMainWindow):
         exitaction = QAction('&Exit(E)', self)
         exitaction.setShortcut('Ctrl+E')
         exitaction.setStatusTip('Exit')
-        exitaction.triggered.connect(qApp.exit)
+        exitaction.triggered.connect(self.closeEvent)
         filemenu.addAction(exitaction)
 
     def newAction(self):
         self.textedit.setText("")
+        with open('./1.MEMOPAD/untitled.txt', 'w') as f:
+                texteditcontent = self.textedit.toPlainText()
+                f.write(texteditcontent)
 
     def openAction(self):
-        openfile = QFileDialog.getOpenFileName(
-            self, 'Open File', './1.MEMOPAD/')
-        if openfile[0]:
-            with open(openfile[0], 'r') as f:
+        self.openfile = QFileDialog.getOpenFileName(self, 'Open File', './1.MEMOPAD/')
+        if self.openfile[0]:
+            with open(self.openfile[0], 'r') as f:
                 texteditcontent = f.read()
                 self.textedit.setText(texteditcontent)
         else:
             pass
 
+    def newwindowAction(self):
+        self.dialog = MemoPad()
+        self.dialog.setWindowTitle('New Window')
+        self.dialog.setWindowIcon(QIcon('./1.MEMOPAD/icon/Title.png'))
+        self.dialog.setWindowModality(Qt.ApplicationModal)
+        self.dialog.setGeometry(300, 300, 600, 600)
+        self.dialog.show()
+
     def saveAction(self):
-        savefile = QFileDialog.getSaveFileName(
-            self, 'Save File', './1.MEMOPAD/')
+        savefile = QFileDialog.getSaveFileName(self, 'Save File', './1.MEMOPAD/')
         if savefile[0]:
             with open(savefile[0], 'w') as f:
                 texteditcontent = self.textedit.toPlainText()
                 f.write(texteditcontent)
+        else:
+            pass
+
+    def printAction(self):
+        printer = QPrinter()
+        printdialog = QPrintDialog(printer, self)
+        if printdialog.exec() == QDialog.Accepted:
+            painter = QPainter()
+            painter.begin(printer)
+            # 여백 조정 및 중앙으로 출력하기
+            wgap = printer.pageRect().width()*0.2
+            hgap = printer.pageRect().height()*0.2
+            xscale = (printer.pageRect().width()-wgap)/self.textedit.width()
+            yscale = (printer.pageRect().height()-hgap)/self.textedit.height()
+            scale = xscale if xscale < yscale else yscale        
+            painter.translate(printer.paperRect().x() + printer.pageRect().width()/2, printer.paperRect().y() + printer.pageRect().height()/2)
+            painter.scale(scale, scale);
+            painter.translate(-self.textedit.width()/2, -self.textedit.height()/2);  
+            self.textedit.render(painter)
+            painter.end()
         else:
             pass
 
@@ -187,23 +215,23 @@ class MemoPad(QMainWindow):
         formatmenu.addMenu(colormenu)
 
     def fontAction(self):
-        fontformat, ok = QFontDialog.getFont()
+        fontdialog, ok = QFontDialog.getFont()
         if ok:
-           self.textedit.setFont(fontformat)
+           self.textedit.setFont(fontdialog)
         else:
             pass
 
     def fontcolorAction(self):
-        fontcolorformat = QColorDialog.getColor()
-        if fontcolorformat.isValid():
-            self.textedit.setStyleSheet('color:{};'.format(fontcolorformat.name()))
+        fontcolordialog = QColorDialog.getColor()
+        if fontcolordialog.isValid():
+            self.textedit.setStyleSheet('color:{};'.format(fontcolordialog.name()))
         else:
             pass
 
     def backgroundcolorAction(self):
-        backgroundcolorformat = QColorDialog.getColor()
-        if backgroundcolorformat.isValid():
-            self.textedit.setStyleSheet('background-color:{};'.format(backgroundcolorformat.name()))
+        backgroundcolordialog = QColorDialog.getColor()
+        if backgroundcolordialog.isValid():
+            self.textedit.setStyleSheet('background-color:{};'.format(backgroundcolordialog.name()))
         else:
             pass
 
@@ -257,7 +285,7 @@ class MemoPad(QMainWindow):
         self.toolbar.addAction(saveaction)
         printaction = QAction(QIcon('./1.MEMOPAD/icon/Print.png'), 'Print', self)
         printaction.setStatusTip('Print')
-        printaction.triggered.connect(qApp.exit) # 변경해야함
+        printaction.triggered.connect(self.printAction)
         self.toolbar.addAction(printaction)
         exitaction = QAction(QIcon('./1.MEMOPAD/icon/Exit.png'), 'Exit', self)
         exitaction.setStatusTip('Exit')
@@ -283,17 +311,10 @@ class MemoPad(QMainWindow):
         self.date = QDate.currentDate()
         self.statusBar().showMessage(self.date.toString(Qt.DefaultLocaleLongDate))
 
-    def toolTip(self):
-        QToolTip.setFont(QFont('SansSerif', 10))
-        self.setToolTip('This is a <b>QWidget</b> widget')
-        btn = QPushButton('Button', self)
-        btn.setToolTip('This is a <b>QPushButton</b> widget')
-        btn.move(100, 100)
-
     def closeEvent(self, event):
-        reply = QMessageBox.question(
-            self, 'Exit', 'Are you exit?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        reply = QMessageBox.question(self, 'Exit', 'Are you exit?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
+            self.saveAction()
             event.accept()
         else:
             event.ignore()
