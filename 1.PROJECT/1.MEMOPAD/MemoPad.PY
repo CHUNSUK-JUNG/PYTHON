@@ -6,7 +6,7 @@ from PyQt5.QtPrintSupport import *
 
 class MemoPad(QMainWindow):
     def __init__(self):
-        super().__init__()
+        QMainWindow.__init__(self)
         self.initUi()
 
     def initUi(self):
@@ -16,6 +16,7 @@ class MemoPad(QMainWindow):
         self.windowMenubar()
         self.windowToolbar()
         self.windowStatusbar()
+        self.statusbar = StatusBar()
 
     def windowInit(self):
         self.setWindowTitle('Memo Pad')  # 열려져 있는 파일 이름 표기방법 추가
@@ -320,10 +321,26 @@ class MemoPad(QMainWindow):
             event.ignore()
 
 
+class StatusBar(QStatusBar):
+    @pyqtSlot(QTextCursor)
+    def __init__(self):
+        QStatusBar.__init__(self)
+        self.setVisible(False)
+
+    def change_cursor_info(self, data:QTextCursor):
+        ss = data.selectionStart()
+        se = data.selectionEnd()
+
+        selected_info = ""
+        if se - ss:
+            selected_info = "{0}{1} 선택됨.".format(se - ss, "문자" if (se-ss) == 1 else "문자열")
+        self.showMessage("{0} {1}행:{2}열".format(selected_info, data.blockNumber()+1, data.columnNumber()))
+
+
 def main():
     app = QApplication(sys.argv)
-    screen = MemoPad()
-    screen.show()
+    memopad = MemoPad()
+    memopad.show()
     sys.exit(app.exec_())
 
 
