@@ -16,11 +16,10 @@ class MemoPad(QMainWindow):
         self.windowMenubar()
         self.windowToolbar()
         self.windowStatusbar()
-        self.statusbar = StatusBar()
 
     def windowInit(self):
         self.setWindowTitle('Memo Pad')  # 열려져 있는 파일 이름 표기방법 추가
-        self.setWindowIcon(QIcon('./1.MEMOPAD/icon/Title.png'))
+        self.setWindowIcon(QIcon('./1.MEMOPAD/Window.png'))
         self.setGeometry(300, 300, 600, 600)
 
     def windowCenter(self):
@@ -111,7 +110,7 @@ class MemoPad(QMainWindow):
     def newwindowAction(self):
         self.dialog = MemoPad()
         self.dialog.setWindowTitle('New Window')
-        self.dialog.setWindowIcon(QIcon('./1.MEMOPAD/icon/Title.png'))
+        self.dialog.setWindowIcon(QIcon('./1.MEMOPAD/Window.png'))
         self.dialog.setWindowModality(Qt.ApplicationModal)
         self.dialog.setGeometry(300, 300, 600, 600)
         self.dialog.show()
@@ -272,38 +271,38 @@ class MemoPad(QMainWindow):
 
     def fileToolbar(self):
         self.toolbar = self.addToolBar('File')
-        newaction = QAction(QIcon('./1.MEMOPAD/icon/New.png'), 'New', self)
+        newaction = QAction(QIcon('./1.MEMOPAD/New.png'), 'New', self)
         newaction.setStatusTip('New')
         newaction.triggered.connect(self.newAction)
         self.toolbar.addAction(newaction)
-        openaction = QAction(QIcon('./1.MEMOPAD/icon/Open.png'), 'Open', self)
+        openaction = QAction(QIcon('./1.MEMOPAD/Open.png'), 'Open', self)
         openaction.setStatusTip('Open')
         openaction.triggered.connect(self.openAction)
         self.toolbar.addAction(openaction)
-        saveaction = QAction(QIcon('./1.MEMOPAD/icon/Save.png'), 'Save', self)
+        saveaction = QAction(QIcon('./1.MEMOPAD/Save.png'), 'Save', self)
         saveaction.setStatusTip('Save')
         saveaction.triggered.connect(self.saveAction)
         self.toolbar.addAction(saveaction)
-        printaction = QAction(QIcon('./1.MEMOPAD/icon/Print.png'), 'Print', self)
+        printaction = QAction(QIcon('./1.MEMOPAD/Print.png'), 'Print', self)
         printaction.setStatusTip('Print')
         printaction.triggered.connect(self.printAction)
         self.toolbar.addAction(printaction)
-        exitaction = QAction(QIcon('./1.MEMOPAD/icon/Exit.png'), 'Exit', self)
+        exitaction = QAction(QIcon('./1.MEMOPAD/Exit.png'), 'Exit', self)
         exitaction.setStatusTip('Exit')
         exitaction.triggered.connect(qApp.exit)
         self.toolbar.addAction(exitaction)
 
     def formatToolbar(self):
         self.toolbar = self.addToolBar('Format')
-        fontaction = QAction(QIcon('./1.MEMOPAD/icon/Font.png'), 'Font', self)
+        fontaction = QAction(QIcon('./1.MEMOPAD/Font.png'), 'Font', self)
         fontaction.setStatusTip('Font')
         fontaction.triggered.connect(self.fontAction)
         self.toolbar.addAction(fontaction)
-        fontcoloraction = QAction(QIcon('./1.MEMOPAD/icon/FontColor.png'), 'Font Color', self)
+        fontcoloraction = QAction(QIcon('./1.MEMOPAD/FontColor.png'), 'Font Color', self)
         fontcoloraction.setStatusTip('Color')
         fontcoloraction.triggered.connect(self.fontcolorAction)
         self.toolbar.addAction(fontcoloraction)
-        backgroundcoloraction = QAction(QIcon('./1.MEMOPAD/icon/BackgroundColor.png'), 'Background Color', self)
+        backgroundcoloraction = QAction(QIcon('./1.MEMOPAD/BackgroundColor.png'), 'Background Color', self)
         backgroundcoloraction.setStatusTip('Background Color')
         backgroundcoloraction.triggered.connect(self.backgroundcolorAction)
         self.toolbar.addAction(backgroundcoloraction)
@@ -315,26 +314,9 @@ class MemoPad(QMainWindow):
     def closeEvent(self, event):
         reply = QMessageBox.question(self, 'Exit', 'Are you exit?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
-            self.saveAction()
             event.accept()
         else:
             event.ignore()
-
-
-class StatusBar(QStatusBar):
-    @pyqtSlot(QTextCursor)
-    def __init__(self):
-        QStatusBar.__init__(self)
-        self.setVisible(False)
-
-    def change_cursor_info(self, data:QTextCursor):
-        ss = data.selectionStart()
-        se = data.selectionEnd()
-
-        selected_info = ""
-        if se - ss:
-            selected_info = "{0}{1} 선택됨.".format(se - ss, "문자" if (se-ss) == 1 else "문자열")
-        self.showMessage("{0} {1}행:{2}열".format(selected_info, data.blockNumber()+1, data.columnNumber()))
 
 
 def main():
