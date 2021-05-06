@@ -10,187 +10,37 @@
     <height>557</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Agency FB</family>
+    <pointsize>16</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QDateTimeEdit" name="dateTimeEdit">
    <property name="geometry">
     <rect>
-     <x>29</x>
-     <y>19</y>
-     <width>591</width>
-     <height>331</height>
+     <x>30</x>
+     <y>30</y>
+     <width>118</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Agency FB</family>
-     <pointsize>20</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>380</y>
-     <width>591</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>460</y>
-     <width>591</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QPushButton" name="pushButton_4">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>510</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
+   <property name="calendarPopup">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButton_2</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>slot_2()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>344</x>
-     <y>472</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>303</x>
-     <y>303</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>slot_3()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>524</x>
-     <y>475</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>480</x>
-     <y>302</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_3</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>slot_1()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>143</x>
-     <y>467</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>123</x>
-     <y>303</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lineEdit</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>label</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>226</x>
-     <y>409</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>210</x>
-     <y>222</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_4</sender>
-   <signal>clicked()</signal>
-   <receiver>label</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>60</x>
-     <y>515</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>60</x>
-     <y>349</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_4</sender>
-   <signal>clicked()</signal>
-   <receiver>lineEdit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>95</x>
-     <y>519</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>89</x>
-     <y>419</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>slot_1()</slot>
   <slot>slot_2()</slot>
